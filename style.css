@@ -1,68 +1,78 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styling */
 header {
-    background-color: #1e1e1e;
-    color: white;
+    background-color: #f15a29;
+    padding: 20px;
     text-align: center;
-    padding: 20px 0;
+    color: white;
 }
 
 header .logo h1 {
-    margin: 0;
-    font-size: 36px;
+    font-size: 2.5rem;
     letter-spacing: 2px;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
-    padding: 0;
-    margin: 20px 0 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
+header nav ul li {
+    margin: 0 15px;
 }
 
-nav ul li a {
+header nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
-/* Product Section */
+header nav ul li a:hover {
+    color: #ffb13c;
+}
+
+/* Products Section */
 #products {
     padding: 40px 20px;
+    background-color: white;
     text-align: center;
 }
 
 #products h2 {
-    font-size: 32px;
+    font-size: 2rem;
     color: #333;
     margin-bottom: 30px;
 }
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 0 20px;
 }
 
 .product-item {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease;
 }
 
 .product-item:hover {
@@ -70,52 +80,42 @@ nav ul li a {
 }
 
 .product-item h3 {
-    font-size: 24px;
-    color: #333;
+    font-size: 1.5rem;
+    color: #f15a29;
     margin-bottom: 15px;
 }
 
 .product-item ul {
     list-style: none;
-    padding: 0;
     margin-bottom: 20px;
 }
 
 .product-item ul li {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 5px;
+    font-size: 1rem;
+    margin: 5px 0;
 }
 
-.buy-btn {
-    background-color: #4CAF50;
+.product-item button.buy-btn {
+    background-color: #f15a29;
     color: white;
-    padding: 12px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
     transition: background-color 0.3s;
 }
 
-.buy-btn:hover {
-    background-color: #45a049;
+.product-item button.buy-btn:hover {
+    background-color: #e44e23;
 }
 
 footer {
-    background-color: #1e1e1e;
+    background-color: #f15a29;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 15px;
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    nav ul li {
-        display: block;
-        margin-bottom: 10px;
-    }
 }
