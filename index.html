@@ -1,132 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVOShop Top-Up</title>
+    <title>UVOShop - Top Up Game</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOShop Logo">
+            <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOShop">
         </div>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Cari di UniPin...">
-            <button>Search</button>
+        <div class="search-bar">
+            <input type="text" placeholder="Cari di UVOShop...">
         </div>
-        <div class="id">ID</div>
+        <div class="user-id">
+            <span>ID</span>
+        </div>
     </header>
 
     <main>
-        <section class="categories">
-            <div class="category" onclick="filterCategory('Mobile')">Mobile</div>
-            <div class="category" onclick="filterCategory('PC')">PC</div>
-            <div class="category" onclick="filterCategory('Voucher')">Voucher</div>
-        </section>
+        <div class="category">
+            <button class="active">Game Populer</button>
+            <button>Game PC</button>
+            <button>Voucher Game</button>
+        </div>
 
-        <section class="game-slider">
-            <h3>Game Populer</h3>
-            <div id="game-list" class="game-list">
-                <!-- Game list akan dirender disini oleh JavaScript -->
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="feature-box">Isi ulang instan</div>
-            <div class="feature-box">Pembayaran Aman</div>
-            <div class="feature-box">Bonus Eksklusif</div>
-            <div class="feature-box">Hadiah Besar</div>
-        </section>
+        <div class="game-slider">
+            <!-- Add game items here dynamically using JS -->
+        </div>
     </main>
 
     <footer>
-        <div class="contact-info">
-            <p>Hubungi kami melalui WhatsApp: <a href="https://wa.me/6285648211278">+6285648211278</a></p>
+        <div class="contact">
+            <p>Hubungi kami melalui <a href="tel:+6285648211278">WhatsApp</a></p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-<div class="games-container">
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/7I1gFWe0sOgiS3RHrzLv5ivwDfi4bGoZBF9q-RoXa4-mRpgbH_2zPaOhVumz5JKZP2A=s48-rw" alt="Mobile Legends">
-    <p>Mobile Legends: Bang Bang</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/klrABftwKfTg3zQicx9G4TZg9Hk8hQJt6bd-kZGxyfa54UhwDFcDvvS7RUfxDW_8Ml4=s48-rw" alt="PUBG Mobile">
-    <p>PUBG Mobile</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/6llpraFcTI0rEUuRpWEG9NWWblvm106y5JXcDzu60ACuaUYDD3i70a-p9_QM65NsGDE=s48-rw" alt="Free Fire">
-    <p>Free Fire</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/ifKqsFv9TkF3UEjysMvhPOgmu60H94dbmH0V4-p5pny8glP3BvS6v9IH9qkh2deGhdg=s48-rw" alt="Call of Duty: Mobile">
-    <p>Call of Duty: Mobile</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/KyPQHbl_2xn0cPYgLOhA3uA5mWz3cHh3lZxoT2mN2ew7ozHp7qtzaAqANiE6qb26-uM=s48-rw" alt="Arena of Valor">
-    <p>Arena of Valor</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/qz6DJ1rsBfYbK6DWycy2ioFS9z2FktX2c9dnHkROouTxQ_MtPxDCXXIHxQW9IzjVd-o=s48-rw" alt="Genshin Impact">
-    <p>Genshin Impact</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/D3lITgyT8jPOyV2UMFE3zPbbhf6esOh70QjODscIlNdpZLBcb9WhhXUb9XrGEobW4A=s48-rw" alt="Valorant">
-    <p>Valorant</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/o8dqom9I-3rZhV7YjD4rA2g3_HzwdRPexLV9q9i0uHhZIbnsJlwnMjjg8KX5hQel2w=s48-rw" alt="Apex Legends Mobile">
-    <p>Apex Legends Mobile</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/k4Mi_y-2ktIRj2dEuXBpPqMxhA8Wh2ggpNefx9CVjmljZjjtFw5hQaqYvl3qyy7ABFg=s48-rw" alt="Ragnarok M: Eternal Love">
-    <p>Ragnarok M: Eternal Love</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/pA3yL5w5ZGyOV0-TxeyYmV7pPgnc9dGneA8KO3u4w5C2SKzCaxM3NkAz2Knxyux1rA=s48-rw" alt="Naruto Slugfest X">
-    <p>Naruto Slugfest X</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/fJGGbX5sefy1rf9QcbMcDjbLlsV3VPRFvADzcdNKkA8EzzfI6oBXpquctLL-oPr8dcY=s48-rw" alt="Minecraft">
-    <p>Minecraft</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/62y9ZilI85JhDkw_H9NckOg12M2zrtprzzd_KzX3ZBrW9Zp8dI_J6bnGgVOsHLHpeU=s48-rw" alt="The Walking Dead: No Man's Land">
-    <p>The Walking Dead: No Man's Land</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/MlGOj_hBXTXbV-YF3l_yVUyGHedFFoeYwrQqmxPfm2CJz44D9xvBlTY2OnfFAxR2hQ=s48-rw" alt="King of Glory">
-    <p>King of Glory</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/YqHlr_HlBbAlo5MNJtQ_oEnmfg5fp6Rg1u4k97lG3vxlO-5c90Yyr6v2lZbzdmx0hJM=s48-rw" alt="Knives Out">
-    <p>Knives Out</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/2sP9YqkYJOsnlH5Iq3rnHjpOhKg-wI28ZxO3D_h9eIVuZTAtuFWpJ3-MiVjcPTfg_kE=s48-rw" alt="Clash Royale">
-    <p>Clash Royale</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/5ez5FvFSW_EHgHeqeGGqlFj7sq0wJb2AqqHhCckh_Ul7JjxuA9mMyczM6ySYPu5rbw=s48-rw" alt="Clash of Clans">
-    <p>Clash of Clans</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/Rf2ZsNh7Dwrb0bTnCw7ZXAY5gVb5LfZfaYEdYul5v_xShXU7IqmmXgM_xXImHFFgKc8=s48-rw" alt="Summoners War">
-    <p>Summoners War</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/Tb9a5V7zqVEbmjOlaUOaCnMFpAmL5sbX9pDsX25HGjZv09r8iztF8EKjba_KdX-xU-0=s48-rw" alt="Identity V">
-    <p>Identity V</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/j9v2FzytneR0X_mxiIsUwbZEDQX6fQ2MIh_YVIZOqSmbv7lgZqMIqHTmsmFJtoHl3fE=s48-rw" alt="Shadowgun Legends">
-    <p>Shadowgun Legends</p>
-  </div>
-  <div class="game">
-    <img src="https://play-lh.googleusercontent.com/izRqlI67d_c1u3qmv_JyH6l7t9x2X9zTt5byhpS0QQEnzDqHf8Zj_gL6V9jwWxaWrg=s48-rw" alt="Dragon Nest Mobile">
-    <p>Dragon Nest Mobile</p>
-  </div>
-</div>
