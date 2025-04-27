@@ -1,3 +1,127 @@
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #222;
+    color: white;
+}
+
+header .logo img {
+    width: 120px;
+}
+
+header .search-container input {
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+    margin-right: 10px;
+}
+
+header .search-container button {
+    padding: 5px 10px;
+    background-color: #ff4747;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+header .id {
+    font-size: 14px;
+}
+
+/* Categories */
+.categories {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.categories .category {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.categories .category:hover {
+    background-color: #ff4747;
+    color: white;
+}
+
+/* Slider for games */
+.game-slider {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.game-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    gap: 15px;
+}
+
+.game-card {
+    width: 200px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.game-card h4 {
+    margin-top: 10px;
+}
+
+.game-card button {
+    padding: 5px 10px;
+    background-color: #ff4747;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Feature section */
+.features {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.feature-box {
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #222;
+    color: white;
+}
+
+footer .contact-info a {
+    color: #ff4747;
+    text-decoration: none;
+}
 /* Styling untuk bar atas */
 header {
   background-color: #333;
