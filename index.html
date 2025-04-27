@@ -7,123 +7,195 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <img src="https://i.pinimg.com/236x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOSHOP Logo" class="logo">
+    <div class="logo-container">
+      <img src="https://i.pinimg.com/236x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOSHOP Logo" class="logo">
+    </div>
     <nav>
       <ul>
         <li><a href="#">Beranda</a></li>
         <li><a href="#">Produk</a></li>
         <li><a href="#">Pembayaran</a></li>
         <li><a href="#">Riwayat Transaksi</a></li>
+        <li><a href="#">Promo</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Banner -->
+  <section class="banner">
+    <h2>Promo Spesial Hari Ini! Dapatkan Diskon Besar!</h2>
+  </section>
+
+  <!-- Produk -->
   <section class="products">
     <h2>Game Populer</h2>
+    <div class="product-grid">
+      <!-- Game 1 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/7I1gFWe0sOgiS3RHrzLv5ivwDfi4bGoZBF9q-RoXa4-mRpgbH_2zPaOhVumz5JKZP2A=s48-rw" alt="Mobile Legends">
+        <h3>Mobile Legends: Bang Bang</h3>
+        <p>50 Diamonds - Rp 14.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Mobile%20Legends%2050%20Diamonds%20Rp%2014000'">Beli Sekarang</button>
+      </div>
 
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/7I1gFWe0sOgiS3RHrzLv5ivwDfi4bGoZBF9q-RoXa4-mRpgbH_2zPaOhVumz5JKZP2A=s48-rw" alt="Mobile Legends" class="game-img">
-      <h3>Mobile Legends: Bang Bang</h3>
-      <p>50 Diamonds — Rp 14.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+      <!-- Game 2 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/klrABftwKfTg3zQicx9G4TZg9Hk8hQJt6bd-kZGxyfa54UhwDFcDvvS7RUfxDW_8Ml4=s48-rw" alt="PUBG Mobile">
+        <h3>PUBG Mobile</h3>
+        <p>60 UC - Rp 15.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20PUBG%20Mobile%2060%20UC%20Rp%2015000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 3 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/6llpraFcTI0rEUuRpWEG9NWWblvm106y5JXcDzu60ACuaUYDD3i70a-p9_QM65NsGDE=s48-rw" alt="Free Fire">
+        <h3>Free Fire</h3>
+        <p>Diamond - Rp 12.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Free%20Fire%20Diamond%20Rp%2012000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 4 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/ifKqsFv9TkF3UEjysMvhPOgmu60H94dbmH0V4-p5pny8glP3BvS6v9IH9qkh2deGhdg=s48-rw" alt="Call of Duty: Mobile">
+        <h3>Call of Duty: Mobile</h3>
+        <p>COD Points - Rp 20.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Call%20of%20Duty%20Mobile%20COD%20Points%20Rp%2020000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 5 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/KyPQHbl_2xn0cPYgLOhA3uA5mWz3cHh3lZxoT2mN2ew7ozHp7qtzaAqANiE6qb26-uM=s48-rw" alt="Arena of Valor">
+        <h3>Arena of Valor (AOV)</h3>
+        <p>Gem - Rp 18.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Arena%20of%20Valor%20Gem%20Rp%2018000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 6 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/qz6DJ1rsBfYbK6DWycy2ioFS9z2FktX2c9dnHkROouTxQ_MtPxDCXXIHxQW9IzjVd-o=s48-rw" alt="Genshin Impact">
+        <h3>Genshin Impact</h3>
+        <p>Primogem - Rp 30.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Genshin%20Impact%20Primogem%20Rp%2030000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 7 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/D3lITgyT8jPOyV2UMFE3zPbbhf6esOh70QjODscIlNdpZLBcb9WhhXUb9XrGEobW4A=s48-rw" alt="Valorant">
+        <h3>Valorant</h3>
+        <p>V-Bucks - Rp 25.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Valorant%20V-Bucks%20Rp%2025000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 8 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/o8dqom9I-3rZhV7YjD4rA2g3_HzwdRPexLV9q9i0uHhZIbnsJlwnMjjg8KX5hQel2w=s48-rw" alt="Apex Legends Mobile">
+        <h3>Apex Legends Mobile</h3>
+        <p>Legend Tokens - Rp 22.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Apex%20Legends%20Mobile%20Legend%20Tokens%20Rp%2022000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 9 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/k4Mi_y-2ktIRj2dEuXBpPqMxhA8Wh2ggpNefx9CVjmljZjjtFw5hQaqYvl3qyy7ABFg=s48-rw" alt="Ragnarok M">
+        <h3>Ragnarok M: Eternal Love</h3>
+        <p>Cash - Rp 17.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Ragnarok%20M%20Cash%20Rp%2017000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 10 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/pA3yL5w5ZGyOV0-TxeyYmV7pPgnc9dGneA8KO3u4w5C2SKzCaxM3NkAz2Knxyux1rA=s48-rw" alt="Naruto Slugfest X">
+        <h3>Naruto Slugfest X</h3>
+        <p>Gold - Rp 20.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Naruto%20Slugfest%20X%20Gold%20Rp%2020000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 11 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/fJGGbX5sefy1rf9QcbMcDjbLlsV3VPRFvADzcdNKkA8EzzfI6oBXpquctLL-oPr8dcY=s48-rw" alt="Minecraft">
+        <h3>Minecraft</h3>
+        <p>Coins - Rp 50.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Minecraft%20Coins%20Rp%2050000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 12 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/62y9ZilI85JhDkw_H9NckOg12M2zrtprzzd_KzX3ZBrW9Zp8dI_J6bnGgVOsHLHpeU=s48-rw" alt="The Walking Dead">
+        <h3>The Walking Dead: No Man's Land</h3>
+        <p>Tokens - Rp 10.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20The%20Walking%20Dead%20Tokens%20Rp%2010000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 13 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/MlGOj_hBXTXbV-YF3l_yVUyGHedFFoeYwrQqmxPfm2CJz44D9xvBlTY2OnfFAxR2hQ=s48-rw" alt="King of Glory">
+        <h3>King of Glory</h3>
+        <p>Diamonds - Rp 18.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20King%20of%20Glory%20Diamonds%20Rp%2018000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 14 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/YqHlr_HlBbAlo5MNJtQ_oEnmfg5fp6Rg1u4k97lG3vxlO-5c90Yyr6v2lZbzdmx0hJM=s48-rw" alt="Knives Out">
+        <h3>Knives Out</h3>
+        <p>Gold - Rp 12.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Knives%20Out%20Gold%20Rp%2012000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 15 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/2sP9YqkYJOsnlH5Iq3rnHjpOhKg-wI28ZxO3D_h9eIVuZTAtuFWpJ3-MiVjcPTfg_kE=s48-rw" alt="Clash Royale">
+        <h3>Clash Royale</h3>
+        <p>Gems - Rp 15.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Clash%20Royale%20Gems%20Rp%2015000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 16 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/5ez5FvFSW_EHgHeqeGGqlFj7sq0wJb2AqqHhCckh_Ul7JjxuA9mMyczM6ySYPu5rbw=s48-rw" alt="Clash of Clans">
+        <h3>Clash of Clans</h3>
+        <p>Gems - Rp 13.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Clash%20of%20Clans%20Gems%20Rp%2013000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 17 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/Rf2ZsNh7Dwrb0bTnCw7ZXAY5gVb5LfZfaYEdYul5v_xShXU7IqmmXgM_xXImHFFgKc8=s48-rw" alt="Summoners War">
+        <h3>Summoners War</h3>
+        <p>Mana Stones - Rp 16.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Summoners%20War%20Mana%20Stones%20Rp%2016000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 18 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/Tb9a5V7zqVEbmjOlaUOaCnMFpAmL5sbX9pDsX25HGjZv09r8iztF8EKjba_KdX-xU-0=s48-rw" alt="Identity V">
+        <h3>Identity V</h3>
+        <p>Essence - Rp 14.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Identity%20V%20Essence%20Rp%2014000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 19 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/j9v2FzytneR0X_mxiIsUwbZEDQX6fQ2MIh_YVIZOqSmbv7lgZqMIqHTmsmFJtoHl3fE=s48-rw" alt="Shadowgun Legends">
+        <h3>Shadowgun Legends</h3>
+        <p>Gems - Rp 22.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Shadowgun%20Legends%20Gems%20Rp%2022000'">Beli Sekarang</button>
+      </div>
+
+      <!-- Game 20 -->
+      <div class="product-card">
+        <img src="https://play-lh.googleusercontent.com/fS9DNK96jxYZnfm39-ldVOB-_tRmrJqbfN41LZcQF9g8Q11UlCvqudcENlHZhPf1rCw=s48-rw" alt="Brawl Stars">
+        <h3>Brawl Stars</h3>
+        <p>Gems - Rp 17.000</p>
+        <button onclick="window.location.href='https://wa.me/6285648211278?text=Beli%20Brawl%20Stars%20Gems%20Rp%2017000'">Beli Sekarang</button>
+      </div>
     </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/klrABftwKfTg3zQicx9G4TZg9Hk8hQJt6bd-kZGxyfa54UhwDFcDvvS7RUfxDW_8Ml4=s48-rw" alt="PUBG Mobile" class="game-img">
-      <h3>PUBG Mobile</h3>
-      <p>60 UC — Rp 15.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/6llpraFcTI0rEUuRpWEG9NWWblvm106y5JXcDzu60ACuaUYDD3i70a-p9_QM65NsGDE=s48-rw" alt="Free Fire" class="game-img">
-      <h3>Free Fire</h3>
-      <p>60 Diamonds — Rp 13.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/ifKqsFv9TkF3UEjysMvhPOgmu60H94dbmH0V4-p5pny8glP3BvS6v9IH9qkh2deGhdg=s48-rw" alt="Call of Duty Mobile" class="game-img">
-      <h3>Call of Duty: Mobile</h3>
-      <p>32 CP — Rp 7.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/KyPQHbl_2xn0cPYgLOhA3uA5mWz3cHh3lZxoT2mN2ew7ozHp7qtzaAqANiE6qb26-uM=s48-rw" alt="Arena of Valor" class="game-img">
-      <h3>Arena of Valor (AOV)</h3>
-      <p>1000 Gold — Rp 12.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/qz6DJ1rsBfYbK6DWycy2ioFS9z2FktX2c9dnHkROouTxQ_MtPxDCXXIHxQW9IzjVd-o=s48-rw" alt="Genshin Impact" class="game-img">
-      <h3>Genshin Impact</h3>
-      <p>Primogems — Rp 25.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/D3lITgyT8jPOyV2UMFE3zPbbhf6esOh70QjODscIlNdpZLBcb9WhhXUb9XrGEobW4A=s48-rw" alt="Valorant" class="game-img">
-      <h3>Valorant</h3>
-      <p>Valorant Points (VP) — Rp 20.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/o8dqom9I-3rZhV7YjD4rA2g3_HzwdRPexLV9q9i0uHhZIbnsJlwnMjjg8KX5hQel2w=s48-rw" alt="Apex Legends Mobile" class="game-img">
-      <h3>Apex Legends Mobile</h3>
-      <p>300 Apex Coins — Rp 17.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/k4Mi_y-2ktIRj2dEuXBpPqMxhA8Wh2ggpNefx9CVjmljZjjtFw5hQaqYvl3qyy7ABFg=s48-rw" alt="Ragnarok M" class="game-img">
-      <h3>Ragnarok M: Eternal Love</h3>
-      <p>1000 Zeny — Rp 10.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/pA3yL5w5ZGyOV0-TxeyYmV7pPgnc9dGneA8KO3u4w5C2SKzCaxM3NkAz2Knxyux1rA=s48-rw" alt="Naruto Slugfest X" class="game-img">
-      <h3>Naruto Slugfest X</h3>
-      <p>Diamonds — Rp 13.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/fJGGbX5sefy1rf9QcbMcDjbLlsV3VPRFvADzcdNKkA8EzzfI6oBXpquctLL-oPr8dcY=s48-rw" alt="Minecraft" class="game-img">
-      <h3>Minecraft</h3>
-      <p>1000 Coins — Rp 18.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/62y9ZilI85JhDkw_H9NckOg12M2zrtprzzd_KzX3ZBrW9Zp8dI_J6bnGgVOsHLHpeU=s48-rw" alt="The Walking Dead" class="game-img">
-      <h3>The Walking Dead: No Man's Land</h3>
-      <p>Coins — Rp 22.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/MlGOj_hBXTXbV-YF3l_yVUyGHedFFoeYwrQqmxPfm2CJz44D9xvBlTY2OnfFAxR2hQ=s48-rw" alt="Brawl Stars" class="game-img">
-      <h3>Brawl Stars</h3>
-      <p>Gems — Rp 15.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
-    <div class="product">
-      <img src="https://play-lh.googleusercontent.com/a3_wqA6UeX6L9FY59I2iNj7J1lA-cpgm2zjS4X2NOoHJmLhdvo71XZtv3Oh6zJZo2xM=s48-rw" alt="Clash Royale" class="game-img">
-      <h3>Clash Royale</h3>
-      <p>Gems — Rp 10.000</p>
-      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
-    </div>
-
   </section>
 
   <footer>
-    <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi</p>
+    <p>&copy; 2025 UVOSHOP - Semua hak dilindungi.</p>
   </footer>
 </body>
 </html>
