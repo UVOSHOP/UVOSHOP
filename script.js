@@ -1,33 +1,19 @@
-const games = [
-    {
-        name: "Mobile Legends: Bang Bang",
-        image: "https://play-lh.googleusercontent.com/7I1gFWe0sOgiS3RHrzLv5ivwDfi4bGoZBF9q-RoXa4-mRpgbH_2zPaOhVumz5JKZP2A=s48-rw",
-        link: "https://www.unipin.com",
-    },
-    {
-        name: "PUBG Mobile",
-        image: "https://play-lh.googleusercontent.com/klrABftwKfTg3zQicx9G4TZg9Hk8hQJt6bd-kZGxyfa54UhwDFcDvvS7RUfxDW_8Ml4=s48-rw",
-        link: "https://www.unipin.com",
-    },
-    {
-        name: "Free Fire",
-        image: "https://play-lh.googleusercontent.com/6llpraFcTI0rEUuRpWEG9NWWblvm106y5JXcDzu60ACuaUYDD3i70a-p9_QM65NsGDE=s48-rw",
-        link: "https://www.unipin.com",
-    },
-    // Add other games in the same format
-];
+// Ambil semua tombol 'Buy Now'
+const buyButtons = document.querySelectorAll('.buy-now');
 
-const gameSlider = document.querySelector(".game-slider");
+buyButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        const product = event.target.getAttribute('data-product');
+        const selectElement = event.target.previousElementSibling; // Element select
+        const diamondAmount = selectElement.value;
+        const price = selectElement.selectedOptions[0].text.split(' - ')[1]; // Ambil harga dari text option
 
-games.forEach(game => {
-    const gameItem = document.createElement("div");
-    gameItem.classList.add("game-item");
+        // Format pesan WhatsApp
+        const phoneNumber = '+6285648211278'; // Nomor WhatsApp
+        const message = `epep%0A${diamondAmount}dm%0A${price}`;
 
-    gameItem.innerHTML = `
-        <img src="${game.image}" alt="${game.name}">
-        <p>${game.name}</p>
-        <button onclick="window.location.href='${game.link}'">Beli</button>
-    `;
-
-    gameSlider.appendChild(gameItem);
+        // Arahkan ke WhatsApp dengan pesan otomatis
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(whatsappUrl, '_blank');
+    });
 });
