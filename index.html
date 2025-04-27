@@ -1,235 +1,91 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVOSHOP</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #2c3e50;
-            padding: 20px;
-            color: white;
-        }
-
-        header .logo img {
-            width: 150px;
-        }
-
-        header .search-bar input {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            width: 250px;
-        }
-
-        /* Game Carousel Styles */
-        .game-list {
-            padding: 20px;
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            justify-content: start;
-        }
-
-        .game-list .game {
-            background-color: white;
-            width: 120px;
-            text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .game-list .game img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .game-list .game h3 {
-            font-size: 14px;
-            margin: 10px 0;
-        }
-
-        .game-list .game button {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .game-list .game:hover {
-            transform: scale(1.05);
-        }
-
-        /* Promo Section */
-        .promo {
-            background-color: #f39c12;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .promo h3 {
-            margin-bottom: 10px;
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        footer p {
-            margin: 10px 0;
-        }
-
-        /* Section Titles */
-        .section-title {
-            text-align: center;
-            font-size: 24px;
-            margin: 20px 0;
-        }
-
-        /* Responsiveness */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            header .search-bar input {
-                width: 100%;
-                margin-top: 10px;
-            }
-
-            .game-list {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .game-list .game {
-                width: 90px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UVOSHOP - Top Up Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <img src="https://drive.google.com/uc?id=19QRFgx41eLvqSaqJguA6pAIS63N2Ef-U" alt="UVOSHOP Logo" width="150">
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Cari Game atau E-wallet..." />
+    </div>
+  </header>
 
-    <header>
-        <div class="logo">
-            <img src="URL_LOGO" alt="Logo UVOSHOP">
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Cari game atau e-wallet..." id="search" oninput="searchGames()">
-        </div>
-    </header>
+  <main>
+    <h2>Game Populer</h2>
+    <div class="games-container">
+      <div class="game">
+        <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire" width="100">
+        <p>Free Fire</p>
+      </div>
+      <div class="game">
+        <img src="https://cdn.unipin.com/images/icon_product_pages/1735814979-icon-Image_20250102184102.jpg" alt="Mobile Legends" width="100">
+        <p>Mobile Legends</p>
+      </div>
+      <div class="game">
+        <img src="https://cdn.unipin.com/images/icon_product_pages/1578906433-icon-Game-icon-4.jpg" alt="PUBG" width="100">
+        <p>PUBG</p>
+      </div>
+      <div class="game">
+        <img src="https://seeklogo.com/vector-logo/544488/arena-breakout" alt="Arena Breakout" width="100">
+        <p>Arena Breakout</p>
+      </div>
+      <div class="game">
+        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ef/Arena_of_Valor_Logo_2021.png/revision/latest/scale-to-width-down/200?cb=20241001035341" alt="Arena of Valor" width="100">
+        <p>Arena of Valor</p>
+      </div>
+      <div class="game">
+        <img src="https://pbs.twimg.com/media/GbjjLMVbUAATIEy.jpg" alt="Call of Duty Mobile" width="100">
+        <p>Call of Duty Mobile</p>
+      </div>
+      <div class="game">
+        <img src="https://play-lh.googleusercontent.com/CED_RfFmarZ82aT0AAJzIw1e7v54ZxjBksdpzDpwiGCa7UQj7IVgFtGoxTBFvXwh4No" alt="Garena Undawn" width="100">
+        <p>Garena Undawn</p>
+      </div>
+      <div class="game">
+        <img src="https://play-lh.googleusercontent.com/sRJhsE2C6Qozm3kqix33FY9yTD_8_glD9irSShDzdYVxyn6yqjT9byMe-2THqw5OKn5n" alt="Genshin Impact" width="100">
+        <p>Genshin Impact</p>
+      </div>
+      <div class="game">
+        <img src="https://asset.kompas.com/crops/RwUMW66iPYdKA0wf2bRnm2e26xc=/122x0:1202x720/1200x800/data/photo/2024/02/23/65d828330767b.jpeg" alt="Honor of Kings" width="100">
+        <p>Honor of Kings</p>
+      </div>
+      <div class="game">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR1bG9rhc2ZY9KZH_v5PZIjh4wj39IO8F1PQ&s" alt="Supersus" width="100">
+        <p>Supersus</p>
+      </div>
+      <div class="game">
+        <img src="https://i.pinimg.com/736x/b7/cf/62/b7cf62846ae6ae5e96b35cf9d5e05a7c.jpg" alt="Valorant" width="100">
+        <p>Valorant</p>
+      </div>
+      <div class="game">
+        <img src="https://www.unipin.com/id/pointblank" alt="Point Blank" width="100">
+        <p>Point Blank</p>
+      </div>
+      <div class="game">
+        <img src="https://play-lh.googleusercontent.com/1b4arZ2f3fyfZKMBpFnYIIyPRgf0pqs2jfRg_8z3sSrVa66Mr13opXH5Rq4W6HDGQJQ" alt="Stumble Guys" width="100">
+        <p>Stumble Guys</p>
+      </div>
+      <div class="game">
+        <img src="https://play-lh.googleusercontent.com/nkQ2rRYPFEmSOjfr9gLWujUQgsbz6t_2x2NZU0AqXlgDobEfHZ6fhAmkdTrfxzIe9MY" alt="Lord Mobile" width="100">
+        <p>Lord Mobile</p>
+      </div>
+      <div class="game">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFiI1VF-vkIefd1iGQxBPpDSH5l_7lPZdiDw&s" alt="Roblox" width="100">
+        <p>Roblox</p>
+      </div>
+    </div>
+  </main>
 
-    <section class="promo">
-        <h3>Promo Akun Top-Up Terbaik!</h3>
-        <p>Isi ulang dengan harga terbaik dan dapatkan bonus spesial setiap transaksi. Jangan lewatkan kesempatan untuk mendapatkan lebih banyak!</p>
-    </section>
-
-    <section class="section-title">
-        <h2>Game Seluler</h2>
-    </section>
-    <section class="game-list">
-        <div class="game" onclick="window.location.href='https://wa.me/+6285648211278?text=Top-up%20PUBG'">
-            <img src="https://cdn.unipin.com/images/icon_product_pages/1578906433-icon-Game-icon-4.jpg" alt="PUBG">
-            <h3>PUBG</h3>
-            <button>Top-Up</button>
-        </div>
-        <div class="game" onclick="window.location.href='https://wa.me/+6285648211278?text=Top-up%20Mobile%20Legends'">
-            <img src="https://cdn.unipin.com/images/icon_product_pages/1735814979-icon-Image_20250102184102.jpg" alt="Mobile Legends">
-            <h3>Mobile Legends</h3>
-            <button>Top-Up</button>
-        </div>
-        <div class="game" onclick="window.location.href='https://wa.me/+6285648211278?text=Top-up%20Free%20Fire'">
-            <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire">
-            <h3>Free Fire</h3>
-            <button>Top-Up</button>
-        </div>
-        <div class="game" onclick="window.location.href='https://wa.me/+6285648211278?text=Top-up%20Call%20of%20Duty'">
-            <img src="image_link_game_4.jpg" alt="Call of Duty">
-            <h3>Call of Duty</h3>
-            <button>Top-Up</button>
-        </div>
-    </section>
-
-    <section class="section-title">
-        <h2>Game PC</h2>
-    </section>
-    <section class="game-list">
-        <!-- Add more game entries here similar to above -->
-    </section>
-
-    <section class="section-title">
-        <h2>Voucher Game</h2>
-    </section>
-    <section class="game-list">
-        <!-- Add more game entries here similar to above -->
-    </section>
-
-    <section class="section-title">
-        <h2>Game Populer</h2>
-    </section>
-    <section class="game-list">
-        <!-- Add more game entries here similar to above -->
-    </section>
-
-    <section class="section-title">
-        <h2>Game Lokal</h2>
-    </section>
-    <section class="game-list">
-        <!-- Add more game entries here similar to above -->
-    </section>
-
-    <footer>
-        <p>© 2025 UVOSHOP - Semua Hak Dilindungi</p>
-        <p>Keunggulan: Top-up instan, aman, dan terpercaya.</p>
-        <div>
-            <p>Hubungi Kami:</p>
-            <p>WhatsApp: <a href="https://wa.me/+6285648211278" style="color: #fff;">+6285648211278</a></p>
-        </div>
-    </footer>
-
-    <script>
-        // Function to handle search functionality
-        function searchGames() {
-            var searchInput = document.getElementById("search").value.toLowerCase();
-            var games = document.getElementsByClassName("game");
-
-            for (var i = 0; i < games.length; i++) {
-                var gameName = games[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-                if (gameName.indexOf(searchInput) > -1) {
-                    games[i].style.display = "";
-                } else {
-                    games[i].style.display = "none";
-                }
-            }
-        }
-    </script>
-
+  <footer>
+    <div class="footer-info">
+      <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi.</p>
+    </div>
+  </footer>
 </body>
 </html>
