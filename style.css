@@ -3,12 +3,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+  background-color: #f0f4f7;
   color: #333;
 }
 
 header {
-  background-color: #1f1f1f;
+  background-color: #2C3E50;
   color: #fff;
   padding: 20px 0;
   text-align: center;
@@ -41,10 +41,44 @@ header nav ul li a:hover {
 
 /* Banner Section */
 .banner {
-  background-color: #e74c3c;
+  background-color: #3498db;
   color: #fff;
   padding: 20px;
   text-align: center;
+}
+
+/* Fitur Unggulan */
+.features {
+  padding: 30px;
+  text-align: center;
+  background-color: #ecf0f1;
+}
+
+.features h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  font-size: 16px;
 }
 
 /* Product Section */
@@ -85,7 +119,7 @@ header nav ul li a:hover {
 }
 
 .buy-button {
-  background-color: #1f1f1f;
+  background-color: #3498db;
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
@@ -94,12 +128,12 @@ header nav ul li a:hover {
 }
 
 .buy-button:hover {
-  background-color: #e74c3c;
+  background-color: #2980b9;
 }
 
 /* Footer */
 footer {
-  background-color: #1f1f1f;
+  background-color: #2C3E50;
   color: #fff;
   text-align: center;
   padding: 10px;
