@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVOSHOP - Top Up Game Online</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>UVOSHOP - Top Up Games Online</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Section -->
+    <!-- Navbar -->
     <header>
         <div class="logo">
-            <h1>UVOSHOP</h1>
+            <img src="logo.png" alt="UVOSHOP Logo">
         </div>
         <nav>
             <ul>
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#products">Produk</a></li>
                 <li><a href="#payment">Pembayaran</a></li>
-                <li><a href="#transaction">Riwayat Transaksi</a></li>
+                <li><a href="#history">Riwayat Transaksi</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Products Section -->
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Top Up Game Terpercaya</h1>
+            <p>Top-up berbagai game dengan harga terjangkau, cepat, dan aman.</p>
+        </div>
+    </section>
+
+    <!-- Produk Section -->
     <section id="products">
         <h2>Produk Top-Up</h2>
         <div class="product-list">
-
             <!-- Mobile Legends -->
             <div class="product-item">
+                <img src="ml.png" alt="Mobile Legends">
                 <h3>Mobile Legends</h3>
                 <ul>
                     <li>50 Diamonds — Rp 14.000</li>
@@ -43,6 +51,7 @@
 
             <!-- Free Fire -->
             <div class="product-item">
+                <img src="ff.png" alt="Free Fire">
                 <h3>Free Fire</h3>
                 <ul>
                     <li>60 Diamonds — Rp 13.000</li>
@@ -56,6 +65,7 @@
 
             <!-- Valorant -->
             <div class="product-item">
+                <img src="valorant.png" alt="Valorant">
                 <h3>Valorant</h3>
                 <ul>
                     <li>420 Points — Rp 51.000</li>
@@ -70,6 +80,7 @@
 
             <!-- PUBG Mobile -->
             <div class="product-item">
+                <img src="pubg.png" alt="PUBG Mobile">
                 <h3>PUBG Mobile</h3>
                 <ul>
                     <li>60 UC — Rp 15.000</li>
@@ -83,6 +94,7 @@
 
             <!-- Roblox -->
             <div class="product-item">
+                <img src="roblox.png" alt="Roblox">
                 <h3>Roblox</h3>
                 <ul>
                     <li>100 Robux Global — Rp 88.000</li>
@@ -95,6 +107,7 @@
 
             <!-- Stumble Guys -->
             <div class="product-item">
+                <img src="stumbleguys.png" alt="Stumble Guys">
                 <h3>Stumble Guys</h3>
                 <ul>
                     <li>250 Gems — Rp 14.000</li>
@@ -109,6 +122,7 @@
 
             <!-- Call of Duty Mobile -->
             <div class="product-item">
+                <img src="codmobile.png" alt="Call of Duty Mobile">
                 <h3>Call of Duty Mobile</h3>
                 <ul>
                     <li>32 CP — Rp 7.000</li>
@@ -125,6 +139,7 @@
 
             <!-- Genshin Impact -->
             <div class="product-item">
+                <img src="genshinimpact.png" alt="Genshin Impact">
                 <h3>Genshin Impact</h3>
                 <ul>
                     <li>60 Genesis Crystals — Rp 14.000</li>
@@ -139,6 +154,7 @@
 
             <!-- Lords Mobile -->
             <div class="product-item">
+                <img src="lordsmobile.png" alt="Lords Mobile">
                 <h3>Lords Mobile</h3>
                 <ul>
                     <li>67 Diamonds — Rp 12.000</li>
@@ -156,6 +172,7 @@
 
             <!-- Arena Breakout -->
             <div class="product-item">
+                <img src="arenabreakout.png" alt="Arena Breakout">
                 <h3>Arena Breakout</h3>
                 <ul>
                     <li>Pilihan Pemula — Rp 15.000</li>
@@ -174,6 +191,7 @@
 
             <!-- Super Sus -->
             <div class="product-item">
+                <img src="supersus.png" alt="Super Sus">
                 <h3>Super Sus</h3>
                 <ul>
                     <li>100 Golden Star — Rp 13.000</li>
@@ -190,9 +208,11 @@
                 <button class="buy-btn" onclick="redirectToWA('Super Sus')">Beli Sekarang</button>
             </div>
 
+            <!-- Additional game sections can be added here -->
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi</p>
     </footer>
