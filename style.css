@@ -8,44 +8,37 @@
 /* Body and background */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f1f1f1; /* Background abu-abu */
+    background-color: #f4f4f4;
     color: #333;
 }
 
 /* Header Styling */
 header {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #0e4a7a; /* Dark Blue */
     padding: 20px 0;
     text-align: center;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    color: white;
 }
 
 header h1 {
     font-size: 36px;
-    color: #ffbc00;
+    margin-bottom: 10px;
 }
 
 header input {
     padding: 10px;
-    width: 250px;
+    width: 300px;
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: white;
     color: #333;
 }
 
-/* Main content styling */
+/* Main Content Styling */
 main {
     padding: 50px 0;
-    background-color: #fff;
+    background-color: white;
 }
 
 main .container {
@@ -57,18 +50,19 @@ main .container {
 h2 {
     font-size: 28px;
     margin-bottom: 30px;
+    color: #0e4a7a;
 }
 
 .categories {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .category {
     width: 45%;
     margin-bottom: 30px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #f1f1f1;
     border-radius: 8px;
     padding: 20px;
 }
@@ -76,34 +70,39 @@ h2 {
 .category h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #ffbc00;
+    color: #0e4a7a;
 }
 
 .products {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
 .product {
     text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .product img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
 }
 
 .product p {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* Footer Styling */
 footer {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #0e4a7a; /* Dark Blue */
     padding: 20px 0;
     text-align: center;
+    color: white;
 }
 
 footer .container {
@@ -117,17 +116,22 @@ footer p {
 
 /* Mobile responsiveness */
 @media screen and (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        text-align: center;
+    header input {
+        width: 100%;
+        margin-top: 10px;
     }
 
     .categories {
         flex-direction: column;
+        align-items: center;
     }
 
     .category {
-        width: 90%;
+        width: 80%;
         margin-bottom: 20px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
