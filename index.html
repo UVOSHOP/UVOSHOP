@@ -29,31 +29,59 @@
     <section id="products">
         <h2>Top-Up Products</h2>
         <div class="product-list">
+            <!-- Loop through games (15 games) -->
             <div class="product-item">
                 <h3>Game A</h3>
                 <p>Top-up for Game A with a variety of options.</p>
+                <label for="diamond">Choose Diamond:</label>
+                <select class="diamond-select" data-product="Game A">
+                    <option value="10">10 Diamond - Rp 10,000</option>
+                    <option value="20">20 Diamond - Rp 20,000</option>
+                    <option value="30">30 Diamond - Rp 30,000</option>
+                    <option value="40">40 Diamond - Rp 40,000</option>
+                    <option value="50">50 Diamond - Rp 50,000</option>
+                </select>
+                <button class="buy-now" data-product="Game A">Buy Now</button>
             </div>
+
             <div class="product-item">
                 <h3>Game B</h3>
                 <p>Top-up for Game B and enjoy bonus rewards.</p>
+                <label for="diamond">Choose Diamond:</label>
+                <select class="diamond-select" data-product="Game B">
+                    <option value="10">10 Diamond - Rp 10,000</option>
+                    <option value="20">20 Diamond - Rp 20,000</option>
+                    <option value="30">30 Diamond - Rp 30,000</option>
+                    <option value="40">40 Diamond - Rp 40,000</option>
+                    <option value="50">50 Diamond - Rp 50,000</option>
+                </select>
+                <button class="buy-now" data-product="Game B">Buy Now</button>
             </div>
-            <!-- Add more products here -->
+
+            <!-- Tambahkan lebih banyak produk (hingga 15 game) -->
+            <div class="product-item">
+                <h3>Game C</h3>
+                <p>Top-up for Game C with various diamond options.</p>
+                <label for="diamond">Choose Diamond:</label>
+                <select class="diamond-select" data-product="Game C">
+                    <option value="10">10 Diamond - Rp 12,000</option>
+                    <option value="20">20 Diamond - Rp 22,000</option>
+                    <option value="30">30 Diamond - Rp 32,000</option>
+                    <option value="40">40 Diamond - Rp 42,000</option>
+                    <option value="50">50 Diamond - Rp 52,000</option>
+                </select>
+                <button class="buy-now" data-product="Game C">Buy Now</button>
+            </div>
+
+            <!-- ... Repeat this for all 15 games ... -->
+
         </div>
-    </section>
-
-    <section id="payment">
-        <h2>Payment Options</h2>
-        <p>Choose your preferred payment method to complete the transaction.</p>
-        <!-- Add payment integration details here -->
-    </section>
-
-    <section id="history">
-        <h2>Transaction History</h2>
-        <p>Your past top-up transactions will appear here.</p>
     </section>
 
     <footer>
         <p>&copy; 2025 UVOSHOP. All rights reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
-        </html>
+                        </html>
