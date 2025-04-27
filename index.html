@@ -3,37 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVOShop Top-Up</title>
+    <title>UVOShop - Top Up Game</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 </head>
 <body>
+
+    <!-- Header -->
     <header>
         <div class="logo">
             <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOShop Logo">
         </div>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Cari Game atau Aplikasi...">
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Cari Game...">
+        </div>
+        <div class="id">
+            ID
         </div>
     </header>
 
-    <nav class="categories">
-        <button class="category-btn active" data-category="all">Semua</button>
-        <button class="category-btn" data-category="mobile">Game Mobile</button>
-        <button class="category-btn" data-category="pc">Game PC</button>
-        <button class="category-btn" data-category="app">Aplikasi</button>
-        <button class="category-btn" data-category="voucher">Voucher</button>
-    </nav>
+    <!-- Kategori -->
+    <section class="categories">
+        <div class="swiper kategoriSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">Semua</div>
+                <div class="swiper-slide">Mobile</div>
+                <div class="swiper-slide">PC</div>
+                <div class="swiper-slide">Voucher</div>
+                <div class="swiper-slide">Lainnya</div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Games -->
     <main>
-        <section class="game-list" id="gameList">
-            <!-- Kartu game akan ditambahkan oleh script.js -->
-        </section>
+        <div class="swiper gameSwiper">
+            <div class="swiper-wrapper" id="game-list">
+                <!-- Game item akan otomatis dimasukkan disini -->
+            </div>
+        </div>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>Hubungi kami melalui WhatsApp: <a href="https://wa.me/6285648211278">+62 856-4821-1278</a></p>
+        <p>© 2025 UVOShop. Semua Hak Dilindungi.</p>
     </footer>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- Script UVOShop -->
     <script src="script.js"></script>
+
 </body>
 </html>
