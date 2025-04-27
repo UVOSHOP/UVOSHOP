@@ -1,3 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVOShop Top-Up</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOShop Logo">
+        </div>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Cari di UniPin...">
+            <button>Search</button>
+        </div>
+        <div class="id">ID</div>
+    </header>
+
+    <main>
+        <section class="categories">
+            <div class="category" onclick="filterCategory('Mobile')">Mobile</div>
+            <div class="category" onclick="filterCategory('PC')">PC</div>
+            <div class="category" onclick="filterCategory('Voucher')">Voucher</div>
+        </section>
+
+        <section class="game-slider">
+            <h3>Game Populer</h3>
+            <div id="game-list" class="game-list">
+                <!-- Game list akan dirender disini oleh JavaScript -->
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-box">Isi ulang instan</div>
+            <div class="feature-box">Pembayaran Aman</div>
+            <div class="feature-box">Bonus Eksklusif</div>
+            <div class="feature-box">Hadiah Besar</div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contact-info">
+            <p>Hubungi kami melalui WhatsApp: <a href="https://wa.me/6285648211278">+6285648211278</a></p>
+        </div>
+    </footer>
+</body>
+</html>
 <div class="games-container">
   <div class="game">
     <img src="https://play-lh.googleusercontent.com/7I1gFWe0sOgiS3RHrzLv5ivwDfi4bGoZBF9q-RoXa4-mRpgbH_2zPaOhVumz5JKZP2A=s48-rw" alt="Mobile Legends">
