@@ -10,7 +10,6 @@ const games = [
     { name: "Ragnarok X", img: "https://play-lh.googleusercontent.com/VhYYawXxKDbpoevKyNhrguJdFOQnFrUKWBomzZ8UdBQHnLZP8SsqHvBrXcVO0k09hr0=w240-h480", kategori: "Mobile" },
     { name: "Clash of Clans", img: "https://play-lh.googleusercontent.com/MiNOwSeDjXYeM7yFxoTXR2ZGrrdC0gYwFQTwjlK1VpHcfFC7LO7FC9lWqxEdF3Lr9E=w240-h480", kategori: "Mobile" },
     { name: "Brawl Stars", img: "https://play-lh.googleusercontent.com/K1FVQAmCmDjmZ6vS4cZ9TSmg7A7hde_fDRrUwV7rTnH3LVZ7tHJ8YVVY3imZzYv0-K0=w240-h480", kategori: "Mobile" },
-    { name: "Clash Royale", img: "https://play-lh.googleusercontent.com/h68y1UlMlJ6mrzF8dxVw70dCR38dbvXNKAZ39N-6M-D0flF53KPyLs5w7xzds_dqfFq=w240-h480", kategori: "Mobile" },
 
     // PC Games
     { name: "Valorant", img: "https://playvalorant.com/assets/press-kit/VALORANT-Key-Art.jpg", kategori: "PC" },
@@ -37,15 +36,27 @@ const games = [
     { name: "Facebook Credits", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Facebook_logo_2023.png", kategori: "Voucher" }
 ];
 
-// Render Game Function
-const gameList = document.getElementById('game-list');
-games.forEach(game => {
-    const gameItem = document.createElement('div');
-    gameItem.className = 'swiper-slide game-card';
-    gameItem.innerHTML = `
-        <img src="${game.img}" alt="${game.name}">
-        <h4>${game.name}</h4>
-        <button onclick="window.location.href='https://wa.me/6285648211278?text=Saya%20ingin%20top%20up%20${encodeURIComponent(game.name)}'">Top Up</button>
-    `;
-    gameList.appendChild(gameItem);
-});
+// Function to render games based on category
+function renderGames(gamesToRender) {
+    const gameList = document.getElementById('game-list');
+    gameList.innerHTML = ''; // Clear previous games
+    gamesToRender.forEach(game => {
+        const gameItem = document.createElement('div');
+        gameItem.className = 'game-card';
+        gameItem.innerHTML = `
+            <img src="${game.img}" alt="${game.name}">
+            <h4>${game.name}</h4>
+            <button onclick="window.location.href='https://wa.me/6285648211278?text=Saya%20ingin%20top%20up%20${encodeURIComponent(game.name)}'">Top Up</button>
+        `;
+        gameList.appendChild(gameItem);
+    });
+}
+
+// Function to filter games by category
+function filterCategory(category) {
+    const filteredGames = games.filter(game => game.kategori === category);
+    renderGames(filteredGames);
+}
+
+// Render all games on load
+window.onload = () => renderGames(games);
