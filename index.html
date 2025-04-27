@@ -5,87 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styling untuk header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Styling untuk logo */
+    .logo img {
+      width: 150px;
+    }
+
+    /* Styling untuk pencarian */
+    .search-bar input {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Container untuk games */
+    .games-container {
+      display: flex;
+      overflow-x: scroll;
+      gap: 20px;
+      padding: 20px;
+      white-space: nowrap;
+    }
+
+    /* Setiap game item */
+    .game {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .game img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .game p {
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* Styling untuk kategori */
+    .category-container {
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .category-container h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .category-container ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .category-container ul li {
+      margin: 5px 0;
+    }
+
+    footer {
+      padding: 20px;
+      background-color: #f1f1f1;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <div class="logo">
-      <img src="https://drive.google.com/uc?id=19QRFgx41eLvqSaqJguA6pAIS63N2Ef-U" alt="UVOSHOP Logo" width="150">
+      <img src="https://i.ibb.co/9kXsJmkk/uvoshop-logo.png" alt="UVOSHOP Logo">
     </div>
     <div class="search-bar">
       <input type="text" placeholder="Cari Game atau E-wallet..." />
     </div>
   </header>
 
+  <!-- Main Content -->
   <main>
     <h2>Game Populer</h2>
     <div class="games-container">
+      <!-- Game Item -->
       <div class="game">
-        <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire" width="100">
+        <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire">
         <p>Free Fire</p>
       </div>
       <div class="game">
-        <img src="https://cdn.unipin.com/images/icon_product_pages/1735814979-icon-Image_20250102184102.jpg" alt="Mobile Legends" width="100">
+        <img src="https://cdn.unipin.com/images/icon_product_pages/1735814979-icon-Image_20250102184102.jpg" alt="Mobile Legends">
         <p>Mobile Legends</p>
       </div>
       <div class="game">
-        <img src="https://cdn.unipin.com/images/icon_product_pages/1578906433-icon-Game-icon-4.jpg" alt="PUBG" width="100">
+        <img src="https://cdn.unipin.com/images/icon_product_pages/1578906433-icon-Game-icon-4.jpg" alt="PUBG">
         <p>PUBG</p>
       </div>
       <div class="game">
-        <img src="https://seeklogo.com/vector-logo/544488/arena-breakout" alt="Arena Breakout" width="100">
+        <img src="https://assets-prd.ignimgs.com/2024/04/17/infinite-button-1713363504862.jpg?width=300&crop=1:1%2Csmart&auto=webp&dpr=2" alt="Arena Breakout">
         <p>Arena Breakout</p>
       </div>
       <div class="game">
-        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ef/Arena_of_Valor_Logo_2021.png/revision/latest/scale-to-width-down/200?cb=20241001035341" alt="Arena of Valor" width="100">
+        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ef/Arena_of_Valor_Logo_2021.png/revision/latest/scale-to-width-down/200?cb=20241001035341" alt="Arena of Valor">
         <p>Arena of Valor</p>
       </div>
       <div class="game">
-        <img src="https://pbs.twimg.com/media/GbjjLMVbUAATIEy.jpg" alt="Call of Duty Mobile" width="100">
+        <img src="https://pbs.twimg.com/media/GbjjLMVbUAATIEy.jpg" alt="Call of Duty Mobile">
         <p>Call of Duty Mobile</p>
       </div>
       <div class="game">
-        <img src="https://play-lh.googleusercontent.com/CED_RfFmarZ82aT0AAJzIw1e7v54ZxjBksdpzDpwiGCa7UQj7IVgFtGoxTBFvXwh4No" alt="Garena Undawn" width="100">
+        <img src="https://play-lh.googleusercontent.com/CED_RfFmarZ82aT0AAJzIw1e7v54ZxjBksdpzDpwiGCa7UQj7IVgFtGoxTBFvXwh4No" alt="Garena Undawn">
         <p>Garena Undawn</p>
       </div>
       <div class="game">
-        <img src="https://play-lh.googleusercontent.com/sRJhsE2C6Qozm3kqix33FY9yTD_8_glD9irSShDzdYVxyn6yqjT9byMe-2THqw5OKn5n" alt="Genshin Impact" width="100">
+        <img src="https://play-lh.googleusercontent.com/sRJhsE2C6Qozm3kqix33FY9yTD_8_glD9irSShDzdYVxyn6yqjT9byMe-2THqw5OKn5n" alt="Genshin Impact">
         <p>Genshin Impact</p>
       </div>
       <div class="game">
-        <img src="https://asset.kompas.com/crops/RwUMW66iPYdKA0wf2bRnm2e26xc=/122x0:1202x720/1200x800/data/photo/2024/02/23/65d828330767b.jpeg" alt="Honor of Kings" width="100">
+        <img src="https://asset.kompas.com/crops/RwUMW66iPYdKA0wf2bRnm2e26xc=/122x0:1202x720/1200x800/data/photo/2024/02/23/65d828330767b.jpeg" alt="Honor of Kings">
         <p>Honor of Kings</p>
       </div>
       <div class="game">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR1bG9rhc2ZY9KZH_v5PZIjh4wj39IO8F1PQ&s" alt="Supersus" width="100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR1bG9rhc2ZY9KZH_v5PZIjh4wj39IO8F1PQ&s" alt="Supersus">
         <p>Supersus</p>
       </div>
       <div class="game">
-        <img src="https://i.pinimg.com/736x/b7/cf/62/b7cf62846ae6ae5e96b35cf9d5e05a7c.jpg" alt="Valorant" width="100">
+        <img src="https://i.pinimg.com/736x/b7/cf/62/b7cf62846ae6ae5e96b35cf9d5e05a7c.jpg" alt="Valorant">
         <p>Valorant</p>
       </div>
       <div class="game">
-        <img src="https://www.unipin.com/id/pointblank" alt="Point Blank" width="100">
+        <img src="https://www.unipin.com/id/pointblank" alt="Point Blank">
         <p>Point Blank</p>
       </div>
       <div class="game">
-        <img src="https://play-lh.googleusercontent.com/1b4arZ2f3fyfZKMBpFnYIIyPRgf0pqs2jfRg_8z3sSrVa66Mr13opXH5Rq4W6HDGQJQ" alt="Stumble Guys" width="100">
+        <img src="https://play-lh.googleusercontent.com/1b4arZ2f3fyfZKMBpFnYIIyPRgf0pqs2jfRg_8z3sSrVa66Mr13opXH5Rq4W6HDGQJQ" alt="Stumble Guys">
         <p>Stumble Guys</p>
       </div>
       <div class="game">
-        <img src="https://play-lh.googleusercontent.com/nkQ2rRYPFEmSOjfr9gLWujUQgsbz6t_2x2NZU0AqXlgDobEfHZ6fhAmkdTrfxzIe9MY" alt="Lord Mobile" width="100">
+        <img src="https://play-lh.googleusercontent.com/nkQ2rRYPFEmSOjfr9gLWujUQgsbz6t_2x2NZU0AqXlgDobEfHZ6fhAmkdTrfxzIe9MY" alt="Lord Mobile">
         <p>Lord Mobile</p>
       </div>
       <div class="game">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFiI1VF-vkIefd1iGQxBPpDSH5l_7lPZdiDw&s" alt="Roblox" width="100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFiI1VF-vkIefd1iGQxBPpDSH5l_7lPZdiDw&s" alt="Roblox">
         <p>Roblox</p>
       </div>
     </div>
+
+    <!-- Category List -->
+    <div class="category-container">
+      <h3>Kategori Game</h3>
+      <ul>
+        <li>Trending</li>
+        <li>Game Mobile</li>
+        <li>Game PC</li>
+        <li>Voucher</li>
+      </ul>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <div class="footer-info">
-      <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi.</p>
-    </div>
+    <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi.</p>
   </footer>
+
 </body>
 </html>
