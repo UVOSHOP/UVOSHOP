@@ -2,205 +2,65 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UVOSHOP - Top Up Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UniPin KW</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Styling untuk body */
-    body {
-      background-color: #f5f5f5; /* Abu-abu seperti Unipin */
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Styling untuk header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Styling untuk logo */
-    .logo img {
-      width: 150px;
-    }
-
-    /* Styling untuk pencarian */
-    .search-bar input {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    /* Styling untuk ID server */
-    .server-id {
-      font-size: 20px;
-      color: #00796b;
-      font-weight: bold;
-      margin-left: 20px;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Container untuk games */
-    .games-container {
-      display: flex;
-      overflow-x: scroll;
-      gap: 20px;
-      padding: 20px;
-      white-space: nowrap;
-    }
-
-    /* Setiap game item dengan bingkai */
-    .game {
-      display: inline-block;
-      text-align: center;
-      padding: 10px;
-      border: 2px solid #00796b;
-      border-radius: 10px;
-      background-color: #fff;
-      width: 120px;
-    }
-
-    .game img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .game p {
-      margin-top: 10px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    /* Styling untuk kategori */
-    .category-container {
-      padding: 20px;
-      margin-top: 30px;
-    }
-
-    .category-container h3 {
-      margin-bottom: 10px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .category-container ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .category-container ul li {
-      margin: 5px 0;
-    }
-
-    footer {
-      padding: 20px;
-      background-color: #f1f1f1;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    footer .trust {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #00796b;
-    }
-
-    /* Styling untuk tombol top-up */
-    .topup-btn {
-      display: inline-block;
-      background-color: #00796b;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    .topup-btn:hover {
-      background-color: #004d40;
-    }
-  </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <header>
+  <header class="navbar">
     <div class="logo">
-      <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOSHOP Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/UniPin_logo.svg/512px-UniPin_logo.svg.png" alt="Logo UniPin KW">
     </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Cari Game atau E-wallet..." />
-    </div>
-    <div class="server-id">
-      <p>ID</p>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Game</a></li>
+        <li><a href="#">Voucher</a></li>
+        <li><a href="#">Promo</a></li>
+        <li><a href="#">Bantuan</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Tombol Top Up -->
-  <div style="text-align: center;">
-    <a href="https://wa.me/085648211278" class="topup-btn" target="_blank">Top Up via WhatsApp</a>
-  </div>
+  <section class="hero">
+    <h1>Top Up Game Favoritmu di UniPin KW!</h1>
+    <p>Cepat, Mudah, dan Aman. Bayar via WhatsApp sekarang!</p>
+    <a href="#games" class="btn">Mulai Top-Up</a>
+  </section>
 
-  <!-- Main Content -->
-  <main>
-    <h2>Game Mobile</h2>
-    <div class="games-container">
-      <div class="game">
-        <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire">
-        <p>Free Fire</p>
+  <section id="games" class="games">
+    <h2>Top Games</h2>
+    <div class="game-grid">
+      <div class="game-card">
+        <img src="https://cdn.unipin.com/images/icon_mobilelegends.png" alt="Mobile Legends">
+        <h3>Mobile Legends</h3>
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Mobile%20Legends" class="btn">Top-Up</a>
       </div>
-      <div class="game">
-        <img src="https://cdn.unipin.com/images/icon_product_pages/1735814979-icon-Image_20250102184102.jpg" alt="Mobile Legends">
-        <p>Mobile Legends</p>
+      <div class="game-card">
+        <img src="https://cdn.unipin.com/images/icon_freefire.png" alt="Free Fire">
+        <h3>Free Fire</h3>
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Free%20Fire" class="btn">Top-Up</a>
       </div>
-      <div class="game">
-        <img src="https://cdn.unipin.com/images/icon_product_pages/1578906433-icon-Game-icon-4.jpg" alt="PUBG">
-        <p>PUBG</p>
+      <div class="game-card">
+        <img src="https://cdn.unipin.com/images/icon_pubgm.png" alt="PUBG Mobile">
+        <h3>PUBG Mobile</h3>
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20PUBG%20Mobile" class="btn">Top-Up</a>
       </div>
-      <div class="game">
-        <img src="https://assets-prd.ignimgs.com/2024/04/17/infinite-button-1713363504862.jpg?width=300&crop=1:1%2Csmart&auto=webp&dpr=2" alt="Arena Breakout">
-        <p>Arena Breakout</p>
+      <div class="game-card">
+        <img src="https://cdn.unipin.com/images/icon_valorant.png" alt="Valorant">
+        <h3>Valorant</h3>
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Valorant" class="btn">Top-Up</a>
+      </div>
+      <div class="game-card">
+        <img src="https://cdn.unipin.com/images/icon_genshin.png" alt="Genshin Impact">
+        <h3>Genshin Impact</h3>
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Genshin%20Impact" class="btn">Top-Up</a>
       </div>
     </div>
+  </section>
 
-    <h2>Game PC</h2>
-    <div class="games-container">
-      <div class="game">
-        <img src="https://pbs.twimg.com/media/GbjjLMVbUAATIEy.jpg" alt="Call of Duty Mobile">
-        <p>Call of Duty Mobile</p>
-      </div>
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/Z_whigr5KoHRRTkYPaza92zgHlALRhJAltJmKu8eROu3QqfGzzfHeBgDvqPLb0sR3g=s48-rw" alt="Arena of Valor">
-        <p>Arena of Valor</p>
-      </div>
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/IGOlY-TMU0cGW_I8EFKBkLACxPLu1TQqbqaqx7NUsGMyjNWIO1NdhwdBrq-71pUAHw=s48-rw" alt="Point Blank">
-        <p>Point Blank</p>
-      </div>
-    </div>
-
-    <h2>Voucher</h2>
-    <div class="category-container">
-      <p>Voucher belum tersedia. Segera hadir!</p>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 UVOSHOP. Semua hak dilindungi.</p>
-    <p class="trust">Kami menjamin transaksi yang aman dan cepat!</p>
+  <footer class="footer">
+    <p>© 2025 UniPin KW. All Rights Reserved.</p>
   </footer>
-
 </body>
 </html>
