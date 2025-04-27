@@ -1,222 +1,110 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVOSHOP - Top Up Games Online</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UVOSHOP</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <img src="https://i.pinimg.com/236x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOSHOP Logo" class="logo">
+    <nav>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Produk</a></li>
+        <li><a href="#">Pembayaran</a></li>
+        <li><a href="#">Riwayat Transaksi</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Navbar -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="UVOSHOP Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#products">Produk</a></li>
-                <li><a href="#payment">Pembayaran</a></li>
-                <li><a href="#history">Riwayat Transaksi</a></li>
-            </ul>
-        </nav>
-    </header>
+  <section class="products">
+    <h2>Game Populer</h2>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Top Up Game Terpercaya</h1>
-            <p>Top-up berbagai game dengan harga terjangkau, cepat, dan aman.</p>
-        </div>
-    </section>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/7I1gFWe0sOgiS3RHrzLv5ivwDfi4bGoZBF9q-RoXa4-mRpgbH_2zPaOhVumz5JKZP2A=s48-rw" alt="Mobile Legends" class="game-img">
+      <h3>Mobile Legends: Bang Bang</h3>
+      <p>50 Diamonds — Rp 14.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-    <!-- Produk Section -->
-    <section id="products">
-        <h2>Produk Top-Up</h2>
-        <div class="product-list">
-            <!-- Mobile Legends -->
-            <div class="product-item">
-                <img src="ml.png" alt="Mobile Legends">
-                <h3>Mobile Legends</h3>
-                <ul>
-                    <li>50 Diamonds — Rp 14.000</li>
-                    <li>250 Diamonds — Rp 55.000</li>
-                    <li>500 Diamonds — Rp 110.000</li>
-                    <li>1.200 Diamonds — Rp 275.000</li>
-                    <li>3.000 Diamonds — Rp 680.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Mobile Legends')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/klrABftwKfTg3zQicx9G4TZg9Hk8hQJt6bd-kZGxyfa54UhwDFcDvvS7RUfxDW_8Ml4=s48-rw" alt="PUBG Mobile" class="game-img">
+      <h3>PUBG Mobile</h3>
+      <p>60 UC — Rp 15.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Free Fire -->
-            <div class="product-item">
-                <img src="ff.png" alt="Free Fire">
-                <h3>Free Fire</h3>
-                <ul>
-                    <li>60 Diamonds — Rp 13.000</li>
-                    <li>300 Diamonds — Rp 64.000</li>
-                    <li>500 Diamonds — Rp 107.000</li>
-                    <li>1.000 Diamonds — Rp 213.000</li>
-                    <li>2.000 Diamonds — Rp 427.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Free Fire')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/6llpraFcTI0rEUuRpWEG9NWWblvm106y5JXcDzu60ACuaUYDD3i70a-p9_QM65NsGDE=s48-rw" alt="Free Fire" class="game-img">
+      <h3>Free Fire</h3>
+      <p>60 Diamonds — Rp 13.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Valorant -->
-            <div class="product-item">
-                <img src="valorant.png" alt="Valorant">
-                <h3>Valorant</h3>
-                <ul>
-                    <li>420 Points — Rp 51.000</li>
-                    <li>625 Points — Rp 61.000</li>
-                    <li>700 Points — Rp 80.000</li>
-                    <li>1.375 Points — Rp 151.000</li>
-                    <li>2.400 Points — Rp 247.000</li>
-                    <li>4.000 Points — Rp 384.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Valorant')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/ifKqsFv9TkF3UEjysMvhPOgmu60H94dbmH0V4-p5pny8glP3BvS6v9IH9qkh2deGhdg=s48-rw" alt="Call of Duty Mobile" class="game-img">
+      <h3>Call of Duty: Mobile</h3>
+      <p>32 CP — Rp 7.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- PUBG Mobile -->
-            <div class="product-item">
-                <img src="pubg.png" alt="PUBG Mobile">
-                <h3>PUBG Mobile</h3>
-                <ul>
-                    <li>60 UC — Rp 15.000</li>
-                    <li>300 UC — Rp 75.000</li>
-                    <li>600 UC — Rp 150.000</li>
-                    <li>1.500 UC — Rp 375.000</li>
-                    <li>3.000 UC — Rp 750.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('PUBG Mobile')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/KyPQHbl_2xn0cPYgLOhA3uA5mWz3cHh3lZxoT2mN2ew7ozHp7qtzaAqANiE6qb26-uM=s48-rw" alt="Arena of Valor" class="game-img">
+      <h3>Arena of Valor (AOV)</h3>
+      <p>1000 Gold — Rp 12.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Roblox -->
-            <div class="product-item">
-                <img src="roblox.png" alt="Roblox">
-                <h3>Roblox</h3>
-                <ul>
-                    <li>100 Robux Global — Rp 88.000</li>
-                    <li>200 Robux Global — Rp 108.000</li>
-                    <li>400 Robux Global — Rp 144.000</li>
-                    <li>800 Robux Global — Rp 173.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Roblox')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/qz6DJ1rsBfYbK6DWycy2ioFS9z2FktX2c9dnHkROouTxQ_MtPxDCXXIHxQW9IzjVd-o=s48-rw" alt="Genshin Impact" class="game-img">
+      <h3>Genshin Impact</h3>
+      <p>Primogems — Rp 25.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Stumble Guys -->
-            <div class="product-item">
-                <img src="stumbleguys.png" alt="Stumble Guys">
-                <h3>Stumble Guys</h3>
-                <ul>
-                    <li>250 Gems — Rp 14.000</li>
-                    <li>800 Gems — Rp 27.000</li>
-                    <li>120 Tokens — Rp 34.000</li>
-                    <li>1.600 Gems + 75 Tokens — Rp 44.000</li>
-                    <li>5.000 Gems + 275 Tokens — Rp 108.000</li>
-                    <li>1.300 Tokens — Rp 262.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Stumble Guys')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/D3lITgyT8jPOyV2UMFE3zPbbhf6esOh70QjODscIlNdpZLBcb9WhhXUb9XrGEobW4A=s48-rw" alt="Valorant" class="game-img">
+      <h3>Valorant</h3>
+      <p>Valorant Points (VP) — Rp 20.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Call of Duty Mobile -->
-            <div class="product-item">
-                <img src="codmobile.png" alt="Call of Duty Mobile">
-                <h3>Call of Duty Mobile</h3>
-                <ul>
-                    <li>32 CP — Rp 7.000</li>
-                    <li>63 CP — Rp 11.000</li>
-                    <li>128 CP — Rp 20.000</li>
-                    <li>321 CP — Rp 46.000</li>
-                    <li>645 CP — Rp 89.000</li>
-                    <li>800 CP — Rp 108.000</li>
-                    <li>1.373 CP — Rp 186.000</li>
-                    <li>2.059 CP — Rp 289.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Call of Duty Mobile')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/o8dqom9I-3rZhV7YjD4rA2g3_HzwdRPexLV9q9i0uHhZIbnsJlwnMjjg8KX5hQel2w=s48-rw" alt="Apex Legends Mobile" class="game-img">
+      <h3>Apex Legends Mobile</h3>
+      <p>300 Apex Coins — Rp 17.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Genshin Impact -->
-            <div class="product-item">
-                <img src="genshinimpact.png" alt="Genshin Impact">
-                <h3>Genshin Impact</h3>
-                <ul>
-                    <li>60 Genesis Crystals — Rp 14.000</li>
-                    <li>300+30 Genesis Crystals — Rp 61.000</li>
-                    <li>Blessing of the Welkin Moon — Rp 61.000</li>
-                    <li>980+110 Genesis Crystals — Rp 179.000</li>
-                    <li>1.980+260 Genesis Crystals — Rp 386.000</li>
-                    <li>3.280+600 Genesis Crystals — Rp 590.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Genshin Impact')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/k4Mi_y-2ktIRj2dEuXBpPqMxhA8Wh2ggpNefx9CVjmljZjjtFw5hQaqYvl3qyy7ABFg=s48-rw" alt="Ragnarok M" class="game-img">
+      <h3>Ragnarok M: Eternal Love</h3>
+      <p>1000 Zeny — Rp 10.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Lords Mobile -->
-            <div class="product-item">
-                <img src="lordsmobile.png" alt="Lords Mobile">
-                <h3>Lords Mobile</h3>
-                <ul>
-                    <li>67 Diamonds — Rp 12.000</li>
-                    <li>100 Diamonds — Rp 18.000</li>
-                    <li>123 Diamonds — Rp 20.000</li>
-                    <li>134 Diamonds — Rp 21.000</li>
-                    <li>246 Diamonds — Rp 37.000</li>
-                    <li>335 Diamonds — Rp 51.000</li>
-                    <li>670 Diamonds — Rp 100.000</li>
-                    <li>737 Diamonds — Rp 105.000</li>
-                    <li>1.045 Diamonds — Rp 156.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Lords Mobile')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/pA3yL5w5ZGyOV0-TxeyYmV7pPgnc9dGneA8KO3u4w5C2SKzCaxM3NkAz2Knxyux1rA=s48-rw" alt="Naruto Slugfest X" class="game-img">
+      <h3>Naruto Slugfest X</h3>
+      <p>Diamonds — Rp 13.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Arena Breakout -->
-            <div class="product-item">
-                <img src="arenabreakout.png" alt="Arena Breakout">
-                <h3>Arena Breakout</h3>
-                <ul>
-                    <li>Pilihan Pemula — Rp 15.000</li>
-                    <li>60 Bonds — Rp 17.000</li>
-                    <li>Kotak Anti Peluru 30 Hari — Rp 40.000</li>
-                    <li>Percobaan Elite 30 Hari — Rp 70.000</li>
-                    <li>310 Bonds — Rp 70.000</li>
-                    <li>Battle Pass Lanjutan — Rp 75.000</li>
-                    <li>Kotak Komposit 30 Hari — Rp 120.000</li>
-                    <li>630 Bonds — Rp 170.000</li>
-                    <li>Battle Pass Premium — Rp 190.000</li>
-                    <li>1.580 Bonds — Rp 370.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Arena Breakout')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/fJGGbX5sefy1rf9QcbMcDjbLlsV3VPRFvADzcdNKkA8EzzfI6oBXpquctLL-oPr8dcY=s48-rw" alt="Minecraft" class="game-img">
+      <h3>Minecraft</h3>
+      <p>1000 Coins — Rp 18.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Super Sus -->
-            <div class="product-item">
-                <img src="supersus.png" alt="Super Sus">
-                <h3>Super Sus</h3>
-                <ul>
-                    <li>100 Golden Star — Rp 13.000</li>
-                    <li>Weekly Card — Rp 14.000</li>
-                    <li>310 Golden Star — Rp 32.000</li>
-                    <li>520 Golden Star — Rp 54.000</li>
-                    <li>Super Pass — Rp 58.000</li>
-                    <li>1.060 Golden Star — Rp 106.000</li>
-                    <li>Super Pass Bundle — Rp 118.000</li>
-                    <li>Monthly Card — Rp 147.000</li>
-                    <li>Super VIP Card — Rp 160.000</li>
-                    <li>2.180 Golden Star — Rp 219.000</li>
-                </ul>
-                <button class="buy-btn" onclick="redirectToWA('Super Sus')">Beli Sekarang</button>
-            </div>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/62y9ZilI85JhDkw_H9NckOg12M2zrtprzzd_KzX3ZBrW9Zp8dI_J6bnGgVOsHLHpeU=s48-rw" alt="The Walking Dead" class="game-img">
+      <h3>The Walking Dead: No Man's Land</h3>
+      <p>Coins — Rp 22.000</p>
+      <button class="top-up" onclick="window.location.href='https://wa.me/+6285648211278'">Beli Sekarang</button>
+    </div>
 
-            <!-- Additional game sections can be added here -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    <div class="product">
+      <img src="https://play-lh.googleusercontent.com/MlGOj_hBXTXbV-YF3l_yVUyGHedFFoeYwrQqmxPfm2CJz44D9xvBlTY2OnfFAxR2hQ=s48-rw
