@@ -11,8 +11,8 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>UVOSHOP</h1>
-            <input type="text" placeholder="Cari game atau e-wallet..." id="search" />
+            <img src="https://example.com/logo.png" alt="UVOSHOP Logo" class="logo">
+            <input type="text" placeholder="Cari game atau e-wallet..." id="search" onkeyup="searchGame()" />
         </div>
     </header>
 
@@ -23,43 +23,50 @@
 
             <div class="categories">
                 <!-- Top Up Game Section -->
-                <div class="category">
+                <div class="category" id="topup-game">
                     <h3>Top-Up Game</h3>
                     <div class="products">
-                        <div class="product">
+                        <div class="product" data-game="PUBG">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/PlayerUnknown%27s_Battlegrounds_Logo.png" alt="PUBG">
                             <p>PUBG</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20PUBG" class="topup-btn">Top-Up</a>
                         </div>
-                        <div class="product">
+                        <div class="product" data-game="Mobile Legends">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Mobile_Legends_Logo.png" alt="Mobile Legends">
                             <p>Mobile Legends</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20Mobile%20Legends" class="topup-btn">Top-Up</a>
                         </div>
-                        <div class="product">
+                        <div class="product" data-game="Free Fire">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Free_Fire_Logo.png" alt="Free Fire">
                             <p>Free Fire</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20Free%20Fire" class="topup-btn">Top-Up</a>
                         </div>
-                        <div class="product">
+                        <div class="product" data-game="Call of Duty">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Call_of_Duty_logo.png" alt="Call of Duty">
                             <p>Call of Duty</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20Call%20of%20Duty" class="topup-btn">Top-Up</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Top Up E-Wallet Section -->
-                <div class="category">
+                <div class="category" id="topup-ewallet">
                     <h3>Top-Up E-Wallet</h3>
                     <div class="products">
-                        <div class="product">
+                        <div class="product" data-ewallet="OVO">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/OVO_Logo_2020.png" alt="OVO">
                             <p>OVO</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20OVO" class="topup-btn">Top-Up</a>
                         </div>
-                        <div class="product">
+                        <div class="product" data-ewallet="GoPay">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/GoPay_logo_2020.png" alt="GoPay">
                             <p>GoPay</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20GoPay" class="topup-btn">Top-Up</a>
                         </div>
-                        <div class="product">
+                        <div class="product" data-ewallet="DANA">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/DANA_logo_2018.png" alt="DANA">
                             <p>DANA</p>
+                            <a href="https://wa.me/085648211278?text=Saya%20ingin%20top-up%20DANA" class="topup-btn">Top-Up</a>
                         </div>
                     </div>
                 </div>
@@ -72,5 +79,27 @@
         <p>© 2025 UVOSHOP - Semua Hak Dilindungi.</p>
     </footer>
 
+    <script>
+        // Search Function
+        function searchGame() {
+            var input, filter, gameSection, products, product, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            gameSection = document.querySelectorAll(".category");
+            
+            gameSection.forEach(function(section) {
+                products = section.getElementsByClassName("product");
+                for (i = 0; i < products.length; i++) {
+                    product = products[i];
+                    txtValue = product.textContent || product.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        product.style.display = "";
+                    } else {
+                        product.style.display = "none";
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
