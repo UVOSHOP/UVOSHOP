@@ -8,7 +8,7 @@
   <style>
     /* Styling untuk body */
     body {
-      background-color: #f0f0f0; /* Abu-abu sederhana */
+      background-color: #f5f5f5; /* Abu-abu seperti Unipin */
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -64,6 +64,7 @@
       border: 2px solid #00796b;
       border-radius: 10px;
       background-color: #fff;
+      width: 120px;
     }
 
     .game img {
@@ -112,6 +113,22 @@
       font-weight: bold;
       color: #00796b;
     }
+
+    /* Styling untuk tombol top-up */
+    .topup-btn {
+      display: inline-block;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .topup-btn:hover {
+      background-color: #004d40;
+    }
   </style>
 </head>
 <body>
@@ -122,7 +139,7 @@
       <img src="https://media-hosting.imagekit.io/b1d2b97155274673/logo%2520uvoshop%2520transparan.png?Expires=1840369463&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JDHJkveWYZTTYiwwEGUVk2ptMh2nHkX1tByAqZNRkxBg~T4FLq4QCXhtlPNS9wfOXb9NEtfQM3MHY20P99tqgoLcdhuAnOwkcBNfLykiepPqQJ-bb9H0itns0Gg4~aZiVgL-bA6m6qatFmFagDUVMg0lTQIbMf3bIuvI0IOr8fHfj7r4uarNjDiZvufxuOzDL5R6E2y9Fmwsz4SPlyH8nwL3DRTXqewPpFlQpNdAKzHp0RAy6Xb58p9TnoYVr3HX~-UVh0sRKFHr0s6iSf2yoUOXwXyh6txyg0EdvO8a9AtmJrvvWLc5bY9cchdmKx3S1f~TLQ~qu4CmQtJ3bx5bog__" alt="UVOSHOP Logo">
     </div>
     <div class="search-bar">
-      <input type="text" placeholder="Cari Game atau E-wallet..." disabled />
+      <input type="text" placeholder="Cari Game atau E-wallet..." />
     </div>
     <div class="server-id">
       <p>ID - Server Indonesia</p>
@@ -131,9 +148,8 @@
 
   <!-- Main Content -->
   <main>
-    <h2>Game Populer</h2>
+    <h2>Game Mobile</h2>
     <div class="games-container">
-      <!-- Game Item -->
       <div class="game">
         <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire">
         <p>Free Fire</p>
@@ -150,45 +166,37 @@
         <img src="https://assets-prd.ignimgs.com/2024/04/17/infinite-button-1713363504862.jpg?width=300&crop=1:1%2Csmart&auto=webp&dpr=2" alt="Arena Breakout">
         <p>Arena Breakout</p>
       </div>
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/Z_whigr5KoHRRTkYPaza92zgHlALRhJAltJmKu8eROu3QqfGzzfHeBgDvqPLb0sR3g=s48-rw" alt="Arena of Valor">
-        <p>Arena of Valor</p>
-      </div>
+    </div>
+
+    <h2>Game PC</h2>
+    <div class="games-container">
       <div class="game">
         <img src="https://pbs.twimg.com/media/GbjjLMVbUAATIEy.jpg" alt="Call of Duty Mobile">
         <p>Call of Duty Mobile</p>
       </div>
       <div class="game">
-        <img src="https://play-lh.googleusercontent.com/CED_RfFmarZ82aT0AAJzIw1e7v54ZxjBksdpzDpwiGCa7UQj7IVgFtGoxTBFvXwh4No" alt="Garena Undawn">
-        <p>Garena Undawn</p>
-      </div>
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/sRJhsE2C6Qozm3kqix33FY9yTD_8_glD9irSShDzdYVxyn6yqjT9byMe-2THqw5OKn5n" alt="Genshin Impact">
-        <p>Genshin Impact</p>
-      </div>
-      <div class="game">
-        <img src="https://asset.kompas.com/crops/RwUMW66iPYdKA0wf2bRnm2e26xc=/122x0:1202x720/1200x800/data/photo/2024/02/23/65d828330767b.jpeg" alt="Honor of Kings">
-        <p>Honor of Kings</p>
-      </div>
-      <div class="game">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR1bG9rhc2ZY9KZH_v5PZIjh4wj39IO8F1PQ&s" alt="Supersus">
-        <p>Supersus</p>
-      </div>
-      <div class="game">
-        <img src="https://i.pinimg.com/736x/b7/cf/62/b7cf62846ae6ae5e96b35cf9d5e05a7c.jpg" alt="Valorant">
-        <p>Valorant</p>
+        <img src="https://play-lh.googleusercontent.com/Z_whigr5KoHRRTkYPaza92zgHlALRhJAltJmKu8eROu3QqfGzzfHeBgDvqPLb0sR3g=s48-rw" alt="Arena of Valor">
+        <p>Arena of Valor</p>
       </div>
       <div class="game">
         <img src="https://play-lh.googleusercontent.com/IGOlY-TMU0cGW_I8EFKBkLACxPLu1TQqbqaqx7NUsGMyjNWIO1NdhwdBrq-71pUAHw=s48-rw" alt="Point Blank">
         <p>Point Blank</p>
       </div>
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/1b4arZ2f3fyfZKMBpFnYIIyPRgf0pqs2jfRg_8z3sSrVa66Mr13opXH5Rq4W6HDGQJQ" alt="Stumble Guys">
-        <p>Stumble Guys</p>
-      </div>
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/nkQ2rRYPFEmSOjfr9gLWujUQgsbz6t_2x2NZU0AqXlgDobEfHZ6fhAmkdTrfxzIe9MY" alt="Lord Mobile">
-        <p>Lord Mobile</p>
-      </div>
-      <div class="game">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc
+    </div>
+
+    <h2>Voucher</h2>
+    <div class="category-container">
+      <p>Voucher belum tersedia. Segera hadir!</p>
+    </div>
+
+    <a href="https://wa.me/6281234567890" class="topup-btn" target="_blank">Top Up via WhatsApp</a>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 UVOSHOP. Semua hak dilindungi.</p>
+    <p class="trust">Kami menjamin transaksi yang aman dan cepat!</p>
+  </footer>
+
+</body>
+</html>
