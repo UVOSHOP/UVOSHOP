@@ -6,6 +6,14 @@
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Styling untuk body */
+    body {
+      background-color: #e0f7fa;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     /* Styling untuk header */
     header {
       display: flex;
@@ -29,6 +37,15 @@
       border-radius: 5px;
     }
 
+    /* Styling untuk ID server */
+    .server-id {
+      font-size: 20px;
+      color: #00796b;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+
     /* Container untuk games */
     .games-container {
       display: flex;
@@ -38,16 +55,21 @@
       white-space: nowrap;
     }
 
-    /* Setiap game item */
+    /* Setiap game item dengan bingkai */
     .game {
       display: inline-block;
       text-align: center;
+      padding: 10px;
+      border: 2px solid #00796b;
+      border-radius: 10px;
+      background-color: #fff;
     }
 
     .game img {
       width: 100px;
       height: 100px;
       object-fit: contain;
+      border-radius: 8px;
     }
 
     .game p {
@@ -67,12 +89,12 @@
       font-size: 20px;
       font-weight: bold;
     }
-    
+
     .category-container ul {
       list-style-type: none;
       padding: 0;
     }
-    
+
     .category-container ul li {
       margin: 5px 0;
     }
@@ -82,6 +104,12 @@
       background-color: #f1f1f1;
       text-align: center;
       font-size: 14px;
+    }
+
+    footer .trust {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00796b;
     }
   </style>
 </head>
@@ -93,9 +121,14 @@
       <img src="https://i.ibb.co/9kXsJmkk/uvoshop-logo.png" alt="UVOSHOP Logo">
     </div>
     <div class="search-bar">
-      <input type="text" placeholder="Cari Game atau E-wallet..." />
+      <input type="text" placeholder="Cari Game atau E-wallet..." disabled />
     </div>
   </header>
+
+  <!-- Server ID -->
+  <div class="server-id">
+    <p>ID - Server Indonesia</p>
+  </div>
 
   <!-- Main Content -->
   <main>
@@ -119,7 +152,7 @@
         <p>Arena Breakout</p>
       </div>
       <div class="game">
-        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ef/Arena_of_Valor_Logo_2021.png/revision/latest/scale-to-width-down/200?cb=20241001035341" alt="Arena of Valor">
+        <img src="https://play-lh.googleusercontent.com/Z_whigr5KoHRRTkYPaza92zgHlALRhJAltJmKu8eROu3QqfGzzfHeBgDvqPLb0sR3g=s48-rw" alt="Arena of Valor">
         <p>Arena of Valor</p>
       </div>
       <div class="game">
@@ -147,7 +180,7 @@
         <p>Valorant</p>
       </div>
       <div class="game">
-        <img src="https://www.unipin.com/id/pointblank" alt="Point Blank">
+        <img src="https://play-lh.googleusercontent.com/IGOlY-TMU0cGW_I8EFKBkLACxPLu1TQqbqaqx7NUsGMyjNWIO1NdhwdBrq-71pUAHw=s48-rw" alt="Point Blank">
         <p>Point Blank</p>
       </div>
       <div class="game">
@@ -166,9 +199,8 @@
 
     <!-- Category List -->
     <div class="category-container">
-      <h3>Kategori Game</h3>
+      <h3>Game Populer</h3>
       <ul>
-        <li>Trending</li>
         <li>Game Mobile</li>
         <li>Game PC</li>
         <li>Voucher</li>
@@ -179,6 +211,9 @@
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi.</p>
+    <div class="trust">
+      <p>Top-up dengan aman, cepat, dan terpercaya!</p>
+    </div>
   </footer>
 
 </body>
