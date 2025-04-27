@@ -2,65 +2,29 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UniPin KW</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UVOShop - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar">
+  <header>
     <div class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/UniPin_logo.svg/512px-UniPin_logo.svg.png" alt="Logo UniPin KW">
+      <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOShop Logo">
     </div>
-    <nav>
-      <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Game</a></li>
-        <li><a href="#">Voucher</a></li>
-        <li><a href="#">Promo</a></li>
-        <li><a href="#">Bantuan</a></li>
-      </ul>
-    </nav>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Cari Game...">
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Top Up Game Favoritmu di UniPin KW!</h1>
-    <p>Cepat, Mudah, dan Aman. Bayar via WhatsApp sekarang!</p>
-    <a href="#games" class="btn">Mulai Top-Up</a>
-  </section>
+  <main>
+    <h2>Semua Game</h2>
+    <div class="games" id="gameList"></div>
+  </main>
 
-  <section id="games" class="games">
-    <h2>Top Games</h2>
-    <div class="game-grid">
-      <div class="game-card">
-        <img src="https://cdn.unipin.com/images/icon_mobilelegends.png" alt="Mobile Legends">
-        <h3>Mobile Legends</h3>
-        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Mobile%20Legends" class="btn">Top-Up</a>
-      </div>
-      <div class="game-card">
-        <img src="https://cdn.unipin.com/images/icon_freefire.png" alt="Free Fire">
-        <h3>Free Fire</h3>
-        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Free%20Fire" class="btn">Top-Up</a>
-      </div>
-      <div class="game-card">
-        <img src="https://cdn.unipin.com/images/icon_pubgm.png" alt="PUBG Mobile">
-        <h3>PUBG Mobile</h3>
-        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20PUBG%20Mobile" class="btn">Top-Up</a>
-      </div>
-      <div class="game-card">
-        <img src="https://cdn.unipin.com/images/icon_valorant.png" alt="Valorant">
-        <h3>Valorant</h3>
-        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Valorant" class="btn">Top-Up</a>
-      </div>
-      <div class="game-card">
-        <img src="https://cdn.unipin.com/images/icon_genshin.png" alt="Genshin Impact">
-        <h3>Genshin Impact</h3>
-        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20top-up%20Genshin%20Impact" class="btn">Top-Up</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>© 2025 UniPin KW. All Rights Reserved.</p>
+  <footer>
+    <p>Hubungi kami di WhatsApp: <a href="https://wa.me/6285648211278">+62 856 4821 1278</a></p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
