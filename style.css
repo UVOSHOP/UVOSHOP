@@ -1,124 +1,45 @@
-/* Basic styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Styling untuk bar atas */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #222;
-    color: white;
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+  color: white;
 }
 
-header .logo img {
-    width: 120px;
+header h1 {
+  font-size: 24px;
 }
 
-header .search-container input {
-    padding: 5px;
-    border-radius: 4px;
-    border: none;
-    margin-right: 10px;
+/* Gaya untuk kategori dan game */
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
-header .search-container button {
-    padding: 5px 10px;
-    background-color: #ff4747;
-    border: none;
-    color: white;
-    cursor: pointer;
+.game-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  width: 100px;
+  background-color: #f4f4f4;
+  transition: transform 0.3s ease;
 }
 
-header .id {
-    font-size: 14px;
+.game-item:hover {
+  transform: scale(1.1);
 }
 
-/* Categories */
-.categories {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+/* Styling untuk slider game */
+.slider {
+  display: flex;
+  overflow-x: scroll;
+  gap: 15px;
 }
 
-.categories .category {
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    margin: 0 10px;
-    transition: background-color 0.3s;
-}
-
-.categories .category:hover {
-    background-color: #ff4747;
-    color: white;
-}
-
-/* Slider for games */
-.game-slider {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.game-list {
-    display: flex;
-    overflow-x: auto;
-    padding: 20px;
-    gap: 15px;
-}
-
-.game-card {
-    width: 200px;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.game-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.game-card h4 {
-    margin-top: 10px;
-}
-
-.game-card button {
-    padding: 5px 10px;
-    background-color: #ff4747;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-/* Feature section */
-.features {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-}
-
-.feature-box {
-    background-color: #f3f3f3;
-    padding: 20px;
-    border-radius: 5px;
-    width: 200px;
-    text-align: center;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #222;
-    color: white;
-}
-
-footer .contact-info a {
-    color: #ff4747;
-    text-decoration: none;
+.slider img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
