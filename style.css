@@ -189,3 +189,57 @@ label {
   text-align: center;
   margin-top: 10px;
 }
+/* CSS untuk membuat banner bergeser setiap 3 detik */
+.banner-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-slider img {
+  width: 100%;
+  height: auto;
+  animation: slide 15s infinite;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-100%); }
+  40% { transform: translateX(-200%); }
+  60% { transform: translateX(-300%); }
+  80% { transform: translateX(-400%); }
+  100% { transform: translateX(-500%); }
+}
+
+/* Responsivitas untuk header */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo img {
+    width: 100px;
+  }
+
+  .search-bar input {
+    width: 200px;
+  }
+}
