@@ -4,7 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styling langsung disisipkan */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header-container .logo img {
+      height: 40px; /* Logo dikecilin */
+    }
+    .header-container .search-bar input {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+    .btn-back {
+      font-size: 14px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    #banner-slider {
+      position: relative;
+      overflow: hidden;
+      height: 160px;
+    }
+    #banner-slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    /* Ini supaya diamond kecil (kalau ada form diamond di bawah) */
+    .diamond-option {
+      font-size: 14px;
+      padding: 6px;
+    }
+  </style>
 </head>
 <body>
 
@@ -67,6 +113,25 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Banner otomatis geser setiap 3 detik
+    const slider = document.getElementById('banner-slider');
+    let currentSlide = 0;
+    const slides = slider.getElementsByTagName('img');
+
+    function showSlide(index) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = (i === index) ? '1' : '0';
+      }
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    showSlide(currentSlide);
+    setInterval(nextSlide, 3000); // 3 detik
+  </script>
 </body>
 </html>
