@@ -4,88 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .header-container .logo img {
-      height: 40px;
-    }
-    .header-container .search-bar input {
-      font-size: 14px;
-      padding: 6px 10px;
-    }
-    #banner-slider {
-      position: relative;
-      overflow: hidden;
-      height: 160px;
-    }
-    #banner-slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-    #banner-slider img.active {
-      opacity: 1;
-      position: relative;
-    }
-    .diamond-option {
-      font-size: 14px;
-      padding: 6px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <div class="header-container">
-      <!-- Tombol Kembali sudah dihapus -->
-      <div class="logo">
-        <img src="https://via.placeholder.com/150x40?text=UVOSHOP" alt="UVOSHOP Logo">
-        <!-- Ganti URL ini dengan logo asli kamu -->
-      </div>
+      <div class="logo"><img src="<LOGO_URL>" alt="UVOSHOP Logo"></div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari Game...">
       </div>
     </div>
 
     <div class="banner-slider" id="banner-slider">
-      <img src="https://via.placeholder.com/800x160?text=Banner+1" alt="">
-      <img src="https://via.placeholder.com/800x160?text=Banner+2" alt="">
-      <img src="https://via.placeholder.com/800x160?text=Banner+3" alt="">
-      <img src="https://via.placeholder.com/800x160?text=Banner+4" alt="">
-      <img src="https://via.placeholder.com/800x160?text=Banner+5" alt="">
-      <!-- Ganti semua link src di atas ke gambar banner asli kamu -->
+      <img src="<BANNER1_URL>" alt="">
+      <img src="<BANNER2_URL>" alt="">
+      <img src="<BANNER3_URL>" alt="">
+      <img src="<BANNER4_URL>" alt="">
+      <img src="<BANNER5_URL>" alt="">
     </div>
   </header>
 
   <main>
+    <!-- Game Populer -->
     <section class="category-section">
       <h2>Game Populer</h2>
       <div class="games-row" id="popular-games"></div>
     </section>
+    <!-- Game Mobile -->
     <section class="category-section">
       <h2>Game Mobile</h2>
       <div class="games-row" id="mobile-games"></div>
     </section>
+    <!-- Game PC -->
     <section class="category-section">
       <h2>Game PC</h2>
       <div class="games-row" id="pc-games"></div>
     </section>
+    <!-- Voucher Game -->
     <section class="category-section">
       <h2>Voucher Game</h2>
       <div class="games-row" id="game-vouchers"></div>
@@ -111,25 +67,22 @@
   </footer>
 
   <script>
-    // Banner otomatis geser setiap 3 detik
     const slider = document.getElementById('banner-slider');
-    const slides = slider.getElementsByTagName('img');
-    let currentSlide = 0;
+    const images = slider.getElementsByTagName('img');
+    let current = 0;
 
-    function showSlide(index) {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove('active');
-      }
-      slides[index].classList.add('active');
+    // Sembunyikan semua gambar kecuali gambar pertama
+    for (let i = 1; i < images.length; i++) {
+      images[i].style.display = 'none';
     }
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-
-    showSlide(currentSlide);
-    setInterval(nextSlide, 3000); // setiap 3 detik
+    setInterval(() => {
+      images[current].style.display = 'none'; // Sembunyikan gambar sekarang
+      current = (current + 1) % images.length; // Pindah ke gambar berikutnya
+      images[current].style.display = 'block'; // Tampilkan gambar berikutnya
+    }, 3000); // Ganti gambar setiap 3 detik
   </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
