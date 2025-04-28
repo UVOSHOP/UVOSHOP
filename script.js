@@ -30,7 +30,6 @@ const products = [
     image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles-plain/Chamet-tile_178x178.jpg",
     whatsapp: "https://wa.me/6285648211278?text=Saya%20ingin%20top-up%20Chamet"
   },
-  // Tambahkan produk lainnya di sini
   {
     name: "Valorant",
     category: "pc",
@@ -68,7 +67,7 @@ function renderProducts() {
   // Filter produk berdasarkan kategori dan render
   products.forEach(product => {
     const card = document.createElement("div");
-    card.className = "bg-white dark:bg-gray-800 p-3 rounded shadow hover:shadow-lg transition duration-300 w-48";
+    card.className = "bg-white dark:bg-gray-800 p-3 rounded shadow hover:shadow-lg transition duration-300 w-40 sm:w-48";
 
     card.innerHTML = `
       <img src="${product.image}" alt="${product.name}" class="w-full h-28 object-cover rounded mb-2 cursor-pointer" onclick="window.location.href='${product.whatsapp}'">
@@ -103,7 +102,7 @@ function renderFilteredProducts(filteredProducts) {
   container.innerHTML = "";  // Clear existing products
   filteredProducts.forEach((product) => {
     const card = document.createElement("div");
-    card.className = "bg-white dark:bg-gray-800 p-3 rounded shadow hover:shadow-lg transition duration-300 w-48";
+    card.className = "bg-white dark:bg-gray-800 p-3 rounded shadow hover:shadow-lg transition duration-300 w-40 sm:w-48";
 
     card.innerHTML = `
       <img src="${product.image}" alt="${product.name}" class="w-full h-28 object-cover rounded mb-2 cursor-pointer" onclick="window.location.href='${product.whatsapp}'">
