@@ -2,9 +2,77 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .banner-slider img {
+      width: 100%;
+      height: auto;
+      transition: opacity 1s ease-in-out;
+    }
+    .banner-slider {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .banner-slider img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      animation: slide 15s infinite;
+    }
+    @keyframes slide {
+      0% { opacity: 1; }
+      20% { opacity: 1; }
+      25% { opacity: 0; }
+      45% { opacity: 0; }
+      50% { opacity: 1; }
+      70% { opacity: 1; }
+      75% { opacity: 0; }
+      95% { opacity: 0; }
+    }
+
+    .form-section {
+      padding: 20px;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+    }
+    .form-section input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+    }
+    .diamond-options, .payment-options {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .diamond-option, .payment-option {
+      width: 48%;
+      margin: 1%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .diamond-option:hover, .payment-option:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+    .recommendation-list {
+      margin-top: 20px;
+    }
+    .recommendation-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .recommendation-list li {
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin: 5px 0;
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,25 +94,57 @@
   </header>
 
   <main>
-    <!-- Game Populer -->
-    <section class="category-section">
-      <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games"></div>
-    </section>
-    <!-- Game Mobile -->
-    <section class="category-section">
-      <h2>Game Mobile</h2>
-      <div class="games-row" id="mobile-games"></div>
-    </section>
-    <!-- Game PC -->
-    <section class="category-section">
-      <h2>Game PC</h2>
-      <div class="games-row" id="pc-games"></div>
-    </section>
-    <!-- Voucher Game -->
-    <section class="category-section">
-      <h2>Voucher Game</h2>
-      <div class="games-row" id="game-vouchers"></div>
+    <div class="form-section">
+      <h3>Formulir Top Up</h3>
+      <div>
+        <strong>Game: <span id="game-name">Nama Game</span></strong>
+        <div><strong>Logo UVOSHOP</strong></div>
+      </div>
+      
+      <label for="user-id">User ID</label>
+      <input type="text" id="user-id" placeholder="Isi ID">
+
+      <label for="server">Server/Zona</label>
+      <input type="text" id="server" placeholder="Isi Server/Zona (Jika ada)">
+
+      <div class="diamond-options">
+        <!-- Adjusted diamond prices per game -->
+        <div class="diamond-option">1 DM = Rp1.000</div>
+        <div class="diamond-option">1 DM = Rp1.000</div>
+        <div class="diamond-option">1 DM = Rp1.000</div>
+        <div class="diamond-option">1 DM = Rp1.000</div>
+      </div>
+
+      <div class="payment-options">
+        <div class="payment-option">Token UVOShop</div>
+        <div class="payment-option">QRIS</div>
+        <div class="payment-option">E-Wallet</div>
+        <div class="payment-option">Bank</div>
+        <div class="payment-option">Cash</div>
+      </div>
+
+      <div>
+        <p><strong>Catatan:</strong></p>
+        <ul>
+          <li>Masukkan ID dan zona (bila ada zona).</li>
+          <li>Pilih diamond.</li>
+          <li>Pilih pembayaran.</li>
+          <li>Tekan beli, lalu masuk WA dan tunggu transaksi dengan admin.</li>
+          <li>Menunggu hingga top-up masuk.</li>
+        </ul>
+      </div>
+
+      <button>Bayar</button>
+    </div>
+
+    <section class="recommendation-list">
+      <h3>Rekomendasi Game</h3>
+      <ul>
+        <li>Game 1</li>
+        <li>Game 2</li>
+        <li>Game 3</li>
+        <li>Game 4</li>
+      </ul>
     </section>
   </main>
 
