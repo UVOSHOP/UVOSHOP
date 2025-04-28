@@ -1,23 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>UVOSHOP</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UVOSHOP - Top Up Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo" class="logo"/>
-        <div class="banner-slider">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" />
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" />
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" />
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" />
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" />
-        </div>
-    </header>
-    <main id="games-container"></main>
-    <script src="script.js"></script>
+
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg"
+             alt="UVOSHOP Logo">
+      </div>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cari Game...">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="categories">
+      <div class="category" id="popular-games">
+        <h2>Game Populer</h2>
+      </div>
+      <div class="category" id="mobile-games">
+        <h2>Game Mobile</h2>
+      </div>
+      <div class="category" id="pc-games">
+        <h2>Game PC</h2>
+      </div>
+      <div class="category" id="game-vouchers">
+        <h2>Voucher Game</h2>
+      </div>
+    </section>
+
+    <section id="games-container"></section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <h2>BERLANGGANAN</h2>
+      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
+      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+      <p><strong>Peta Situs</strong></p>
+      <ul>
+        <li>Flash Top-Up</li>
+        <li>Voucher</li>
+        <li>Game Lainnya</li>
+        <li>FAQ</li>
+      </ul>
+      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
+      <p>© 2025 UVOShop. Semua Hak Cipta</p>
+      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
