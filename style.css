@@ -1,119 +1,97 @@
-/* Existing styles here */
-
+:root {
+  --clr-body: #0E1120;
+  --clr-header: #202938;
+  --clr-card-bg: #1a1f2b;
+  --clr-text: #ffffff;
+  --clr-accent: #007bff;
+}
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #0E1120;
+  margin: 0; padding: 0;
+  background-color: var(--clr-body);
+  color: var(--clr-text);
+  font-family: 'Segoe UI', sans-serif;
 }
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #202938;
-}
-
-.search-bar input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 250px;
-}
-
 header {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
+  background-color: var(--clr-header);
 }
-
-/* Banner Slider */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+}
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--clr-text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.logo img { width: 120px; }
+.search-bar input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px; border: none;
+  width: 220px;
+}
 .banner-slider {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    position: relative;
+  display: flex;
+  overflow-x: auto;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
 }
-
-.banner-slide {
-    min-width: 100%;
+.banner-slider img {
+  flex-shrink: 0;
+  width: 280px; height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
 }
-
-.banner-slide img {
-    width: 100%;
+.category-section {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
 }
-
-/* Game Category */
-.categories {
-    display: flex;
-    overflow-x: scroll;
+.category-section h2 {
+  font-size: 1.25rem;
+  color: var(--clr-text);
+  border-left: 4px solid var(--clr-accent);
+  padding-left: 0.5rem;
 }
-
-.category {
-    margin-right: 20px;
-    flex-shrink: 0;
+.games-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
 }
-
-.category h2 {
-    color: #2b3d44;
-}
-
-#games-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 20px;
-}
-
 .game-card {
-    width: 200px;
-    margin: 10px;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
+  background: var(--clr-card-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  flex: 0 0 140px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  position: relative;
 }
-
 .game-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
+  width: 56px; height: 56px;
+  margin-bottom: 0.5rem;
 }
-
 .game-card h3 {
-    font-size: 16px;
-    margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
 }
-
-button.topup-button {
-    background-color: #202938;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
+.game-card .btn-topup {
+  position: absolute;
+  bottom: 10px; left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--clr-accent);
+  border: none; color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
 }
-
-.diamond-form {
-    background-color: #2b3d44;
-    padding: 20px;
-    color: white;
-}
-
-footer {
-    background-color: #202938;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+/* Footer tetap sama */
