@@ -5,15 +5,18 @@
   --clr-text: #ffffff;
   --clr-accent: #007bff;
 }
+
 body {
   margin: 0; padding: 0;
   background-color: var(--clr-body);
   color: var(--clr-text);
   font-family: 'Segoe UI', sans-serif;
 }
+
 header {
   background-color: var(--clr-header);
 }
+
 .header-container {
   display: flex;
   align-items: center;
@@ -22,6 +25,7 @@ header {
   margin: 0 auto;
   padding: 0.75rem 1rem;
 }
+
 .btn-back {
   background: none;
   border: none;
@@ -29,41 +33,55 @@ header {
   font-size: 1rem;
   cursor: pointer;
 }
-.logo img { width: 120px; }
+
+.logo img {
+  width: 120px;
+}
+
 .search-bar input {
   padding: 0.5rem 0.75rem;
   border-radius: 4px; border: none;
   width: 220px;
 }
+
 .banner-slider {
   display: flex;
   overflow-x: auto;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
 }
+
 .banner-slider img {
   flex-shrink: 0;
-  width: 280px; height: 100px;
-  object-fit: cover;
+  width: 100%; /* Mengatur agar gambar memenuhi lebar */
+  max-width: 400px; /* Maksimal lebar gambar */
+  height: auto;
+  object-fit: contain; /* Agar gambar tidak terpotong */
   border-radius: 6px;
+  background-color: #000;
+  scroll-snap-align: center;
 }
+
 .category-section {
   max-width: 1200px;
   margin: 1.5rem auto;
   padding: 0 1rem;
 }
+
 .category-section h2 {
   font-size: 1.25rem;
   color: var(--clr-text);
   border-left: 4px solid var(--clr-accent);
   padding-left: 0.5rem;
 }
+
 .games-row {
   display: flex;
   overflow-x: auto;
   gap: 1rem;
   padding-bottom: 0.5rem;
 }
+
 .game-card {
   background: var(--clr-card-bg);
   border-radius: 8px;
@@ -73,16 +91,19 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   position: relative;
 }
+
 .game-card img {
   width: 56px; height: 56px;
   margin-bottom: 0.5rem;
 }
+
 .game-card h3 {
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
   margin: 0;
 }
+
 .game-card .btn-topup {
   position: absolute;
   bottom: 10px; left: 50%;
@@ -94,7 +115,9 @@ header {
   font-size: 0.8rem;
   cursor: pointer;
 }
+
 /* Footer tetap sama */
+
 /* Formulir */
 .form-container {
   background: var(--clr-card-bg);
