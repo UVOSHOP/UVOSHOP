@@ -5,6 +5,47 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tambahan kecil supaya responsif */
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+    .logo img {
+      max-width: 150px;
+      height: auto;
+    }
+    .search-bar {
+      flex: 1;
+      margin-left: 10px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    #banner-slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    #banner-slider img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    #banner-slider img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
 
@@ -71,16 +112,13 @@
     const images = slider.getElementsByTagName('img');
     let current = 0;
 
-    // Sembunyikan semua gambar kecuali gambar pertama
-    for (let i = 1; i < images.length; i++) {
-      images[i].style.display = 'none';
-    }
+    images[current].classList.add('active'); // Tampilkan gambar pertama
 
     setInterval(() => {
-      images[current].style.display = 'none'; // Sembunyikan gambar sekarang
-      current = (current + 1) % images.length; // Pindah ke gambar berikutnya
-      images[current].style.display = 'block'; // Tampilkan gambar berikutnya
-    }, 3000); // Ganti gambar setiap 3 detik
+      images[current].classList.remove('active'); // Hilangkan gambar sekarang
+      current = (current + 1) % images.length; // Gambar berikutnya
+      images[current].classList.add('active'); // Tampilkan gambar baru
+    }, 3000);
   </script>
 
   <script src="script.js"></script>
