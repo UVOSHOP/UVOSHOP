@@ -1,151 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>UVOShop - Top-Up Game Online</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVOShop - TopUp Game & Voucher</title>
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Dark Mode Support -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#007bff',
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-all duration-300">
 
-<body>
-    <!-- Header -->
-    <header>
-        <div class="logo-container">
-            <img class="logo-icon" src="https://via.placeholder.com/50x50?text=UVO" alt="Logo Icon">
-            <img class="logo-text" src="https://via.placeholder.com/150x50?text=UVOShop" alt="Logo Text">
-        </div>
-        <input class="search-bar" type="text" placeholder="Cari Game atau Voucher">
-    </header>
+  <!-- Header -->
+  <header class="p-4 flex justify-between items-center bg-primary text-white dark:bg-gray-800">
+    <img src="https://i.pinimg.com/736x/92/27/e1/9227e1907f5d5af2314701ec2d386837.jpg" alt="UVOShop Logo" class="h-12">
+    <h1 class="text-xl font-bold">🎮 UVOShop</h1>
+    <button id="theme-toggle" class="text-sm bg-white text-primary px-3 py-1 rounded dark:bg-gray-700 dark:text-white">
+      🌙/🌞
+    </button>
+  </header>
 
-    <!-- Banner Section -->
-    <div class="banner-container">
-        <div class="banner-slider">
-            <img class="banner-img" src="https://via.placeholder.com/1200x300.png?text=Banner+1" alt="Banner 1">
-            <img class="banner-img" src="https://via.placeholder.com/1200x300.png?text=Banner+2" alt="Banner 2">
-            <img class="banner-img" src="https://via.placeholder.com/1200x300.png?text=Banner+3" alt="Banner 3">
-        </div>
+  <!-- Search Bar -->
+  <div class="p-4">
+    <input id="search" type="text" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700 dark:text-white" placeholder="Cari game..." />
+  </div>
+
+  <!-- Main Content -->
+  <main class="p-6">
+    <!-- Kategori -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Game Populer</h2>
+      <div class="flex flex-wrap justify-start gap-4" id="game-populer"></div>
+    </div>
+    
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Game Mobile</h2>
+      <div class="overflow-x-auto flex space-x-4 pb-4 scroll-smooth" id="game-mobile"></div>
+    </div>
+    
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Game PC</h2>
+      <div class="overflow-x-auto flex space-x-4 pb-4 scroll-smooth" id="game-pc"></div>
+    </div>
+    
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Voucher</h2>
+      <div class="overflow-x-auto flex space-x-4 pb-4 scroll-smooth" id="voucher"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white p-8">
+    <h3 class="text-2xl text-center mb-6">UVOSHOP - Top-Up Game Termudah dan Terpercaya</h3>
+    <p class="text-center mb-6">Dapatkan Penawaran Terbaik Sekarang!</p>
+    
+    <div class="text-center mb-6">
+      <a href="https://www.tiktok.com" class="inline-block text-primary font-semibold">TikTok</a>
+    </div>
+    
+    <div class="text-center mb-6">
+      <ul class="space-y-2">
+        <li><a href="#">Peta Situs</a></li>
+        <li><a href="#">Flash Top-Up</a></li>
+        <li><a href="#">Voucher</a></li>
+        <li><a href="#">Game Lainnya</a></li>
+        <li><a href="#">UniPin Affiliates Program</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
     </div>
 
-    <!-- Promo Section -->
-    <section class="promo-section">
-        <h2>Promo Top-Up Terbaik</h2>
-        <div class="promo-items">
-            <div class="promo-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Promo+1" alt="Promo 1">
-                <h3>Promo Game 1</h3>
-                <p>Diskon hingga 50%</p>
-                <button class="promo-btn" data-game="Game 1" data-price="10000">Top-Up Sekarang</button>
-            </div>
-            <div class="promo-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Promo+2" alt="Promo 2">
-                <h3>Promo Game 2</h3>
-                <p>Voucher senilai 100K</p>
-                <button class="promo-btn" data-game="Game 2" data-price="50000">Top-Up Sekarang</button>
-            </div>
-        </div>
-    </section>
+    <div class="mt-6 text-center">
+      <p>WhatsApp: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
+      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+628118889588">+62 811-1889-588</a></p>
+    </div>
 
-    <!-- Game Categories -->
-    <main>
-        <section id="game-populer">
-            <h2>Game Populer</h2>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Game+1" alt="Game 1">
-                <h3>Game 1</h3>
-                <button class="topup-btn" data-game="Game 1" data-price="10000">Top-Up</button>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Game+2" alt="Game 2">
-                <h3>Game 2</h3>
-                <button class="topup-btn" data-game="Game 2" data-price="20000">Top-Up</button>
-            </div>
-            <!-- Add more game cards here -->
-        </section>
+    <div class="mt-8 text-center text-sm">
+      <p>© 2025 UVOSHOP. Semua Hak Cipta</p>
+      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>
 
-        <section id="game-mobile">
-            <h2>Game Mobile</h2>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Mobile+Game+1" alt="Mobile Game 1">
-                <h3>Mobile Game 1</h3>
-                <button class="topup-btn" data-game="Mobile Game 1" data-price="15000">Top-Up</button>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Mobile+Game+2" alt="Mobile Game 2">
-                <h3>Mobile Game 2</h3>
-                <button class="topup-btn" data-game="Mobile Game 2" data-price="25000">Top-Up</button>
-            </div>
-            <!-- Add more mobile game cards here -->
-        </section>
-
-        <section id="game-pc">
-            <h2>Game PC</h2>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=PC+Game+1" alt="PC Game 1">
-                <h3>PC Game 1</h3>
-                <button class="topup-btn" data-game="PC Game 1" data-price="30000">Top-Up</button>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=PC+Game+2" alt="PC Game 2">
-                <h3>PC Game 2</h3>
-                <button class="topup-btn" data-game="PC Game 2" data-price="40000">Top-Up</button>
-            </div>
-            <!-- Add more PC game cards here -->
-        </section>
-
-        <section id="voucher">
-            <h2>Voucher Game</h2>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Voucher+1" alt="Voucher 1">
-                <h3>Voucher 1</h3>
-                <button class="topup-btn" data-game="Voucher 1" data-price="5000">Top-Up</button>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=Voucher+2" alt="Voucher 2">
-                <h3>Voucher 2</h3>
-                <button class="topup-btn" data-game="Voucher 2" data-price="10000">Top-Up</button>
-            </div>
-            <!-- Add more voucher cards here -->
-        </section>
-
-        <section id="apk">
-            <h2>APK Game</h2>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=APK+Game+1" alt="APK Game 1">
-                <h3>APK Game 1</h3>
-                <button class="topup-btn" data-game="APK Game 1" data-price="20000">Download</button>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/160x120.png?text=APK+Game+2" alt="APK Game 2">
-                <h3>APK Game 2</h3>
-                <button class="topup-btn" data-game="APK Game 2" data-price="30000">Download</button>
-            </div>
-            <!-- Add more APK game cards here -->
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">Peta Situs</a> |
-            <a href="#">Flash Top-Up</a> |
-            <a href="#">Voucher</a> |
-            <a href="#">Game Lainnya</a> |
-            <a href="#">FAQ</a>
-        </div>
-        <div class="subscription">
-            <input type="email" placeholder="Masukkan Email Anda" />
-            <button>BERLANGGANAN</button>
-        </div>
-        <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: +62 856-4821-1278</p>
-        <p>© 2025 UVOShop. Semua Hak Cipta.</p>
-        <div class="footer-links">
-            <a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-
 </html>
