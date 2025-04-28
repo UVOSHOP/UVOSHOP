@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  background: linear-gradient(180deg, #2c3e50, #bdc3c7);
 }
 
 header {
@@ -14,7 +14,7 @@ header {
   color: #fff;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px 20px;
   align-items: center;
 }
 
@@ -23,20 +23,46 @@ header .logo img {
   height: auto;
 }
 
-header input, header select {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-header select {
+header .logo span {
+  font-size: 1.5rem;
   margin-left: 10px;
 }
 
-.banners img {
+header input, header select {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+header input {
+  width: 200px;
+}
+
+.banners {
+  overflow: hidden;
+  position: relative;
   width: 100%;
-  height: 300px;
+}
+
+.banner-container {
+  display: flex;
+  animation: slide 15s infinite;
+}
+
+.banner {
+  width: 100%;
   object-fit: cover;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-100%); }
+  40% { transform: translateX(-200%); }
+  60% { transform: translateX(-300%); }
+  80% { transform: translateX(-400%); }
+  100% { transform: translateX(0); }
 }
 
 main {
@@ -45,7 +71,7 @@ main {
 
 .game-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
 
@@ -68,6 +94,21 @@ main {
   margin-bottom: 10px;
 }
 
+.game-card button {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.game-card button:hover {
+  background-color: #155db0;
+}
+
 footer {
   background-color: #1a1a1a;
   color: #fff;
@@ -78,5 +119,4 @@ footer {
 footer a {
   color: #fff;
   text-decoration: none;
-  margin: 0 5px;
-}
+  }
