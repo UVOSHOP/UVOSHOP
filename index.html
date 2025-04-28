@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Banner Slider Animation */
+    .banner-slider {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .banner-slider img {
+      width: 100%;
+      transition: transform 1s ease-in-out;
+    }
+  </style>
 </head>
 <body>
 
@@ -29,22 +42,58 @@
     <!-- Game Populer -->
     <section class="category-section">
       <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games"></div>
+      <div class="games-row" id="popular-games">
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Game 1">
+          <button class="topup-btn">Top Up</button>
+        </div>
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Game 2">
+          <button class="topup-btn">Top Up</button>
+        </div>
+      </div>
     </section>
     <!-- Game Mobile -->
     <section class="category-section">
       <h2>Game Mobile</h2>
-      <div class="games-row" id="mobile-games"></div>
+      <div class="games-row" id="mobile-games">
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Game 1">
+          <button class="topup-btn">Top Up</button>
+        </div>
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Game 2">
+          <button class="topup-btn">Top Up</button>
+        </div>
+      </div>
     </section>
     <!-- Game PC -->
     <section class="category-section">
       <h2>Game PC</h2>
-      <div class="games-row" id="pc-games"></div>
+      <div class="games-row" id="pc-games">
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Game 1">
+          <button class="topup-btn">Top Up</button>
+        </div>
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Game 2">
+          <button class="topup-btn">Top Up</button>
+        </div>
+      </div>
     </section>
     <!-- Voucher Game -->
     <section class="category-section">
       <h2>Voucher Game</h2>
-      <div class="games-row" id="game-vouchers"></div>
+      <div class="games-row" id="game-vouchers">
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Voucher 1">
+          <button class="topup-btn">Top Up</button>
+        </div>
+        <div class="game-item">
+          <img src="game-image.jpg" alt="Voucher 2">
+          <button class="topup-btn">Top Up</button>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -65,6 +114,21 @@
       <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
     </div>
   </footer>
+
+  <script>
+    let index = 0;
+    const banners = document.querySelectorAll('.banner-slider img');
+
+    function slideBanner() {
+      index = (index + 1) % banners.length;
+      const offset = -index * 100;  // Slide by 100% width of an image
+      banners.forEach(banner => {
+        banner.style.transform = `translateX(${offset}%)`;
+      });
+    }
+
+    setInterval(slideBanner, 3000); // Change image every 3 seconds
+  </script>
 
   <script src="script.js"></script>
 </body>
