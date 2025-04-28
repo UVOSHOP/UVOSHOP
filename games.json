@@ -1,62 +1,22 @@
 [
-  {
-    "name": "Mobile Legends",
-    "image": "https://cdn.tokogame.com/game/mobile-legends.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Free Fire",
-    "image": "https://cdn.tokogame.com/game/free-fire.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "PUBG Mobile",
-    "image": "https://cdn.tokogame.com/game/pubg-mobile.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Genshin Impact",
-    "image": "https://cdn.tokogame.com/game/genshin-impact.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Honkai: Star Rail",
-    "image": "https://cdn.tokogame.com/game/honkai-star-rail.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Valorant",
-    "image": "https://cdn.tokogame.com/game/valorant.png",
-    "category": "Game PC",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Arena of Valor",
-    "image": "https://cdn.tokogame.com/game/arena-of-valor.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Call of Duty Mobile",
-    "image": "https://cdn.tokogame.com/game/cod-mobile.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Clash of Clans",
-    "image": "https://cdn.tokogame.com/game/clash-of-clans.png",
-    "category": "Game Mobile",
-    "whatsapp": "https://wa.me/6285648211278"
-  },
-  {
-    "name": "Steam Wallet",
-    "image": "https://cdn.tokogame.com/game/steam-wallet.png",
-    "category": "Voucher",
-    "whatsapp": "https://wa.me/6285648211278"
-  }
+    {"id": "mlbb", "name": "Mobile Legends: Bang Bang", "icon": "https://www.unipin.com/static/media/mobile-legends-icon.png"},
+    {"id": "free-fire", "name": "Garena Free Fire", "icon": "https://www.unipin.com/static/media/free-fire-icon.png"},
+    {"id": "free-fire-max", "name": "Garena Free Fire Max", "icon": "https://www.unipin.com/static/media/free-fire-max-icon.png"},
+    {"id": "pubg-mobile", "name": "PUBG Mobile", "icon": "https://www.unipin.com/static/media/pubg-mobile-icon.png"},
+    {"id": "genshin-impact", "name": "Genshin Impact", "icon": "https://www.unipin.com/static/media/genshin-impact-icon.png"},
+    {"id": "arena-of-valor", "name": "Arena of Valor", "icon": "https://www.unipin.com/static/media/arena-of-valor-icon.png"},
+    {"id": "call-of-duty-mobile", "name": "Call of Duty: Mobile", "icon": "https://www.unipin.com/static/media/cod-mobile-icon.png"},
+    {"id": "valorant", "name": "VALORANT", "icon": "https://www.unipin.com/static/media/valorant-icon.png"},
+    {"id": "ragnarok-m", "name": "Ragnarok M: Eternal Love", "icon": "https://www.unipin.com/static/media/ragnarok-m-icon.png"},
+    {"id": "roblox", "name": "Roblox", "icon": "https://www.unipin.com/static/media/roblox-icon.png"},
+    {"id": "steam-wallet", "name": "Steam Wallet", "icon": "https://www.unipin.com/static/media/steam-wallet-icon.png"},
+    {"id": "garena-shells", "name": "Garena Shells", "icon": "https://www.unipin.com/static/media/garena-shells-icon.png"},
+    {"id": "minecraft", "name": "Minecraft", "icon": "https://www.unipin.com/static/media/minecraft-icon.png"},
+    {"id": "fortnite", "name": "Fortnite (V-Bucks)", "icon": "https://www.unipin.com/static/media/fortnite-icon.png"},
+    {"id": "apex-legends", "name": "Apex Legends", "icon": "https://www.unipin.com/static/media/apex-legends-icon.png"},
+    {"id": "dota-2", "name": "Dota 2", "icon": "https://www.unipin.com/static/media/dota2-icon.png"},
+    {"id": "valorant-points", "name": "Valorant Points", "icon": "https://www.unipin.com/static/media/valorant-points-icon.png"},
+    {"id": "mlbb-twilight", "name": "MLBB Twilight Pass", "icon": "https://www.unipin.com/static/media/mlbb-twilight-icon.png"},
+    {"id": "mlbb-weekly", "name": "MLBB Weekly Diamond Pass", "icon": "https://www.unipin.com/static/media/mlbb-weekly-icon.png"},
+    {"id": "mlbb-starlight", "name": "MLBB Starlight Member", "icon": "https://www.unipin.com/static/media/mlbb-starlight-icon.png"}
 ]
