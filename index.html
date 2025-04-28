@@ -1,111 +1,72 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVOSHOP - Top Up Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UVOSHOP - Top Up Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
-            </div>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Cari Game...">
-            </div>
-        </div>
-    </header>
 
-    <main>
-        <!-- Banner slider -->
-        <div class="banner-slider">
-            <div class="banner-slide">
-                <img src="https://your-banner-image1.jpg" alt="Banner 1">
-            </div>
-            <div class="banner-slide">
-                <img src="https://your-banner-image2.jpg" alt="Banner 2">
-            </div>
-            <!-- Add more banners as needed -->
-        </div>
+  <header>
+    <div class="header-container">
+      <button class="btn-back" onclick="window.history.back()">← Kembali</button>
+      <div class="logo"><img src="<LOGO_URL>" alt="UVOSHOP Logo"></div>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cari Game...">
+      </div>
+    </div>
 
-        <section class="categories">
-            <div class="category" id="popular-games">
-                <h2>Game Populer</h2>
-            </div>
-            <div class="category" id="mobile-games">
-                <h2>Game Mobile</h2>
-            </div>
-            <div class="category" id="pc-games">
-                <h2>Game PC</h2>
-            </div>
-            <div class="category" id="game-vouchers">
-                <h2>Voucher Game</h2>
-            </div>
-        </section>
+    <div class="banner-slider" id="banner-slider">
+      <img src="<BANNER1_URL>" alt="">
+      <img src="<BANNER2_URL>" alt="">
+      <img src="<BANNER3_URL>" alt="">
+      <img src="<BANNER4_URL>" alt="">
+      <img src="<BANNER5_URL>" alt="">
+    </div>
+  </header>
 
-        <section id="games-container"></section>
+  <main>
+    <!-- Game Populer -->
+    <section class="category-section">
+      <h2>Game Populer</h2>
+      <div class="games-row" id="popular-games"></div>
+    </section>
+    <!-- Game Mobile -->
+    <section class="category-section">
+      <h2>Game Mobile</h2>
+      <div class="games-row" id="mobile-games"></div>
+    </section>
+    <!-- Game PC -->
+    <section class="category-section">
+      <h2>Game PC</h2>
+      <div class="games-row" id="pc-games"></div>
+    </section>
+    <!-- Voucher Game -->
+    <section class="category-section">
+      <h2>Voucher Game</h2>
+      <div class="games-row" id="game-vouchers"></div>
+    </section>
+  </main>
 
-        <!-- Diamond Selection Form -->
-        <section class="diamond-form">
-            <div class="form-decor">
-                <img src="https://your-logo-image.jpg" alt="UVOSHOP Logo">
-                <button class="back-button">Kembali</button>
-            </div>
-            <h3>Pilih Diamond</h3>
-            <form id="diamond-form">
-                <select name="diamond" id="diamond-select">
-                    <option value="100">100 Diamond</option>
-                    <option value="200">200 Diamond</option>
-                    <option value="500">500 Diamond</option>
-                    <option value="1000">1000 Diamond</option>
-                </select>
-                
-                <!-- Payment Options -->
-                <h3>Pilih Pembayaran</h3>
-                <select name="payment" id="payment-select">
-                    <option value="uvoshop-token">Token UVOSHOP</option>
-                    <option value="qris">QRIS</option>
-                    <option value="ewallet">E-Wallet</option>
-                    <option value="bank">Bank Transfer</option>
-                    <option value="cash">Cash</option>
-                </select>
+  <footer>
+    <div class="footer-content">
+      <h2>BERLANGGANAN</h2>
+      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
+      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+      <p><strong>Peta Situs</strong></p>
+      <ul>
+        <li>Flash Top-Up</li>
+        <li>Voucher</li>
+        <li>Game Lainnya</li>
+        <li>FAQ</li>
+      </ul>
+      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
+      <p>© 2025 UVOShop. Semua Hak Cipta</p>
+      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>
 
-                <!-- Instructions -->
-                <div class="instructions">
-                    <h4>UVOSHOP - Cara Membeli Diamond</h4>
-                    <ul>
-                        <li>1. Isi User ID dan Zona (jika gamenya pakai username bisa ditulis usernya)</li>
-                        <li>2. Pilih diamond dan pilih pembayaran</li>
-                        <li>3. Anda akan diarahkan ke WhatsApp dan pembayaran ada di WhatsApp</li>
-                        <li>4. Tunggu diamondmu masuk, jika sudah masuk akan dikirim bukti oleh WhatsApp kami</li>
-                    </ul>
-                </div>
-                
-                <button type="submit" class="topup-button">Top Up</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <h2>BERLANGGANAN</h2>
-            <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-            <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-            <p><strong>Peta Situs</strong></p>
-            <ul>
-                <li>Flash Top-Up</li>
-                <li>Voucher</li>
-                <li>Game Lainnya</li>
-                <li>FAQ</li>
-            </ul>
-            <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
-            <p>© 2025 UVOShop. Semua Hak Cipta</p>
-            <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
