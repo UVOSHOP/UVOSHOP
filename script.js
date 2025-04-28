@@ -93,3 +93,14 @@ function renderProducts() {
 
 // Panggil fungsi untuk render produk
 renderProducts();
+// Banner Slider
+let currentIndex = 0;
+const banners = document.querySelectorAll('.banner-images img');
+
+function changeBanner() {
+    currentIndex++;
+    if (currentIndex >= banners.length) currentIndex = 0;
+    document.querySelector('.banner-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+setInterval(changeBanner, 3000);
