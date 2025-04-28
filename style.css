@@ -189,3 +189,10 @@ label {
   text-align: center;
   margin-top: 10px;
 }
+/* Banner Slider Image */
+.banner-slider img {
+  width: 100%;  /* Membuat gambar memenuhi lebar kontainer */
+  height: auto; /* Menjaga rasio aspek gambar */
+  object-fit: cover; /* Memastikan gambar tetap mengisi area tanpa terpotong */
+}
+
