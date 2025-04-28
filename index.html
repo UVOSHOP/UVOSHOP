@@ -2,133 +2,127 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UVOSHOP - Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Up UVOSHOP</title>
   <style>
-    /* Banner slider */
-    #banner-slider img {
-      width: 100%;
-      height: auto;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
     }
-    .banner-slider {
-      position: relative;
-      overflow: hidden;
-      height: 300px;
-    }
-    @keyframes slide {
-      0% {transform: translateX(0);}
-      20% {transform: translateX(-100%);}
-      40% {transform: translateX(-200%);}
-      60% {transform: translateX(-300%);}
-      80% {transform: translateX(-400%);}
-      100% {transform: translateX(0);}
-    }
-    .banner-slider img {
-      animation: slide 15s infinite;
-    }
-
-    /* Formulir pembelian diamond */
-    .diamond-form {
-      background-color: #f8f9fa;
+    .container {
+      width: 80%;
+      margin: 50px auto;
       padding: 20px;
+      background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .diamond-form .logo {
+    h1 {
       text-align: center;
+      color: #333;
+    }
+    .form-group {
       margin-bottom: 20px;
     }
-    .diamond-form select,
-    .diamond-form input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+    label {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #333;
     }
-    .diamond-form button {
+    input, select, button {
       width: 100%;
-      padding: 15px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    select {
       cursor: pointer;
     }
-    .diamond-form button:hover {
-      background-color: #218838;
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
-      </div>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cari Game...">
-      </div>
+<div class="container">
+  <h1>Top Up Diamond UVOSHOP</h1>
+
+  <form id="topup-form">
+    <div class="form-group">
+      <label for="user_id">ID Pengguna</label>
+      <input type="text" id="user_id" placeholder="Masukkan ID Pengguna" required>
     </div>
 
-    <div class="banner-slider" id="banner-slider">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="Banner 1">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="Banner 2">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="Banner 3">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="Banner 4">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="Banner 5">
+    <div class="form-group">
+      <label for="diamond_amount">Pilih Jumlah Diamond</label>
+      <select id="diamond_amount" required>
+        <option value="12">12 Diamonds - Rp 3500</option>
+        <option value="28">28 Diamonds - Rp 8000</option>
+        <option value="36">36 Diamonds - Rp 10000</option>
+        <option value="56">56 Diamonds - Rp 16000</option>
+        <option value="85">85 Diamonds - Rp 23000</option>
+        <option value="169">169 Diamonds - Rp 46000</option>
+        <option value="220">220 Diamonds - Rp 60000</option>
+        <option value="282">282 Diamonds - Rp 80000</option>
+        <option value="366">366 Diamonds - Rp 100000</option>
+        <option value="568">568 Diamonds - Rp 150000</option>
+        <option value="875">875 Diamonds - Rp 230000</option>
+        <option value="2010">2010 Diamonds - Rp 500000</option>
+        <option value="4804">4804 Diamonds - Rp 1200000</option>
+        <option value="6004">6004 Diamonds - Rp 1500000</option>
+      </select>
     </div>
-  </header>
 
-  <main>
-    <section class="diamond-form">
-      <div class="logo">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
-      </div>
-      <form action="#" method="POST">
-        <label for="diamond">Pilih Diamond:</label>
-        <select id="diamond" name="diamond">
-          <option value="100">100 Diamond</option>
-          <option value="200">200 Diamond</option>
-          <option value="300">300 Diamond</option>
-          <option value="500">500 Diamond</option>
-        </select>
-
-        <label for="payment">Pilih Pembayaran:</label>
-        <select id="payment" name="payment">
-          <option value="qris">QRIS</option>
-          <option value="ewallet">E-Wallet</option>
-          <option value="bank">Bank</option>
-          <option value="cash">Cash</option>
-        </select>
-
-        <button type="submit">Beli Sekarang</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <h2>BERLANGGANAN</h2>
-      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-      <p><strong>Peta Situs</strong></p>
-      <ul>
-        <li>Flash Top-Up</li>
-        <li>Voucher</li>
-        <li>Game Lainnya</li>
-        <li>FAQ</li>
-      </ul>
-      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
-      <p>© 2025 UVOShop. Semua Hak Cipta</p>
-      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    <div class="form-group">
+      <label for="payment_method">Pilih Metode Pembayaran</label>
+      <select id="payment_method" required>
+        <option value="Code UVOSHOP">Code UVOSHOP</option>
+        <option value="Qris">Qris</option>
+        <option value="Bank">Bank</option>
+        <option value="Cash">Cash</option>
+      </select>
     </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <button type="button" onclick="redirectToWhatsApp()">Beli</button>
+  </form>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  function redirectToWhatsApp() {
+    var userId = document.getElementById('user_id').value;
+    var diamondAmount = document.getElementById('diamond_amount').value;
+    var paymentMethod = document.getElementById('payment_method').value;
+
+    if (!userId || !diamondAmount || !paymentMethod) {
+      alert("Semua kolom harus diisi!");
+      return;
+    }
+
+    var message = `Halo, saya ingin melakukan top-up! \nGame: Mobile Legends: Bang Bang\nID Pengguna: ${userId}\nJumlah Diamond: ${diamondAmount}\nMetode Pembayaran: ${paymentMethod}`;
+    var whatsappUrl = `https://wa.me/6285648211278?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
+  }
+</script>
+
 </body>
 </html>
