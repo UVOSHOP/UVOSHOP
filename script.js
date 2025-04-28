@@ -12,11 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const gameCard = document.createElement('div');
           gameCard.classList.add('game-card');
           gameCard.innerHTML = `
-            <a href="${game.whatsapp}" target="_blank">
-              <img src="${game.image}" alt="${game.name}">
-              <h3>${game.name}</h3>
-              <p>${game.category}</p>
-            </a>
+            <img src="${game.image}" alt="${game.name}">
+            <h3>${game.name}</h3>
+            <button onclick="window.location.href='https://wa.me/6285648211278?text=Saya%20ingin%20top-up%20${game.name}'">Beli</button>
           `;
           gameList.appendChild(gameCard);
         });
