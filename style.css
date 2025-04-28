@@ -1,79 +1,150 @@
-/* Simplified UniPin-like styling */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f5f5f5;
+/* --- Palette UVOSHOP (mirip UniPin) --- */
+:root {
+  --primary: #0056b3;       /* biru tua */
+  --primary-light: #007bff; /* biru cerah */
+  --bg-page: #f0f2f5;       /* abu muda */
+  --text: #333;
+  --card-bg: #fff;
+  --card-border: #ddd;
 }
+
+/* Reset & Body */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: var(--bg-page);
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* Header & Logo */
 header {
-  background: #fff;
+  background: var(--card-bg);
   padding: 1rem;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-.logo {
-  height: 50px;
-}
+.logo { height: 50px; }
+
+/* Banner Slider */
 .banner-slider {
   display: flex;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
 .banner-slider img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: cover;
   flex-shrink: 0;
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  scroll-snap-align: center;
+  margin-right: 0.5rem;
+  border-radius: 6px;
 }
+
+/* Game Grid */
 #games-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
   gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   padding: 1rem;
 }
 .game-card {
-  background: #fff;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .game-card img {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 0.5rem;
 }
+
+/* Form Container */
 main form {
-  background: #fff;
-  margin: 1rem auto;
-  max-width: 400px;
-  padding: 1rem;
+  background: var(--card-bg);
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+main form h2 {
+  margin-bottom: 1rem;
+  color: var(--primary);
 }
 main form label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
 }
 main form input[type="text"] {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
 }
+
+/* Nominals as Cards */
 #nominals-container {
-  margin: 1rem 0;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  margin: 1rem 0 1.5rem;
 }
 .nominal-option {
-  margin-bottom: 0.5rem;
+  position: relative;
 }
-.nominal-option input {
-  margin-right: 0.5rem;
+.nominal-option input[type="radio"] {
+  display: none;
 }
+.nominal-option label {
+  display: block;
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.nominal-option label .amount {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.nominal-option label .price {
+  display: block;
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+.nominal-option input[type="radio"]:checked + label {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* Submit Button */
 button {
   width: 100%;
   padding: 0.75rem;
-  background: #007bff;
+  background: var(--primary);
   color: #fff;
   border: none;
   border-radius: 4px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background .2s;
+}
+button:hover {
+  background: var(--primary-light);
 }
