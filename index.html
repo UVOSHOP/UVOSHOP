@@ -2,64 +2,61 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .diamond-options {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Membuat grid dua kolom */
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    .diamond-option {
-      padding: 15px;
-      border: 2px solid #ddd;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-weight: bold;
-    }
-    .diamond-option:hover {
-      background-color: #f0f0f0;
-    }
-    
-    .payment-options {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Membuat grid dua kolom */
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .payment-option {
-      padding: 15px;
-      border: 2px solid #ddd;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-weight: bold;
-    }
-    .payment-option:hover {
-      background-color: #f0f0f0;
-    }
-
+    /* Tampilan formulir */
     .form-section {
       padding: 20px;
       border: 1px solid #ddd;
       margin-top: 20px;
       background-color: #fafafa;
+      border-radius: 10px;
     }
-    
+
+    .form-section h2 {
+      text-align: center;
+      color: #333;
+    }
+
     .form-section input {
       width: 100%;
       padding: 10px;
-      margin: 5px 0 10px 0;
+      margin: 5px 0;
       border-radius: 5px;
       border: 1px solid #ddd;
       font-size: 16px;
     }
 
+    .form-section label {
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .diamond-options, .payment-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .diamond-option, .payment-option {
+      padding: 15px;
+      border: 2px solid #ddd;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .diamond-option:hover, .payment-option:hover {
+      background-color: #f0f0f0;
+    }
+
     .form-section button {
-      padding: 10px 20px;
+      padding: 12px 20px;
       background-color: #007bff;
       color: white;
       border: none;
@@ -69,8 +66,15 @@
       width: 100%;
       transition: background-color 0.3s ease;
     }
+
     .form-section button:hover {
       background-color: #0056b3;
+    }
+
+    .form-section p {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -79,11 +83,13 @@
   <header>
     <div class="header-container">
       <div class="logo"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo"></div>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cari Game...">
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- Formulir Top Up Game -->
     <section class="form-section">
       <h2>Top Up Garena Free Fire</h2>
       <form action="">
@@ -116,21 +122,30 @@
         </div>
 
         <button type="submit">Beli</button>
-      </form>
-    </section>
 
-    <!-- Rekomendasi Game -->
-    <section>
-      <h3>Rekomendasi Game</h3>
-      <ul>
-        <li>Mobile Legends</li>
-        <li>Free Fire</li>
-        <li>PUBG Mobile</li>
-        <li>League of Legends</li>
-        <li>Apex Legends</li>
-      </ul>
+        <p>Catatan: Masukkan ID dan Zona (bila ada), pilih diamond, pilih pembayaran, tekan beli, dan tunggu konfirmasi transaksi dengan admin.</p>
+      </form>
     </section>
   </main>
 
+  <footer>
+    <div class="footer-content">
+      <h2>BERLANGGANAN</h2>
+      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
+      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+      <p><strong>Peta Situs</strong></p>
+      <ul>
+        <li>Flash Top-Up</li>
+        <li>Voucher</li>
+        <li>Game Lainnya</li>
+        <li>FAQ</li>
+      </ul>
+      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
+      <p>© 2025 UVOShop. Semua Hak Cipta</p>
+      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
