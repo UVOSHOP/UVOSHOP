@@ -1,100 +1,137 @@
-/* Warna dasar body + header */
+/* 1. Warna Dasar */
+:root {
+  --clr-body: #0E1120;
+  --clr-header: #202938;
+  --clr-card-bg: #1a1f2b;
+  --clr-text: #ffffff;
+  --clr-accent: #007bff;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #0E1120;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
-header {
-  background-color: #202938;
+  background-color: var(--clr-body);
+  color: var(--clr-text);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  line-height: 1.4;
 }
 
-/* Header: logo & search */
+/* 2. Header & Logo */
+header {
+  background-color: var(--clr-header);
+  padding: 0.75rem 1rem;
+}
 .header-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .logo img {
-  height: 50px;
+  width: 120px;           /* diperkecil */
+  height: auto;
 }
 .search-bar input {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 4px;
   border: none;
-  width: 200px;
+  width: 220px;
+  font-size: 0.9rem;
 }
 
-/* Banner slider */
+/* 3. Banner Slider */
 .banner-slider {
   display: flex;
   overflow-x: auto;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
+  background-color: var(--clr-header);
 }
 .banner-slider img {
   flex-shrink: 0;
-  width: calc(100% - 2rem);
-  max-width: 300px;
+  width: 280px;
   height: 100px;
   object-fit: cover;
   border-radius: 6px;
 }
 
-/* Category Sections */
+/* 4. Kategori & Grid */
 .category-section {
-  padding: 1rem;
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
 }
 .category-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #fff;
+  color: var(--clr-text);
+  border-left: 4px solid var(--clr-accent);
+  padding-left: 0.5rem;
 }
-
-/* Games grid: side by side */
 .games-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 .game-card {
-  background: #1a1f2b;
-  border-radius: 6px;
-  padding: 0.75rem;
+  background: var(--clr-card-bg);
+  border-radius: 8px;
+  padding: 1rem;
   text-align: center;
   cursor: pointer;
   flex: 1 1 calc(25% - 1rem);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  max-width: calc(25% - 1rem);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: transform .2s, box-shadow .2s;
+}
+.game-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
 }
 .game-card img {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   margin-bottom: 0.5rem;
 }
 .game-card h3 {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--clr-text);
   margin: 0;
+  text-transform: uppercase; /* mirip UniPin */
 }
 
-/* Footer */
+/* 5. Footer */
 footer {
-  background-color: #202938;
+  background-color: var(--clr-header);
   padding: 2rem 1rem;
+  color: var(--clr-text);
   text-align: center;
+}
+.footer-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.footer-content p,
+.footer-content li {
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
 }
 .footer-content ul {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1rem;
 }
 .footer-content ul li {
   display: inline-block;
   margin: 0 0.5rem;
 }
 .footer-content a {
-  color: #fff;
+  color: var(--clr-text);
   text-decoration: none;
+  font-weight: 500;
 }
 .footer-content a:hover {
   text-decoration: underline;
