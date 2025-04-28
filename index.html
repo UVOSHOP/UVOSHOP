@@ -6,71 +6,71 @@
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .banner-slider img {
-      width: 100%;
-      height: auto;
-      transition: opacity 1s ease-in-out;
+    .diamond-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Membuat grid dua kolom */
+      gap: 10px;
+      margin-bottom: 15px;
     }
-    .banner-slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
+    .diamond-option {
+      padding: 15px;
+      border: 2px solid #ddd;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
     }
-    .banner-slider img {
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      animation: slide 15s infinite;
+    .diamond-option:hover {
+      background-color: #f0f0f0;
     }
-    @keyframes slide {
-      0% { opacity: 1; }
-      20% { opacity: 1; }
-      25% { opacity: 0; }
-      45% { opacity: 0; }
-      50% { opacity: 1; }
-      70% { opacity: 1; }
-      75% { opacity: 0; }
-      95% { opacity: 0; }
+    
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Membuat grid dua kolom */
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .payment-option {
+      padding: 15px;
+      border: 2px solid #ddd;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+    .payment-option:hover {
+      background-color: #f0f0f0;
     }
 
     .form-section {
       padding: 20px;
       border: 1px solid #ddd;
       margin-top: 20px;
+      background-color: #fafafa;
     }
+    
     .form-section input {
       width: 100%;
       padding: 10px;
-      margin: 5px 0;
-    }
-    .diamond-options, .payment-options {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .diamond-option, .payment-option {
-      width: 48%;
-      margin: 1%;
-      padding: 10px;
+      margin: 5px 0 10px 0;
+      border-radius: 5px;
       border: 1px solid #ddd;
-      text-align: center;
+      font-size: 16px;
     }
-    .diamond-option:hover, .payment-option:hover {
-      background-color: #f0f0f0;
+
+    .form-section button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
       cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s ease;
     }
-    .recommendation-list {
-      margin-top: 20px;
-    }
-    .recommendation-list ul {
-      list-style: none;
-      padding: 0;
-    }
-    .recommendation-list li {
-      padding: 10px;
-      border: 1px solid #ddd;
-      margin: 5px 0;
-      background-color: #f9f9f9;
+    .form-section button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
@@ -79,93 +79,58 @@
   <header>
     <div class="header-container">
       <div class="logo"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo"></div>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cari Game...">
-      </div>
-    </div>
-
-    <div class="banner-slider" id="banner-slider">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="">
     </div>
   </header>
 
   <main>
-    <div class="form-section">
-      <h3>Formulir Top Up</h3>
-      <div>
-        <strong>Game: <span id="game-name">Nama Game</span></strong>
-        <div><strong>Logo UVOSHOP</strong></div>
-      </div>
-      
-      <label for="user-id">User ID</label>
-      <input type="text" id="user-id" placeholder="Isi ID">
+    <!-- Formulir Top Up Game -->
+    <section class="form-section">
+      <h2>Top Up Garena Free Fire</h2>
+      <form action="">
 
-      <label for="server">Server/Zona</label>
-      <input type="text" id="server" placeholder="Isi Server/Zona (Jika ada)">
+        <label for="user-id">User ID:</label>
+        <input type="text" id="user-id" name="user-id" required>
 
-      <div class="diamond-options">
-        <!-- Adjusted diamond prices per game -->
-        <div class="diamond-option">1 DM = Rp1.000</div>
-        <div class="diamond-option">1 DM = Rp1.000</div>
-        <div class="diamond-option">1 DM = Rp1.000</div>
-        <div class="diamond-option">1 DM = Rp1.000</div>
-      </div>
+        <label for="server-zone">Server / Zona (Jika ada):</label>
+        <input type="text" id="server-zone" name="server-zone">
 
-      <div class="payment-options">
-        <div class="payment-option">Token UVOShop</div>
-        <div class="payment-option">QRIS</div>
-        <div class="payment-option">E-Wallet</div>
-        <div class="payment-option">Bank</div>
-        <div class="payment-option">Cash</div>
-      </div>
+        <h3>Pilih Diamond:</h3>
+        <div class="diamond-options">
+          <div class="diamond-option">50 DM = Rp 8,000</div>
+          <div class="diamond-option">70 DM = Rp 10,000</div>
+          <div class="diamond-option">140 DM = Rp 20,000</div>
+          <div class="diamond-option">355 DM = Rp 50,000</div>
+          <div class="diamond-option">720 DM = Rp 100,000</div>
+          <div class="diamond-option">1450 DM = Rp 200,000</div>
+          <div class="diamond-option">2180 DM = Rp 300,000</div>
+          <div class="diamond-option">3640 DM = Rp 500,000</div>
+          <div class="diamond-option">7290 DM = Rp 1,000,000</div>
+        </div>
 
-      <div>
-        <p><strong>Catatan:</strong></p>
-        <ul>
-          <li>Masukkan ID dan zona (bila ada zona).</li>
-          <li>Pilih diamond.</li>
-          <li>Pilih pembayaran.</li>
-          <li>Tekan beli, lalu masuk WA dan tunggu transaksi dengan admin.</li>
-          <li>Menunggu hingga top-up masuk.</li>
-        </ul>
-      </div>
+        <h3>Pilih Pembayaran:</h3>
+        <div class="payment-options">
+          <div class="payment-option">QRIS</div>
+          <div class="payment-option">E-Wallet</div>
+          <div class="payment-option">Bank Transfer</div>
+          <div class="payment-option">Cash</div>
+        </div>
 
-      <button>Bayar</button>
-    </div>
+        <button type="submit">Beli</button>
+      </form>
+    </section>
 
-    <section class="recommendation-list">
+    <!-- Rekomendasi Game -->
+    <section>
       <h3>Rekomendasi Game</h3>
       <ul>
-        <li>Game 1</li>
-        <li>Game 2</li>
-        <li>Game 3</li>
-        <li>Game 4</li>
+        <li>Mobile Legends</li>
+        <li>Free Fire</li>
+        <li>PUBG Mobile</li>
+        <li>League of Legends</li>
+        <li>Apex Legends</li>
       </ul>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-content">
-      <h2>BERLANGGANAN</h2>
-      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-      <p><strong>Peta Situs</strong></p>
-      <ul>
-        <li>Flash Top-Up</li>
-        <li>Voucher</li>
-        <li>Game Lainnya</li>
-        <li>FAQ</li>
-      </ul>
-      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
-      <p>© 2025 UVOShop. Semua Hak Cipta</p>
-      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
