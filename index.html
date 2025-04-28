@@ -1,44 +1,23 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UVOshop - Game & Voucher</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UVOSHOP</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo UVOshop">
-      <span>UVOshop</span>
-    </div>
-    <input type="text" id="search" placeholder="Cari game...">
-    <select id="category-filter">
-      <option value="">Semua Kategori</option>
-      <option value="Game Mobile">Game Mobile</option>
-      <option value="Game PC">Game PC</option>
-      <option value="Voucher">Voucher</option>
-    </select>
-  </header>
-
-  <section class="banners">
-    <div class="banner-container">
-      <img class="banner" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s1102/3.png" alt="Banner 1">
-      <img class="banner" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s1102/1.png" alt="Banner 2">
-      <!-- Tambahkan gambar banner lainnya -->
-    </div>
-  </section>
-
-  <main>
-    <h2>Game Populer</h2>
-    <section class="game-list" id="game-list"></section>
-  </main>
-
-  <footer>
-    <p>Hubungi kami di WhatsApp untuk top-up: <a href="https://wa.me/6285648211278" target="_blank">+62 856-4821-1278</a></p>
-    <p>© 2025 UVOshop. Semua Hak Cipta</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <header>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo" class="logo"/>
+        <div class="banner-slider">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" />
+        </div>
+    </header>
+    <main id="games-container"></main>
+    <script src="script.js"></script>
 </body>
 </html>
