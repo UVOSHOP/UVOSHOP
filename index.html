@@ -1,37 +1,45 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UVOSHOP - Top Up Game Murah</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TopUp Zone</title>
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Dark Mode Support -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#007bff',
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-all duration-300">
 
-<header>
-  <div class="logo">
-    <img src="logo.png" alt="UVOSHOP">
-  </div>
-  <div class="toggle-theme">
-    <button id="theme-toggle">🌞/🌙</button>
-  </div>
-</header>
+  <!-- Header -->
+  <header class="p-4 flex justify-between items-center bg-primary text-white dark:bg-gray-800">
+    <h1 class="text-xl font-bold">🎮 TopUp Zone</h1>
+    <button id="theme-toggle" class="text-sm bg-white text-primary px-3 py-1 rounded dark:bg-gray-700 dark:text-white">
+      🌙/🌞
+    </button>
+  </header>
 
-<nav class="categories">
-  <button class="category-btn" data-category="semua">Semua</button>
-  <button class="category-btn" data-category="populer">Game Populer</button>
-  <button class="category-btn" data-category="mobile">Game Mobile</button>
-  <button class="category-btn" data-category="pc">Game PC</button>
-  <button class="category-btn" data-category="voucher">Voucher Game</button>
-  <button class="category-btn" data-category="apk">Aplikasi</button>
-</nav>
+  <!-- Main Content -->
+  <main class="p-6">
+    <h2 class="text-2xl font-semibold mb-4">Game Populer</h2>
+    <div id="product-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+  </main>
 
-<main>
-  <div class="product-slider" id="product-slider">
-    <!-- Game dan produk akan di-generate lewat JS -->
-  </div>
-</main>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
