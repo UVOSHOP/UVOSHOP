@@ -28,7 +28,7 @@
 
     header {
       background-color: var(--clr-header);
-      padding: 0.8rem 0; /* Memperkecil ukuran bar atas */
+      padding: 0.6rem 0; /* Memperkecil ukuran bar atas */
     }
     .header-container {
       display: flex;
@@ -73,22 +73,26 @@
       text-transform: uppercase;
     }
 
+    /* Banner Slider */
     .banner-slider {
       display: flex;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      animation: slideIn 1s ease-out;
+      animation: slide 15s infinite; /* Banner geser setiap 3 detik */
       margin-bottom: 1rem;
+      overflow: hidden;
     }
 
-    @keyframes slideIn {
-      0% { transform: translateX(100%); }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-100%); }
+      50% { transform: translateX(-200%); }
+      75% { transform: translateX(-300%); }
       100% { transform: translateX(0); }
     }
 
     .banner-slider img {
       width: 100%;
-      height: 0;
+      height: auto;
       aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 6px;
@@ -255,6 +259,10 @@
         object-fit: contain;
         width: 100%;
       }
+
+      header {
+        padding: 0.4rem 0; /* Memperkecil bar atas untuk mobile */
+      }
     }
   </style>
 </head>
@@ -270,52 +278,20 @@
     </div>
 
     <div class="banner-slider" id="banner-slider">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="Banner 1">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="Banner 2">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt="Banner 1">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt="Banner 2">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt="Banner 3">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner 4">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt="Banner 5">
     </div>
   </header>
 
-  <main>
-    <!-- Game Populer -->
-    <section class="category-section">
-      <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games"></div>
-    </section>
-    <!-- Game Mobile -->
-    <section class="category-section">
-      <h2>Game Mobile</h2>
-      <div class="games-row" id="mobile-games"></div>
-    </section>
-    <!-- Game PC -->
-    <section class="category-section">
-      <h2>Game PC</h2>
-      <div class="games-row" id="pc-games"></div>
-    </section>
-    <!-- Voucher Game -->
-    <section class="category-section">
-      <h2>Voucher Game</h2>
-      <div class="games-row" id="game-vouchers"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <h2>BERLANGGANAN</h2>
-      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-      <p><strong>Peta Situs</strong></p>
-      <ul>
-        <li>Flash Top-Up</li>
-        <li>Voucher</li>
-        <li>Game Lainnya</li>
-        <li>FAQ</li>
-      </ul>
-      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
-      <p>© 2025 UVOShop. Semua Hak Cipta</p>
-      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+  <div class="category-section">
+    <h2>Game Populer</h2>
+    <div class="games-row">
+      <!-- Konten Game akan muncul di sini -->
     </div>
-  </footer>
+  </div>
 
-  <script src="script.js"></script>
 </body>
 </html>
