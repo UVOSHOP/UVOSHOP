@@ -6,16 +6,177 @@
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Banner Slider Animation */
+    :root {
+      --clr-body: #0E1120;
+      --clr-header: #202938;
+      --clr-card-bg: #1a1f2b;
+      --clr-text: #ffffff;
+      --clr-accent: #007bff;
+    }
+    body {
+      margin: 0; padding: 0;
+      background-color: var(--clr-body);
+      color: var(--clr-text);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    header {
+      background-color: var(--clr-header);
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+    }
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--clr-text);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .logo img { width: 120px; }
+    .search-bar input {
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px; border: none;
+      width: 220px;
+    }
     .banner-slider {
       display: flex;
-      overflow: hidden;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+    .banner-slider img {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+    .category-section {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+    .category-section h2 {
+      font-size: 1.25rem;
+      color: var(--clr-text);
+      border-left: 4px solid var(--clr-accent);
+      padding-left: 0.5rem;
+    }
+    .games-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 0.5rem;
+    }
+    .game-card {
+      background: var(--clr-card-bg);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      flex: 0 0 140px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    .game-card img {
+      width: 56px; height: 56px;
+      margin-bottom: 0.5rem;
+    }
+    .game-card h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .game-card .btn-topup {
+      position: absolute;
+      bottom: 10px; left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--clr-accent);
+      border: none; color: #fff;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .form-container {
+      background: var(--clr-card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      max-width: 500px;
+      margin: 2rem auto;
+      color: var(--clr-text);
+    }
+    .form-container h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    input[type="text"], input[type="number"], input[type="radio"], select {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 6px;
+      border: 2px solid var(--clr-accent);
+      background-color: #222831;
+      color: var(--clr-text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, select:focus {
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+    }
+    label {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: var(--clr-text);
+    }
+    .nominal-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      background-color: #1f232b;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .nominal-option input[type="radio"] {
+      margin-right: 12px;
+    }
+    .nominal-option label {
+      display: flex;
+      justify-content: space-between;
       width: 100%;
     }
-
-    .banner-slider img {
+    .submit-btn {
       width: 100%;
-      transition: transform 1s ease-in-out;
+      padding: 12px;
+      background-color: var(--clr-accent);
+      color: var(--clr-text);
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+    .help-text {
+      font-size: 0.9rem;
+      color: #ccc;
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -23,21 +184,18 @@
 
   <header>
     <div class="header-container">
-      <div class="logo">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
-      </div>
+      <div class="logo"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo"></div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari Game...">
-        <span>ID</span> <!-- Menambahkan tulisan ID di samping search -->
+        <span id="search-text">id</span>
       </div>
     </div>
 
     <div class="banner-slider" id="banner-slider">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="Banner 1">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="Banner 2">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="Banner 3">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="Banner 4">
     </div>
   </header>
 
@@ -81,21 +239,6 @@
       <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
     </div>
   </footer>
-
-  <script>
-    let index = 0;
-    const banners = document.querySelectorAll('.banner-slider img');
-
-    function slideBanner() {
-      index = (index + 1) % banners.length;
-      const offset = -index * 100;  // Slide by 100% width of an image
-      banners.forEach(banner => {
-        banner.style.transform = `translateX(${offset}%)`;
-      });
-    }
-
-    setInterval(slideBanner, 3000); // Change image every 3 seconds
-  </script>
 
   <script src="script.js"></script>
 </body>
