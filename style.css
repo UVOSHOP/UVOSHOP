@@ -1,97 +1,59 @@
-:root {
-  --clr-body: #0E1120;
-  --clr-header: #202938;
-  --clr-card-bg: #1a1f2b;
-  --clr-text: #ffffff;
-  --clr-accent: #007bff;
-}
-body {
-  margin: 0; padding: 0;
-  background-color: var(--clr-body);
-  color: var(--clr-text);
-  font-family: 'Segoe UI', sans-serif;
-}
-header {
-  background-color: var(--clr-header);
-}
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
+/* FORMULIR STYLE */
+.topup-form-container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.btn-back {
-  background: none;
-  border: none;
-  color: var(--clr-text);
-  font-size: 1rem;
-  cursor: pointer;
+
+.topup-form h3 {
+  text-align: center;
+  color: #333;
 }
-.logo img { width: 120px; }
-.search-bar input {
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px; border: none;
-  width: 220px;
+
+.topup-form label {
+  display: block;
+  margin: 10px 0 5px;
 }
-.banner-slider {
+
+.topup-form input,
+.topup-form select,
+.topup-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.diamond-choice-container {
   display: flex;
-  overflow-x: auto;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  flex-direction: column;
 }
-.banner-slider img {
-  flex-shrink: 0;
-  width: 280px; height: 100px;
-  object-fit: cover;
+
+.diamond-option {
+  margin: 5px 0;
+}
+
+.instructions {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 15px;
   border-radius: 6px;
 }
-.category-section {
-  max-width: 1200px;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
+
+.instructions h4 {
+  margin-bottom: 10px;
 }
-.category-section h2 {
-  font-size: 1.25rem;
-  color: var(--clr-text);
-  border-left: 4px solid var(--clr-accent);
-  padding-left: 0.5rem;
+
+.instructions ul {
+  list-style-type: disc;
+  padding-left: 20px;
 }
-.games-row {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  padding-bottom: 0.5rem;
+
+.instructions li {
+  margin-bottom: 5px;
 }
-.game-card {
-  background: var(--clr-card-bg);
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
-  flex: 0 0 140px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-  position: relative;
-}
-.game-card img {
-  width: 56px; height: 56px;
-  margin-bottom: 0.5rem;
-}
-.game-card h3 {
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin: 0;
-}
-.game-card .btn-topup {
-  position: absolute;
-  bottom: 10px; left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--clr-accent);
-  border: none; color: #fff;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-/* Footer tetap sama */
