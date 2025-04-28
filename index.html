@@ -5,78 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Tampilan formulir */
-    .form-section {
-      padding: 20px;
-      border: 1px solid #ddd;
-      margin-top: 20px;
-      background-color: #fafafa;
-      border-radius: 10px;
-    }
-
-    .form-section h2 {
-      text-align: center;
-      color: #333;
-    }
-
-    .form-section input {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      font-size: 16px;
-    }
-
-    .form-section label {
-      font-size: 16px;
-      color: #333;
-      font-weight: bold;
-    }
-
-    .diamond-options, .payment-options {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .diamond-option, .payment-option {
-      padding: 15px;
-      border: 2px solid #ddd;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-weight: bold;
-    }
-
-    .diamond-option:hover, .payment-option:hover {
-      background-color: #f0f0f0;
-    }
-
-    .form-section button {
-      padding: 12px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-      border-radius: 5px;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-
-    .form-section button:hover {
-      background-color: #0056b3;
-    }
-
-    .form-section p {
-      font-size: 14px;
-      color: #555;
-      margin-top: 10px;
-    }
-  </style>
 </head>
 <body>
 
@@ -87,44 +15,36 @@
         <input type="text" id="search-input" placeholder="Cari Game...">
       </div>
     </div>
+
+    <div class="banner-slider" id="banner-slider">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="">
+    </div>
   </header>
 
   <main>
-    <section class="form-section">
-      <h2>Top Up Garena Free Fire</h2>
-      <form action="">
-
-        <label for="user-id">User ID:</label>
-        <input type="text" id="user-id" name="user-id" required>
-
-        <label for="server-zone">Server / Zona (Jika ada):</label>
-        <input type="text" id="server-zone" name="server-zone">
-
-        <h3>Pilih Diamond:</h3>
-        <div class="diamond-options">
-          <div class="diamond-option">50 DM = Rp 8,000</div>
-          <div class="diamond-option">70 DM = Rp 10,000</div>
-          <div class="diamond-option">140 DM = Rp 20,000</div>
-          <div class="diamond-option">355 DM = Rp 50,000</div>
-          <div class="diamond-option">720 DM = Rp 100,000</div>
-          <div class="diamond-option">1450 DM = Rp 200,000</div>
-          <div class="diamond-option">2180 DM = Rp 300,000</div>
-          <div class="diamond-option">3640 DM = Rp 500,000</div>
-          <div class="diamond-option">7290 DM = Rp 1,000,000</div>
-        </div>
-
-        <h3>Pilih Pembayaran:</h3>
-        <div class="payment-options">
-          <div class="payment-option">QRIS</div>
-          <div class="payment-option">E-Wallet</div>
-          <div class="payment-option">Bank Transfer</div>
-          <div class="payment-option">Cash</div>
-        </div>
-
-        <button type="submit">Beli</button>
-
-        <p>Catatan: Masukkan ID dan Zona (bila ada), pilih diamond, pilih pembayaran, tekan beli, dan tunggu konfirmasi transaksi dengan admin.</p>
-      </form>
+    <!-- Game Populer -->
+    <section class="category-section">
+      <h2>Game Populer</h2>
+      <div class="games-row" id="popular-games"></div>
+    </section>
+    <!-- Game Mobile -->
+    <section class="category-section">
+      <h2>Game Mobile</h2>
+      <div class="games-row" id="mobile-games"></div>
+    </section>
+    <!-- Game PC -->
+    <section class="category-section">
+      <h2>Game PC</h2>
+      <div class="games-row" id="pc-games"></div>
+    </section>
+    <!-- Voucher Game -->
+    <section class="category-section">
+      <h2>Voucher Game</h2>
+      <div class="games-row" id="game-vouchers"></div>
     </section>
   </main>
 
