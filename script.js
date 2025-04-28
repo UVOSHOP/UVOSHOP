@@ -1,54 +1,56 @@
-// Data produk
-const products = {
-  semua: [
-    { name: 'MLBB', category: 'populer', image: 'mlbb.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+MLBB' },
-    { name: 'Free Fire', category: 'populer', image: 'freefire.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Free+Fire' },
-    { name: 'PUBG', category: 'populer', image: 'pubg.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+PUBG' },
-    { name: 'Valorant', category: 'populer', image: 'valorant.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Valorant' },
-    { name: 'Genshin Impact', category: 'populer', image: 'genshin.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Genshin+Impact' },
-    // 30 game mobile
-    { name: 'Game Mobile 1', category: 'mobile', image: 'mobile1.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Game+Mobile+1' },
-    // Tambahkan lebih banyak produk sesuai kategori
-    // 20 game PC
-    { name: 'Game PC 1', category: 'pc', image: 'pc1.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Game+PC+1' },
-    // 20 aplikasi
-    { name: 'Netflix', category: 'apk', image: 'netflix.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Netflix' },
-    // 20 voucher
-    { name: 'Voucher 1', category: 'voucher', image: 'voucher1.png', waLink: 'https://wa.me/6285648211278?text=Top+Up+Voucher+1' }
-  ]
-};
-
-// Fungsi untuk render produk berdasarkan kategori
-function renderProducts(category) {
-  const productContainer = document.getElementById('product-slider');
-  productContainer.innerHTML = '';
-  const filteredProducts = products.semua.filter(product => category === 'semua' || product.category === category);
-
-  filteredProducts.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card');
-    productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <button onclick="window.location.href='${product.waLink}'">Beli</button>
-    `;
-    productContainer.appendChild(productCard);
-  });
-}
-
-// Fungsi toggle dark mode
-document.getElementById('theme-toggle').addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+// DARK / LIGHT MODE TOGGLE
+const toggle = document.getElementById("theme-toggle");
+toggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
 });
 
-// Fungsi kategori filter
-document.querySelectorAll('.category-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-    renderProducts(button.dataset.category);
-  });
-});
+// DATA PRODUK DUMMY (Game, APK, Voucher)
+const products = [
+  {
+    name: "Mobile Legends",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/MLBB-2025-tiles-178x178.jpg"
+  },
+  {
+    name: "Free Fire",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/free-fire-tile-codacash-new.jpg"
+  },
+  {
+    name: "Genshin Impact",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/genshinimpact_tile.jpg"
+  },
+  {
+    name: "Chamet",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles-plain/Chamet-tile_178x178.jpg"
+  },
+  {
+    name: "Zenless Zone Zero",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/ZZZ_Zenless-Zone-Zero-Tile.png"
+  },
+  {
+    name: "PUBG Mobile",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/pubgm_tile_aug2024.jpg"
+  },
+  {
+    name: "Steam Wallet Code",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/steam-tile-codacash-new.jpg"
+  },
+  {
+    name: "Valorant",
+    image: "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/valorant_tile.jpg"
+  }
+];
 
-// Set kategori default
-renderProducts('semua');
+// RENDER PRODUK KE HALAMAN
+const container = document.getElementById("product-list");
+
+products.forEach((product) => {
+  const card = document.createElement("div");
+  card.className = "bg-white dark:bg-gray-800 p-3 rounded shadow hover:shadow-lg transition duration-300";
+
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}" class="w-full h-28 object-cover rounded mb-2">
+    <h3 class="text-sm text-center font-semibold">${product.name}</h3>
+  `;
+
+  container.appendChild(card);
+});
