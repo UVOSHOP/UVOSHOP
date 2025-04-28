@@ -1,112 +1,114 @@
-/* Tema dasar */
-body {
-  font-family: Arial, sans-serif;
+/* Reset default margin dan padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Set background dan font standar */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc; /* Warna abu-abu lembut seperti UniPin */
+  color: #333;
+}
+
+/* Header */
 header {
-  background-color: #005BB5;
-  padding: 20px;
-  text-align: center;
+  background-color: #0066cc; /* Warna biru UniPin */
+  color: #fff;
+  padding: 1rem 2rem;
 }
 
-header .logo img {
-  width: 150px;
+header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.toggle-theme button {
-  background-color: transparent;
-  border: none;
-  font-size: 18px;
+#theme-toggle {
+  background-color: #ffffff;
+  color: #0066cc;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.categories {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+#theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.category-btn {
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
+/* Main Section */
+main {
+  padding: 2rem;
 }
 
-.category-btn.active {
-  background-color: #005BB5;
+/* Produk (Card) */
+.card {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product-slider {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.product-card {
-  width: 22%;
-  margin: 10px 0;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  text-align: center;
-}
-
-.product-card img {
+.card img {
   width: 100%;
-  max-height: 150px;
-  object-fit: contain;
+  height: 150px;
+  object-fit: cover;
 }
 
-.product-card button {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 5px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-  background-color: #218838;
+.card h3 {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Footer */
+footer {
+  background-color: #f7f9fc;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #666;
 }
 
 /* Dark Mode */
-body.dark-mode {
-  background-color: #121212;
-  color: white;
-}
-
-body.dark-mode header {
+body.dark {
   background-color: #1c1c1c;
 }
 
-body.dark-mode .category-btn {
-  background-color: #444;
+body.dark header {
+  background-color: #003366;
 }
 
-body.dark-mode .category-btn.active {
-  background-color: #222;
+body.dark header h1 {
+  color: #e6e6e6;
 }
 
-body.dark-mode .product-card {
-  background-color: #2a2a2a;
+body.dark #theme-toggle {
+  background-color: #333;
+  color: #e6e6e6;
 }
 
-body.dark-mode .product-card button {
-  background-color: #20c997;
+body.dark .card {
+  background-color: #2c2c2c;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .product-card button:hover {
-  background-color: #1e7e34;
+body.dark .card h3 {
+  color: #e6e6e6;
+}
+
+body.dark footer {
+  background-color: #2c2c2c;
+  color: #e6e6e6;
 }
