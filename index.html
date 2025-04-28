@@ -28,7 +28,7 @@
 
     header {
       background-color: var(--clr-header);
-      padding: 1rem 0;
+      padding: 0.8rem 0; /* Memperkecil ukuran bar atas */
     }
     .header-container {
       display: flex;
@@ -75,10 +75,10 @@
 
     .banner-slider {
       display: flex;
-      overflow-x: auto;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
       animation: slideIn 1s ease-out;
+      margin-bottom: 1rem;
     }
 
     @keyframes slideIn {
@@ -92,13 +92,6 @@
       aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 6px;
-    }
-
-    /* Menyembunyikan banner di mobile */
-    @media (max-width: 768px) {
-      .banner-slider {
-        display: none;
-      }
     }
 
     .category-section {
