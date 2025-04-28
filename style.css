@@ -1,3 +1,66 @@
+/* GAMES ROW: selalu horizontal scroll, tidak membungkus */
+.games-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  flex-wrap: nowrap; /* paksa satu baris */
+}
+
+/* CARD GAME dengan struktur logo–judul–tombol */
+.game-card {
+  background: var(--clr-card-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  flex: 0 0 140px;      /* lebar tetap */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  position: relative;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+/* Logo */
+.game-card img {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.5rem;
+}
+
+/* Judul */
+.game-card h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  color: var(--clr-text);
+}
+
+/* Tombol Top Up */
+.game-card .btn-topup {
+  display: inline-block;
+  background-color: #FF8C00;  /* oranye */
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.game-card .btn-topup:hover {
+  background-color: #e57b00;
+  transform: translateY(-2px);
+}
+
+/* Animasi masuk */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* FORMULIR STYLE */
 .topup-form-container {
   background-color: #f2f2f2;
