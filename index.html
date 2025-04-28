@@ -32,7 +32,7 @@
     <!-- Banner Slider -->
     <div class="banner-slider" id="banner-slider">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="Banner 1">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="Banner 2">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="Banner 2">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="Banner 3">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="Banner 4">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="Banner 5">
@@ -58,6 +58,51 @@
       <div class="games-row" id="game-vouchers"></div>
     </section>
   </main>
+
+  <!-- FORMULIR (bagian yang diubah sesuai permintaan) -->
+  <div class="topup-form-container">
+    <h3>Formulir Top Up Diamond</h3>
+    <form class="topup-form">
+      <label for="user-id">User ID:</label>
+      <input type="text" id="user-id" placeholder="Masukkan User ID" required>
+      
+      <label for="zone">Zona:</label>
+      <input type="text" id="zone" placeholder="Masukkan Zona" required>
+
+      <label for="diamond-choice">Pilih Diamond:</label>
+      <div class="diamond-choice-container">
+        <div class="diamond-option">
+          <input type="radio" id="diamond-1" name="diamond" value="140 DM">
+          <label for="diamond-1">140 DM - Rp20,000</label>
+        </div>
+        <div class="diamond-option">
+          <input type="radio" id="diamond-2" name="diamond" value="70 DM">
+          <label for="diamond-2">70 DM - Rp10,000</label>
+        </div>
+      </div>
+
+      <label for="payment-method">Metode Pembayaran:</label>
+      <select id="payment-method">
+        <option value="token">Token UVOShop</option>
+        <option value="qris">QRIS</option>
+        <option value="ewallet">E-Wallet</option>
+        <option value="bank">Bank</option>
+        <option value="cash">Cash</option>
+      </select>
+
+      <button type="submit">Proses Pembayaran</button>
+    </form>
+
+    <div class="instructions">
+      <h4>UVOSHOP - Cara Membeli Diamond:</h4>
+      <ul>
+        <li>1. Isi User ID dan Zona (jika gamenya pakai username, bisa ditulis usernya)</li>
+        <li>2. Pilih diamond dan pilih pembayaran</li>
+        <li>3. Anda akan diarahkan ke WhatsApp, dan pembayaran ada di WhatsApp</li>
+        <li>4. Tunggu diamondmu masuk, jika sudah masuk akan dikirim bukti oleh WhatsApp kami</li>
+      </ul>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
