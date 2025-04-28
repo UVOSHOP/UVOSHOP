@@ -1,114 +1,264 @@
-/* Reset default margin dan padding */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Reset default margin and padding */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-/* Set background dan font standar */
+/* Global styles */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f9fc; /* Warna abu-abu lembut seperti UniPin */
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
   color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+body.dark {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
 }
 
 /* Header */
 header {
-  background-color: #0066cc; /* Warna biru UniPin */
-  color: #fff;
-  padding: 1rem 2rem;
+  background-color: #007bff;
+  color: white;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  max-height: 50px;
+  width: auto;
 }
 
 header h1 {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
 }
 
-#theme-toggle {
-  background-color: #ffffff;
-  color: #0066cc;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
+header button {
+  background-color: white;
+  color: #007bff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-#theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+header button:hover {
+  background-color: #f0f0f0;
 }
 
-/* Main Section */
-main {
-  padding: 2rem;
-}
-
-/* Produk (Card) */
-.card {
-  background-color: #ffffff;
-  border-radius: 0.375rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card img {
+/* Search Bar */
+input[type="text"] {
   width: 100%;
-  height: 150px;
+  padding: 12px 16px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f7f7f7;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+}
+
+/* Main Content */
+main {
+  padding: 32px;
+}
+
+main h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+/* Product Categories */
+section {
+  margin-bottom: 32px;
+}
+
+#game-populer, #game-mobile, #game-pc, #voucher {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+
+#game-populer div, #game-mobile div, #game-pc div, #voucher div {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  width: 160px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#game-populer div:hover, #game-mobile div:hover, #game-pc div:hover, #voucher div:hover {
+  transform: scale(1.05);
+}
+
+#game-populer img, #game-mobile img, #game-pc img, #voucher img {
+  width: 100%;
+  height: 120px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.card h3 {
-  font-size: 1rem;
-  color: #333;
+#game-populer h3, #game-mobile h3, #game-pc h3 {
   text-align: center;
-  padding: 1rem 0;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 /* Footer */
 footer {
-  background-color: #f7f9fc;
-  padding: 1rem 2rem;
+  background-color: #333;
+  color: white;
+  padding: 32px 0;
   text-align: center;
-  font-size: 0.875rem;
-  color: #666;
 }
 
-/* Dark Mode */
+footer h3 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+footer p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+footer ul {
+  list-style-type: none;
+  margin: 20px 0;
+}
+
+footer ul li {
+  margin: 5px 0;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+footer .social-icons a {
+  margin: 0 10px;
+  font-size: 20px;
+  color: white;
+}
+
+footer .social-icons a:hover {
+  color: #007bff;
+}
+
+/* Subscription */
+.subscription {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.subscription input {
+  padding: 10px 16px;
+  width: 250px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.subscription button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.subscription button:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #game-populer, #game-mobile, #game-pc, #voucher {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #game-populer div, #game-mobile div, #game-pc div, #voucher div {
+    width: 130px;
+  }
+
+  header {
+    padding: 16px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header h1 {
+    margin-top: 8px;
+  }
+
+  footer {
+    font-size: 14px;
+  }
+
+  .subscription input {
+    width: 200px;
+  }
+
+  .subscription button {
+    width: 220px;
+  }
+}
+
+/* Dark Mode Styles */
 body.dark {
-  background-color: #1c1c1c;
+  background-color: #1f1f1f;
+  color: #f5f5f5;
 }
 
 body.dark header {
-  background-color: #003366;
-}
-
-body.dark header h1 {
-  color: #e6e6e6;
-}
-
-body.dark #theme-toggle {
   background-color: #333;
-  color: #e6e6e6;
-}
-
-body.dark .card {
-  background-color: #2c2c2c;
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
-}
-
-body.dark .card h3 {
-  color: #e6e6e6;
 }
 
 body.dark footer {
-  background-color: #2c2c2c;
-  color: #e6e6e6;
+  background-color: #222;
 }
+
+body.dark footer ul li a {
+  color: #bbb;
+}
+
+body.dark footer ul li a:hover {
+  color: #007bff;
+}
+
