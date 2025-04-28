@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <style>
-    /* Styling langsung disisipkan */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -19,16 +18,11 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .header-container .logo img {
-      height: 40px; /* Logo dikecilin */
+      height: 40px;
     }
     .header-container .search-bar input {
       font-size: 14px;
       padding: 6px 10px;
-    }
-    .btn-back {
-      font-size: 14px;
-      padding: 6px 10px;
-      cursor: pointer;
     }
     #banner-slider {
       position: relative;
@@ -45,7 +39,10 @@
       opacity: 0;
       transition: opacity 1s ease;
     }
-    /* Ini supaya diamond kecil (kalau ada form diamond di bawah) */
+    #banner-slider img.active {
+      opacity: 1;
+      position: relative;
+    }
     .diamond-option {
       font-size: 14px;
       padding: 6px;
@@ -56,39 +53,39 @@
 
   <header>
     <div class="header-container">
-      <button class="btn-back" onclick="window.history.back()">← Kembali</button>
-      <div class="logo"><img src="<LOGO_URL>" alt="UVOSHOP Logo"></div>
+      <!-- Tombol Kembali sudah dihapus -->
+      <div class="logo">
+        <img src="https://via.placeholder.com/150x40?text=UVOSHOP" alt="UVOSHOP Logo">
+        <!-- Ganti URL ini dengan logo asli kamu -->
+      </div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari Game...">
       </div>
     </div>
 
     <div class="banner-slider" id="banner-slider">
-      <img src="<BANNER1_URL>" alt="">
-      <img src="<BANNER2_URL>" alt="">
-      <img src="<BANNER3_URL>" alt="">
-      <img src="<BANNER4_URL>" alt="">
-      <img src="<BANNER5_URL>" alt="">
+      <img src="https://via.placeholder.com/800x160?text=Banner+1" alt="">
+      <img src="https://via.placeholder.com/800x160?text=Banner+2" alt="">
+      <img src="https://via.placeholder.com/800x160?text=Banner+3" alt="">
+      <img src="https://via.placeholder.com/800x160?text=Banner+4" alt="">
+      <img src="https://via.placeholder.com/800x160?text=Banner+5" alt="">
+      <!-- Ganti semua link src di atas ke gambar banner asli kamu -->
     </div>
   </header>
 
   <main>
-    <!-- Game Populer -->
     <section class="category-section">
       <h2>Game Populer</h2>
       <div class="games-row" id="popular-games"></div>
     </section>
-    <!-- Game Mobile -->
     <section class="category-section">
       <h2>Game Mobile</h2>
       <div class="games-row" id="mobile-games"></div>
     </section>
-    <!-- Game PC -->
     <section class="category-section">
       <h2>Game PC</h2>
       <div class="games-row" id="pc-games"></div>
     </section>
-    <!-- Voucher Game -->
     <section class="category-section">
       <h2>Voucher Game</h2>
       <div class="games-row" id="game-vouchers"></div>
@@ -116,13 +113,14 @@
   <script>
     // Banner otomatis geser setiap 3 detik
     const slider = document.getElementById('banner-slider');
-    let currentSlide = 0;
     const slides = slider.getElementsByTagName('img');
+    let currentSlide = 0;
 
     function showSlide(index) {
       for (let i = 0; i < slides.length; i++) {
-        slides[i].style.opacity = (i === index) ? '1' : '0';
+        slides[i].classList.remove('active');
       }
+      slides[index].classList.add('active');
     }
 
     function nextSlide() {
@@ -131,7 +129,7 @@
     }
 
     showSlide(currentSlide);
-    setInterval(nextSlide, 3000); // 3 detik
+    setInterval(nextSlide, 3000); // setiap 3 detik
   </script>
 </body>
 </html>
