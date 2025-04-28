@@ -5,104 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* CSS tambahan untuk header dan menu */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-color: #333;
-      padding: 10px 0;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-    }
-
-    .logo img {
-      width: 100px;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      font-size: 16px;
-      width: 200px;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 15px;
-      margin-left: 20px;
-    }
-
-    .nav-menu a {
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .nav-menu a:hover {
-      background-color: #555;
-    }
-
-    .banner-slider img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      margin-top: 20px;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    .category-section {
-      margin-bottom: 40px;
-    }
-
-    .category-section h2 {
-      font-size: 24px;
-      color: #333;
-    }
-
-    .footer-content {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .footer-content ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .footer-content ul li {
-      margin: 5px 0;
-    }
-
-    .footer-content a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .footer-content a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 <body>
 
@@ -114,38 +16,37 @@
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari Game...">
       </div>
-      <div class="nav-menu">
-        <a href="#">Home</a>
-        <a href="#">Top Up</a>
-        <a href="#">Voucher</a>
-        <a href="#">FAQ</a>
-        <a href="#">Kontak</a>
-      </div>
     </div>
-
     <div class="banner-slider" id="banner-slider">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="Banner 1">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="Banner 2">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="Banner 3">
     </div>
   </header>
 
   <main>
     <section class="category-section">
       <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games"></div>
+      <div class="games-row" id="popular-games">
+        <!-- Contoh game yang bisa diklik -->
+        <div class="game-card" onclick="showTopUpOptions('Game A')">
+          <img src="https://link-to-image.jpg" alt="Game A">
+          <p>Game A</p>
+        </div>
+        <div class="game-card" onclick="showTopUpOptions('Game B')">
+          <img src="https://link-to-image.jpg" alt="Game B">
+          <p>Game B</p>
+        </div>
+      </div>
     </section>
-    <section class="category-section">
-      <h2>Game Mobile</h2>
-      <div class="games-row" id="mobile-games"></div>
-    </section>
-    <section class="category-section">
-      <h2>Game PC</h2>
-      <div class="games-row" id="pc-games"></div>
-    </section>
-    <section class="category-section">
-      <h2>Voucher Game</h2>
-      <div class="games-row" id="game-vouchers"></div>
+
+    <section id="topup-section" style="display: none;">
+      <h2>Top Up Game: <span id="game-name"></span></h2>
+      <p>Pilih Diamond yang ingin dibeli:</p>
+      <button onclick="chooseDiamond('100')">100 Diamond</button>
+      <button onclick="chooseDiamond('500')">500 Diamond</button>
+      <button onclick="chooseDiamond('1000')">1000 Diamond</button>
+      <br><br>
+      <button onclick="goBack()">Kembali</button>
     </section>
   </main>
 
@@ -154,19 +55,23 @@
       <h2>BERLANGGANAN</h2>
       <p>Dapatkan Penawaran Terbaik Sekarang!</p>
       <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-      <p><strong>Peta Situs</strong></p>
-      <ul>
-        <li>Flash Top-Up</li>
-        <li>Voucher</li>
-        <li>Game Lainnya</li>
-        <li>FAQ</li>
-      </ul>
-      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
-      <p>© 2025 UVOShop. Semua Hak Cipta</p>
-      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    function showTopUpOptions(gameName) {
+      document.getElementById('topup-section').style.display = 'block';
+      document.getElementById('game-name').innerText = gameName;
+    }
+
+    function chooseDiamond(amount) {
+      alert('Anda memilih ' + amount + ' Diamond untuk ' + document.getElementById('game-name').innerText);
+    }
+
+    function goBack() {
+      document.getElementById('topup-section').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
