@@ -1,264 +1,269 @@
 /* Reset default margin and padding */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Global styles */
+/* Global Styles */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  color: #333;
-  transition: all 0.3s ease-in-out;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    transition: all 0.3s ease-in-out;
 }
 
-body.dark {
-  background-color: #1f1f1f;
-  color: #f5f5f5;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    cursor: pointer;
 }
 
 /* Header */
 header {
-  background-color: #007bff;
-  color: white;
-  padding: 16px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header img {
-  max-height: 50px;
-  width: auto;
+header .logo-container {
+    display: flex;
+    align-items: center;
 }
 
-header h1 {
-  font-size: 24px;
-  font-weight: bold;
+header .logo-icon {
+    height: 50px;
+    width: auto;
 }
 
-header button {
-  background-color: white;
-  color: #007bff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
+header .logo-text {
+    height: 50px;
+    width: auto;
+    margin-left: 10px;
 }
 
-header button:hover {
-  background-color: #f0f0f0;
+header .search-bar {
+    width: 300px;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
-/* Search Bar */
-input[type="text"] {
-  width: 100%;
-  padding: 12px 16px;
-  margin-top: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #f7f7f7;
+/* Banner Section */
+.banner-container {
+    margin: 20px 0;
+    overflow: hidden;
+    width: 100%;
 }
 
-input[type="text"]:focus {
-  outline: none;
-  border-color: #007bff;
-  background-color: #fff;
+.banner-slider {
+    display: flex;
+    overflow-x: auto;
+    transition: transform 0.5s ease;
 }
 
-/* Main Content */
-main {
-  padding: 32px;
+.banner-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
-main h2 {
-  font-size: 24px;
-  margin-bottom: 16px;
-}
-
-/* Product Categories */
+/* Game Cards */
 section {
-  margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
-#game-populer, #game-mobile, #game-pc, #voucher {
-  display: flex;
-  overflow-x: auto;
-  gap: 16px;
-  padding-bottom: 16px;
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-#game-populer div, #game-mobile div, #game-pc div, #voucher div {
-  background-color: white;
-  border-radius: 8px;
-  padding: 16px;
-  width: 160px;
-  transition: transform 0.2s ease-in-out;
+#game-populer, #game-mobile, #game-pc, #voucher, #apk {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 20px;
 }
 
-#game-populer div:hover, #game-mobile div:hover, #game-pc div:hover, #voucher div:hover {
-  transform: scale(1.05);
+.game-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 160px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#game-populer img, #game-mobile img, #game-pc img, #voucher img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
+.game-card:hover {
+    transform: scale(1.05);
 }
 
-#game-populer h3, #game-mobile h3, #game-pc h3 {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 8px;
+.game-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
+.game-card h3 {
+    font-size: 18px;
+    margin-top: 8px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.game-card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.game-card button:hover {
+    background-color: #0056b3;
 }
 
 /* Footer */
 footer {
-  background-color: #333;
-  color: white;
-  padding: 32px 0;
-  text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-footer h3 {
-  font-size: 28px;
-  margin-bottom: 12px;
+footer .subscription {
+    margin: 20px 0;
 }
 
-footer p {
-  font-size: 16px;
-  margin-bottom: 8px;
+footer .subscription button {
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 8px;
 }
 
-footer ul {
-  list-style-type: none;
-  margin: 20px 0;
+footer .footer-links {
+    margin-top: 20px;
 }
 
-footer ul li {
-  margin: 5px 0;
+footer .footer-links a {
+    color: white;
+    text-decoration: none;
 }
 
-footer ul li a {
-  color: white;
-  text-decoration: none;
+footer .footer-links a:hover {
+    text-decoration: underline;
 }
 
-footer ul li a:hover {
-  text-decoration: underline;
+footer .social-icons {
+    margin-top: 10px;
 }
 
 footer .social-icons a {
-  margin: 0 10px;
-  font-size: 20px;
-  color: white;
+    font-size: 24px;
+    margin-right: 20px;
+    color: white;
 }
 
 footer .social-icons a:hover {
-  color: #007bff;
-}
-
-/* Subscription */
-.subscription {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.subscription input {
-  padding: 10px 16px;
-  width: 250px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-.subscription button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.subscription button:hover {
-  background-color: #0056b3;
+    color: #007bff;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  #game-populer, #game-mobile, #game-pc, #voucher {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
 
-  #game-populer div, #game-mobile div, #game-pc div, #voucher div {
-    width: 130px;
-  }
+    header .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
 
-  header {
-    padding: 16px;
-    flex-direction: column;
-    text-align: center;
-  }
+    #game-populer, #game-mobile, #game-pc, #voucher, #apk {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-  header h1 {
-    margin-top: 8px;
-  }
+    .game-card {
+        width: 140px;
+        margin-bottom: 20px;
+    }
 
-  footer {
-    font-size: 14px;
-  }
+    footer {
+        font-size: 14px;
+    }
 
-  .subscription input {
-    width: 200px;
-  }
+    footer .social-icons {
+        margin-top: 15px;
+    }
 
-  .subscription button {
-    width: 220px;
-  }
+    footer .subscription button {
+        width: 200px;
+        padding: 10px;
+    }
 }
 
-/* Dark Mode Styles */
-body.dark {
-  background-color: #1f1f1f;
-  color: #f5f5f5;
+/* Advanced Styles for Animations & Transitions */
+.game-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
 }
 
-body.dark header {
-  background-color: #333;
+.game-card img {
+    transition: transform 0.3s ease;
 }
 
-body.dark footer {
-  background-color: #222;
+.game-card:hover img {
+    transform: scale(1.1);
 }
 
-body.dark footer ul li a {
-  color: #bbb;
+.game-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-body.dark footer ul li a:hover {
-  color: #007bff;
+/* Header Button Transition */
+header button {
+    padding: 12px 24px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
+header button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Banner Slider */
+.banner-slider {
+    transition: transform 0.5s ease;
+}
+
+.banner-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Add hover effect to banner */
+.banner-img:hover {
+    transform: scale(1.02);
+}
