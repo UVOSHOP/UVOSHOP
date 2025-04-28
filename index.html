@@ -1,73 +1,111 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>UVOSHOP - Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVOSHOP - Top Up Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Cari Game...">
+            </div>
+        </div>
+    </header>
 
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s1280/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" 
-             alt="UVOSHOP Logo">
-      </div>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cari Game...">
-      </div>
-    </div>
+    <main>
+        <!-- Banner slider -->
+        <div class="banner-slider">
+            <div class="banner-slide">
+                <img src="https://your-banner-image1.jpg" alt="Banner 1">
+            </div>
+            <div class="banner-slide">
+                <img src="https://your-banner-image2.jpg" alt="Banner 2">
+            </div>
+            <!-- Add more banners as needed -->
+        </div>
 
-    <div class="banner-slider">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="">
-    </div>
-  </header>
+        <section class="categories">
+            <div class="category" id="popular-games">
+                <h2>Game Populer</h2>
+            </div>
+            <div class="category" id="mobile-games">
+                <h2>Game Mobile</h2>
+            </div>
+            <div class="category" id="pc-games">
+                <h2>Game PC</h2>
+            </div>
+            <div class="category" id="game-vouchers">
+                <h2>Voucher Game</h2>
+            </div>
+        </section>
 
-  <main>
-    <section class="category-section">
-      <h2>Game Populer</h2>
-      <div class="games-grid" id="popular-games"></div>
-    </section>
+        <section id="games-container"></section>
 
-    <section class="category-section">
-      <h2>Game Mobile</h2>
-      <div class="games-grid" id="mobile-games"></div>
-    </section>
+        <!-- Diamond Selection Form -->
+        <section class="diamond-form">
+            <div class="form-decor">
+                <img src="https://your-logo-image.jpg" alt="UVOSHOP Logo">
+                <button class="back-button">Kembali</button>
+            </div>
+            <h3>Pilih Diamond</h3>
+            <form id="diamond-form">
+                <select name="diamond" id="diamond-select">
+                    <option value="100">100 Diamond</option>
+                    <option value="200">200 Diamond</option>
+                    <option value="500">500 Diamond</option>
+                    <option value="1000">1000 Diamond</option>
+                </select>
+                
+                <!-- Payment Options -->
+                <h3>Pilih Pembayaran</h3>
+                <select name="payment" id="payment-select">
+                    <option value="uvoshop-token">Token UVOSHOP</option>
+                    <option value="qris">QRIS</option>
+                    <option value="ewallet">E-Wallet</option>
+                    <option value="bank">Bank Transfer</option>
+                    <option value="cash">Cash</option>
+                </select>
 
-    <section class="category-section">
-      <h2>Game PC</h2>
-      <div class="games-grid" id="pc-games"></div>
-    </section>
+                <!-- Instructions -->
+                <div class="instructions">
+                    <h4>UVOSHOP - Cara Membeli Diamond</h4>
+                    <ul>
+                        <li>1. Isi User ID dan Zona (jika gamenya pakai username bisa ditulis usernya)</li>
+                        <li>2. Pilih diamond dan pilih pembayaran</li>
+                        <li>3. Anda akan diarahkan ke WhatsApp dan pembayaran ada di WhatsApp</li>
+                        <li>4. Tunggu diamondmu masuk, jika sudah masuk akan dikirim bukti oleh WhatsApp kami</li>
+                    </ul>
+                </div>
+                
+                <button type="submit" class="topup-button">Top Up</button>
+            </form>
+        </section>
+    </main>
 
-    <section class="category-section">
-      <h2>Voucher Game</h2>
-      <div class="games-grid" id="game-vouchers"></div>
-    </section>
-  </main>
+    <footer>
+        <div class="footer-content">
+            <h2>BERLANGGANAN</h2>
+            <p>Dapatkan Penawaran Terbaik Sekarang!</p>
+            <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+            <p><strong>Peta Situs</strong></p>
+            <ul>
+                <li>Flash Top-Up</li>
+                <li>Voucher</li>
+                <li>Game Lainnya</li>
+                <li>FAQ</li>
+            </ul>
+            <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
+            <p>© 2025 UVOShop. Semua Hak Cipta</p>
+            <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
 
-  <footer>
-    <div class="footer-content">
-      <h2>BERLANGGANAN</h2>
-      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-      <p><strong>Peta Situs</strong></p>
-      <ul>
-        <li>Flash Top-Up</li>
-        <li>Voucher</li>
-        <li>Game Lainnya</li>
-        <li>FAQ</li>
-      </ul>
-      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
-      <p>© 2025 UVOShop. Semua Hak Cipta</p>
-      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
