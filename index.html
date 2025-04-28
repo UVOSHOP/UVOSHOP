@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>UVOSHOP - Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Top Up - UVOSHOP</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ganti dengan path ke file CSS Anda -->
 </head>
 <body>
 
-  <header>
-    <div class="header-container">
-      <div class="logo"><img src="<LOGO_URL>" alt="UVOSHOP Logo"></div>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cari Game...">
-      </div>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <button class="btn-back">Kembali</button>
+            <div class="logo">
+                <img src="logo.png" alt="Logo UVOSHOP"> <!-- Ganti dengan logo toko Anda -->
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Cari Game...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Formulir -->
+    <div class="form-container">
+        <h2>Formulir Top Up</h2>
+        <form action="#" method="POST">
+            <div>
+                <label for="game">Pilih Game:</label>
+                <select id="game" name="game">
+                    <option value="mlbb">Mobile Legends: Bang Bang</option>
+                    <option value="free-fire">Garena Free Fire</option>
+                    <option value="pubg-mobile">PUBG Mobile</option>
+                    <option value="genshin-impact">Genshin Impact</option>
+                    <!-- Tambahkan game lain sesuai kebutuhan -->
+                </select>
+            </div>
+
+            <div>
+                <label for="nominal">Pilih Nominal:</label>
+                <div class="nominal-option">
+                    <input type="radio" id="nominal-1" name="nominal" value="100" checked>
+                    <label for="nominal-1">100 Diamond</label>
+                </div>
+                <div class="nominal-option">
+                    <input type="radio" id="nominal-2" name="nominal" value="200">
+                    <label for="nominal-2">200 Diamond</label>
+                </div>
+                <div class="nominal-option">
+                    <input type="radio" id="nominal-3" name="nominal" value="500">
+                    <label for="nominal-3">500 Diamond</label>
+                </div>
+                <!-- Tambahkan nominal lainnya sesuai kebutuhan -->
+            </div>
+
+            <div>
+                <label for="payment-method">Pilih Metode Pembayaran:</label>
+                <select id="payment-method" name="payment-method">
+                    <option value="qris">QRIS</option>
+                    <option value="ewallet">E-Wallet</option>
+                    <option value="bank">Bank Transfer</option>
+                    <option value="cash">Cash</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Lanjutkan Pembayaran</button>
+        </form>
+
+        <p class="help-text">Jika Anda membutuhkan bantuan, silakan hubungi customer support.</p>
     </div>
 
-    <div class="banner-slider" id="banner-slider">
-      <img src="<BANNER1_URL>" alt="">
-      <img src="<BANNER2_URL>" alt="">
-      <img src="<BANNER3_URL>" alt="">
-      <img src="<BANNER4_URL>" alt="">
-      <img src="<BANNER5_URL>" alt="">
-    </div>
-  </header>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 UVOSHOP - Semua Hak Dilindungi</p>
+        </div>
+    </footer>
 
-  <main>
-    <!-- Game Populer -->
-    <section class="category-section">
-      <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games"></div>
-    </section>
-    <!-- Game Mobile -->
-    <section class="category-section">
-      <h2>Game Mobile</h2>
-      <div class="games-row" id="mobile-games"></div>
-    </section>
-    <!-- Game PC -->
-    <section class="category-section">
-      <h2>Game PC</h2>
-      <div class="games-row" id="pc-games"></div>
-    </section>
-    <!-- Voucher Game -->
-    <section class="category-section">
-      <h2>Voucher Game</h2>
-      <div class="games-row" id="game-vouchers"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <h2>BERLANGGANAN</h2>
-      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
-      <p><strong>Peta Situs</strong></p>
-      <ul>
-        <li>Flash Top-Up</li>
-        <li>Voucher</li>
-        <li>Game Lainnya</li>
-        <li>FAQ</li>
-      </ul>
-      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
-      <p>© 2025 UVOShop. Semua Hak Cipta</p>
-      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
