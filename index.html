@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
@@ -18,9 +18,17 @@
       background-color: var(--clr-body);
       color: var(--clr-text);
       font-family: 'Segoe UI', sans-serif;
+      animation: fadeIn 1s ease-in-out;
     }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
     header {
       background-color: var(--clr-header);
+      padding: 1rem 0;
     }
     .header-container {
       display: flex;
@@ -28,8 +36,9 @@
       justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0.75rem 1rem;
+      padding: 0 1rem;
     }
+
     .btn-back {
       background: none;
       border: none;
@@ -38,24 +47,49 @@
       cursor: pointer;
     }
     .logo img { width: 120px; }
+
+    .search-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
     .search-bar input {
       padding: 0.5rem 0.75rem;
-      border-radius: 4px; border: none;
+      border-radius: 4px; 
+      border: none;
       width: 220px;
     }
+    .search-bar span {
+      position: absolute;
+      right: -30px;
+      font-size: 1rem;
+      color: var(--clr-text);
+      font-weight: bold;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
     .banner-slider {
       display: flex;
       overflow-x: auto;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
+      animation: slideIn 1s ease-out;
     }
+
+    @keyframes slideIn {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(0); }
+    }
+
     .banner-slider img {
-      flex-shrink: 0;
       width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: 0;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       border-radius: 6px;
     }
+
     .category-section {
       max-width: 1200px;
       margin: 1.5rem auto;
@@ -67,6 +101,7 @@
       border-left: 4px solid var(--clr-accent);
       padding-left: 0.5rem;
     }
+
     .games-row {
       display: flex;
       overflow-x: auto;
@@ -103,6 +138,7 @@
       font-size: 0.8rem;
       cursor: pointer;
     }
+
     .form-container {
       background: var(--clr-card-bg);
       padding: 20px;
@@ -134,12 +170,14 @@
       border-color: var(--clr-accent);
       box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
     }
+
     label {
       font-size: 1rem;
       margin-bottom: 0.5rem;
       display: block;
       color: var(--clr-text);
     }
+
     .nominal-option {
       display: flex;
       align-items: center;
@@ -150,14 +188,17 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     .nominal-option input[type="radio"] {
       margin-right: 12px;
     }
+
     .nominal-option label {
       display: flex;
       justify-content: space-between;
       width: 100%;
     }
+
     .submit-btn {
       width: 100%;
       padding: 12px;
@@ -169,14 +210,47 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
+
     .submit-btn:hover {
       background-color: #0056b3;
     }
+
     .help-text {
       font-size: 0.9rem;
       color: #ccc;
       text-align: center;
       margin-top: 10px;
+    }
+
+    /* Responsif untuk tampilan mobile */
+    @media (max-width: 768px) {
+      .search-bar {
+        width: 100%;
+        position: relative;
+        margin-bottom: 1rem;
+      }
+      .search-bar input {
+        width: 100%;
+        margin-right: 45px;
+      }
+      .search-bar span {
+        position: absolute;
+        right: 10px;
+        font-size: 1rem;
+        color: var(--clr-text);
+        font-weight: bold;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .banner-slider {
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+      .banner-slider img {
+        object-fit: contain;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -194,8 +268,6 @@
     <div class="banner-slider" id="banner-slider">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="Banner 1">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="Banner 2">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="Banner 3">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="Banner 4">
     </div>
   </header>
 
