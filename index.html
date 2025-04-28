@@ -70,3 +70,64 @@
   <script src="script.js"></script>
 </body>
 </html>
+<main>
+  <!-- Formulir Top-Up -->
+  <section class="topup-form-section">
+    <h2>Top Up Mobile Legends</h2>
+    <form class="topup-form" id="topup-form">
+      <div class="form-group">
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" name="userId" placeholder="Masukkan User ID Anda" required>
+      </div>
+
+      <div class="form-group">
+        <label for="serverId">Server ID:</label>
+        <input type="text" id="serverId" name="serverId" placeholder="Masukkan Server ID Anda" required>
+      </div>
+
+      <div class="form-group">
+        <label for="diamond-package">Pilih Paket Diamond:</label>
+        <select id="diamond-package" name="diamond-package" required>
+          <option value="12">12 Diamonds - Rp 3500</option>
+          <option value="28">28 Diamonds - Rp 8000</option>
+          <option value="36">36 Diamonds - Rp 10000</option>
+          <option value="56">56 Diamonds - Rp 16000</option>
+          <option value="85">85 Diamonds - Rp 23000</option>
+          <option value="169">169 Diamonds - Rp 46000</option>
+          <option value="220">220 Diamonds - Rp 60000</option>
+          <option value="282">282 Diamonds - Rp 80000</option>
+          <option value="366">366 Diamonds - Rp 100000</option>
+          <option value="568">568 Diamonds - Rp 150000</option>
+          <option value="875">875 Diamonds - Rp 230000</option>
+          <option value="2010">2010 Diamonds - Rp 500000</option>
+          <option value="4804">4804 Diamonds - Rp 1200000</option>
+          <option value="6004">6004 Diamonds - Rp 1500000</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="payment-method">Pilih Metode Pembayaran:</label>
+        <select id="payment-method" name="payment-method" required>
+          <option value="qris">QRIS</option>
+          <option value="ewallet">E-Wallet</option>
+          <option value="bank">Bank Transfer</option>
+          <option value="cash">Cash</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit">Beli Sekarang</button>
+    </form>
+  </section>
+
+  <!-- Game Populer -->
+  <section class="category-section">
+    <h2>Game Populer</h2>
+    <div class="games-row" id="popular-games"></div>
+  </section>
+
+  <!-- Game Mobile -->
+  <section class="category-section">
+    <h2>Game Mobile</h2>
+    <div class="games-row" id="mobile-games"></div>
+  </section>
+</main>
