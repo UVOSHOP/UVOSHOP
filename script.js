@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const gamesContainer = document.getElementById('games-container');
     const params = new URLSearchParams(window.location.search);
     const gameId = params.get('game');
+
     if (!gameId) {
-        // List games
+        // Halaman daftar game
         fetch('games.json')
             .then(res => res.json())
             .then(games => {
@@ -21,18 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
     } else {
-        // Top up form
+        // Halaman top-up
         fetch('games.json')
             .then(res => res.json())
             .then(games => {
                 const game = games.find(g => g.id === gameId);
                 document.getElementById('game-title').innerText = game.name;
-                // Hide server ID for games without server requirement
-                const noServer = ['free-fire','free-fire-max','pubg-mobile','valorant','roblox','steam-wallet','garena-shells','minecraft','fortnite','apex-legends','dota-2','valorant-points'];
+
+                // Daftar game tanpa server ID
+                const noServer = [
+                    'free-fire','free-fire-max','pubg-mobile','valorant',
+                    'roblox','steam-wallet','garena-shells','minecraft',
+                    'fortnite','apex-legends','dota-2','valorant-points'
+                ];
                 if (noServer.includes(gameId)) {
                     document.getElementById('server-id-container').style.display = 'none';
                 }
-                // Nominals
+
+                // Data nominal sesuai UniPin
                 const nominals = {
                     'mlbb': [
                         {"amount":"12 Diamonds","price":"3500"},
@@ -62,31 +69,48 @@ document.addEventListener('DOMContentLoaded', () => {
                         {"amount":"7290 Diamonds","price":"1000000"},
                         {"amount":"36500 Diamonds","price":"5000000"}
                     ]
-                    // Add more game nominal lists here...
+                    // Tambahkan list nominal untuk game lain di sini...
                 };
+
+                // Render nominal sebagai kartu
                 const container = document.getElementById('nominals-container');
-                nominals[gameId].forEach(n => {
-                    const opt = document.createElement('div');
-                    opt.className = 'nominal-option';
-                    opt.innerHTML = `
-                        <label>
-                            <input type="radio" name="nominal" value="${n.price}" required/>
-                            ${n.amount} - Rp ${n.price}
-                        </label>
+                nominals[gameId].forEach((n, i) => {
+                    const wrap = document.createElement('div');
+                    wrap.className = 'nominal-option';
+
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.id = `nominal-${i}`;
+                    input.name = 'nominal';
+                    input.value = n.price;
+                    input.required = true;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = input.id;
+                    label.innerHTML = `
+                        <span class="amount">${n.amount}</span>
+                        <span class="price">Rp ${n.price}</span>
                     `;
-                    container.appendChild(opt);
+
+                    wrap.appendChild(input);
+                    wrap.appendChild(label);
+                    container.appendChild(wrap);
                 });
-                // Form submit
+
+                // Submit form: kirim pesan ke WA
                 document.getElementById('topup-form').addEventListener('submit', e => {
                     e.preventDefault();
                     const userId = document.getElementById('user-id').value;
                     const serverId = document.getElementById('server-id').value;
-                    const nominal = document.querySelector('input[name="nominal"]:checked').parentNode.textContent.trim();
-                    const message = encodeURIComponent(`Halo Admin UVOSHOP, saya mau beli:
-Game: ${game.name}
-User ID: ${userId}
-${noServer.includes(gameId) ? '' : 'Server ID: ' + serverId + '\n'}
-Item: ${nominal}`);
+                    const selected = document.querySelector('input[name="nominal"]:checked');
+                    const nominalText = selected.nextElementSibling.textContent.trim();
+                    const message = encodeURIComponent(
+                        `Halo Admin UVOSHOP, saya mau beli:\n` +
+                        `Game: ${game.name}\n` +
+                        `User ID: ${userId}\n` +
+                        `${noServer.includes(gameId) ? '' : 'Server ID: ' + serverId + '\n'}` +
+                        `Item: ${nominalText}`
+                    );
                     window.location.href = `https://api.whatsapp.com/send?phone=6285648211278&text=${message}`;
                 });
             });
