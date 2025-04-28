@@ -5,6 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Banner slider */
+    #banner-slider img {
+      width: 100%;
+      height: auto;
+    }
+    .banner-slider {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+    @keyframes slide {
+      0% {transform: translateX(0);}
+      20% {transform: translateX(-100%);}
+      40% {transform: translateX(-200%);}
+      60% {transform: translateX(-300%);}
+      80% {transform: translateX(-400%);}
+      100% {transform: translateX(0);}
+    }
+    .banner-slider img {
+      animation: slide 15s infinite;
+    }
+
+    /* Formulir pembelian diamond */
+    .diamond-form {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    .diamond-form .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .diamond-form select,
+    .diamond-form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .diamond-form button {
+      width: 100%;
+      padding: 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .diamond-form button:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
 
@@ -28,21 +85,29 @@
   </header>
 
   <main>
-    <section class="category-section">
-      <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games"></div>
-    </section>
-    <section class="category-section">
-      <h2>Game Mobile</h2>
-      <div class="games-row" id="mobile-games"></div>
-    </section>
-    <section class="category-section">
-      <h2>Game PC</h2>
-      <div class="games-row" id="pc-games"></div>
-    </section>
-    <section class="category-section">
-      <h2>Voucher Game</h2>
-      <div class="games-row" id="game-vouchers"></div>
+    <section class="diamond-form">
+      <div class="logo">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
+      </div>
+      <form action="#" method="POST">
+        <label for="diamond">Pilih Diamond:</label>
+        <select id="diamond" name="diamond">
+          <option value="100">100 Diamond</option>
+          <option value="200">200 Diamond</option>
+          <option value="300">300 Diamond</option>
+          <option value="500">500 Diamond</option>
+        </select>
+
+        <label for="payment">Pilih Pembayaran:</label>
+        <select id="payment" name="payment">
+          <option value="qris">QRIS</option>
+          <option value="ewallet">E-Wallet</option>
+          <option value="bank">Bank</option>
+          <option value="cash">Cash</option>
+        </select>
+
+        <button type="submit">Beli Sekarang</button>
+      </form>
     </section>
   </main>
 
