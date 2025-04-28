@@ -2,269 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    :root {
-      --clr-body: #0E1120;
-      --clr-header: #202938;
-      --clr-card-bg: #1a1f2b;
-      --clr-text: #ffffff;
-      --clr-accent: #007bff;
-    }
-    body {
-      margin: 0; padding: 0;
-      background-color: var(--clr-body);
-      color: var(--clr-text);
-      font-family: 'Segoe UI', sans-serif;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    header {
-      background-color: var(--clr-header);
-      padding: 0.6rem 0; /* Memperkecil ukuran bar atas */
-    }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .btn-back {
-      background: none;
-      border: none;
-      color: var(--clr-text);
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .logo img { width: 120px; }
-
-    .search-bar {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .search-bar input {
-      padding: 0.5rem 0.75rem;
-      border-radius: 4px; 
-      border: none;
-      width: 220px;
-    }
-    .search-bar span {
-      position: absolute;
-      right: -30px;
-      font-size: 1rem;
-      color: var(--clr-text);
-      font-weight: bold;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .search-bar span#search-text {
-      text-transform: uppercase;
-    }
-
-    /* Banner Slider */
-    .banner-slider {
-      display: flex;
-      gap: 0.5rem;
-      animation: slide 15s infinite; /* Banner geser setiap 3 detik */
-      margin-bottom: 1rem;
-      overflow: hidden;
-    }
-
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-100%); }
-      50% { transform: translateX(-200%); }
-      75% { transform: translateX(-300%); }
-      100% { transform: translateX(0); }
-    }
-
-    .banner-slider img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .category-section {
-      max-width: 1200px;
-      margin: 1.5rem auto;
-      padding: 0 1rem;
-    }
-    .category-section h2 {
-      font-size: 1.25rem;
-      color: var(--clr-text);
-      border-left: 4px solid var(--clr-accent);
-      padding-left: 0.5rem;
-    }
-
-    .games-row {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 0.5rem;
-    }
-    .game-card {
-      background: var(--clr-card-bg);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      flex: 0 0 140px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      position: relative;
-    }
-    .game-card img {
-      width: 56px; height: 56px;
-      margin-bottom: 0.5rem;
-    }
-    .game-card h3 {
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      margin: 0;
-    }
-    .game-card .btn-topup {
-      position: absolute;
-      bottom: 10px; left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--clr-accent);
-      border: none; color: #fff;
-      padding: 0.3rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
-
-    .form-container {
-      background: var(--clr-card-bg);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-      max-width: 500px;
-      margin: 2rem auto;
-      color: var(--clr-text);
-    }
-    .form-container h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--clr-text);
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    input[type="text"], input[type="number"], input[type="radio"], select {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border-radius: 6px;
-      border: 2px solid var(--clr-accent);
-      background-color: #222831;
-      color: var(--clr-text);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    input[type="text"]:focus, input[type="number"]:focus, select:focus {
-      border-color: var(--clr-accent);
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-    }
-
-    label {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      display: block;
-      color: var(--clr-text);
-    }
-
-    .nominal-option {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 10px 0;
-      background-color: #1f232b;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .nominal-option input[type="radio"] {
-      margin-right: 12px;
-    }
-
-    .nominal-option label {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: var(--clr-accent);
-      color: var(--clr-text);
-      border: none;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .submit-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .help-text {
-      font-size: 0.9rem;
-      color: #ccc;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    /* Responsif untuk tampilan mobile */
-    @media (max-width: 768px) {
-      .search-bar {
-        width: 100%;
-        position: relative;
-        margin-bottom: 1rem;
-      }
-      .search-bar input {
-        width: 100%;
-        margin-right: 45px;
-      }
-      .search-bar span {
-        position: absolute;
-        right: 10px;
-        font-size: 1rem;
-        color: var(--clr-text);
-        font-weight: bold;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .banner-slider {
-        flex-direction: column;
-        overflow-x: hidden;
-      }
-      .banner-slider img {
-        object-fit: contain;
-        width: 100%;
-      }
-
-      header {
-        padding: 0.4rem 0; /* Memperkecil bar atas untuk mobile */
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -273,25 +13,59 @@
       <div class="logo"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo"></div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari Game...">
-        <span id="search-text">ID</span>
       </div>
     </div>
 
     <div class="banner-slider" id="banner-slider">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt="Banner 1">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt="Banner 2">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt="Banner 3">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner 4">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt="Banner 5">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZZInbTzGfsyw1n8PeUGPgXiLr_GjvgkTmwGz38_8aX5UeslPXAj6Rn4LDQ_bLWqk7xtuFvFkKyUJHV_MYnkozswkiCD6-Vt_kTQtXJwrKhB4-u48g9Dv34FI5ku0QHFUctDf_dnOE6iQ5hec-iST650X5Ha9B15Sqs_KjT7_VZdjd3QBGWUOPdGwdp5M-/s320/5.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj10nRT4vUVexyM7_EZBe4L4NDRhGAHn2MIJEs1LgSPf4YmKra0e6-W7MrMWR1nmPxNSkb8c-zjCAyvTAGYDUNOPV1dWPu09P9e4x4tJq2SBGPaHfkgDCeUnju8HmtvESo1fSLbNw8EPY08uht5_OWLPTwK9m_Sx3QoSf3daXqCUaJegMNH0XuDNH2d6vGK/s320/3.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvJTcXSMTkIUBCKemhWG_smsI_cXV_EVH2Lru_cLXq-ebfJXDa2UXvp6QOC91X5iNq3hedews-ZuoZWbaMJ1jOKxVB5JgLL-19vp4WE_Q0rk1v0sHWxUIJD5zmeZUaHEzONjFb6SPHgE05vLQah1kNT3Wby2fTOvt-t7u44QvApyNSr6-NQSK-YFLRkGZR/s320/2.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc2m2RQ6MbJ23HhFaw08GBBzZ8KGWMXmXkqwSI-HXSeNNptp1alPwSoxVX_XrNMsnFJ15Gl24rxz7RLMA94Q6FTLtrVPCy4OPvkRbSnbl4yCIke4ZO5nexdVY11yFC8ltJOUAWSiL1NGA2aYRyagmvjQsW5i-EscskPSy5_5GG9uEmCnIeT7NPSF5ZV5pv/s320/1.png" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnJsCKqp-xATlcZmxZnPEfqZUshp-YiLkC3hqkdiRIrdMg2tNySUGB8dDFriejf2lNNtIauajtlKtLGY1bSgo4eKFMHUy-jcCKAzaI170ofm2_Mr8eTTobCNBHxxaC_xeZ-9w3x_spd009PsBSK2CE-T_Ew_yhp2YKtY1G2RpphxhEgYJ83z74R_viTKv9/s320/4.png" alt="">
     </div>
   </header>
 
-  <div class="category-section">
-    <h2>Game Populer</h2>
-    <div class="games-row">
-      <!-- Konten Game akan muncul di sini -->
-    </div>
-  </div>
+  <main>
+    <!-- Game Populer -->
+    <section class="category-section">
+      <h2>Game Populer</h2>
+      <div class="games-row" id="popular-games"></div>
+    </section>
+    <!-- Game Mobile -->
+    <section class="category-section">
+      <h2>Game Mobile</h2>
+      <div class="games-row" id="mobile-games"></div>
+    </section>
+    <!-- Game PC -->
+    <section class="category-section">
+      <h2>Game PC</h2>
+      <div class="games-row" id="pc-games"></div>
+    </section>
+    <!-- Voucher Game -->
+    <section class="category-section">
+      <h2>Voucher Game</h2>
+      <div class="games-row" id="game-vouchers"></div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="footer-content">
+      <h2>BERLANGGANAN</h2>
+      <p>Dapatkan Penawaran Terbaik Sekarang!</p>
+      <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+      <p><strong>Peta Situs</strong></p>
+      <ul>
+        <li>Flash Top-Up</li>
+        <li>Voucher</li>
+        <li>Game Lainnya</li>
+        <li>FAQ</li>
+      </ul>
+      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62&nbsp;856-4821-1278</a></p>
+      <p>© 2025 UVOShop. Semua Hak Cipta</p>
+      <p><a href="#">Website Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
