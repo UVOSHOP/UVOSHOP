@@ -60,6 +60,33 @@
       font-size: 18px;
       padding-right: 10px;
     }
+
+    .search-bar input {
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    .category-section {
+      padding: 20px;
+    }
+
+    .games-row {
+      display: flex;
+      overflow-x: scroll;
+      padding: 10px 0;
+    }
+
+    .game-item {
+      margin-right: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .game-item:hover {
+      background-color: #e0e0e0;
+    }
   </style>
 </head>
 <body>
@@ -124,18 +151,21 @@
     const bannerElement = document.getElementById("rotating-banner");
 
     function showNextBanner() {
-      bannerElement.style.animation = "none";
-      void bannerElement.offsetWidth; // restart animation
-      bannerElement.style.animation = "slideIn 0.6s ease-in-out";
+      bannerElement.style.animation = "none"; // reset animation
+      void bannerElement.offsetWidth; // trigger reflow to restart animation
+      bannerElement.style.animation = "slideIn 0.6s ease-in-out"; // apply animation again
 
-      bannerElement.src = bannerImages[currentBanner];
-      currentBanner = (currentBanner + 1) % bannerImages.length;
+      bannerElement.src = bannerImages[currentBanner]; // change the banner image
+      currentBanner = (currentBanner + 1) % bannerImages.length; // loop through banners
     }
 
+    // Initial banner display
     showNextBanner();
+
+    // Set interval to change the banner every 3 seconds
     setInterval(showNextBanner, 3000);
   </script>
 
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
