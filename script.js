@@ -137,3 +137,90 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.error(err));
   }
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const gameId = params.get('game');
+
+  if (!gameId) {
+    console.warn('Game ID tidak ditemukan di URL');
+    return;
+  }
+
+  fetch('games.json')
+    .then(res => res.json())
+    .then(games => {
+      const game = games.find(g => g.id === gameId);
+      if (!game) {
+        console.error('Game tidak ditemukan di games.json');
+        return;
+      }
+
+      // Tampilkan nama game
+      const titleEl = document.getElementById('game-title');
+      if (titleEl) {
+        titleEl.innerText = game.name;
+      }
+
+      // Sembunyikan server ID jika tidak dibutuhkan
+      const noServerGames = ['free-fire', 'valorant', 'roblox', 'steam-wallet'];
+      if (noServerGames.includes(gameId)) {
+        const serverContainer = document.getElementById('server-id-container');
+        if (serverContainer) serverContainer.style.display = 'none';
+      }
+
+      // Tampilkan daftar harga diamond (nominal)
+      const priceContainer = document.getElementById('nominals-container');
+      if (!priceContainer) {
+        console.error('Element #nominals-container tidak ditemukan');
+        return;
+      }
+
+      priceContainer.innerHTML = ''; // Clear sebelumnya
+      game.prices.forEach((item, i) => {
+        const option = document.createElement('div');
+        option.className = 'nominal-option';
+
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.id = `nominal-${i}`;
+        input.name = 'nominal';
+        input.value = `${item.amount} - Rp ${item.price}`;
+        input.required = true;
+
+        const label = document.createElement('label');
+        label.htmlFor = input.id;
+        label.innerHTML = `
+          <span class="amount">${item.amount} Diamonds</span>
+          <span class="price">Rp ${item.price}</span>
+        `;
+
+        option.appendChild(input);
+        option.appendChild(label);
+        priceContainer.appendChild(option);
+      });
+
+      // Submit WhatsApp
+      const form = document.getElementById('topup-form');
+      if (form) {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const userId = document.getElementById('user-id').value.trim();
+          const serverId = document.getElementById('server-id') ? document.getElementById('server-id').value.trim() : '';
+          const selectedNominal = document.querySelector('input[name="nominal"]:checked');
+          if (!selectedNominal) {
+            alert('Pilih nominal dulu ya!');
+            return;
+          }
+
+          const msg = `Halo Admin UVOSHOP, saya mau beli:\n` +
+                      `Game: ${game.name}\n` +
+                      `User ID: ${userId}\n` +
+                      (serverId ? `Server ID: ${serverId}\n` : '') +
+                      `Item: ${selectedNominal.value}`;
+
+          window.location.href = `https://wa.me/6285648211278?text=${encodeURIComponent(msg)}`;
+        });
+      }
+    })
+    .catch(err => console.error('Gagal load data:', err));
+});
