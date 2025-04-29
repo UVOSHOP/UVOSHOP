@@ -12,12 +12,12 @@ body {
   background-color: var(--clr-body);
   color: var(--clr-text);
   font-family: 'Segoe UI', sans-serif;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-body.fade-in {
-  opacity: 1;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 header {
@@ -36,30 +36,22 @@ header {
   gap: 0.5rem;
 }
 
-.logo {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.logo img {
-  width: 80px;
-  height: auto;
-}
-
-.search-group {
-  flex: 2 1 auto;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
 .btn-back {
   background: none;
   border: none;
   color: var(--clr-text);
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 80px;
+  height: auto;
 }
 
 .search-bar input {
@@ -76,7 +68,7 @@ header {
   margin-left: 8px;
 }
 
-/* Banner slider */
+/* === BANNER === */
 .banner-slider {
   display: flex;
   overflow: hidden;
@@ -107,6 +99,7 @@ header {
   100% { transform: translateX(0); }
 }
 
+/* === GAME CARD SECTION === */
 .category-section {
   max-width: 1200px;
   margin: 1.5rem auto;
@@ -164,6 +157,7 @@ header {
   cursor: pointer;
 }
 
+/* === FORM SECTION === */
 .form-container {
   background: var(--clr-card-bg);
   padding: 20px;
@@ -255,15 +249,15 @@ label {
   margin-top: 10px;
 }
 
-/* Responsif */
+/* === RESPONSIVE === */
 @media only screen and (max-width: 768px) {
   .header-container {
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem;
+    text-align: center;
   }
 
   .logo img {
@@ -271,8 +265,11 @@ label {
   }
 
   .search-bar input {
-    width: 100%;
-    max-width: 160px;
+    width: 140px;
+  }
+
+  .indonesia-logo {
+    margin-top: 0.5rem;
   }
 
   .banner-slider {
