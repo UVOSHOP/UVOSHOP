@@ -6,7 +6,7 @@
   <title>Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Styling untuk pilihan diamond */
+    /* Styling untuk pilihan diamond dan pembayaran */
     .diamond-card, .payment-method {
       border: 2px solid #ddd;
       padding: 20px;
@@ -35,7 +35,6 @@
       flex: 1;
       margin: 10px;
       min-width: 120px;
-      text-align: center;
     }
 
     .btn-beli {
@@ -66,10 +65,6 @@
   <header>
     <div class="navbar">
       <h1 class="logo">UVO<span>SHOP</span></h1>
-      <div class="lang">
-        <button>ID</button>
-        <button><img src="indonesia.png" alt="ID" width="20"></button>
-      </div>
     </div>
   </header>
 
@@ -83,11 +78,9 @@
       <div class="game-select">
         <select id="gameSelect" onchange="onGameSelect()">
           <option value="">Pilih Game</option>
-          <option value="mobile-legends-bang-bang">Mobile Legends: Bang Bang</option>
           <option value="free-fire">Free Fire</option>
-          <option value="call-of-duty-mobile">Call of Duty Mobile</option>
-          <option value="pokémon-unite">Pokémon Unite</option>
-          <!-- Tambah game lain jika ada -->
+          <option value="mobile-legends-bang-bang">Mobile Legends</option>
+          <!-- Tambahkan game lain -->
         </select>
       </div>
     </section>
@@ -108,15 +101,15 @@
         <h3>PILIH DIAMOND</h3>
       </div>
       <div id="diamondGrid" class="diamond-grid">
-        <!-- Diamond options will be loaded automatically based on the selected game -->
+        <!-- Diamond list otomatis muncul -->
       </div>
     </section>
 
-    <!-- STEP 4: PILIH SALURAN PEMBAYARAN -->
+    <!-- STEP 4: PILIH METODE PEMBAYARAN -->
     <section class="step-section">
       <div class="step">
         <div class="step-number">4</div>
-        <h3>PILIH SALURAN PEMBAYARAN</h3>
+        <h3>PILIH METODE PEMBAYARAN</h3>
       </div>
       <div class="payment-grid" id="paymentGrid">
         <div class="payment-method" onclick="selectPayment(this)">
@@ -134,19 +127,18 @@
       </div>
     </section>
 
-    <!-- Tombol Beli -->
     <button class="btn-beli" onclick="sendToWhatsApp()">Beli Sekarang</button>
+
   </main>
 
-  <footer>
-    <!-- Footer dibiarkan kosong sesuai permintaan -->
-  </footer>
+  <footer></footer>
 
   <script>
     let gamesData = [];
     let selectedGame = null;
+    let selectedDiamondData = null;
 
-    // Fungsi untuk memilih game
+    // Pilih Game
     function onGameSelect() {
       const selectedGameId = document.getElementById('gameSelect').value;
       selectedGame = gamesData.find(game => game.id === selectedGameId);
@@ -155,57 +147,71 @@
       }
     }
 
-    // Fungsi untuk memilih diamond
-    function selectDiamond(element) {
-      const diamonds = document.querySelectorAll('.diamond-card');
-      diamonds.forEach(diamond => diamond.classList.remove('selected'));
-      element.classList.add('selected');
-    }
-
-    // Fungsi untuk memilih metode pembayaran
-    function selectPayment(element) {
-      const payments = document.querySelectorAll('.payment-method');
-      payments.forEach(payment => payment.classList.remove('selected'));
-      element.classList.add('selected');
-    }
-
-    // Fungsi untuk mengirim data ke WhatsApp
-    function sendToWhatsApp() {
-      const id = document.getElementById('idInput').value;
-      const game = selectedGame ? selectedGame.name : '';
-      const selectedDiamond = document.querySelector('.diamond-card.selected');
-      const diamondAmount = selectedDiamond ? selectedDiamond.querySelector('p').textContent : '';
-      const selectedPayment = document.querySelector('.payment-method.selected') ? document.querySelector('.payment-method.selected').textContent : '';
-
-      const message = `ID: ${id}\nGame: ${game}\nDiamond: ${diamondAmount}\nPembayaran: ${selectedPayment}`;
-
-      window.location.href = `https://wa.me/6285648211278?text=${encodeURIComponent(message)}`;
-    }
-
-    // Fungsi untuk memuat data game dari JSON
-    fetch('games.json')
-      .then(response => response.json())
-      .then(data => {
-        gamesData = data;
-        // Set game default jika diperlukan
-      })
-      .catch(error => console.error('Error fetching game data:', error));
-
-    // Fungsi untuk memuat harga diamond berdasarkan game yang dipilih
+    // Load Diamond
     function loadDiamonds(game) {
       const diamondGrid = document.getElementById('diamondGrid');
-      diamondGrid.innerHTML = ''; // Clear previous diamonds
+      diamondGrid.innerHTML = '';
 
       if (game) {
         game.prices.forEach(price => {
           const diamondCard = document.createElement('div');
           diamondCard.classList.add('diamond-card');
           diamondCard.setAttribute('onclick', 'selectDiamond(this)');
-          diamondCard.innerHTML = `<p>${price.amount} Diamonds - Rp ${price.price}</p>`;
+          diamondCard.dataset.amount = price.amount;
+          diamondCard.dataset.price = price.price;
+          diamondCard.innerHTML = `<p>${price.amount} Diamonds</p><p>Rp ${price.price}</p>`;
           diamondGrid.appendChild(diamondCard);
         });
       }
     }
+
+    // Pilih Diamond
+    function selectDiamond(element) {
+      const diamonds = document.querySelectorAll('.diamond-card');
+      diamonds.forEach(diamond => diamond.classList.remove('selected'));
+      element.classList.add('selected');
+
+      selectedDiamondData = {
+        amount: element.dataset.amount,
+        price: element.dataset.price
+      };
+    }
+
+    // Pilih Pembayaran
+    function selectPayment(element) {
+      const payments = document.querySelectorAll('.payment-method');
+      payments.forEach(payment => payment.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    // Kirim ke WhatsApp
+    function sendToWhatsApp() {
+      const id = document.getElementById('idInput').value.trim();
+      const selectedPayment = document.querySelector('.payment-method.selected');
+      
+      if (!selectedGame || !id || !selectedDiamondData || !selectedPayment) {
+        alert("Harap lengkapi semua data sebelum membeli.");
+        return;
+      }
+
+      const message = `*Formulir Top Up*\n\n` +
+                      `Game: ${selectedGame.name}\n` +
+                      `ID: ${id}\n` +
+                      `Item: ${selectedDiamondData.amount} Diamonds\n` +
+                      `Harga: Rp ${selectedDiamondData.price}\n` +
+                      `Metode Pembayaran: ${selectedPayment.innerText}`;
+
+      window.location.href = `https://wa.me/6285648211278?text=${encodeURIComponent(message)}`;
+    }
+
+    // Load data dari games.json
+    fetch('games.json')
+      .then(response => response.json())
+      .then(data => {
+        gamesData = data;
+      })
+      .catch(error => console.error('Error loading games.json:', error));
+
   </script>
 
 </body>
