@@ -55,6 +55,10 @@
     .game-select {
       margin-bottom: 20px;
     }
+
+    .form-section {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -88,10 +92,19 @@
       </div>
     </section>
 
-    <!-- STEP 2: PILIH DIAMOND -->
-    <section class="step-section">
+    <!-- STEP 2: ISI ID -->
+    <section class="step-section form-section">
       <div class="step">
         <div class="step-number">2</div>
+        <h3>ISI ID</h3>
+      </div>
+      <input type="text" id="idInput" placeholder="Masukkan ID Anda" required />
+    </section>
+
+    <!-- STEP 3: PILIH DIAMOND -->
+    <section class="step-section">
+      <div class="step">
+        <div class="step-number">3</div>
         <h3>PILIH DIAMOND</h3>
       </div>
       <div id="diamondGrid" class="diamond-grid">
@@ -99,10 +112,10 @@
       </div>
     </section>
 
-    <!-- STEP 3: PILIH SALURAN PEMBAYARAN -->
+    <!-- STEP 4: PILIH SALURAN PEMBAYARAN -->
     <section class="step-section">
       <div class="step">
-        <div class="step-number">3</div>
+        <div class="step-number">4</div>
         <h3>PILIH SALURAN PEMBAYARAN</h3>
       </div>
       <div class="payment-grid" id="paymentGrid">
@@ -159,7 +172,7 @@
     // Fungsi untuk mengirim data ke WhatsApp
     function sendToWhatsApp() {
       const id = document.getElementById('idInput').value;
-      const game = selectedGame.name;
+      const game = selectedGame ? selectedGame.name : '';
       const selectedDiamond = document.querySelector('.diamond-card.selected');
       const diamondAmount = selectedDiamond ? selectedDiamond.querySelector('p').textContent : '';
       const selectedPayment = document.querySelector('.payment-method.selected') ? document.querySelector('.payment-method.selected').textContent : '';
