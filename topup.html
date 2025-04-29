@@ -41,24 +41,27 @@
         button:hover {
             background-color: darkorange;
         }
-        #price-list {
-            display: flex;
-            flex-wrap: wrap;
+        #diamond-list, #payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
-        .price-item {
+        .diamond-item, .payment-item {
             background-color: #F9F9F9;
             color: #2C3E50;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            flex: 1 1 calc(50% - 10px); /* 2 kolom */
             text-align: center;
+            font-size: 1.2em;
         }
-        .price-item.selected {
+        .diamond-item.selected, .payment-item.selected {
             background-color: #3E92CC;
             color: white;
             font-weight: bold;
+        }
+        .diamond-item, .payment-item {
+            flex: 1 1 calc(50% - 10px);
         }
     </style>
 </head>
@@ -74,17 +77,14 @@
         <input type="text" id="server-id" placeholder="Masukkan Server (jika ada)" />
 
         <h3>3<br>Pilih Nominal Diamond</h3>
-        <div id="price-list">
-            <!-- Harga akan dimuat dari JSON -->
+        <div id="diamond-list">
+            <!-- Harga diamond akan dimuat dari JSON -->
         </div>
 
         <h3>4<br>Pilih Metode Pembayaran</h3>
-        <select id="payment-method">
-            <option>Voucher UVOSHOP</option>
-            <option>QRIS</option>
-            <option>BANK</option>
-            <option>CASH</option>
-        </select>
+        <div id="payment-methods">
+            <!-- Metode pembayaran akan dimuat dari JSON -->
+        </div>
 
         <button id="buy-button">Beli Sekarang</button>
     </div>
