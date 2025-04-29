@@ -8,6 +8,9 @@
   <style>
     body {
       animation: fadeIn 1s ease-in-out;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
     }
 
     @keyframes fadeIn {
@@ -18,37 +21,33 @@
     .auto-banner-container {
       width: 100%;
       overflow: hidden;
-      margin: 0;
-      padding: 0;
+      margin: 10px 0;
       position: relative;
     }
 
-    #rotating-banner {
+    .banner-wrapper {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      width: 500%;
+    }
+
+    .banner-slide {
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+
+    .banner-slide img {
       width: 100%;
       height: auto;
       display: block;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      animation: slideIn 0.6s ease-in-out;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
     }
 
     .header-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 10px 20px;
+      background-color: #f8f8f8;
     }
 
     .logo img {
@@ -64,35 +63,32 @@
     .search-bar input {
       padding: 5px;
       font-size: 16px;
+      width: 200px;
     }
 
     .category-section {
-      padding: 20px;
+      padding: 30px 20px 20px 20px;
     }
 
     .games-row {
       display: flex;
-      overflow-x: scroll;
+      overflow-x: auto;
       padding: 10px 0;
     }
 
     .game-item {
       margin-right: 15px;
       padding: 10px;
-      background-color: #f0f0f0;
+      background-color: #0D1B2A;
+      color: white;
       border-radius: 5px;
       cursor: pointer;
+      min-width: 150px;
+      text-align: center;
     }
 
     .game-item:hover {
-      background-color: #e0e0e0;
-    }
-
-    /* New styles for the additional banner and background color for game recommendation */
-    .extra-banner-container {
-      width: 100%;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      background-color: #0056b3;
     }
 
     .category-section h2 {
@@ -100,13 +96,14 @@
       color: #333;
     }
 
-    .game-item {
-      background-color: #0D1B2A; /* Blue background */
-      color: white;
+    /* Scrollbar styling (optional) */
+    .games-row::-webkit-scrollbar {
+      height: 8px;
     }
 
-    .game-item:hover {
-      background-color: #0056b3;
+    .games-row::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -125,18 +122,21 @@
     </div>
   </header>
 
-  <!-- Additional Banner Below Top Bar -->
-  <section class="extra-banner-container">
-    <div class="auto-banner-container">
-      <img id="rotating-banner" src="" alt="Banner">
+  <!-- Auto Rotating Banner (5 images side by side, scroll every 3 seconds) -->
+  <section class="auto-banner-container">
+    <div class="banner-wrapper" id="bannerWrapper">
+      <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt="Banner 1"></div>
+      <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner 2"></div>
+      <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt="Banner 3"></div>
+      <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt="Banner 4"></div>
+      <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt="Banner 5"></div>
     </div>
   </section>
 
   <!-- Game Categories -->
   <section class="category-section">
     <h2>Game Rekomendasi</h2>
-    <div id="popular-games" class="games-row scrollable">
-      <!-- Contoh isi -->
+    <div id="popular-games" class="games-row">
       <div class="game-item">Mobile Legends</div>
       <div class="game-item">Free Fire</div>
       <div class="game-item">PUBG Mobile</div>
@@ -150,43 +150,26 @@
     </div>
 
     <h2>Mobile</h2>
-    <div id="mobile-games" class="games-row scrollable"></div>
+    <div id="mobile-games" class="games-row"></div>
 
     <h2>PC</h2>
-    <div id="pc-games" class="games-row scrollable"></div>
+    <div id="pc-games" class="games-row"></div>
 
     <h2>Voucher</h2>
-    <div id="game-vouchers" class="games-row scrollable"></div>
+    <div id="game-vouchers" class="games-row"></div>
   </section>
 
   <script>
-    const bannerImages = [
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png"
-    ];
+    const bannerWrapper = document.getElementById("bannerWrapper");
+    let currentIndex = 0;
 
-    let currentBanner = 0;
-    const bannerElement = document.getElementById("rotating-banner");
-
-    function showNextBanner() {
-      bannerElement.style.animation = "none"; // reset animation
-      void bannerElement.offsetWidth; // trigger reflow to restart animation
-      bannerElement.style.animation = "slideIn 0.6s ease-in-out"; // apply animation again
-
-      bannerElement.src = bannerImages[currentBanner]; // change the banner image
-      currentBanner = (currentBanner + 1) % bannerImages.length; // loop through banners
+    function slideBanner() {
+      currentIndex = (currentIndex + 1) % 5;
+      const offset = -currentIndex * 100 / 5; // Geser per 20% dari lebar container
+      bannerWrapper.style.transform = `translateX(${offset}%)`;
     }
 
-    // Initial banner display
-    showNextBanner();
-
-    // Set interval to change the banner every 3 seconds
-    setInterval(showNextBanner, 3000);
+    setInterval(slideBanner, 3000);
   </script>
-
-  <script src="script.js"></script>
 </body>
 </html>
