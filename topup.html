@@ -73,15 +73,21 @@
         <h3>MASUKKAN ID</h3>
       </div>
       <p>Untuk menemukan ID Pemain Anda, klik gambar avatar Anda di pojok kiri atas layar. ID Pemain Anda akan ditampilkan di bawah nama pengguna Anda.</p>
-      <input type="text" placeholder="Masukkan ID Pemain Anda" class="input-id">
+      <input type="text" placeholder="Masukkan ID Pemain Anda" class="input-id" id="idInput">
       <button class="btn-learn">LEARN MORE</button>
     </section>
 
-    <!-- STEP 2: PILIH JUMLAH DIAMOND -->
+    <!-- STEP 2: PILIH GAME DAN JUMLAH DIAMOND -->
     <section class="step-section">
       <div class="step">
         <div class="step-number">2</div>
-        <h3>PILIH JUMLAH DIAMOND</h3>
+        <h3>PILIH GAME DAN JUMLAH DIAMOND</h3>
+      </div>
+      <div class="game-select">
+        <label for="gameSelect">Pilih Game:</label>
+        <select id="gameSelect" onchange="loadDiamonds()">
+          <!-- Game akan dimuat otomatis dari JSON -->
+        </select>
       </div>
       <div class="diamond-grid" id="diamondGrid">
         <!-- Daftar Diamond Akan Diisi Dengan JavaScript -->
@@ -111,7 +117,7 @@
     </section>
 
     <!-- Tombol Beli -->
-    <button class="btn-beli" onclick="window.location.href='https://wa.me/6285648211278'">Beli Sekarang</button>
+    <button class="btn-beli" onclick="sendToWhatsApp()">Beli Sekarang</button>
   </main>
 
   <footer>
@@ -119,6 +125,8 @@
   </footer>
 
   <script>
+    let gamesData = [];
+
     // Fungsi untuk memilih diamond
     function selectDiamond(element) {
       const diamonds = document.querySelectorAll('.diamond-card');
@@ -133,18 +141,50 @@
       element.classList.add('selected');
     }
 
-    // Mengambil data game dari JSON (games.json) dan menampilkan pilihan diamond
-    fetch('games.json')
-      .then(response => response.json())
-      .then(data => {
-        const game = data.find(g => g.id === 'mobile-legends-bang-bang'); // Ambil game yang sesuai (ganti jika perlu)
-        const diamondGrid = document.getElementById('diamondGrid');
-        game.prices.forEach(price => {
+    // Fungsi untuk mengambil data game dari JSON dan menampilkan pilihan diamond
+    function loadDiamonds() {
+      const selectedGameId = document.getElementById('gameSelect').value;
+      const selectedGame = gamesData.find(game => game.id === selectedGameId);
+      const diamondGrid = document.getElementById('diamondGrid');
+      diamondGrid.innerHTML = ''; // Clear previous diamonds
+
+      if (selectedGame) {
+        selectedGame.prices.forEach(price => {
           const diamondCard = document.createElement('div');
           diamondCard.classList.add('diamond-card');
           diamondCard.setAttribute('onclick', 'selectDiamond(this)');
           diamondCard.innerHTML = `<p>${price.amount} Diamonds - Rp ${price.price}</p>`;
           diamondGrid.appendChild(diamondCard);
+        });
+      }
+    }
+
+    // Fungsi untuk mengirim data ke WhatsApp
+    function sendToWhatsApp() {
+      const id = document.getElementById('idInput').value;
+      const game = document.getElementById('gameSelect').selectedOptions[0].textContent;
+      const selectedDiamond = document.querySelector('.diamond-card.selected');
+      const diamondAmount = selectedDiamond ? selectedDiamond.querySelector('p').textContent : '';
+      const selectedPayment = document.querySelector('.payment-method.selected') ? document.querySelector('.payment-method.selected').textContent : '';
+
+      const message = `ID: ${id}\nGame: ${game}\nDiamond: ${diamondAmount}\nPembayaran: ${selectedPayment}`;
+
+      window.location.href = `https://wa.me/6285648211278?text=${encodeURIComponent(message)}`;
+    }
+
+    // Fungsi untuk memuat data game dari JSON
+    fetch('games.json')
+      .then(response => response.json())
+      .then(data => {
+        gamesData = data;
+        const gameSelect = document.getElementById('gameSelect');
+        
+        // Menambahkan pilihan game ke dropdown
+        gamesData.forEach(game => {
+          const option = document.createElement('option');
+          option.value = game.id;
+          option.textContent = game.name;
+          gameSelect.appendChild(option);
         });
       })
       .catch(error => console.error('Error fetching game data:', error));
