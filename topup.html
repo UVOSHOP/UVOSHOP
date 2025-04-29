@@ -5,6 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top Up Free Fire</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styling untuk pilihan diamond */
+    .diamond-card {
+      border: 2px solid #ddd;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .diamond-card.selected {
+      border-color: #ff9900;
+      background-color: #fffae6;
+    }
+
+    .diamond-card:hover {
+      background-color: #f7f7f7;
+    }
+
+    .payment-method p {
+      padding: 10px 0;
+    }
+
+    .btn-beli {
+      background-color: #ff9900;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .btn-beli:hover {
+      background-color: #e68900;
+    }
+  </style>
 </head>
 <body>
 
@@ -37,15 +74,15 @@
         <h3>PILIH JUMLAH</h3>
       </div>
       <div class="diamond-grid">
-        <div class="diamond-card"><p>5 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>12 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>50 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>70 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>140 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>355 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>7,290 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>36,500 Free Fire Diamonds</p></div>
-        <div class="diamond-card"><p>73,100 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>5 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>12 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>50 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>70 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>140 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>355 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>7,290 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>36,500 Free Fire Diamonds</p></div>
+        <div class="diamond-card" onclick="selectDiamond(this)"><p>73,100 Free Fire Diamonds</p></div>
       </div>
     </section>
 
@@ -58,52 +95,39 @@
 
       <div class="payment-section">
         <div class="payment-method">
-          <h4>Voucher Fisik</h4>
-          <div class="payment-options">
-            <p>UniPin</p>
-          </div>
+          <p>Voucher UVOSHOP</p>
         </div>
 
         <div class="payment-method">
-          <h4>E-Wallet</h4>
-          <div class="payment-options">
-            <p>Dana</p>
-            <p>Gopay</p>
-            <p>ShopeePay</p>
-          </div>
+          <p>QRIS</p>
         </div>
 
         <div class="payment-method">
-          <h4>Transfer Bank</h4>
-          <div class="payment-options">
-            <p>BCA</p>
-            <p>BRI</p>
-            <p>Mandiri</p>
-            <p>BNI</p>
-          </div>
+          <p>BANK</p>
         </div>
 
         <div class="payment-method">
-          <h4>SMS & Seluler</h4>
-          <div class="payment-options">
-            <p>Telkomsel</p>
-            <p>XL</p>
-            <p>Indosat</p>
-          </div>
+          <p>CASH</p>
         </div>
       </div>
     </section>
+
+    <!-- Tombol Beli -->
+    <button class="btn-beli" onclick="window.location.href='https://wa.me/yourwhatsapplink'">Beli Sekarang</button>
   </main>
 
   <footer>
-    <div class="footer-menu">
-      <button><img src="home.png" alt="Home"></button>
-      <button><img src="settings.png" alt="Settings"></button>
-      <button class="btn-search"><img src="search.png" alt="Search"></button>
-      <button><img src="games.png" alt="Games"></button>
-      <button><img src="menu.png" alt="Menu"></button>
-    </div>
+    <!-- Dekorasi bawah dihapus sesuai permintaan -->
   </footer>
+
+  <script>
+    // Fungsi untuk memilih diamond
+    function selectDiamond(element) {
+      const diamonds = document.querySelectorAll('.diamond-card');
+      diamonds.forEach(diamond => diamond.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+  </script>
 
 </body>
 </html>
