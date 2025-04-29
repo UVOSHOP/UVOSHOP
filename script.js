@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.error(err));
   }
 });
+
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const gameId = params.get('game');
