@@ -41,21 +41,24 @@
         button:hover {
             background-color: darkorange;
         }
-        #price-list p {
-            color: #2C3E50; /* biru gelap */
+        #price-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .price-item {
             background-color: #F9F9F9;
+            color: #2C3E50;
             padding: 10px;
             border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        footer {
-            background-color: #0D1B2A;
-            color: #F9F9F9;
+            cursor: pointer;
+            flex: 1 1 calc(50% - 10px); /* 2 kolom */
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        }
+        .price-item.selected {
+            background-color: #3E92CC;
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -65,29 +68,26 @@
     </header>
     <div class="container">
         <h3>1<br>Masukkan ID Pemain</h3>
-        <input type="text" placeholder="Masukkan ID Pemain" />
+        <input type="text" id="player-id" placeholder="Masukkan ID Pemain" />
 
         <h3>2<br>Pilih Server (Jika Ada)</h3>
-        <input type="text" placeholder="Masukkan Server (jika ada)" />
+        <input type="text" id="server-id" placeholder="Masukkan Server (jika ada)" />
 
         <h3>3<br>Pilih Nominal Diamond</h3>
         <div id="price-list">
-            <!-- Harga akan dimuat dari JSON melalui JS -->
+            <!-- Harga akan dimuat dari JSON -->
         </div>
 
         <h3>4<br>Pilih Metode Pembayaran</h3>
-        <select>
+        <select id="payment-method">
             <option>Voucher UVOSHOP</option>
             <option>QRIS</option>
             <option>BANK</option>
             <option>CASH</option>
         </select>
 
-        <button>Beli Sekarang</button>
+        <button id="buy-button">Beli Sekarang</button>
     </div>
-    <footer>
-        <p>&copy; 2025 Top-up Game | All Rights Reserved</p>
-    </footer>
 
     <script src="loadPrices.js"></script>
 </body>
