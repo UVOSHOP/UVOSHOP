@@ -12,6 +12,12 @@ body {
   background-color: var(--clr-body);
   color: var(--clr-text);
   font-family: 'Segoe UI', sans-serif;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+body.fade-in {
+  opacity: 1;
 }
 
 header {
@@ -26,6 +32,26 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0.25rem 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.logo {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo img {
+  width: 80px;
+  height: auto;
+}
+
+.search-group {
+  flex: 2 1 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
 
 .btn-back {
@@ -34,11 +60,6 @@ header {
   color: var(--clr-text);
   font-size: 0.9rem;
   cursor: pointer;
-}
-
-.logo img {
-  width: 80px;
-  height: auto;
 }
 
 .search-bar input {
@@ -55,7 +76,7 @@ header {
   margin-left: 8px;
 }
 
-/* Mengatur banner slider */
+/* Banner slider */
 .banner-slider {
   display: flex;
   overflow: hidden;
@@ -66,6 +87,7 @@ header {
 #banner-slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  animation: slide 15s infinite;
 }
 
 .banner-slider img {
@@ -76,7 +98,6 @@ header {
   flex-shrink: 0;
 }
 
-/* Menambahkan animasi geser banner setiap 3 detik */
 @keyframes slide {
   0% { transform: translateX(0); }
   20% { transform: translateX(-100%); }
@@ -84,10 +105,6 @@ header {
   60% { transform: translateX(-300%); }
   80% { transform: translateX(-400%); }
   100% { transform: translateX(0); }
-}
-
-#banner-slider {
-  animation: slide 15s infinite;
 }
 
 .category-section {
@@ -238,34 +255,29 @@ label {
   margin-top: 10px;
 }
 
-/* Responsif: Pastikan header tidak terlalu tinggi di mobile */
+/* Responsif */
 @media only screen and (max-width: 768px) {
   .header-container {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     padding: 0.5rem;
-    text-align: center;
   }
-  
+
   .logo img {
     width: 70px;
   }
-  
-  .search-bar input {
-    width: 140px; /* Ukuran input pencarian lebih kecil di perangkat mobile */
-  }
 
-  .indonesia-logo {
-    margin-top: 0.5rem;
+  .search-bar input {
+    width: 100%;
+    max-width: 160px;
   }
 
   .banner-slider {
     width: 100%;
     margin-top: 1rem;
-  }
-
-  #banner-slider {
-    animation: slide 15s infinite;
   }
 
   .banner-slider img {
