@@ -2,47 +2,36 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top Up Game - UVOSHOP</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* Reset & Base */
-    * {
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
       background: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
     }
 
     header {
       background-color: #007bff;
       padding: 15px;
       text-align: center;
-    }
-
-    .logo {
-      font-size: 24px;
       color: white;
+      font-size: 24px;
       font-weight: bold;
     }
 
     main {
       padding: 15px;
-      max-width: 600px;
-      margin: auto;
     }
 
     .step-section {
+      margin-bottom: 30px;
       background: white;
+      padding: 15px;
       border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
 
     .step {
@@ -54,89 +43,74 @@
     .step-number {
       background-color: #ff9900;
       color: white;
-      font-weight: bold;
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-weight: bold;
       margin-right: 10px;
     }
 
-    h3 {
+    .step h3 {
       font-size: 16px;
+      margin: 0;
     }
 
-    select,
     input[type="text"] {
       width: 100%;
       padding: 12px;
-      margin-top: 5px;
-      border-radius: 8px;
       border: 1px solid #ccc;
+      border-radius: 8px;
       font-size: 16px;
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
 
-    .diamond-grid,
-    .payment-grid {
+    .diamond-grid, .payment-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    .diamond-card,
-    .payment-method {
-      background: white;
+    .diamond-card, .payment-method {
       border: 2px solid #ddd;
-      border-radius: 10px;
-      flex: 1 1 calc(50% - 10px);
-      padding: 15px 10px;
+      border-radius: 8px;
+      padding: 10px;
       text-align: center;
-      font-size: 14px;
       cursor: pointer;
-      transition: all 0.3s;
+      flex: 1 1 calc(50% - 10px);
+      background: #fff;
+      transition: 0.3s;
     }
 
-    .diamond-card.selected,
-    .payment-method.selected {
+    .diamond-card:hover, .payment-method:hover {
+      background: #f1f1f1;
+    }
+
+    .diamond-card.selected, .payment-method.selected {
       border-color: #ff9900;
-      background-color: #fff0dc;
-    }
-
-    .diamond-card:hover,
-    .payment-method:hover {
-      background-color: #f9f9f9;
+      background-color: #fff5e6;
     }
 
     .btn-beli {
       width: 100%;
       background-color: #ff9900;
       color: white;
-      padding: 15px;
+      padding: 14px;
       font-size: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      margin-top: 30px;
     }
 
     .btn-beli:hover {
-      background-color: #e08800;
+      background-color: #e68800;
     }
 
-    @media (min-width: 480px) {
-      .diamond-card,
-      .payment-method {
-        flex: 1 1 calc(33.33% - 10px);
-      }
-    }
-
-    @media (min-width: 768px) {
-      .diamond-card,
-      .payment-method {
+    @media (min-width: 600px) {
+      .diamond-card, .payment-method {
         flex: 1 1 calc(25% - 10px);
       }
     }
@@ -144,51 +118,43 @@
 </head>
 <body>
 
-<header>
-  <div class="logo">UVO<span style="color:#ffcc00;">SHOP</span></div>
-</header>
+<header>UVOSHOP</header>
 
 <main>
-  <!-- STEP 1 -->
+
+  <!-- STEP 1: JUDUL GAME -->
   <section class="step-section">
     <div class="step">
       <div class="step-number">1</div>
-      <h3>Pilih Game</h3>
+      <h3 id="gameTitle">Memuat game...</h3>
     </div>
-    <select id="gameSelect" onchange="onGameSelect()">
-      <option value="">-- Pilih Game --</option>
-      <option value="free-fire">Free Fire</option>
-      <option value="mobile-legends-bang-bang">Mobile Legends</option>
-      <option value="call-of-duty-mobile">Call of Duty Mobile</option>
-      <option value="pokémon-unite">Pokémon Unite</option>
-    </select>
   </section>
 
-  <!-- STEP 2 -->
+  <!-- STEP 2: ISI ID -->
   <section class="step-section">
     <div class="step">
       <div class="step-number">2</div>
-      <h3>Isi ID</h3>
+      <h3>Masukkan ID Game</h3>
     </div>
-    <input type="text" id="idInput" placeholder="Masukkan ID Game Anda" required>
+    <input type="text" id="idInput" placeholder="Contoh: 123456789 (Server jika perlu)">
   </section>
 
-  <!-- STEP 3 -->
+  <!-- STEP 3: PILIH DIAMOND -->
   <section class="step-section">
     <div class="step">
       <div class="step-number">3</div>
-      <h3>Pilih Diamond</h3>
+      <h3>Pilih Nominal Diamond</h3>
     </div>
     <div id="diamondGrid" class="diamond-grid">
-      <!-- Diisi otomatis -->
+      <!-- Diisi otomatis dari JS -->
     </div>
   </section>
 
-  <!-- STEP 4 -->
+  <!-- STEP 4: PILIH METODE PEMBAYARAN -->
   <section class="step-section">
     <div class="step">
       <div class="step-number">4</div>
-      <h3>Metode Pembayaran</h3>
+      <h3>Pilih Metode Pembayaran</h3>
     </div>
     <div id="paymentGrid" class="payment-grid">
       <div class="payment-method" onclick="selectPayment(this)">Voucher UVOSHOP</div>
@@ -198,35 +164,59 @@
     </div>
   </section>
 
+  <!-- TOMBOL BELI -->
   <button class="btn-beli" onclick="sendToWhatsApp()">Beli Sekarang</button>
+
 </main>
 
 <script>
-  let gamesData = [], selectedGame = null, selectedDiamondData = null;
+  let gamesData = [];
+  let selectedGame = null;
+  let selectedDiamondData = null;
 
-  document.addEventListener('DOMContentLoaded', function() {
-    fetch('games.json')
-      .then(response => response.json())
-      .then(data => gamesData = data)
-      .catch(err => console.error('Gagal memuat games.json:', err));
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    const gameId = getQueryParam('game');
+    if (!gameId) {
+      alert("Parameter game tidak ditemukan di URL.");
+      return;
+    }
+
+    try {
+      const response = await fetch('games.json');
+      gamesData = await response.json();
+      selectedGame = gamesData.find(game => game.id === gameId);
+
+      if (!selectedGame) {
+        document.getElementById('gameTitle').textContent = "Game tidak ditemukan.";
+        return;
+      }
+
+      document.getElementById('gameTitle').textContent = `Top Up untuk ${selectedGame.name}`;
+      loadDiamonds(selectedGame);
+    } catch (error) {
+      console.error("Gagal memuat games.json:", error);
+      document.getElementById('gameTitle').textContent = "Gagal memuat data game.";
+    }
   });
 
-  function onGameSelect() {
-    const selectedGameId = document.getElementById('gameSelect').value;
-    selectedGame = gamesData.find(game => game.id === selectedGameId);
-    selectedDiamondData = null;
-    document.getElementById('diamondGrid').innerHTML = '';
-    if (selectedGame && selectedGame.prices) {
-      selectedGame.prices.forEach(price => {
-        const card = document.createElement('div');
-        card.className = 'diamond-card';
-        card.onclick = () => selectDiamond(card);
-        card.dataset.amount = price.amount;
-        card.dataset.price = price.price;
-        card.innerHTML = `<p>${price.amount} Diamonds</p><p>Rp ${price.price}</p>`;
-        document.getElementById('diamondGrid').appendChild(card);
-      });
-    }
+  function loadDiamonds(game) {
+    const diamondGrid = document.getElementById('diamondGrid');
+    diamondGrid.innerHTML = '';
+
+    game.prices.forEach(price => {
+      const card = document.createElement('div');
+      card.className = 'diamond-card';
+      card.dataset.amount = price.amount;
+      card.dataset.price = price.price;
+      card.onclick = () => selectDiamond(card);
+      card.innerHTML = `<p>${price.amount} Diamonds</p><p>Rp ${price.price}</p>`;
+      diamondGrid.appendChild(card);
+    });
   }
 
   function selectDiamond(el) {
