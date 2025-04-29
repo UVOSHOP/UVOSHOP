@@ -7,7 +7,8 @@
 }
 
 body {
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
   background-color: var(--clr-body);
   color: var(--clr-text);
   font-family: 'Segoe UI', sans-serif;
@@ -15,7 +16,8 @@ body {
 
 header {
   background-color: var(--clr-header);
-  padding: 0.5rem 1rem; /* Mengurangi padding pada header */
+  /* Hapus padding ekstra agar header ringkas */
+  padding: 0.25rem 0;
 }
 
 .header-container {
@@ -24,51 +26,64 @@ header {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.5rem 1rem; /* Mengurangi padding pada header-container */
+  /* Kurangi padding vertikal untuk mengecilkan tinggi */
+  padding: 0.25rem 1rem;
 }
 
 .btn-back {
   background: none;
   border: none;
   color: var(--clr-text);
-  font-size: 1rem;
+  font-size: 0.9rem; /* sedikit diperkecil */
   cursor: pointer;
 }
 
 .logo img {
-  width: 100px; /* Mengurangi ukuran logo */
+  width: 80px;  /* diperkecil dari 120px */
   height: auto;
 }
 
 .search-bar input {
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px; 
+  padding: 0.4rem 0.6rem; /* sedikit diperkecil */
+  border-radius: 4px;
   border: none;
-  width: 180px; /* Mengurangi lebar search bar */
+  width: 160px; /* diperkecil dari 220px */
+  font-size: 0.9rem;
 }
 
-.indonesia-flag img {
-  width: 24px; /* Menyesuaikan ukuran bendera Indonesia */
+.indonesia-logo img {
+  width: 24px;
   height: auto;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .banner-slider {
   display: flex;
-  overflow-x: auto;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.5rem; /* beri sedikit jarak dari header */
 }
 
 .banner-slider img {
   flex-shrink: 0;
-  width: 100%; /* Mengatur agar gambar memenuhi lebar */
-  max-width: 400px; /* Maksimal lebar gambar */
+  width: 100%;
   height: auto;
-  object-fit: contain; /* Agar gambar tidak terpotong */
+  object-fit: cover;
   border-radius: 6px;
-  background-color: #000;
-  scroll-snap-align: center;
+}
+
+/* Animasi geser banner setiap 3 detik */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-100%); }
+  40% { transform: translateX(-200%); }
+  60% { transform: translateX(-300%); }
+  80% { transform: translateX(-400%); }
+  100% { transform: translateX(0); }
+}
+
+#banner-slider {
+  animation: slide 15s infinite;
 }
 
 .category-section {
@@ -102,7 +117,8 @@ header {
 }
 
 .game-card img {
-  width: 56px; height: 56px;
+  width: 56px;
+  height: 56px;
   margin-bottom: 0.5rem;
 }
 
@@ -115,10 +131,12 @@ header {
 
 .game-card .btn-topup {
   position: absolute;
-  bottom: 10px; left: 50%;
+  bottom: 10px;
+  left: 50%;
   transform: translateX(-50%);
   background-color: var(--clr-accent);
-  border: none; color: #fff;
+  border: none;
+  color: #fff;
   padding: 0.3rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -148,7 +166,10 @@ header {
 }
 
 /* Input Fields */
-input[type="text"], input[type="number"], input[type="radio"], select {
+input[type="text"],
+input[type="number"],
+input[type="radio"],
+select {
   width: 100%;
   padding: 12px;
   margin: 12px 0;
@@ -161,7 +182,9 @@ input[type="text"], input[type="number"], input[type="radio"], select {
 }
 
 /* Efek saat input fokus */
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
   border-color: var(--clr-accent);
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
 }
@@ -220,4 +243,19 @@ label {
   color: #ccc;
   text-align: center;
   margin-top: 10px;
+}
+
+/* Responsif: Pastikan header tidak terlalu tinggi di mobile */
+@media only screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.25rem 0.5rem;
+  }
+  .logo img {
+    width: 70px;
+  }
+  .search-bar input {
+    width: 140px;
+  }
 }
