@@ -55,6 +55,7 @@ header {
   margin-left: 8px;
 }
 
+/* Mengatur banner slider */
 .banner-slider {
   display: flex;
   overflow: hidden;
@@ -62,25 +63,30 @@ header {
   margin-top: 0.5rem;
 }
 
+#banner-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
 .banner-slider img {
-  flex-shrink: 0;
   width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 6px;
+  flex-shrink: 0;
 }
 
+/* Menambahkan animasi geser banner setiap 3 detik */
 @keyframes slide {
   0% { transform: translateX(0); }
   20% { transform: translateX(-100%); }
   40% { transform: translateX(-200%); }
   60% { transform: translateX(-300%); }
   80% { transform: translateX(-400%); }
-  100% { transform: translateX(-500%); }
+  100% { transform: translateX(0); }
 }
 
 #banner-slider {
-  display: flex;
   animation: slide 15s infinite;
 }
 
@@ -250,7 +256,6 @@ label {
     margin-top: 0.5rem;
   }
 
-  /* Pastikan banner tetap terlihat di mobile */
   .banner-slider {
     width: 100%;
     margin-top: 1rem;
