@@ -87,6 +87,27 @@
     .game-item:hover {
       background-color: #e0e0e0;
     }
+
+    /* New styles for the additional banner and background color for game recommendation */
+    .extra-banner-container {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .category-section h2 {
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .game-item {
+      background-color: #007BFF; /* Blue background */
+      color: white;
+    }
+
+    .game-item:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -104,8 +125,8 @@
     </div>
   </header>
 
-  <!-- Banner Otomatis -->
-  <section class="auto-banner">
+  <!-- Additional Banner Below Top Bar -->
+  <section class="extra-banner-container">
     <div class="auto-banner-container">
       <img id="rotating-banner" src="" alt="Banner">
     </div>
@@ -168,4 +189,4 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
+</html>
