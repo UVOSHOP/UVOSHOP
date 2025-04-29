@@ -1,29 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top-up Diamond</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Top-up Game</title>
   <style>
     body {
       background-color: #202938;
       color: #F9F9F9;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
     header {
       background-color: #0D1B2A;
       padding: 20px;
       text-align: center;
-    }
-    h3 {
       color: #F9F9F9;
     }
-    .price-list p {
-      color: #4C6A8E; /* hitam kebiruan */
+    header h1 {
+      font-size: 2em;
+    }
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .game-item {
+      background-color: #1E3A8A;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: #F9F9F9;
+    }
+    .game-item h2 {
+      font-size: 1.5em;
+    }
+    .game-item .price {
+      font-size: 1.2em;
+      color: #3E92CC;
+    }
+    .game-item button {
+      background-color: #2C3E50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
       font-size: 1em;
-      margin: 5px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .game-item button:hover {
+      background-color: #3E92CC;
+    }
+    footer {
+      background-color: #0D1B2A;
+      color: #F9F9F9;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
   </style>
 </head>
@@ -31,14 +68,12 @@
   <header>
     <h1>Top-up Game</h1>
   </header>
-
-  <main>
-    <h3>3<br>Pilih Nominal Diamond</h3>
-    <div class="price-list" id="price-list">
-      <!-- Harga akan dimuat di sini -->
-    </div>
-  </main>
-
+  <div class="game-list" id="price-list">
+    <!-- Harga dari JSON akan dimuat di sini -->
+  </div>
+  <footer>
+    <p>&copy; 2025 Top-up Game | All Rights Reserved</p>
+  </footer>
   <script src="loadPrices.js"></script>
 </body>
 </html>
