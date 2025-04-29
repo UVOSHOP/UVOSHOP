@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* Styling untuk pilihan diamond */
-    .diamond-card {
+    .diamond-card, .payment-method {
       border: 2px solid #ddd;
       padding: 20px;
       text-align: center;
@@ -15,17 +15,27 @@
       transition: 0.3s;
     }
 
-    .diamond-card.selected {
+    .diamond-card.selected, .payment-method.selected {
       border-color: #ff9900;
       background-color: #fffae6;
     }
 
-    .diamond-card:hover {
+    .diamond-card:hover, .payment-method:hover {
       background-color: #f7f7f7;
     }
 
-    .payment-method p {
-      padding: 10px 0;
+    .diamond-grid, .payment-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .diamond-card, .payment-method {
+      flex: 1;
+      margin: 10px;
+      min-width: 120px;
+      text-align: center;
     }
 
     .btn-beli {
@@ -67,57 +77,45 @@
       <button class="btn-learn">LEARN MORE</button>
     </section>
 
-    <!-- STEP 2: PILIH JUMLAH -->
+    <!-- STEP 2: PILIH JUMLAH DIAMOND -->
     <section class="step-section">
       <div class="step">
         <div class="step-number">2</div>
-        <h3>PILIH JUMLAH</h3>
+        <h3>PILIH JUMLAH DIAMOND</h3>
       </div>
-      <div class="diamond-grid">
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>5 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>12 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>50 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>70 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>140 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>355 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>7,290 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>36,500 Free Fire Diamonds</p></div>
-        <div class="diamond-card" onclick="selectDiamond(this)"><p>73,100 Free Fire Diamonds</p></div>
+      <div class="diamond-grid" id="diamondGrid">
+        <!-- Daftar Diamond Akan Diisi Dengan JavaScript -->
       </div>
     </section>
 
-    <!-- STEP 3: PILIH PEMBAYARAN -->
+    <!-- STEP 3: PILIH SALURAN PEMBAYARAN -->
     <section class="step-section">
       <div class="step">
         <div class="step-number">3</div>
         <h3>PILIH SALURAN PEMBAYARAN</h3>
       </div>
-
-      <div class="payment-section">
-        <div class="payment-method">
+      <div class="payment-grid" id="paymentGrid">
+        <div class="payment-method" onclick="selectPayment(this)">
           <p>Voucher UVOSHOP</p>
         </div>
-
-        <div class="payment-method">
+        <div class="payment-method" onclick="selectPayment(this)">
           <p>QRIS</p>
         </div>
-
-        <div class="payment-method">
+        <div class="payment-method" onclick="selectPayment(this)">
           <p>BANK</p>
         </div>
-
-        <div class="payment-method">
+        <div class="payment-method" onclick="selectPayment(this)">
           <p>CASH</p>
         </div>
       </div>
     </section>
 
     <!-- Tombol Beli -->
-    <button class="btn-beli" onclick="window.location.href='https://wa.me/yourwhatsapplink'">Beli Sekarang</button>
+    <button class="btn-beli" onclick="window.location.href='https://wa.me/6285648211278'">Beli Sekarang</button>
   </main>
 
   <footer>
-    <!-- Dekorasi bawah dihapus sesuai permintaan -->
+    <!-- Footer dibiarkan kosong sesuai permintaan -->
   </footer>
 
   <script>
@@ -127,6 +125,29 @@
       diamonds.forEach(diamond => diamond.classList.remove('selected'));
       element.classList.add('selected');
     }
+
+    // Fungsi untuk memilih metode pembayaran
+    function selectPayment(element) {
+      const payments = document.querySelectorAll('.payment-method');
+      payments.forEach(payment => payment.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    // Mengambil data game dari JSON (games.json) dan menampilkan pilihan diamond
+    fetch('games.json')
+      .then(response => response.json())
+      .then(data => {
+        const game = data.find(g => g.id === 'mobile-legends-bang-bang'); // Ambil game yang sesuai (ganti jika perlu)
+        const diamondGrid = document.getElementById('diamondGrid');
+        game.prices.forEach(price => {
+          const diamondCard = document.createElement('div');
+          diamondCard.classList.add('diamond-card');
+          diamondCard.setAttribute('onclick', 'selectDiamond(this)');
+          diamondCard.innerHTML = `<p>${price.amount} Diamonds - Rp ${price.price}</p>`;
+          diamondGrid.appendChild(diamondCard);
+        });
+      })
+      .catch(error => console.error('Error fetching game data:', error));
   </script>
 
 </body>
