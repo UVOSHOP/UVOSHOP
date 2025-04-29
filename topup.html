@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Up Free Fire</title>
+  <title>Top Up Game</title>
   <link rel="stylesheet" href="style.css">
   <style>
     /* Styling untuk pilihan diamond */
@@ -51,6 +51,10 @@
     .btn-beli:hover {
       background-color: #e68900;
     }
+
+    .game-select {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -66,31 +70,32 @@
   </header>
 
   <main>
-    <!-- STEP 1: MASUKKAN ID -->
+    <!-- STEP 1: PILIH GAME -->
     <section class="step-section">
       <div class="step">
         <div class="step-number">1</div>
-        <h3>MASUKKAN ID</h3>
+        <h3>PILIH GAME</h3>
       </div>
-      <p>Untuk menemukan ID Pemain Anda, klik gambar avatar Anda di pojok kiri atas layar. ID Pemain Anda akan ditampilkan di bawah nama pengguna Anda.</p>
-      <input type="text" placeholder="Masukkan ID Pemain Anda" class="input-id" id="idInput">
-      <button class="btn-learn">LEARN MORE</button>
+      <div class="game-select">
+        <select id="gameSelect" onchange="onGameSelect()">
+          <option value="">Pilih Game</option>
+          <option value="mobile-legends-bang-bang">Mobile Legends: Bang Bang</option>
+          <option value="free-fire">Free Fire</option>
+          <option value="call-of-duty-mobile">Call of Duty Mobile</option>
+          <option value="pokémon-unite">Pokémon Unite</option>
+          <!-- Tambah game lain jika ada -->
+        </select>
+      </div>
     </section>
 
-    <!-- STEP 2: PILIH GAME DAN JUMLAH DIAMOND -->
+    <!-- STEP 2: PILIH DIAMOND -->
     <section class="step-section">
       <div class="step">
         <div class="step-number">2</div>
-        <h3>PILIH GAME DAN JUMLAH DIAMOND</h3>
+        <h3>PILIH DIAMOND</h3>
       </div>
-      <div class="game-select">
-        <label for="gameSelect">Pilih Game:</label>
-        <select id="gameSelect" onchange="loadDiamonds()">
-          <!-- Game akan dimuat otomatis dari JSON -->
-        </select>
-      </div>
-      <div class="diamond-grid" id="diamondGrid">
-        <!-- Daftar Diamond Akan Diisi Dengan JavaScript -->
+      <div id="diamondGrid" class="diamond-grid">
+        <!-- Diamond options will be loaded automatically based on the selected game -->
       </div>
     </section>
 
@@ -126,6 +131,16 @@
 
   <script>
     let gamesData = [];
+    let selectedGame = null;
+
+    // Fungsi untuk memilih game
+    function onGameSelect() {
+      const selectedGameId = document.getElementById('gameSelect').value;
+      selectedGame = gamesData.find(game => game.id === selectedGameId);
+      if (selectedGame) {
+        loadDiamonds(selectedGame);
+      }
+    }
 
     // Fungsi untuk memilih diamond
     function selectDiamond(element) {
@@ -141,28 +156,10 @@
       element.classList.add('selected');
     }
 
-    // Fungsi untuk mengambil data game dari JSON dan menampilkan pilihan diamond
-    function loadDiamonds() {
-      const selectedGameId = document.getElementById('gameSelect').value;
-      const selectedGame = gamesData.find(game => game.id === selectedGameId);
-      const diamondGrid = document.getElementById('diamondGrid');
-      diamondGrid.innerHTML = ''; // Clear previous diamonds
-
-      if (selectedGame) {
-        selectedGame.prices.forEach(price => {
-          const diamondCard = document.createElement('div');
-          diamondCard.classList.add('diamond-card');
-          diamondCard.setAttribute('onclick', 'selectDiamond(this)');
-          diamondCard.innerHTML = `<p>${price.amount} Diamonds - Rp ${price.price}</p>`;
-          diamondGrid.appendChild(diamondCard);
-        });
-      }
-    }
-
     // Fungsi untuk mengirim data ke WhatsApp
     function sendToWhatsApp() {
       const id = document.getElementById('idInput').value;
-      const game = document.getElementById('gameSelect').selectedOptions[0].textContent;
+      const game = selectedGame.name;
       const selectedDiamond = document.querySelector('.diamond-card.selected');
       const diamondAmount = selectedDiamond ? selectedDiamond.querySelector('p').textContent : '';
       const selectedPayment = document.querySelector('.payment-method.selected') ? document.querySelector('.payment-method.selected').textContent : '';
@@ -177,17 +174,25 @@
       .then(response => response.json())
       .then(data => {
         gamesData = data;
-        const gameSelect = document.getElementById('gameSelect');
-        
-        // Menambahkan pilihan game ke dropdown
-        gamesData.forEach(game => {
-          const option = document.createElement('option');
-          option.value = game.id;
-          option.textContent = game.name;
-          gameSelect.appendChild(option);
-        });
+        // Set game default jika diperlukan
       })
       .catch(error => console.error('Error fetching game data:', error));
+
+    // Fungsi untuk memuat harga diamond berdasarkan game yang dipilih
+    function loadDiamonds(game) {
+      const diamondGrid = document.getElementById('diamondGrid');
+      diamondGrid.innerHTML = ''; // Clear previous diamonds
+
+      if (game) {
+        game.prices.forEach(price => {
+          const diamondCard = document.createElement('div');
+          diamondCard.classList.add('diamond-card');
+          diamondCard.setAttribute('onclick', 'selectDiamond(this)');
+          diamondCard.innerHTML = `<p>${price.amount} Diamonds - Rp ${price.price}</p>`;
+          diamondGrid.appendChild(diamondCard);
+        });
+      }
+    }
   </script>
 
 </body>
