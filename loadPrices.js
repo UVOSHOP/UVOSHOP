@@ -1,37 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const gameId = urlParams.get("game");
-  const container = document.getElementById("price-list");
 
-  if (!gameId) {
-    container.innerHTML = "<p>Game tidak ditemukan di URL.</p>";
-    return;
-  }
+  if (!gameId) return;
 
-  fetch("games.json")
-    .then(res => res.json())
-    .then(games => {
-      const game = games.find(g => g.id === gameId);
-      if (!game) {
-        container.innerHTML = "<p>Game tidak ditemukan dalam data.</p>";
-        return;
-      }
+  try {
+    const res = await fetch("games.json");
+    const games = await res.json();
+    const game = games.find(g => g.id === gameId);
 
-      game.prices.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "game-item";
+    if (!game) {
+      document.getElementById("price-list").innerHTML = "<p>Game tidak ditemukan.</p>";
+      return;
+    }
 
-        card.innerHTML = `
-          <h2>${item.amount} Diamonds</h2>
-          <p class="price">Rp ${item.price.toLocaleString("id-ID")}</p>
-          <button>Top-up</button>
-        `;
+    const priceListContainer = document.getElementById("price-list");
+    priceListContainer.innerHTML = "";
 
-        container.appendChild(card);
-      });
-    })
-    .catch(err => {
-      container.innerHTML = "<p>Gagal memuat data harga.</p>";
-      console.error(err);
+    game.prices.forEach(price => {
+      const p = document.createElement("p");
+      p.textContent = `${price.amount} Diamonds - Rp ${price.price.toLocaleString("id-ID")}`;
+      priceListContainer.appendChild(p);
     });
+  } catch (error) {
+    console.error("Gagal memuat data harga:", error);
+    document.getElementById("price-list").innerHTML = "<p>Gagal memuat harga.</p>";
+  }
 });
