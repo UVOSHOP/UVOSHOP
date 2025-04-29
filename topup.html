@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="loadPrices.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,13 +42,14 @@
       display: block;
       font-weight: bold;
       font-size: 14px;
+      margin-bottom: 5px;
     }
     input {
       width: 100%;
       padding: 10px;
       border-radius: 5px;
       border: none;
-      margin-top: 5px;
+      font-size: 14px;
     }
     .grid {
       display: grid;
@@ -97,6 +101,7 @@
       white-space: nowrap;
       box-sizing: border-box;
       animation: marquee 20s linear infinite;
+      margin-top: 20px;
     }
     .marquee img {
       height: 30px;
@@ -122,6 +127,10 @@
       .input-group label {
         font-size: 13px;
       }
+      input {
+        font-size: 13px;
+        padding: 10px;
+      }
       #buy-button {
         font-size: 16px;
         padding: 12px;
@@ -129,6 +138,9 @@
       .diamond-item img, .payment-item img {
         width: 30px;
         height: 30px;
+      }
+      .marquee {
+        margin-top: 30px;
       }
     }
   </style>
