@@ -4,17 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UVOSHOP - Top Up Game</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    * {
+    .auto-banner-container {
+      width: 100%;
+      overflow: hidden;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: sans-serif;
     }
 
-    header {
-      background-color: #222;
-      padding: 10px 20px;
+    #rotating-banner {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
     .header-container {
@@ -24,59 +27,13 @@
     }
 
     .logo img {
-      max-height: 50px;
+      height: 50px;
     }
 
-    .search-bar input {
-      padding: 8px;
-      width: 200px;
-      border-radius: 20px;
-      border: none;
-    }
-
-    .indonesia-logo img {
-      max-height: 30px;
-    }
-
-    /* Banner */
-    .auto-banner {
-      margin: 10px 0;
-      overflow: hidden;
-    }
-
-    .auto-banner-container {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .auto-banner-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    /* Kategori Game */
-    .category-section {
-      padding: 20px;
-    }
-
-    h2 {
-      margin-top: 20px;
-    }
-
-    .games-row {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 10px 0;
-    }
-
-    .games-row::-webkit-scrollbar {
-      display: none;
+    .indonesia-logo {
+      font-weight: bold;
+      font-size: 18px;
+      padding-right: 10px;
     }
   </style>
 </head>
@@ -86,14 +43,12 @@
   <header>
     <div class="header-container">
       <div class="logo">
-        <img src="logo.png" alt="UVOSHOP">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
       </div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari game...">
       </div>
-      <div class="indonesia-logo">
-        <img src="indonesia.png" alt="ID">
-      </div>
+      <div class="indonesia-logo">ID</div>
     </div>
   </header>
 
@@ -119,29 +74,27 @@
     <div id="game-vouchers" class="games-row scrollable"></div>
   </section>
 
-  <!-- Banner JS -->
   <script>
     const bannerImages = [
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png",
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png"
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png"
     ];
 
     let currentBanner = 0;
     const bannerElement = document.getElementById("rotating-banner");
 
     function showNextBanner() {
-      bannerElement.style.opacity = 0;
-      setTimeout(() => {
-        bannerElement.src = bannerImages[currentBanner];
-        bannerElement.style.opacity = 1;
-        currentBanner = (currentBanner + 1) % bannerImages.length;
-      }, 300);
+      bannerElement.src = bannerImages[currentBanner];
+      currentBanner = (currentBanner + 1) % bannerImages.length;
     }
 
-    bannerElement.src = bannerImages[0];
+    showNextBanner();
     setInterval(showNextBanner, 3000);
   </script>
 
+  <script src="script.js"></script>
 </body>
 </html>
