@@ -1,206 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Top-up Game</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0D1B2A;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-    .navbar {
-      background-color: #202938;
-      display: flex;
-      align-items: center;
-      padding: 8px 16px;
-    }
-    .navbar img {
-      height: 30px;
-      margin-right: 10px;
-    }
-    .navbar span {
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .container {
-      padding: 20px;
-    }
-    .section {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      text-align: left;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-    .option-box {
-      background-color: #202938;
-      border-radius: 8px;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: border 0.3s;
-    }
-    .option-box:hover {
-      border: 2px solid #ff9800;
-    }
-    .option-box img {
-      width: 24px;
-      margin-bottom: 5px;
-    }
-    .instructions {
-      background-color: #002A5B;
-      padding: 10px;
-      border-radius: 8px;
-      text-align: left;
-      margin: 20px 0;
-    }
-    .instructions p {
-      margin: 4px 0;
-    }
-    .buy-button {
-      width: 100%;
-      padding: 12px;
-      background-color: orange;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .footer {
-      background-color: #202938;
-      padding: 20px;
-      font-size: 14px;
-      color: #ccc;
-      text-align: center;
-    }
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      margin: 20px 0;
-      gap: 10px;
-    }
-    .slider img {
-      height: 40px;
-    }
-  </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const game = params.get('game') || 'Nama Game';
-      document.getElementById('game-title').textContent = game;
-
-      const diamondContainer = document.getElementById('diamond-list');
-      const paymentContainer = document.getElementById('payment-list');
-
-      fetch('games.json')
-        .then(res => res.json())
-        .then(data => {
-          if (data[game] && data[game].items) {
-            data[game].items.forEach(item => {
-              const box = document.createElement('div');
-              box.className = 'option-box';
-              box.innerHTML = `<img src="https://cdn.unipin.com/images/default_denom/denom.png" /><div>${item.diamond}</div><div>Rp ${item.harga}</div>`;
-              box.addEventListener('click', () => {
-                document.querySelectorAll('.diamond-selected').forEach(el => el.classList.remove('diamond-selected'));
-                box.classList.add('diamond-selected');
-                box.style.border = '2px solid #ff9800';
-              });
-              diamondContainer.appendChild(box);
-            });
-          }
-
-          const payments = [
-            { name: 'Voucher', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJgi_FQ8hkVYenTlDZFEsBav5kxIUrYouQ_TrK798jscAghpTfh9mk2e2N5Rcrj4JKNI1iJZdMVUJPecR-LDxoXPCG__qJZEBLcDIoDHPL4z-39Cdwlxwed7PiUn8RATMpeIIiLbW0cTuo48kd3HqaYsM7Yy3OAmFh3SjcvjKPo2kATv_5Wa_8PFQxq2fz/s1600/1.png' },
-            { name: 'QRIS', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtF5j3JZj2uAnabC7I8HY79qOXGaiyqzjS28VAyITpc3HQhkU0J5yvW-5ZjzSycsJRW8bQqZIVRm6-c_Uh_DZkiw1Soc1hoMOlUs-nxC-BUq1pnHAON2k5Vkqfka4FuMumjElXCAtgdzfwWK8Xe2azbBHmqLdReSIkfLkhYgwJOVN4kFRt5oGDU6Nv7EYg/s1600/2.png' },
-            { name: 'BANK', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGwk-3V-wNUpV_dKuUg9B37KjtHuWDjBL-dT2eY3sSv2U4l1nH4kuspGrY3RmssCtuiRps5wXGa4NOeOLeewvbVPAQNXD_QwtkBpTUvehE7d-UHS_YsSnJxZax1eLr6FsAwNdPMuCBmVft3RduM2MSVpih78CPCT7oDeckRajHm0H5jvEECEPJqLea2623/s1600/3.png' },
-            { name: 'CASH', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjNMZOpO_kKi4MFkxph4NxFpQILgw6kBFN0rKMPifa1m1FZHKKBT1iQ2xs-2Dbto6pM3DGbv3f1uZr-UjQq-tIJCwlJycBHrZ7vIvPhNg2bAnAmUDBTl9r7utSZrbDqjPuKNliQJkJdyLI-avKiHBZS_IuuYC3Oz8_qyHe7IpnDKFWlevFUDCxNgCZnxaB/s1600/4.png' }
-          ];
-
-          payments.forEach(method => {
-            const box = document.createElement('div');
-            box.className = 'option-box';
-            box.innerHTML = `<img src="${method.icon}" /><div>${method.name}</div>`;
-            box.addEventListener('click', () => {
-              document.querySelectorAll('.payment-selected').forEach(el => el.classList.remove('payment-selected'));
-              box.classList.add('payment-selected');
-              box.style.border = '2px solid #ff9800';
-            });
-            paymentContainer.appendChild(box);
-          });
-        });
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
-
 <body>
-  <div class="navbar">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo">
-    <span id="game-title">Nama Game</span>
-  </div>
+    <!-- Bar atas -->
+    <header>
+        <div class="header-bar">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo UVOSHOP" class="logo">
+            <div id="game-name" class="game-name"></div>
+        </div>
+    </header>
 
-  <div class="container">
-    <div class="section">
-      <label>1. Masukkan ID Pemain</label>
-      <input type="text" placeholder="Contoh: 123456789" />
-    </div>
-    <div class="section">
-      <label>2. Masukkan Server (Jika game membutuhkan Server)</label>
-      <input type="text" style="text-align: left" placeholder="Contoh: 1234" />
-    </div>
-    <div class="section">
-      <label>3. Pilih Diamond</label>
-      <div id="diamond-list" class="grid"></div>
-    </div>
-    <div class="section">
-      <label>4. Pilih Pembayaran</label>
-      <div id="payment-list" class="grid"></div>
-    </div>
-    <div class="instructions">
-      <p><strong>Cara membeli diamond:</strong></p>
-      <p>1. Isi ID game kamu</p>
-      <p>2. Jika game membutuhkan zona, tambahkan zona</p>
-      <p>3. Pilih diamond</p>
-      <p>4. Pilih pembayaran</p>
-      <p>5. Klik Beli Sekarang</p>
-      <p>6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian</p>
-    </div>
-    <button class="buy-button" onclick="window.open('https://wa.me/6285648211278','_blank')">Beli Sekarang</button>
-  </div>
+    <div class="container">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="player-id">1. Masukkan ID Pemain</label>
+                <input type="text" id="player-id" placeholder="ID Pemain">
+            </div>
+            <div class="form-group">
+                <label for="server-id">2. Masukkan Server (Jika game membutuhkan Server)</label>
+                <input type="text" id="server-id" placeholder="Masukkan Server">
+            </div>
 
-  <div class="slider">
-    <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" />
-    <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" />
-    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" />
-    <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" />
-    <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" />
-  </div>
+            <div class="diamond-section">
+                <h3>Pilih Diamond</h3>
+                <div id="diamond-list" class="diamond-list"></div>
+            </div>
 
-  <div class="footer">
-    <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
-    <p>Peta Situs | Flash Top-Up | Voucher | Game Lainnya | FAQ | Dukungan Pelanggan | Penukaran Poin | Berita | Promo dan Event | Tentang UVO Shop</p>
-    <p>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.<br/>Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi</p>
-  </div>
+            <div class="payment-section">
+                <h3>Pilih Metode Pembayaran</h3>
+                <div id="payment-methods" class="payment-methods"></div>
+            </div>
+
+            <div class="info-section">
+                <h3>Cara membeli diamond</h3>
+                <p>1. Isi ID game kamu</p>
+                <p>2. Jika game membutuhkan zona, tambahkan zona</p>
+                <p>3. Pilih diamond</p>
+                <p>4. Pilih pembayaran</p>
+                <p>5. Klik Beli Sekarang</p>
+                <p>6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian.</p>
+            </div>
+
+            <button id="buy-button">Beli Sekarang</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="payment-logos">
+            <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="Dana">
+            <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Indomaret">
+            <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="Indomaret 2">
+            <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="XL Axis">
+            <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="Indomaret 3">
+            <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" alt="OVO">
+        </div>
+        <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
+        <ul class="footer-links">
+            <li>Peta Situs</li>
+            <li>Flash Top-Up</li>
+            <li>Voucher</li>
+            <li>Game Lainnya</li>
+            <li>FAQ</li>
+            <li>Dukungan Pelanggan</li>
+            <li>Penukaran Poin</li>
+            <li>Berita</li>
+            <li>Promo dan Event</li>
+            <li>Tentang UVO Shop</li>
+        </ul>
+        <p>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.</p>
+        <p><a href="#">Syarat & Ketentuan Website</a> | <a href="#">Syarat Pengguna</a> | <a href="#">Kebijakan Privasi</a></p>
+    </footer>
+
+    <script src="loadPrices.js"></script>
 </body>
-
 </html>
