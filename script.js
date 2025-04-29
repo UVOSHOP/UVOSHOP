@@ -137,3 +137,19 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.error(err));
   }
 });
+// === ROTATING BANNER ===
+  const bannerImg = document.getElementById('rotating-banner');
+  const bannerUrls = [
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png',
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUZYJjv12kgO6G33SGsz7j5oBPz_QYBj1NCa1Ynrll19K1z5ct9NReEU9FqKDC9G4DhETDEmPOncuHeeMGjUvMjArCSULaw0OZoC06SGv9TfrkoUHU7wThsAFTgtEcPZV63f1JDFO4b4Upix-xZpYlKQUeNVdrW8RJ9uwb7J3z6fKuhffPZJTrZKf4ud8/s320/4.png',
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiiy7iEJ0iQoYTVRABIbEDR01jxEfGMfbFeDYBgboVQXPPBdU5dxH6QDA2iNeWs9zN0UKeOq-XW_9pgIoe6d-WIulqzS4O2M9AZBCmhakazx3iAKAK2ZxbLbzK9Vx1vBo62UsCmQHINCHsPDunMCa3uMmAT-BTmqov5h8UG-MW80lI45jSmB3nlr-PApU/s320/5.png',
+  ];
+  let currentBanner = 0;
+
+  if (bannerImg) {
+    bannerImg.src = bannerUrls[currentBanner];
+    setInterval(() => {
+      currentBanner = (currentBanner + 1) % bannerUrls.length;
+      bannerImg.src = bannerUrls[currentBanner];
+    }, 3000); // ganti setiap 3 detik
+  }
