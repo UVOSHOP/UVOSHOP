@@ -3,37 +3,250 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top-Up Game</title>
+  <title>Top Up Game - UVOSHOP</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styling sederhana */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #007bff; /* Biru seperti index.html */
+      padding: 10px;
+      text-align: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 24px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .step-section {
+      margin-bottom: 30px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .step-number {
+      background-color: #ff9900;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .diamond-grid, .payment-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .diamond-card, .payment-method {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      flex: 1 1 calc(25% - 10px);
+      min-width: 120px;
+      transition: 0.3s;
+    }
+
+    .diamond-card.selected, .payment-method.selected {
+      border-color: #ff9900;
+      background-color: #fff5e6;
+    }
+
+    .diamond-card:hover, .payment-method:hover {
+      background-color: #f7f7f7;
+    }
+
+    .btn-beli {
+      width: 100%;
+      background-color: #ff9900;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .btn-beli:hover {
+      background-color: #e68800;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1 id="game-title">Loading...</h1>
-  </header>
 
-  <section id="topup-container">
-    <h2>Pilih Nominal</h2>
-    <form id="topup-form">
-      <div id="nominals-container">
-        <!-- Harga nominal akan ditampilkan di sini -->
-      </div>
+<header>
+  <div class="logo">UVO<span>SHOP</span></div>
+</header>
 
-      <div id="server-id-container">
-        <label for="server-id">Server ID (jika ada):</label>
-        <input type="text" id="server-id" name="server-id">
-      </div>
+<main>
 
-      <label for="user-id">User ID:</label>
-      <input type="text" id="user-id" name="user-id" required>
-
-      <button type="submit">Top-Up</button>
-    </form>
+  <!-- STEP 1: PILIH GAME -->
+  <section class="step-section">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>PILIH GAME</h3>
+    </div>
+    <select id="gameSelect" onchange="onGameSelect()">
+      <option value="">-- Pilih Game --</option>
+      <option value="free-fire">Free Fire</option>
+      <option value="mobile-legends-bang-bang">Mobile Legends: Bang Bang</option>
+      <option value="call-of-duty-mobile">Call of Duty Mobile</option>
+      <option value="pokémon-unite">Pokémon Unite</option>
+      <!-- Tambahkan game lain jika mau -->
+    </select>
   </section>
 
-  <footer>
-    <p>UVOSHOP - Game Top-Up</p>
-  </footer>
+  <!-- STEP 2: ISI ID -->
+  <section class="step-section">
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>ISI ID</h3>
+    </div>
+    <input type="text" id="idInput" placeholder="Masukkan ID Game Anda" required>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- STEP 3: PILIH DIAMOND -->
+  <section class="step-section">
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>PILIH DIAMOND</h3>
+    </div>
+    <div id="diamondGrid" class="diamond-grid">
+      <!-- Isi diamond akan muncul otomatis -->
+    </div>
+  </section>
+
+  <!-- STEP 4: PILIH METODE PEMBAYARAN -->
+  <section class="step-section">
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>PILIH METODE PEMBAYARAN</h3>
+    </div>
+    <div id="paymentGrid" class="payment-grid">
+      <div class="payment-method" onclick="selectPayment(this)">Voucher UVOSHOP</div>
+      <div class="payment-method" onclick="selectPayment(this)">QRIS</div>
+      <div class="payment-method" onclick="selectPayment(this)">BANK</div>
+      <div class="payment-method" onclick="selectPayment(this)">CASH</div>
+    </div>
+  </section>
+
+  <!-- TOMBOL BELI -->
+  <button class="btn-beli" onclick="sendToWhatsApp()">Beli Sekarang</button>
+
+</main>
+
+<script>
+  let gamesData = [];
+  let selectedGame = null;
+  let selectedDiamondData = null;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ambil games.json setelah page siap
+    fetch('games.json')
+      .then(response => response.json())
+      .then(data => {
+        gamesData = data;
+        console.log('Data game berhasil dimuat:', gamesData);
+      })
+      .catch(error => console.error('Gagal memuat games.json:', error));
+  });
+
+  function onGameSelect() {
+    const selectedGameId = document.getElementById('gameSelect').value;
+    if (!selectedGameId) {
+      return;
+    }
+
+    selectedGame = gamesData.find(game => game.id === selectedGameId);
+    if (selectedGame) {
+      loadDiamonds(selectedGame);
+      selectedDiamondData = null;
+    } else {
+      document.getElementById('diamondGrid').innerHTML = '';
+    }
+  }
+
+  function loadDiamonds(game) {
+    const diamondGrid = document.getElementById('diamondGrid');
+    diamondGrid.innerHTML = '';
+
+    if (game && game.prices) {
+      game.prices.forEach(price => {
+        const diamondCard = document.createElement('div');
+        diamondCard.classList.add('diamond-card');
+        diamondCard.setAttribute('onclick', 'selectDiamond(this)');
+        diamondCard.dataset.amount = price.amount;
+        diamondCard.dataset.price = price.price;
+        diamondCard.innerHTML = `<p>${price.amount} Diamonds</p><p>Rp ${price.price}</p>`;
+        diamondGrid.appendChild(diamondCard);
+      });
+    }
+  }
+
+  function selectDiamond(element) {
+    const diamonds = document.querySelectorAll('.diamond-card');
+    diamonds.forEach(diamond => diamond.classList.remove('selected'));
+    element.classList.add('selected');
+
+    selectedDiamondData = {
+      amount: element.dataset.amount,
+      price: element.dataset.price
+    };
+  }
+
+  function selectPayment(element) {
+    const payments = document.querySelectorAll('.payment-method');
+    payments.forEach(payment => payment.classList.remove('selected'));
+    element.classList.add('selected');
+  }
+
+  function sendToWhatsApp() {
+    const id = document.getElementById('idInput').value.trim();
+    const selectedPayment = document.querySelector('.payment-method.selected');
+
+    if (!selectedGame || !id || !selectedDiamondData || !selectedPayment) {
+      alert("Mohon lengkapi semua data sebelum melanjutkan!");
+      return;
+    }
+
+    const message = `*Formulir Top Up*\n\n` +
+                    `Game: ${selectedGame.name}\n` +
+                    `ID: ${id}\n` +
+                    `Item: ${selectedDiamondData.amount} Diamonds\n` +
+                    `Harga: Rp ${selectedDiamondData.price}\n` +
+                    `Metode Pembayaran: ${selectedPayment.innerText}`;
+
+    window.location.href = `https://wa.me/6285648211278?text=${encodeURIComponent(message)}`;
+  }
+</script>
+
 </body>
 </html>
