@@ -2,124 +2,20 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UVOSHOP - Top Up Game</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #f5f5f5;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 10px;
-    }
-
-    .logo img {
-      height: 40px;
-    }
-
-    .search-group {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      margin-left: 10px;
-    }
-
-    .search-bar input {
-      width: 100%;
-      padding: 6px 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .indonesia-logo img {
-      height: 40px;
-      margin-left: 10px;
-    }
-
-    .banner-slider {
-      width: 100%;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    .banner-slider img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .category-section {
-      padding: 20px;
-    }
-
-    .category-section h2 {
-      margin-bottom: 10px;
-    }
-
-    .games-row {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding-bottom: 10px;
-    }
-
-    .games-row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .game-card {
-      min-width: calc(100% / 2.2);
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .game-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    footer {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-    }
-
-    footer a {
-      color: #ffa500;
-      text-decoration: none;
-    }
-
-    footer ul {
-      padding-left: 16px;
-    }
-
-    @media (min-width: 768px) {
-      .game-card {
-        min-width: 180px;
-      }
-    }
-  </style>
 </head>
 <body>
 
   <header>
     <div class="header-container">
+      <!-- Logo UVOSHOP -->
       <div class="logo">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
       </div>
+      
+      <!-- Search Bar dan Logo Indonesia -->
       <div class="search-group">
         <div class="search-bar">
           <input type="text" id="search-input" placeholder="Cari Game...">
@@ -131,28 +27,27 @@
     </div>
 
     <div class="banner-slider" id="banner-slider">
-      <!-- Banner images... (sama seperti sebelumnya) -->
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt="Banner 1">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner 2">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt="Banner 3">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt="Banner 4">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt="Banner 5">
     </div>
   </header>
 
   <main>
     <section class="category-section">
       <h2>Game Populer</h2>
-      <div class="games-row" id="popular-games">
-        <!-- Game akan dimuat dari JS -->
-      </div>
+      <div class="games-row" id="popular-games"></div>
     </section>
-
     <section class="category-section">
       <h2>Game Mobile</h2>
       <div class="games-row" id="mobile-games"></div>
     </section>
-
     <section class="category-section">
       <h2>Game PC</h2>
       <div class="games-row" id="pc-games"></div>
     </section>
-
     <section class="category-section">
       <h2>Voucher Game</h2>
       <div class="games-row" id="game-vouchers"></div>
@@ -170,7 +65,7 @@
         <li>Game Lainnya</li>
         <li>FAQ</li>
       </ul>
-      <p>Hubungi kami: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
+      <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
       <p>© 2025 UVOShop. Semua Hak Cipta</p>
     </div>
   </footer>
