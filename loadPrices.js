@@ -10,34 +10,52 @@ document.addEventListener("DOMContentLoaded", async () => {
     const game = games.find(g => g.id === gameId);
 
     if (!game) {
-      document.getElementById("price-list").innerHTML = "<p>Game tidak ditemukan.</p>";
+      document.getElementById("diamond-list").innerHTML = "<p>Game tidak ditemukan.</p>";
       return;
     }
 
-    const priceListContainer = document.getElementById("price-list");
-    priceListContainer.innerHTML = "";
+    const diamondListContainer = document.getElementById("diamond-list");
+    const paymentMethodsContainer = document.getElementById("payment-methods");
+    diamondListContainer.innerHTML = "";
+    paymentMethodsContainer.innerHTML = "";
 
-    let selectedPrice = null;
+    let selectedDiamond = null;
+    let selectedPayment = null;
 
+    // Load Diamond Prices
     game.prices.forEach(price => {
-      const item = document.createElement("div");
-      item.className = "price-item";
-      item.textContent = `${price.amount} Diamonds - Rp ${price.price.toLocaleString("id-ID")}`;
-      item.addEventListener("click", () => {
-        document.querySelectorAll(".price-item").forEach(el => el.classList.remove("selected"));
-        item.classList.add("selected");
-        selectedPrice = price;
+      const diamondItem = document.createElement("div");
+      diamondItem.className = "diamond-item";
+      diamondItem.textContent = `${price.amount} Diamonds - Rp ${price.price.toLocaleString("id-ID")}`;
+      diamondItem.addEventListener("click", () => {
+        document.querySelectorAll(".diamond-item").forEach(item => item.classList.remove("selected"));
+        diamondItem.classList.add("selected");
+        selectedDiamond = price;
       });
-      priceListContainer.appendChild(item);
+      diamondListContainer.appendChild(diamondItem);
     });
 
+    // Load Payment Methods
+    const paymentMethods = ["Voucher UVOSHOP", "QRIS", "BANK", "CASH"];
+    paymentMethods.forEach(method => {
+      const paymentItem = document.createElement("div");
+      paymentItem.className = "payment-item";
+      paymentItem.textContent = method;
+      paymentItem.addEventListener("click", () => {
+        document.querySelectorAll(".payment-item").forEach(item => item.classList.remove("selected"));
+        paymentItem.classList.add("selected");
+        selectedPayment = method;
+      });
+      paymentMethodsContainer.appendChild(paymentItem);
+    });
+
+    // Button action to buy
     document.getElementById("buy-button").addEventListener("click", () => {
       const playerId = document.getElementById("player-id").value.trim();
       const serverId = document.getElementById("server-id").value.trim();
-      const paymentMethod = document.getElementById("payment-method").value;
 
-      if (!playerId || !selectedPrice) {
-        alert("Harap isi ID dan pilih nominal diamond.");
+      if (!playerId || !selectedDiamond || !selectedPayment) {
+        alert("Harap isi ID, pilih diamond dan pilih metode pembayaran.");
         return;
       }
 
@@ -47,9 +65,9 @@ Halo Admin, saya ingin top-up:
 Game: ${game.name}
 ID: ${playerId}
 Server: ${serverId || '-'}
-Jumlah: ${selectedPrice.amount} Diamonds
-Harga: Rp ${selectedPrice.price.toLocaleString("id-ID")}
-Metode Pembayaran: ${paymentMethod}
+Jumlah: ${selectedDiamond.amount} Diamonds
+Harga: Rp ${selectedDiamond.price.toLocaleString("id-ID")}
+Metode Pembayaran: ${selectedPayment}
       `.trim();
 
       const waUrl = `https://wa.me/6285648211278?text=${encodeURIComponent(message)}`;
@@ -58,6 +76,6 @@ Metode Pembayaran: ${paymentMethod}
 
   } catch (error) {
     console.error("Gagal memuat data harga:", error);
-    document.getElementById("price-list").innerHTML = "<p>Gagal memuat harga.</p>";
+    document.getElementById("diamond-list").innerHTML = "<p>Gagal memuat harga.</p>";
   }
 });
