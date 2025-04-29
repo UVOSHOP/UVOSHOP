@@ -246,12 +246,15 @@ label {
     padding: 0.5rem;
     text-align: center;
   }
+  
   .logo img {
     width: 70px;
   }
+  
   .search-bar input {
-    width: 140px;
+    width: 140px; /* Ukuran input pencarian lebih kecil di perangkat mobile */
   }
+
   .indonesia-logo {
     margin-top: 0.5rem;
   }
