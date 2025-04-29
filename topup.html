@@ -1,165 +1,201 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top-up Game</title>
-    <style>
-        body {
-            background-color: #0D1B2A; /* Ganti background dengan #0D1B2A */
-            color: #F9F9F9;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #202938; /* Ganti bar atas dengan #202938 */
-            padding: 20px;
-            text-align: center;
-        }
-        header img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
-        header img:hover {
-            transform: scale(1.1);
-        }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        h3 {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        input, select, button {
-            display: block;
-            width: 100%;
-            margin-bottom: 15px;
-            padding: 12px;
-            font-size: 1em;
-            border-radius: 5px;
-            border: none;
-        }
-        button {
-            background-color: orange;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: darkorange;
-        }
-        #diamond-list, #payment-methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .diamond-item, .payment-item {
-            background-color: #F9F9F9;
-            color: #2C3E50;
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .diamond-item:hover, .payment-item:hover {
-            background-color: #3E92CC;
-            color: white;
-            transform: scale(1.05);
-        }
-        .diamond-item.selected, .payment-item.selected {
-            background-color: #3E92CC;
-            color: white;
-            font-weight: bold;
-        }
-        .half-width {
-            width: 50%;
-            margin: 0 auto;
-        }
-        #diamond-list {
-            margin-top: 20px;
-        }
-        #payment-methods {
-            margin-top: 30px;
-        }
-        #buy-button {
-            background-color: orange;
-            color: white;
-            padding: 15px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
-        #buy-button:hover {
-            background-color: darkorange;
-        }
-        .instruction-text {
-            background-color: #002A5B; /* Ganti background dengan #002A5B */
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 1.1em;
-            text-align: left; /* Align text left */
-            margin-top: 30px;
-        }
-
-        /* Animasi untuk tampilan */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top-up Game</title>
+  <style>
+    body {
+      background-color: #0D1B2A;
+      color: #F9F9F9;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #202938;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    header img.logo {
+      width: 40px;
+      margin-right: 10px;
+    }
+    header span.game-name {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h3 {
+      font-size: 1.1em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    input, select, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: none;
+    }
+    input[type="text"] {
+      text-align: left;
+    }
+    #server-id {
+      text-align: left;
+    }
+    button {
+      background-color: orange;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: darkorange;
+    }
+    #diamond-list, #payment-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .diamond-item, .payment-item {
+      background-color: #F9F9F9;
+      color: #2C3E50;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1em;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .diamond-item:hover, .payment-item:hover {
+      background-color: #3E92CC;
+      color: white;
+      transform: scale(1.05);
+    }
+    .diamond-item.selected, .payment-item.selected {
+      background-color: #3E92CC;
+      color: white;
+      font-weight: bold;
+    }
+    .diamond-item img, .payment-item img {
+      width: 40px;
+      margin-bottom: 5px;
+    }
+    .half-width {
+      width: 50%;
+      margin: 0 auto;
+    }
+    #buy-button {
+      background-color: orange;
+      color: white;
+      padding: 15px;
+      font-size: 1.2em;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    #buy-button:hover {
+      background-color: darkorange;
+    }
+    .instruction-text {
+      background-color: #002A5B;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 1.1em;
+      text-align: left;
+      margin-top: 30px;
+    }
+    .footer-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      background-color: #0D1B2A;
+      padding: 10px 0;
+    }
+    .footer-marquee img {
+      height: 40px;
+      margin: 0 20px;
+      animation: marquee 20s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    footer {
+      background-color: #202938;
+      color: #F9F9F9;
+      padding: 20px;
+      font-size: 0.9em;
+      line-height: 1.6em;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Top-up Game Logo">
-    </header>
-    <div class="container">
-        <h3>1. Masukkan ID Pemain</h3>
-        <input type="text" id="player-id" placeholder="Masukkan ID Pemain" />
+  <header>
+    <img class="logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVO Shop Logo">
+    <span class="game-name">Nama Game</span>
+  </header>
+  <div class="container">
+    <h3>1. Masukkan ID Pemain</h3>
+    <input type="text" id="player-id" placeholder="Masukkan ID Pemain" />
 
-        <h3>2. Masukkan Server (Jika game membutuhkan Server)</h3>
-        <input type="text" id="server-id" placeholder="Masukkan Server (Jika game membutuhkan Server)" class="half-width"/>
+    <h3>2. Masukkan Server (Jika game membutuhkan Server)</h3>
+    <input type="text" id="server-id" placeholder="Masukkan Server (Jika game membutuhkan Server)" class="half-width" />
 
-        <h3>3. Pilih Nominal Diamond</h3>
-        <div id="diamond-list">
-            <!-- Harga diamond akan dimuat dari JSON -->
-        </div>
+    <h3>3. Pilih Nominal Diamond</h3>
+    <div id="diamond-list"></div>
 
-        <h3>4. Pilih Metode Pembayaran</h3>
-        <div id="payment-methods">
-            <!-- Metode pembayaran akan dimuat dari JSON -->
-        </div>
+    <h3>4. Pilih Metode Pembayaran</h3>
+    <div id="payment-methods"></div>
 
-        <!-- Instruksi membeli diamond -->
-        <div class="instruction-text">
-            <p>Cara membeli diamond:</p>
-            <ol>
-                <li>Isi ID game kamu</li>
-                <li>Jika game membutuhkan zona, tambahkan zona</li>
-                <li>Pilih diamond</li>
-                <li>Pilih pembayaran</li>
-                <li>Klik Beli Sekarang</li>
-                <li>Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian.</li>
-            </ol>
-        </div>
-
-        <button id="buy-button">Beli Sekarang</button>
+    <div class="instruction-text">
+      <p>Cara membeli diamond:</p>
+      <ol>
+        <li>Isi ID game kamu</li>
+        <li>Jika game membutuhkan zona, tambahkan zona</li>
+        <li>Pilih diamond</li>
+        <li>Pilih pembayaran</li>
+        <li>Klik Beli Sekarang</li>
+        <li>Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian.</li>
+      </ol>
     </div>
 
-    <script src="loadPrices.js"></script>
+    <button id="buy-button">Beli Sekarang</button>
+  </div>
+
+  <div class="footer-marquee">
+    <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" />
+    <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" />
+  </div>
+
+  <footer>
+    <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
+    <p><strong>Peta Situs</strong><br>
+    Flash Top-Up<br>
+    Voucher<br>
+    Game Lainnya<br>
+    FAQ<br>
+    Dukungan Pelanggan<br>
+    Penukaran Poin<br>
+    Berita<br>
+    Promo dan Event<br>
+    Tentang UVO Shop</p>
+    <p>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.<br>
+    Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi</p>
+  </footer>
+
+  <script src="loadPrices.js"></script>
 </body>
 </html>
