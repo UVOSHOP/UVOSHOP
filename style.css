@@ -37,7 +37,7 @@ header {
 }
 
 .logo img {
-  width: 80px;  /* diperkecil dari 120px */
+  width: 80px;
   height: auto;
 }
 
@@ -248,5 +248,20 @@ label {
   }
   .indonesia-logo {
     margin-top: 0.5rem;
+  }
+
+  /* Pastikan banner tetap terlihat di mobile */
+  .banner-slider {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #banner-slider {
+    animation: slide 15s infinite;
+  }
+
+  .banner-slider img {
+    width: 100%;
+    height: auto;
   }
 }
