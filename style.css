@@ -74,20 +74,21 @@ header {
   overflow: hidden;
   position: relative;
   margin-top: 0.5rem;
+  width: 100%;
+  border-radius: 8px;
 }
 
 #banner-slider {
   display: flex;
-  transition: transform 0.5s ease-in-out;
-  animation: slide 15s infinite;
+  animation: slide 18s infinite linear;
 }
 
 .banner-slider img {
-  width: 100%;
+  flex-shrink: 0;
+  min-width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 6px;
-  flex-shrink: 0;
 }
 
 @keyframes slide {
@@ -118,6 +119,8 @@ header {
   overflow-x: auto;
   gap: 1rem;
   padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .game-card {
@@ -128,6 +131,7 @@ header {
   flex: 0 0 140px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   position: relative;
+  scroll-snap-align: start;
 }
 
 .game-card img {
@@ -280,5 +284,15 @@ label {
   .banner-slider img {
     width: 100%;
     height: auto;
+  }
+
+  .games-row {
+    padding-bottom: 1rem;
+  }
+
+  .game-card {
+    flex: 0 0 42%;
+    max-width: 42%;
+    min-width: 42%;
   }
 }
