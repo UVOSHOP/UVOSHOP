@@ -16,7 +16,6 @@ body {
 
 header {
   background-color: var(--clr-header);
-  /* Hapus padding ekstra agar header ringkas */
   padding: 0.25rem 0;
 }
 
@@ -26,7 +25,6 @@ header {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  /* Kurangi padding vertikal untuk mengecilkan tinggi */
   padding: 0.25rem 1rem;
 }
 
@@ -34,7 +32,7 @@ header {
   background: none;
   border: none;
   color: var(--clr-text);
-  font-size: 0.9rem; /* sedikit diperkecil */
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -44,10 +42,10 @@ header {
 }
 
 .search-bar input {
-  padding: 0.4rem 0.6rem; /* sedikit diperkecil */
+  padding: 0.4rem 0.6rem;
   border-radius: 4px;
   border: none;
-  width: 160px; /* diperkecil dari 220px */
+  width: 160px;
   font-size: 0.9rem;
 }
 
@@ -61,7 +59,7 @@ header {
   display: flex;
   overflow: hidden;
   position: relative;
-  margin-top: 0.5rem; /* beri sedikit jarak dari header */
+  margin-top: 0.5rem;
 }
 
 .banner-slider img {
@@ -72,7 +70,6 @@ header {
   border-radius: 6px;
 }
 
-/* Animasi geser banner setiap 3 detik */
 @keyframes slide {
   0% { transform: translateX(0); }
   20% { transform: translateX(-100%); }
@@ -144,9 +141,6 @@ header {
   cursor: pointer;
 }
 
-/* Footer tetap sama */
-
-/* Formulir */
 .form-container {
   background: var(--clr-card-bg);
   padding: 20px;
@@ -157,7 +151,6 @@ header {
   color: var(--clr-text);
 }
 
-/* Judul Formulir */
 .form-container h2 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -166,7 +159,6 @@ header {
   text-align: center;
 }
 
-/* Input Fields */
 input[type="text"],
 input[type="number"],
 input[type="radio"],
@@ -182,7 +174,6 @@ select {
   transition: all 0.3s ease;
 }
 
-/* Efek saat input fokus */
 input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus {
@@ -190,7 +181,6 @@ select:focus {
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
 }
 
-/* Label untuk Input */
 label {
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -198,7 +188,6 @@ label {
   color: var(--clr-text);
 }
 
-/* Pilihan Nominal */
 .nominal-option {
   display: flex;
   align-items: center;
@@ -220,7 +209,6 @@ label {
   width: 100%;
 }
 
-/* Button Submit */
 .submit-btn {
   width: 100%;
   padding: 12px;
@@ -233,12 +221,10 @@ label {
   transition: background-color 0.3s ease;
 }
 
-/* Efek hover pada tombol */
 .submit-btn:hover {
   background-color: #0056b3;
 }
 
-/* Teks Petunjuk */
 .help-text {
   font-size: 0.9rem;
   color: #ccc;
@@ -250,13 +236,17 @@ label {
 @media only screen and (max-width: 768px) {
   .header-container {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0.25rem 0.5rem;
+    align-items: center;
+    padding: 0.5rem;
+    text-align: center;
   }
   .logo img {
     width: 70px;
   }
   .search-bar input {
     width: 140px;
+  }
+  .indonesia-logo {
+    margin-top: 0.5rem;
   }
 }
