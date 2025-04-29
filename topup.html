@@ -1,80 +1,110 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Top Up - UVOSHOP</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Up Free Fire</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="header-container">
-    <div class="logo">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP Logo">
-    </div>
-    <div class="search-group">
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cari Game..." disabled>
-      </div>
-      <div class="indonesia-logo">
-        <img src="https://cdn.unipin.com/images/navigation/gamecenter-overlay-web.png" alt="Logo Indonesia">
+  <header>
+    <div class="navbar">
+      <h1 class="logo">Uni<span>Pin</span></h1>
+      <button class="btn-login">MASUK</button>
+      <div class="lang">
+        <button>ID</button>
+        <button><img src="indonesia.png" alt="ID" width="20"></button>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="banner-slider" id="banner-slider">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt="Banner 1">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner 2">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt="Banner 3">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt="Banner 4">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt="Banner 5">
-  </div>
-</header>
-
-<main>
-  <section class="topup-section">
-    <h1 id="game-title"></h1>
-    <form id="topup-form">
-      <label>
-        User ID:
-        <input type="text" id="user-id" required />
-      </label>
-      <div id="server-id-container">
-        <label>
-          Server ID:
-          <input type="text" id="server-id" />
-        </label>
+  <main>
+    <!-- STEP 1: MASUKKAN ID -->
+    <section class="step-section">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>MASUKKAN ID</h3>
       </div>
-      <div id="nominals-container"></div>
-      <div id="payment-methods">
-        <label><input type="radio" name="payment" value="Voucher UVOSHOP" required> Voucher UVOSHOP</label><br>
-        <label><input type="radio" name="payment" value="Qris"> Qris</label><br>
-        <label><input type="radio" name="payment" value="Bank"> Bank</label><br>
-        <label><input type="radio" name="payment" value="Cash"> Cash</label>
+      <p>Untuk menemukan ID Pemain Anda, klik gambar avatar Anda di pojok kiri atas layar. ID Pemain Anda akan ditampilkan di bawah nama pengguna Anda.</p>
+      <input type="text" placeholder="Masukkan ID Pemain Anda" class="input-id">
+      <button class="btn-learn">LEARN MORE</button>
+    </section>
+
+    <!-- STEP 2: PILIH JUMLAH -->
+    <section class="step-section">
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>PILIH JUMLAH</h3>
       </div>
-      <button type="submit">Beli</button>
-    </form>
-  </section>
-</main>
+      <div class="diamond-grid">
+        <div class="diamond-card"><img src="diamond.png"><p>5 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>12 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>50 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>70 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>140 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>355 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>7,290 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>36,500 Free Fire Diamonds</p></div>
+        <div class="diamond-card"><img src="diamond.png"><p>73,100 Free Fire Diamonds</p></div>
+      </div>
+    </section>
 
-<footer>
-  <div class="footer-content">
-    <h2>BERLANGGANAN</h2>
-    <p>Dapatkan Penawaran Terbaik Sekarang!</p>
-    <p>UVOShop adalah tempat terbaik untuk melakukan top-up game di Indonesia...</p>
-    <ul>
-      <li>Flash Top-Up</li>
-      <li>Voucher</li>
-      <li>Game Lainnya</li>
-      <li>FAQ</li>
-    </ul>
-    <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: <a href="tel:+6285648211278">+62 856-4821-1278</a></p>
-    <p>© 2025 UVOShop. Semua Hak Cipta</p>
-  </div>
-</footer>
+    <!-- STEP 3: PILIH PEMBAYARAN -->
+    <section class="step-section">
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>PILIH SALURAN PEMBAYARAN</h3>
+      </div>
 
-<script src="script.js"></script>
+      <div class="payment-section">
+        <div class="payment-method">
+          <h4>Voucher Fisik</h4>
+          <div class="payment-options">
+            <img src="unipin-voucher.png" alt="UniPin">
+          </div>
+        </div>
+
+        <div class="payment-method">
+          <h4>E-Wallet</h4>
+          <div class="payment-options">
+            <img src="dana.png" alt="Dana">
+            <img src="gopay.png" alt="Gopay">
+            <img src="shopeepay.png" alt="ShopeePay">
+          </div>
+        </div>
+
+        <div class="payment-method">
+          <h4>Transfer Bank</h4>
+          <div class="payment-options">
+            <img src="bca.png" alt="BCA">
+            <img src="bri.png" alt="BRI">
+            <img src="mandiri.png" alt="Mandiri">
+            <img src="bni.png" alt="BNI">
+          </div>
+        </div>
+
+        <div class="payment-method">
+          <h4>SMS & Seluler</h4>
+          <div class="payment-options">
+            <img src="telkomsel.png" alt="Telkomsel">
+            <img src="xl.png" alt="XL">
+            <img src="indosat.png" alt="Indosat">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-menu">
+      <button><img src="home.png" alt="Home"></button>
+      <button><img src="settings.png" alt="Settings"></button>
+      <button class="btn-search"><img src="search.png" alt="Search"></button>
+      <button><img src="games.png" alt="Games"></button>
+      <button><img src="menu.png" alt="Menu"></button>
+    </div>
+  </footer>
 
 </body>
 </html>
