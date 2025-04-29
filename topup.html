@@ -2,206 +2,204 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="loadPrices.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Top-up Game</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-      background-color: #0D1B2A;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0D1B2A;
+      color: #ffffff;
+      overflow-x: hidden;
     }
-
     .navbar {
       background-color: #202938;
-      padding: 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      padding: 8px 16px;
     }
-
     .navbar img {
       height: 30px;
+      margin-right: 10px;
     }
-
     .navbar span {
       font-size: 16px;
       font-weight: bold;
     }
-
     .container {
       padding: 20px;
     }
-
-    .input-group {
-      margin-bottom: 15px;
+    .section {
+      margin-bottom: 20px;
     }
-
     label {
       display: block;
-      text-align: left;
       margin-bottom: 5px;
-      font-weight: bold;
+      text-align: left;
     }
-
-    input[type="text"] {
+    input, select {
       width: 100%;
       padding: 8px;
-      border: none;
       border-radius: 5px;
+      border: none;
     }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 10px;
     }
-
-    .item {
+    .option-box {
       background-color: #202938;
-      padding: 10px;
       border-radius: 8px;
+      padding: 10px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.2s;
+      border: 2px solid transparent;
+      transition: border 0.3s;
     }
-
-    .item img {
-      width: 40px;
+    .option-box:hover {
+      border: 2px solid #ff9800;
+    }
+    .option-box img {
+      width: 24px;
       margin-bottom: 5px;
     }
-
-    .item:hover {
-      transform: scale(1.05);
-      background-color: #293241;
-    }
-
-    .item.selected {
-      border: 2px solid #FFA500;
-    }
-
-    .info-box {
+    .instructions {
       background-color: #002A5B;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px 0;
+      padding: 10px;
+      border-radius: 8px;
       text-align: left;
+      margin: 20px 0;
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #FFA500;
+    .instructions p {
+      margin: 4px 0;
+    }
+    .buy-button {
+      width: 100%;
+      padding: 12px;
+      background-color: orange;
       color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
       font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
-
     .footer {
       background-color: #202938;
       padding: 20px;
       font-size: 14px;
+      color: #ccc;
+      text-align: center;
     }
-
-    .scroll-images {
+    .slider {
       display: flex;
-      overflow: hidden;
-      white-space: nowrap;
-      animation: scroll 20s linear infinite;
-      gap: 20px;
+      overflow-x: auto;
       margin: 20px 0;
+      gap: 10px;
     }
-
-    .scroll-images img {
+    .slider img {
       height: 40px;
     }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const game = params.get('game') || 'Nama Game';
+      document.getElementById('game-title').textContent = game;
+
+      const diamondContainer = document.getElementById('diamond-list');
+      const paymentContainer = document.getElementById('payment-list');
+
+      fetch('games.json')
+        .then(res => res.json())
+        .then(data => {
+          if (data[game] && data[game].items) {
+            data[game].items.forEach(item => {
+              const box = document.createElement('div');
+              box.className = 'option-box';
+              box.innerHTML = `<img src="https://cdn.unipin.com/images/default_denom/denom.png" /><div>${item.diamond}</div><div>Rp ${item.harga}</div>`;
+              box.addEventListener('click', () => {
+                document.querySelectorAll('.diamond-selected').forEach(el => el.classList.remove('diamond-selected'));
+                box.classList.add('diamond-selected');
+                box.style.border = '2px solid #ff9800';
+              });
+              diamondContainer.appendChild(box);
+            });
+          }
+
+          const payments = [
+            { name: 'Voucher', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJgi_FQ8hkVYenTlDZFEsBav5kxIUrYouQ_TrK798jscAghpTfh9mk2e2N5Rcrj4JKNI1iJZdMVUJPecR-LDxoXPCG__qJZEBLcDIoDHPL4z-39Cdwlxwed7PiUn8RATMpeIIiLbW0cTuo48kd3HqaYsM7Yy3OAmFh3SjcvjKPo2kATv_5Wa_8PFQxq2fz/s1600/1.png' },
+            { name: 'QRIS', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtF5j3JZj2uAnabC7I8HY79qOXGaiyqzjS28VAyITpc3HQhkU0J5yvW-5ZjzSycsJRW8bQqZIVRm6-c_Uh_DZkiw1Soc1hoMOlUs-nxC-BUq1pnHAON2k5Vkqfka4FuMumjElXCAtgdzfwWK8Xe2azbBHmqLdReSIkfLkhYgwJOVN4kFRt5oGDU6Nv7EYg/s1600/2.png' },
+            { name: 'BANK', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGwk-3V-wNUpV_dKuUg9B37KjtHuWDjBL-dT2eY3sSv2U4l1nH4kuspGrY3RmssCtuiRps5wXGa4NOeOLeewvbVPAQNXD_QwtkBpTUvehE7d-UHS_YsSnJxZax1eLr6FsAwNdPMuCBmVft3RduM2MSVpih78CPCT7oDeckRajHm0H5jvEECEPJqLea2623/s1600/3.png' },
+            { name: 'CASH', icon: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjNMZOpO_kKi4MFkxph4NxFpQILgw6kBFN0rKMPifa1m1FZHKKBT1iQ2xs-2Dbto6pM3DGbv3f1uZr-UjQq-tIJCwlJycBHrZ7vIvPhNg2bAnAmUDBTl9r7utSZrbDqjPuKNliQJkJdyLI-avKiHBZS_IuuYC3Oz8_qyHe7IpnDKFWlevFUDCxNgCZnxaB/s1600/4.png' }
+          ];
+
+          payments.forEach(method => {
+            const box = document.createElement('div');
+            box.className = 'option-box';
+            box.innerHTML = `<img src="${method.icon}" /><div>${method.name}</div>`;
+            box.addEventListener('click', () => {
+              document.querySelectorAll('.payment-selected').forEach(el => el.classList.remove('payment-selected'));
+              box.classList.add('payment-selected');
+              box.style.border = '2px solid #ff9800';
+            });
+            paymentContainer.appendChild(box);
+          });
+        });
+    });
+  </script>
 </head>
 
 <body>
   <div class="navbar">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo">
-    <span id="game-name">Nama Game</span>
+    <span id="game-title">Nama Game</span>
   </div>
 
   <div class="container">
-    <div class="input-group">
+    <div class="section">
       <label>1. Masukkan ID Pemain</label>
-      <input type="text" id="userId" placeholder="Contoh: 123456789">
+      <input type="text" placeholder="Contoh: 123456789" />
     </div>
-
-    <div class="input-group">
+    <div class="section">
       <label>2. Masukkan Server (Jika game membutuhkan Server)</label>
-      <input type="text" id="zoneId" placeholder="Contoh: 1234">
+      <input type="text" style="text-align: left" placeholder="Contoh: 1234" />
     </div>
-
-    <div class="input-group">
+    <div class="section">
       <label>3. Pilih Diamond</label>
-      <div class="grid" id="diamond-list"></div>
+      <div id="diamond-list" class="grid"></div>
     </div>
-
-    <div class="input-group">
+    <div class="section">
       <label>4. Pilih Pembayaran</label>
-      <div class="grid" id="payment-list"></div>
+      <div id="payment-list" class="grid"></div>
     </div>
-
-    <div class="info-box">
-      <strong>Cara membeli diamond:</strong><br>
-      1. Isi ID game kamu<br>
-      2. Jika game membutuhkan zona, tambahkan zona<br>
-      3. Pilih diamond<br>
-      4. Pilih pembayaran<br>
-      5. Klik Beli Sekarang<br>
-      6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian.
+    <div class="instructions">
+      <p><strong>Cara membeli diamond:</strong></p>
+      <p>1. Isi ID game kamu</p>
+      <p>2. Jika game membutuhkan zona, tambahkan zona</p>
+      <p>3. Pilih diamond</p>
+      <p>4. Pilih pembayaran</p>
+      <p>5. Klik Beli Sekarang</p>
+      <p>6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian</p>
     </div>
-
-    <button class="btn" id="buy-button">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111728.png" alt="WA" width="20"> Beli Sekarang
-    </button>
+    <button class="buy-button" onclick="window.open('https://wa.me/6285648211278','_blank')">Beli Sekarang</button>
   </div>
 
-  <div class="scroll-images">
-    <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg">
-    <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png">
-    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg">
-    <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
-    <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png">
+  <div class="slider">
+    <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" />
+    <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" />
+    <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" />
   </div>
 
   <div class="footer">
     <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
-    <p>
-      <strong>Peta Situs</strong><br>
-      Flash Top-Up<br>
-      Voucher<br>
-      Game Lainnya<br><br>
-      FAQ<br>
-      Dukungan Pelanggan<br>
-      Penukaran Poin<br>
-      Berita<br>
-      Promo dan Event<br><br>
-      Tentang UVO Shop<br><br>
-      © 2025 UVO Shop. Semua Hak Cipta Dilindungi.<br>
-      Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi
-    </p>
+    <p>Peta Situs | Flash Top-Up | Voucher | Game Lainnya | FAQ | Dukungan Pelanggan | Penukaran Poin | Berita | Promo dan Event | Tentang UVO Shop</p>
+    <p>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.<br/>Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi</p>
   </div>
 </body>
 
