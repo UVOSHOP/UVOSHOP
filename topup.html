@@ -6,14 +6,14 @@
     <title>Top-up Game</title>
     <style>
         body {
-            background-color: #202938;
+            background-color: #0D1B2A; /* Ganti background dengan #0D1B2A */
             color: #F9F9F9;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #0D1B2A;
+            background-color: #202938; /* Ganti bar atas dengan #202938 */
             padding: 20px;
             text-align: center;
         }
@@ -31,6 +31,11 @@
             max-width: 800px;
             margin: 0 auto;
             animation: fadeIn 0.8s ease-in-out;
+        }
+        h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
         input, select, button {
             display: block;
@@ -97,12 +102,12 @@
             background-color: darkorange;
         }
         .instruction-text {
-            background-color: #1E3A8A;
+            background-color: #002A5B; /* Ganti background dengan #002A5B */
             color: white;
             padding: 15px;
             border-radius: 5px;
             font-size: 1.1em;
-            text-align: center;
+            text-align: left; /* Align text left */
             margin-top: 30px;
         }
 
@@ -123,18 +128,18 @@
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Top-up Game Logo">
     </header>
     <div class="container">
-        <h3>1<br>Masukkan ID Pemain</h3>
+        <h3>1. Masukkan ID Pemain</h3>
         <input type="text" id="player-id" placeholder="Masukkan ID Pemain" />
 
-        <h3>2<br>Masukkan Server (Jika game membutuhkan Server)</h3>
+        <h3>2. Masukkan Server (Jika game membutuhkan Server)</h3>
         <input type="text" id="server-id" placeholder="Masukkan Server (Jika game membutuhkan Server)" class="half-width"/>
 
-        <h3>3<br>Pilih Nominal Diamond</h3>
+        <h3>3. Pilih Nominal Diamond</h3>
         <div id="diamond-list">
             <!-- Harga diamond akan dimuat dari JSON -->
         </div>
 
-        <h3>4<br>Pilih Metode Pembayaran</h3>
+        <h3>4. Pilih Metode Pembayaran</h3>
         <div id="payment-methods">
             <!-- Metode pembayaran akan dimuat dari JSON -->
         </div>
