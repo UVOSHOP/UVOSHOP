@@ -44,22 +44,38 @@ header {
   width: 220px;
 }
 
+.indonesia-flag img {
+  width: 30px;
+  height: auto;
+  margin-left: 10px;
+}
+
 .banner-slider {
   display: flex;
   overflow-x: auto;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
+  animation: slide 15s infinite;
 }
 
 .banner-slider img {
   flex-shrink: 0;
-  width: 100%; /* Mengatur agar gambar memenuhi lebar */
-  max-width: 400px; /* Maksimal lebar gambar */
+  width: 100%;
+  max-width: 400px;
   height: auto;
-  object-fit: contain; /* Agar gambar tidak terpotong */
+  object-fit: contain;
   border-radius: 6px;
   background-color: #000;
   scroll-snap-align: center;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-100%); }
+  40% { transform: translateX(-200%); }
+  60% { transform: translateX(-300%); }
+  80% { transform: translateX(-400%); }
+  100% { transform: translateX(0); }
 }
 
 .category-section {
@@ -114,101 +130,4 @@ header {
   border-radius: 4px;
   font-size: 0.8rem;
   cursor: pointer;
-}
-
-/* Footer tetap sama */
-
-/* Formulir */
-.form-container {
-  background: var(--clr-card-bg);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  max-width: 500px;
-  margin: 2rem auto;
-  color: var(--clr-text);
-}
-
-/* Judul Formulir */
-.form-container h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--clr-text);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* Input Fields */
-input[type="text"], input[type="number"], input[type="radio"], select {
-  width: 100%;
-  padding: 12px;
-  margin: 12px 0;
-  border-radius: 6px;
-  border: 2px solid var(--clr-accent);
-  background-color: #222831;
-  color: var(--clr-text);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-/* Efek saat input fokus */
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
-  border-color: var(--clr-accent);
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-}
-
-/* Label untuk Input */
-label {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  display: block;
-  color: var(--clr-text);
-}
-
-/* Pilihan Nominal */
-.nominal-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 0;
-  background-color: #1f232b;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.nominal-option input[type="radio"] {
-  margin-right: 12px;
-}
-
-.nominal-option label {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-/* Button Submit */
-.submit-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--clr-accent);
-  color: var(--clr-text);
-  border: none;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Efek hover pada tombol */
-.submit-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Teks Petunjuk */
-.help-text {
-  font-size: 0.9rem;
-  color: #ccc;
-  text-align: center;
-  margin-top: 10px;
 }
