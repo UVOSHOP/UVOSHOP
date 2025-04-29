@@ -38,6 +38,7 @@
     .input-group label {
       display: block;
       font-weight: bold;
+      font-size: 14px;
     }
     input {
       width: 100%;
@@ -76,6 +77,7 @@
       margin: 20px 0;
       border-radius: 10px;
       text-align: left;
+      font-size: 14px;
     }
     #buy-button {
       background-color: orange;
@@ -111,6 +113,24 @@
       font-size: 14px;
       color: white;
     }
+
+    /* RESPONSIVE MOBILE */
+    @media screen and (max-width: 480px) {
+      .navbar span {
+        font-size: 16px;
+      }
+      .input-group label {
+        font-size: 13px;
+      }
+      #buy-button {
+        font-size: 16px;
+        padding: 12px;
+      }
+      .diamond-item img, .payment-item img {
+        width: 30px;
+        height: 30px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -121,12 +141,12 @@
 
   <div class="container">
     <div class="input-group">
-      <label>1. Masukkan ID Pemain</label>
+      <label>1. ID Pemain</label>
       <input type="text" id="player-id" placeholder="Contoh: 123456789" />
     </div>
 
     <div class="input-group">
-      <label>2. Masukkan Server (Jika game membutuhkan Server)</label>
+      <label>2. Server (Opsional)</label>
       <input type="text" id="server-id" placeholder="Contoh: 1234 (Optional)" />
     </div>
 
@@ -152,13 +172,13 @@
 
     <button id="buy-button">Beli Sekarang</button>
 
-
-  <div class="marquee">
-    <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg">
-    <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png">
-    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg">
-    <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
-    <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png">
+    <div class="marquee">
+      <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg">
+      <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png">
+      <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png">
+    </div>
   </div>
 
   <footer>
