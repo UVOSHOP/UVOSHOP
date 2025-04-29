@@ -87,11 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // load harga nominal dari games.json
-        const nominals = game.nominals || {}; // Ambil harga nominal dari game yang dipilih
+        const prices = game.prices || []; // Pastikan menggunakan prices, bukan nominals
 
         const container = document.getElementById('nominals-container');
-        if (nominals.length > 0) {
-          nominals.forEach((n, i) => {
+        if (prices.length > 0) {
+          prices.forEach((price, i) => {
             const wrap = document.createElement('div');
             wrap.className = 'nominal-option';
 
@@ -99,14 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
             input.type = 'radio';
             input.id = `nominal-${i}`;
             input.name = 'nominal';
-            input.value = n.price;
+            input.value = price.price; // Menggunakan price dari JSON
             input.required = true;
 
             const label = document.createElement('label');
             label.htmlFor = input.id;
             label.innerHTML = `
-              <span class="amount">${n.amount}</span>
-              <span class="price">Rp ${n.price}</span>
+              <span class="amount">${price.amount}</span>
+              <span class="price">Rp ${price.price}</span>
             `;
 
             wrap.appendChild(input);
