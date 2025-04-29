@@ -70,13 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(games => {
         const game = games.find(g => g.id === gameId);
+        if (!game) {
+          return console.error('Game tidak ditemukan');
+        }
+
         document.getElementById('game-title').innerText = game.name;
 
         // hide server ID jika tidak perlu
         const noServer = [
-          'free-fire','free-fire-max','pubg-mobile','valorant',
-          'roblox','steam-wallet','garena-shells','minecraft',
-          'fortnite','apex-legends','dota-2','valorant-points'
+          'free-fire', 'free-fire-max', 'pubg-mobile', 'valorant',
+          'roblox', 'steam-wallet', 'garena-shells', 'minecraft',
+          'fortnite', 'apex-legends', 'dota-2', 'valorant-points'
         ];
         if (noServer.includes(gameId)) {
           document.getElementById('server-id-container').style.display = 'none';
