@@ -1,83 +1,170 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Top-Up Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="loadPrices.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0D1B2A;
+      color: white;
+      overflow-x: hidden;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #202938;
+    }
+    .navbar img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .navbar span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .input-group label {
+      display: block;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 5px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .diamond-item, .payment-item {
+      background: white;
+      color: black;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .diamond-item.selected, .payment-item.selected {
+      outline: 3px solid orange;
+    }
+    .diamond-item img, .payment-item img {
+      width: 40px;
+      height: 40px;
+      display: block;
+      margin: 0 auto 5px;
+    }
+    #instructions {
+      background-color: #002A5B;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 10px;
+      text-align: left;
+    }
+    #buy-button {
+      background-color: orange;
+      color: white;
+      padding: 15px;
+      border: none;
+      width: 100%;
+      border-radius: 10px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee img {
+      height: 30px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    footer {
+      padding: 20px;
+      background-color: #202938;
+      font-size: 14px;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <!-- Bar atas -->
-    <header>
-        <div class="header-bar">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo UVOSHOP" class="logo">
-            <div id="game-name" class="game-name"></div>
-        </div>
-    </header>
+  <div class="navbar">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg">
+    <span id="game-name">Nama Game</span>
+  </div>
 
-    <div class="container">
-        <div class="form-section">
-            <div class="form-group">
-                <label for="player-id">1. Masukkan ID Pemain</label>
-                <input type="text" id="player-id" placeholder="ID Pemain">
-            </div>
-            <div class="form-group">
-                <label for="server-id">2. Masukkan Server (Jika game membutuhkan Server)</label>
-                <input type="text" id="server-id" placeholder="Masukkan Server">
-            </div>
-
-            <div class="diamond-section">
-                <h3>Pilih Diamond</h3>
-                <div id="diamond-list" class="diamond-list"></div>
-            </div>
-
-            <div class="payment-section">
-                <h3>Pilih Metode Pembayaran</h3>
-                <div id="payment-methods" class="payment-methods"></div>
-            </div>
-
-            <div class="info-section">
-                <h3>Cara membeli diamond</h3>
-                <p>1. Isi ID game kamu</p>
-                <p>2. Jika game membutuhkan zona, tambahkan zona</p>
-                <p>3. Pilih diamond</p>
-                <p>4. Pilih pembayaran</p>
-                <p>5. Klik Beli Sekarang</p>
-                <p>6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian.</p>
-            </div>
-
-            <button id="buy-button">Beli Sekarang</button>
-        </div>
+  <div class="container">
+    <div class="input-group">
+      <label>1. Masukkan ID Pemain</label>
+      <input type="text" id="player-id" placeholder="Contoh: 123456789" />
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="payment-logos">
-            <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="Dana">
-            <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Indomaret">
-            <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="Indomaret 2">
-            <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="XL Axis">
-            <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="Indomaret 3">
-            <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" alt="OVO">
-        </div>
-        <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
-        <ul class="footer-links">
-            <li>Peta Situs</li>
-            <li>Flash Top-Up</li>
-            <li>Voucher</li>
-            <li>Game Lainnya</li>
-            <li>FAQ</li>
-            <li>Dukungan Pelanggan</li>
-            <li>Penukaran Poin</li>
-            <li>Berita</li>
-            <li>Promo dan Event</li>
-            <li>Tentang UVO Shop</li>
-        </ul>
-        <p>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.</p>
-        <p><a href="#">Syarat & Ketentuan Website</a> | <a href="#">Syarat Pengguna</a> | <a href="#">Kebijakan Privasi</a></p>
-    </footer>
+    <div class="input-group">
+      <label>2. Masukkan Server (Jika game membutuhkan Server)</label>
+      <input type="text" id="server-id" placeholder="Contoh: 1234 (Optional)" />
+    </div>
 
-    <script src="loadPrices.js"></script>
+    <div class="input-group">
+      <label>3. Pilih Diamond</label>
+      <div class="grid" id="diamond-list"></div>
+    </div>
+
+    <div class="input-group">
+      <label>4. Pilih Pembayaran</label>
+      <div class="grid" id="payment-methods"></div>
+    </div>
+
+    <div id="instructions">
+      <strong>Cara membeli diamond:</strong><br>
+      1. Isi ID game kamu<br>
+      2. Jika game membutuhkan zona, tambahkan zona<br>
+      3. Pilih diamond<br>
+      4. Pilih pembayaran<br>
+      5. Klik Beli Sekarang<br>
+      6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian
+    </div>
+
+    <button id="buy-button"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384021.png" width="24"> Beli Sekarang</button>
+  </div>
+
+  <div class="marquee">
+    <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg">
+    <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png">
+    <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg">
+    <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
+    <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png">
+  </div>
+
+  <footer>
+    <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
+    <p><strong>Peta Situs</strong><br>Flash Top-Up<br>Voucher<br>Game Lainnya<br><br>FAQ<br>Dukungan Pelanggan<br>Penukaran Poin<br>Berita<br>Promo dan Event</p>
+    <p><strong>Tentang UVO Shop</strong><br><br>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.<br>Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi</p>
+  </footer>
 </body>
 </html>
