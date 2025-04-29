@@ -1,24 +1,37 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const params = new URLSearchParams(window.location.search);
-  const gameId = params.get('game'); // Misalnya ?game=mobile-legends-bang-bang
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const gameId = urlParams.get("game");
+  const container = document.getElementById("price-list");
 
-  if (!gameId) return;
+  if (!gameId) {
+    container.innerHTML = "<p>Game tidak ditemukan di URL.</p>";
+    return;
+  }
 
-  fetch('games.json')
-    .then(response => response.json())
+  fetch("games.json")
+    .then(res => res.json())
     .then(games => {
       const game = games.find(g => g.id === gameId);
-      if (!game || !game.prices) return;
-
-      const container = document.getElementById('price-list');
+      if (!game) {
+        container.innerHTML = "<p>Game tidak ditemukan dalam data.</p>";
+        return;
+      }
 
       game.prices.forEach(item => {
-        const p = document.createElement('p');
-        p.textContent = `${item.amount} Diamonds - Rp ${item.price.toLocaleString('id-ID')}`;
-        container.appendChild(p);
+        const card = document.createElement("div");
+        card.className = "game-item";
+
+        card.innerHTML = `
+          <h2>${item.amount} Diamonds</h2>
+          <p class="price">Rp ${item.price.toLocaleString("id-ID")}</p>
+          <button>Top-up</button>
+        `;
+
+        container.appendChild(card);
       });
     })
-    .catch(error => {
-      console.error('Gagal memuat data harga:', error);
+    .catch(err => {
+      container.innerHTML = "<p>Gagal memuat data harga.</p>";
+      console.error(err);
     });
 });
