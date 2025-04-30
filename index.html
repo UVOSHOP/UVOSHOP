@@ -189,33 +189,47 @@
       <div class="game-item"><img src="assets/pubgm.png" alt="PUBG Mobile"><div>PUBG Mobile</div></div>
       <div class="game-item"><img src="assets/genshin.png" alt="Genshin Impact"><div>Genshin</div></div>
     </div>
+
+    <h2>PC</h2>
+    <div id="pc-games" class="games-row scrollable"></div>
+
+    <h2>Voucher</h2>
+    <div id="game-vouchers" class="games-row scrollable"></div>
   </section>
 
-  <!-- Payment Slider -->
-  <section class="payment-slider">
+  <!-- Dekorasi Bawah -->
+  <div class="payment-slider">
     <div class="payment-track">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_HeBHeWcNm5tNE6Y63Z7-VaeEZcxK_sVvLO_XJEr23o6hb5_F5N_0Wug72vYsEuY9boL3xQJ4g0moMi0E2wotmXIq51P3bbLxlXxo2uMHsYOcOVnMnw_iqrrczzwe8sb3Swnr79eqP4Xl62F2su4yA0ttmdQUhlPqU9b_BCEBXrx4jW9WWhlBP9NjsMFWJ4mw/s320/payment-method.png" alt="">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_HeBHeWcNm5tNE6Y63Z7-VaeEZcxK_sVvLO_XJEr23o6hb5_F5N_0Wug72vYsEuY9boL3xQJ4g0moMi0E2wotmXIq51P3bbLxlXxo2uMHsYOcOVnMnw_iqrrczzwe8sb3Swnr79eqP4Xl62F2su4yA0ttmdQUhlPqU9b_BCEBXrx4jW9WWhlBP9NjsMFWJ4mw/s320/payment-method.png" alt="">
+      <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="Dana">
+      <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="ShopeePay">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" alt="OVO">
+      <img src="https://cdn.unipin.com/images/payment_channels/1702024410-Tri%20New%20Logo_150x56_black.png" alt="Tri">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="XL Axis">
+      <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Indomaret">
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 UVOSHOP | All Rights Reserved</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Flag_of_Indonesia.svg/1024px-Flag_of_Indonesia.svg.png" alt="Indonesia Flag">
-  </footer>
+  <div class="footer">
+    <p>UVOSHOP adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+    <p>Peta Situs | Flash Top-Up | Voucher Game Lainnya | FAQ</p>
+    <p>Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: +62 856-4821-1278</p>
+    <p>© 2025 UVOShop. Semua Hak Cipta</p>
+    <p>Website Terms and Conditions | Privacy Policy</p>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
+  </div>
 
   <script>
-    let currentSlide = 0;
-    const totalSlides = document.querySelectorAll('.banner-slide').length;
     const bannerTrack = document.getElementById('bannerTrack');
-
-    setInterval(slideBanner, 3000);
+    let currentSlide = 0;
+    const totalSlides = bannerTrack.children.length;
 
     function slideBanner() {
       currentSlide = (currentSlide + 1) % totalSlides;
-      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      bannerTrack.style.transform = translateX(-${currentSlide * 100}%);
     }
+
+    setInterval(slideBanner, 3000);
   </script>
+  <script src="script.js"></script>
 </body>
-</html>
+  </html>
