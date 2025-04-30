@@ -67,7 +67,25 @@
     <p>4. Top skor akan disimpan jika lebih tinggi dari sebelumnya!</p>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
   <script>
+    // Konfigurasi Firebase (isi dengan milikmu)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJBULdS68CdSDynLP6zmMxpNJRC8C1Uu4",
+      authDomain: "uvoshop1.firebaseapp.com",
+      databaseURL: "https://uvoshop1-default-rtdb.firebaseio.com",
+      projectId: "uvoshop1",
+      storageBucket: "uvoshop1.appspot.com",
+      messagingSenderId: "79678783634",
+      appId: "1:79678783634:web:0f4b927f68ec25a8d1e64b",
+      measurementId: "G-HKXGBSX358"
+    };
+
+    // Inisialisasi Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     document.addEventListener('DOMContentLoaded', () => {
       // Tombol navigasi balik
       document.getElementById('backBtn').addEventListener('click', () => {
@@ -92,19 +110,23 @@
       const birdImage = new Image();
       birdImage.src = 'https://cdn.unipin.com/images/default_denom/denom.png';
 
-      // Load leaderboard dari localStorage
-      const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard')||'{}');
-      const leaderboardEl   = document.getElementById('leaderboard');
-
+      // Load leaderboard dari Firebase
+      const leaderboardEl = document.getElementById('leaderboard');
+      
       function renderLeaderboard() {
         leaderboardEl.innerHTML = '';
-        Object.entries(leaderboardData)
-          .sort((a,b)=>b[1]-a[1])
-          .forEach(([p,s])=>{
-            const li = document.createElement('li');
-            li.innerText = `${p}: ${s}`;
-            leaderboardEl.appendChild(li);
-          });
+        db.ref('leaderboard').once('value')
+          .then(snapshot => {
+            const data = snapshot.val() || {};
+            Object.entries(data)
+              .sort((a,b)=>b[1]-a[1])
+              .forEach(([p,s])=>{
+                const li = document.createElement('li');
+                li.innerText = `${p}: ${s}`;
+                leaderboardEl.appendChild(li);
+              });
+          })
+          .catch(err => console.error('Gagal ambil leaderboard dari Firebase:', err));
       }
       renderLeaderboard();
 
@@ -114,7 +136,7 @@
         let count = 5;
         overlay.style.display = 'flex';
         overlay.innerText = count;
-        countdownInterval = setInterval(()=>{
+        countdownInterval = setInterval(()=> {
           count--;
           overlay.innerText = count;
           if(count===0){
@@ -122,7 +144,7 @@
             overlay.style.display='none';
             startGame();
           }
-        },1000);
+        }, 1000);
       }
 
       function startGame() {
@@ -150,7 +172,7 @@
         if(!pipes.length || pipes[pipes.length-1].x < canvas.width-300) {
           pipes.push({ x: canvas.width, height: Math.random()*(canvas.height-pipeGap) });
         }
-        pipes.forEach((p,i)=>{
+        pipes.forEach((p,i)=> {
           p.x -= pipeSpeed;
           if(p.x+pipeWidth<0) pipes.splice(i,1);
           if(p.x<70 && p.x+pipeWidth>50 && (birdY<p.height || birdY>p.height+pipeGap)) {
@@ -159,7 +181,7 @@
         });
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.fillStyle='green';
-        pipes.forEach(p=>{
+        pipes.forEach(p=> {
           ctx.fillRect(p.x,0,pipeWidth,p.height);
           ctx.fillRect(p.x,p.height+pipeGap,pipeWidth,canvas.height);
         });
@@ -174,35 +196,8 @@
         playing = false;
         clearInterval(scoreInterval);
         alert('Game Over! Skor kamu: '+score);
-        if(!leaderboardData[name] || score>leaderboardData[name]) {
-          leaderboardData[name]=score;
-          localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
-        }
-        renderLeaderboard();
-      }
-
-      // Pasang listener
-      startBtn.addEventListener('click', startCountdown);
-      jumpBtn .addEventListener('click', jump);
-    });
-  </script>
-</body>
-</html>
-<script>
-//ini js buat ke firebase
-  document.addEventListener('DOMContentLoaded', () => {
-    // Ambil data leaderboard dari localStorage
-    const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
-    const leaderboardEl = document.getElementById('leaderboard');
-    leaderboardEl.innerHTML = '';
-
-    // Urutkan dan tampilkan
-    Object.entries(leaderboardData)
-      .sort((a, b) => b[1] - a[1])
-      .forEach(([player, score]) => {
-        const li = document.createElement('li');
-        li.innerText = `${player}: ${score}`;
-        leaderboardEl.appendChild(li);
-      });
-  });
-</script>
+        // Menyimpan skor ke Firebase
+        db.ref('leaderboard/' + name).once('value').then(snap => {
+          const prev = snap.val() || 0;
+          if (score > prev) {
+            db.ref
