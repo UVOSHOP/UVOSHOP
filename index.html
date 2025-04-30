@@ -8,35 +8,50 @@
   <style>
     body {
       animation: fadeIn 1s ease-in-out;
-      background-color: #0d1b2a;
-      color: white;
     }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
+    header {
+      background-color: #202938;
+    }
+
     .auto-banner-container {
       width: 100%;
-      overflow-x: auto;
-      white-space: nowrap;
-      margin: 0 auto 20px auto;
+      overflow: hidden;
+      position: relative;
+      max-height: 200px;
     }
 
     .auto-banner-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      width: 500%;
+      animation: slideBanner 15s infinite;
     }
 
     .banner-slide {
       flex: 0 0 100%;
-      max-height: 200px;
     }
 
     .banner-slide img {
       width: 100%;
       height: 200px;
       object-fit: cover;
+      display: block;
+    }
+
+    @keyframes slideBanner {
+      0% { transform: translateX(0%); }
+      20% { transform: translateX(0%); }
+      25% { transform: translateX(-100%); }
+      45% { transform: translateX(-100%); }
+      50% { transform: translateX(-200%); }
+      70% { transform: translateX(-200%); }
+      75% { transform: translateX(-300%); }
+      95% { transform: translateX(-300%); }
+      100% { transform: translateX(-400%); }
     }
 
     .header-container {
@@ -44,7 +59,6 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 20px;
-      background-color: #0d1b2a;
     }
 
     .logo img {
@@ -55,6 +69,7 @@
       font-weight: bold;
       font-size: 18px;
       padding-right: 10px;
+      color: white;
     }
 
     .search-bar input {
@@ -64,7 +79,6 @@
 
     .category-section {
       padding: 20px;
-      background-color: #0d1b2a;
     }
 
     .games-row {
@@ -76,13 +90,12 @@
     .game-item {
       margin-right: 15px;
       padding: 10px;
-      background-color: #1a2a3a;
+      background-color: #f0f0f0;
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
       width: 100px;
       flex-shrink: 0;
-      color: white;
     }
 
     .game-item img {
@@ -94,7 +107,7 @@
     }
 
     .game-item:hover {
-      background-color: #142434;
+      background-color: #0d1b2a;
       color: white;
     }
 
@@ -137,10 +150,10 @@
     .footer {
       text-align: center;
       padding: 30px 20px;
-      background-color: #eee;
+      background-color: #202938;
       font-size: 14px;
       margin-top: 40px;
-      color: black;
+      color: white;
     }
 
     .footer img {
@@ -165,11 +178,13 @@
 
   <!-- Banner Geser Horizontal -->
   <section class="auto-banner">
-    <div class="auto-banner-container" id="bannerContainer">
-      <div class="auto-banner-track" id="bannerTrack">
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUUJ6Qmp1U6OYbUMn7n7RVe6e0NdpEyT23lD0dV2MD2qtdPYMjso3A_t4X14z0nCoiZT9ICUZbhRjWjeh2-Js1J0k6Y6NDIsUkTmr-Cdv6kkzJp_Ptxa9NiGZPRDXf4FToJZ4MFZslbPZ2Fb-xWeoM8dLNj4Re1MFZ0VrurZ3AgygGp-C1SFRvTHRNOu4/s1600/1.png" alt=""></div>
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtgZtXRcID3gogz4KqDStB-S4r7m0vv2AgkXXrszjWRjLKPHCBn4gzB64zG0aWCN61BdL6RDHGOhY7q-LhRNN9tZKopvFf3-eEQUeOYcMOX-c3jJp7cAavpzNm2aq7ghTJvVJSzqDU1d1_2U61FyAThZZqUHuKTwn1aCD8tWSCzQ1eGEjFqK2qvjOLjKw/s1600/2.png" alt=""></div>
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiR-1r1z9NBcfFrt9Vw4MfNsvDsYOl-4LKOTnQGzGgDk0RyBgpAhS0QQtb7NZh-V7QgfPb0F_qNjz0ECkCmfSV8WgE4LuCJGOMHYfQtXcm1Uyyki8W2EfsB-JSMnRRwjUXk-Py_xYjCyTzAe_YDPG4p61WxV8bCRuYgCyCPw2kGtwYFuDFWYkpaLa1NVQ/s1600/3.png" alt=""></div>
+    <div class="auto-banner-container">
+      <div class="auto-banner-track">
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../3.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../5.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../4.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../2.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../1.png" alt=""></div>
       </div>
     </div>
   </section>
@@ -221,18 +236,5 @@
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
   </div>
 
-  <script>
-    const bannerTrack = document.getElementById('bannerTrack');
-    let currentSlide = 0;
-    const totalSlides = bannerTrack.children.length;
-
-    function slideBanner() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    setInterval(slideBanner, 3000);
-  </script>
-  <script src="script.js"></script>
 </body>
-        </html>
+  </html>
