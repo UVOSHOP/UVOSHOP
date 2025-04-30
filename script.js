@@ -37,11 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         games.sort((a, b) => (clicks[b.id] || 0) - (clicks[a.id] || 0));
 
         games.forEach(game => {
-          const card = createGameCard(game);
-
           // masukkan ke kategori popular
-          categories['popular-games'].appendChild(card);
-
+          categories['popular-games'].appendChild(createGameCard(game));
           // masukkan ke kategori spesifik
           switch (game.category) {
             case 'mobile':
@@ -59,16 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // search filter
         searchInput.addEventListener('input', () => {
           const term = searchInput.value.toLowerCase();
-          // Loop over each category container and hide cards that don't match the search term
           Object.values(categories).forEach(container => {
             Array.from(container.children).forEach(card => {
               const name = card.querySelector('h3').innerText.toLowerCase();
-              // Menyembunyikan atau menampilkan card berdasarkan pencarian
               card.style.display = name.includes(term) ? 'block' : 'none';
             });
           });
         });
 
+        // === Tambahan: Leaderboard klik terbanyak ===
+        const leaderboardContainer = document.getElementById('leaderboard');
+        if (leaderboardContainer) {
+          Object.entries(clicks)
+            .sort((a, b) => b[1] - a[1])
+            .forEach(([id, count]) => {
+              const game = games.find(g => g.id === id);
+              if (game) {
+                const li = document.createElement('li');
+                li.innerText = `${game.name}: ${count} klik`;
+                leaderboardContainer.appendChild(li);
+              }
+            });
+        }
       })
       .catch(err => console.error('Gagal load games.json:', err));
 
@@ -138,6 +147,27 @@ document.addEventListener('DOMContentLoaded', () => {
           );
           window.location.href = `https://api.whatsapp.com/send?phone=6285648211278&text=${msg}`;
         });
+
+        // === Tambahan: Leaderboard Top-up per game ===
+        const topupLb = document.getElementById('topup-leaderboard');
+        if (topupLb) {
+          const key = `topupClicks_${gameId}`;
+          const clicks = JSON.parse(localStorage.getItem(key) || '{}');
+          Object.entries(clicks)
+            .sort((a, b) => b[1] - a[1])
+            .forEach(([user, count]) => {
+              const li = document.createElement('li');
+              li.innerText = `${user}: ${count} transaksi`;
+              topupLb.appendChild(li);
+            });
+
+          // Simpan transaksi saat form submit
+          document.getElementById('topup-form').addEventListener('submit', e => {
+            const userId = document.getElementById('user-id').value || 'Anonymous';
+            clicks[userId] = (clicks[userId] || 0) + 1;
+            localStorage.setItem(key, JSON.stringify(clicks));
+          });
+        }
       })
       .catch(err => console.error(err));
   }
