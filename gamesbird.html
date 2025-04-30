@@ -63,126 +63,129 @@
   </div>
 
   <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = 640;
-    canvas.height = 360;
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = 640;
+      canvas.height = 360;
 
-    let score = 0;
-    let name = "";
-    let playing = false;
-    let countdownInterval;
-    let birdY = canvas.height / 2;
-    let birdVelocity = 0;
-    let gravity = 0.3;
-    let jumpPower = -5;
-    let pipes = [];
-    let pipeGap = 150;
-    let pipeWidth = 60;
-    let pipeSpeed = 2;
-    let scoreInterval;
-    const birdImage = new Image();
-    birdImage.src = "https://cdn.unipin.com/images/default_denom/denom.png";
+      let score = 0;
+      let name = "";
+      let playing = false;
+      let countdownInterval;
+      let birdY = canvas.height / 2;
+      let birdVelocity = 0;
+      let gravity = 0.3;
+      let jumpPower = -5;
+      let pipes = [];
+      let pipeGap = 150;
+      let pipeWidth = 60;
+      let pipeSpeed = 2;
+      let scoreInterval;
+      const birdImage = new Image();
+      birdImage.src = "https://cdn.unipin.com/images/default_denom/denom.png";
 
-    // Muat leaderboard dari localStorage jika ada
-    const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
-    const leaderboardEl = document.getElementById("leaderboard");
-    function renderLeaderboard() {
-      leaderboardEl.innerHTML = "";
-      const sorted = Object.entries(leaderboardData).sort((a, b) => b[1] - a[1]);
-      sorted.forEach(([player, skor]) => {
-        const li = document.createElement("li");
-        li.innerText = `${player}: ${skor}`;
-        leaderboardEl.appendChild(li);
-      });
-    }
-    renderLeaderboard();
+      // Muat leaderboard dari localStorage jika ada
+      const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
+      const leaderboardEl = document.getElementById("leaderboard");
 
-    function startCountdown() {
-      name = document.getElementById("playerName").value.trim();
-      if (!name) return alert("Isi nama dulu!");
-      let countdown = 5;
-      const overlay = document.getElementById("countdown-overlay");
-      overlay.style.display = "flex";
-      overlay.innerText = countdown;
-
-      countdownInterval = setInterval(() => {
-        countdown--;
-        overlay.innerText = countdown;
-        if (countdown === 0) {
-          clearInterval(countdownInterval);
-          overlay.style.display = "none";
-          startGame();
-        }
-      }, 1000);
-    }
-
-    function jump() {
-      if (!playing) return;
-      birdVelocity = jumpPower;
-    }
-
-    function startGame() {
-      playing = true;
-      score = 0;
-      birdY = canvas.height / 2;
-      birdVelocity = 0;
-      pipes = [];
-      clearInterval(scoreInterval);
-      scoreInterval = setInterval(() => {
-        if (playing) score++;
-      }, 1000);
-      requestAnimationFrame(gameLoop);
-    }
-
-    function gameLoop() {
-      if (!playing) return;
-      birdVelocity += gravity;
-      birdY += birdVelocity;
-
-      if (birdY > canvas.height - 20) { birdY = canvas.height - 20; gameOver(); }
-      if (birdY < 0) { birdY = 0; }
-
-      if (!pipes.length || pipes[pipes.length - 1].x < canvas.width - 300) {
-        const pipeHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
-        pipes.push({ x: canvas.width, height: pipeHeight });
-      }
-
-      pipes.forEach((p, i) => {
-        p.x -= pipeSpeed;
-        if (p.x + pipeWidth < 0) pipes.splice(i, 1);
-      });
-
-      pipes.forEach(p => {
-        if (p.x < 70 && p.x + pipeWidth > 50 && (birdY < p.height || birdY > p.height + pipeGap)) {
-          gameOver();
-        }
-      });
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "green";
-      pipes.forEach(p => {
-        ctx.fillRect(p.x, 0, pipeWidth, p.height);
-        ctx.fillRect(p.x, p.height + pipeGap, pipeWidth, canvas.height);
-      });
-
-      ctx.drawImage(birdImage, 50, birdY, 40, 40);
-      ctx.fillStyle = "white";
-      ctx.font = "24px Arial";
-      ctx.fillText("Skor: " + score, 10, 30);
-      requestAnimationFrame(gameLoop);
-    }
-
-    function gameOver() {
-      playing = false;
-      clearInterval(scoreInterval);
-      alert("Game Over! Skor kamu: " + score);
-      if (!leaderboardData[name] || score > leaderboardData[name]) {
-        leaderboardData[name] = score;
-        localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
+      function renderLeaderboard() {
+        leaderboardEl.innerHTML = "";
+        const sorted = Object.entries(leaderboardData).sort((a, b) => b[1] - a[1]);
+        sorted.forEach(([player, skor]) => {
+          const li = document.createElement("li");
+          li.innerText = `${player}: ${skor}`;
+          leaderboardEl.appendChild(li);
+        });
       }
       renderLeaderboard();
-    }
+
+      function startCountdown() {
+        name = document.getElementById("playerName").value.trim();
+        if (!name) return alert("Isi nama dulu!");
+        let countdown = 5;
+        const overlay = document.getElementById("countdown-overlay");
+        overlay.style.display = "flex";
+        overlay.innerText = countdown;
+
+        countdownInterval = setInterval(() => {
+          countdown--;
+          overlay.innerText = countdown;
+          if (countdown === 0) {
+            clearInterval(countdownInterval);
+            overlay.style.display = "none";
+            startGame();
+          }
+        }, 1000);
+      }
+
+      function jump() {
+        if (!playing) return;
+        birdVelocity = jumpPower;
+      }
+
+      function startGame() {
+        playing = true;
+        score = 0;
+        birdY = canvas.height / 2;
+        birdVelocity = 0;
+        pipes = [];
+        clearInterval(scoreInterval);
+        scoreInterval = setInterval(() => {
+          if (playing) score++;
+        }, 1000);
+        requestAnimationFrame(gameLoop);
+      }
+
+      function gameLoop() {
+        if (!playing) return;
+        birdVelocity += gravity;
+        birdY += birdVelocity;
+
+        if (birdY > canvas.height - 20) { birdY = canvas.height - 20; gameOver(); }
+        if (birdY < 0) { birdY = 0; }
+
+        if (!pipes.length || pipes[pipes.length - 1].x < canvas.width - 300) {
+          const pipeHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
+          pipes.push({ x: canvas.width, height: pipeHeight });
+        }
+
+        pipes.forEach((p, i) => {
+          p.x -= pipeSpeed;
+          if (p.x + pipeWidth < 0) pipes.splice(i, 1);
+        });
+
+        pipes.forEach(p => {
+          if (p.x < 70 && p.x + pipeWidth > 50 && (birdY < p.height || birdY > p.height + pipeGap)) {
+            gameOver();
+          }
+        });
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "green";
+        pipes.forEach(p => {
+          ctx.fillRect(p.x, 0, pipeWidth, p.height);
+          ctx.fillRect(p.x, p.height + pipeGap, pipeWidth, canvas.height);
+        });
+
+        ctx.drawImage(birdImage, 50, birdY, 40, 40);
+        ctx.fillStyle = "white";
+        ctx.font = "24px Arial";
+        ctx.fillText("Skor: " + score, 10, 30);
+        requestAnimationFrame(gameLoop);
+      }
+
+      function gameOver() {
+        playing = false;
+        clearInterval(scoreInterval);
+        alert("Game Over! Skor kamu: " + score);
+        if (!leaderboardData[name] || score > leaderboardData[name]) {
+          leaderboardData[name] = score;
+          localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
+        }
+        renderLeaderboard();
+      }
+    });
   </script>
 </body>
 </html>
