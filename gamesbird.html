@@ -200,4 +200,16 @@
         db.ref('leaderboard/' + name).once('value').then(snap => {
           const prev = snap.val() || 0;
           if (score > prev) {
-            db.ref
+            db.ref('leaderboard/' + name).set(score);
+          }
+        });
+        renderLeaderboard();
+      }
+
+      // Pasang listener
+      startBtn.addEventListener('click', startCountdown);
+      jumpBtn.addEventListener('click', jump);
+    });
+  </script>
+</body>
+</html>
