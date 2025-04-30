@@ -85,7 +85,6 @@
       const birdImage = new Image();
       birdImage.src = "https://cdn.unipin.com/images/default_denom/denom.png";
 
-      // Muat leaderboard dari localStorage jika ada
       const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
       const leaderboardEl = document.getElementById("leaderboard");
 
@@ -114,7 +113,7 @@
           if (countdown === 0) {
             clearInterval(countdownInterval);
             overlay.style.display = "none";
-            startGame(); // Memulai permainan setelah hitungan mundur selesai
+            startGame();
           }
         }, 1000);
       }
@@ -179,10 +178,14 @@
         playing = false;
         clearInterval(scoreInterval);
         alert("Game Over! Skor kamu: " + score);
+        updateLeaderboard();
+      }
+
+      function updateLeaderboard() {
         if (!leaderboardData[name] || score > leaderboardData[name]) {
           leaderboardData[name] = score;
-          localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
         }
+        localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
         renderLeaderboard();
       }
     });
