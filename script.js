@@ -142,3 +142,21 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.error(err));
   }
 });
+<script>
+  // Ambil elemen input pencarian dan semua elemen game-item
+  const searchInput = document.getElementById('search-input');
+  const gameItems = document.querySelectorAll('.game-item');
+
+  // Event listener untuk menangani perubahan input
+  searchInput.addEventListener('input', function () {
+    const query = searchInput.value.toLowerCase(); // Ambil nilai input dan buat menjadi lowercase
+    gameItems.forEach(item => {
+      const gameName = item.querySelector('div').textContent.toLowerCase(); // Ambil nama game
+      if (gameName.includes(query)) {
+        item.style.display = 'block'; // Tampilkan game yang sesuai
+      } else {
+        item.style.display = 'none'; // Sembunyikan game yang tidak sesuai
+      }
+    });
+  });
+</script>
