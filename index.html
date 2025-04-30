@@ -161,7 +161,6 @@
   <section class="auto-banner">
     <div class="auto-banner-container" id="bannerContainer">
       <div class="auto-banner-track" id="bannerTrack">
-        <!-- Banner slides -->
         <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt=""></div>
         <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt=""></div>
         <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt=""></div>
@@ -220,16 +219,28 @@
 
   <script>
     const bannerTrack = document.getElementById('bannerTrack');
-    let currentSlide = 0;
-    const totalSlides = bannerTrack.children.length;
+    let offset = 0;
+    setInterval(() => {
+      offset -= 100;
+      bannerTrack.style.transform = `translateX(${offset}%)`;
+      if (Math.abs(offset) >= 100 * 4) {
+        offset = 0;
+      }
+    }, 3000);
 
-    function slideBanner() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    setInterval(slideBanner, 3000);
+    // Search function
+    document.getElementById('search-input').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase();
+      const gameItems = document.querySelectorAll('.game-item');
+      gameItems.forEach(item => {
+        const gameName = item.querySelector('div').textContent.toLowerCase();
+        if (gameName.includes(query)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
   </script>
-  <script src="script.js"></script>
 </body>
-  </html>
+</html>
