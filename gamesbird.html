@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVOSHOP Challenge</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif;}
+    body {background-color: #001f3f; color: white; overflow-x: hidden;}
+    .fade-in {animation: fadeIn 1s ease-in;}
+    @keyframes fadeIn {from {opacity: 0;} to {opacity: 1;}}
+    .top-bar {display: flex; justify-content: space-between; align-items: center; background-color: #0d1b2a; padding: 10px;}
+    .top-bar button {background-color: transparent; border: none; color: white; font-size: 16px;}
+    .top-bar h1 {font-size: 18px;}
+    .top-bar img {height: 30px;}
+    .score-board {background-color: #0d1b2a; padding: 10px; margin-top: 5px; border: 2px solid #00aaff; border-radius: 10px;}
+    .score-board h3 {text-align: center; margin-bottom: 5px; font-size: 20px; color: #00ffff;}
+    .score-board ul {list-style: none; padding: 0; text-align: center;}
+    .score-board li {padding: 3px 0; font-weight: bold;}
+    .main {text-align: center; margin-top: 10px;}
+    .main button {margin-top: 10px; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; background-color: orange; color: white; cursor: pointer; animation: fadeIn 0.5s ease-in;}
+    #game-container {margin: 10px auto; width: 90vw; max-width: 640px; aspect-ratio: 16 / 9; background-color: #003366; position: relative; overflow: hidden;}
+    canvas {width: 100%; height: 100%;}
+    #jumpBtn {display: block; margin: 10px auto 0 auto; width: 90vw; max-width: 640px; padding: 15px; font-size: 20px; background-color: white; color: black; border: none; border-radius: 10px; z-index: 10;}
+    #banner {display: block; margin: 10px auto; width: 90vw; max-width: 640px;}
+    #countdown-overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); color: white; display: flex; align-items: center; justify-content: center; font-size: 50px; z-index: 5;}
+    .instructions {text-align: center; margin: 10px auto; width: 90vw; max-width: 640px; background-color: #0d1b2a; padding: 10px; border-radius: 10px;}
+    .instructions h4 {color: #00ffff; margin-bottom: 5px;}
+  </style>
+</head>
+<body class="fade-in">
+  <div class="top-bar">
+    <button onclick="location.href='index.html'">Kembali</button>
+    <h1>UVOSHOP CHALLENGE</h1>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo">
+  </div>
+
+  <div class="score-board">
+    <h3>TOP SKOR</h3>
+    <ul id="leaderboard"></ul>
+  </div>
+
+  <div class="main">
+    <input type="text" id="playerName" placeholder="Masukkan nama kamu" />
+    <br />
+    <button onclick="startCountdown()">Main</button>
+  </div>
+
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <div id="countdown-overlay"></div>
+  </div>
+
+  <button id="jumpBtn" onclick="jump()">LOMPAT</button>
+  <img id="banner" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner" />
+
+  <div class="instructions">
+    <h4>Cara Bermain:</h4>
+    <p>1. Masukkan nama kamu, lalu klik tombol “Main”.</p>
+    <p>2. Setelah hitungan mundur selesai, tekan tombol “LOMPAT” untuk menghindari rintangan.</p>
+    <p>3. Skor akan terus bertambah selama kamu tidak menabrak.</p>
+    <p>4. Top skor akan disimpan jika lebih tinggi dari sebelumnya!</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = 640;
+    canvas.height = 360;
+
+    let score = 0;
+    let name = "";
+    let playing = false;
+    let countdownInterval;
+    let birdY = canvas.height / 2;
+    let birdVelocity = 0;
+    let gravity = 0.3;
+    let jumpPower = -5;
+    let pipes = [];
+    let pipeGap = 150;
+    let pipeWidth = 60;
+    let pipeSpeed = 2;
+    let scoreInterval;
+    const birdImage = new Image();
+    birdImage.src = "https://cdn.unipin.com/images/default_denom/denom.png";
+
+    const leaderboardData = {};
+
+    function startCountdown() {
+      name = document.getElementById("playerName").value.trim();
+      if (!name) return alert("Isi nama dulu!");
+      let countdown = 5;
+      const overlay = document.getElementById("countdown-overlay");
+      overlay.style.display = "flex";
+      overlay.innerText = countdown;
+
+      countdownInterval = setInterval(() => {
+        countdown--;
+        overlay.innerText = countdown;
+        if (countdown === 0) {
+          clearInterval(countdownInterval);
+          overlay.style.display = "none";
+          startGame();
+        }
+      }, 1000);
+    }
+
+    function jump() {
+      if (!playing) return;
+      birdVelocity = jumpPower;
+    }
+
+    function startGame() {
+      playing = true;
+      score = 0;
+      birdY = canvas.height / 2;
+      birdVelocity = 0;
+      pipes = [];
+      clearInterval(scoreInterval);
+      scoreInterval = setInterval(() => {
+        if (playing) score++;
+      }, 1000);
+      requestAnimationFrame(gameLoop);
+    }
+
+    function gameLoop() {
+      if (!playing) return;
+
+      birdVelocity += gravity;
+      birdY += birdVelocity;
+
+      if (birdY > canvas.height - 20) {
+        birdY = canvas.height - 20;
+        gameOver();
+      }
+      if (birdY < 0) {
+        birdY = 0;
+      }
+
+      if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 300) {
+        let pipeHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
+        pipes.push({ x: canvas.width, height: pipeHeight });
+      }
+
+      for (let i = 0; i < pipes.length; i++) {
+        pipes[i].x -= pipeSpeed;
+        if (pipes[i].x + pipeWidth < 0) {
+          pipes.splice(i, 1);
+          i--;
+        }
+      }
+
+      for (let i = 0; i < pipes.length; i++) {
+        if (
+          pipes[i].x < 70 && pipes[i].x + pipeWidth > 50 &&
+          (birdY < pipes[i].height || birdY > pipes[i].height + pipeGap)
+        ) {
+          gameOver();
+        }
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "green";
+      for (let i = 0; i < pipes.length; i++) {
+        ctx.fillRect(pipes[i].x, 0, pipeWidth, pipes[i].height);
+        ctx.fillRect(pipes[i].x, pipes[i].height + pipeGap, pipeWidth, canvas.height);
+      }
+
+      ctx.drawImage(birdImage, 50, birdY, 40, 40);
+
+      ctx.fillStyle = "white";
+      ctx.font = "24px Arial";
+      ctx.fillText("Skor: " + score, 10, 30);
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    function gameOver() {
+      playing = false;
+      clearInterval(scoreInterval);
+      alert("Game Over! Skor kamu: " + score);
+      updateLeaderboard();
+    }
+
+    function updateLeaderboard() {
+      if (!leaderboardData[name] || score > leaderboardData[name]) {
+        leaderboardData[name] = score;
+      }
+
+      const leaderboard = document.getElementById("leaderboard");
+      leaderboard.innerHTML = "";
+
+      const sorted = Object.entries(leaderboardData).sort((a, b) => b[1] - a[1]);
+      sorted.forEach(([player, skor]) => {
+        const li = document.createElement("li");
+        li.innerText = `${player}: ${skor}`;
+        leaderboard.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
