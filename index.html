@@ -3,201 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UVOSHOP - Top Up Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>UVOSHOP - Top-Up Game Termurah</title>
   <style>
     body {
-      animation: fadeIn 1s ease-in-out;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+
+    .auto-banner {
+      overflow: hidden;
+      width: 100%;
+      height: auto;
     }
 
     .auto-banner-container {
+      position: relative;
       width: 100%;
-      overflow-x: auto;
-      white-space: nowrap;
-      margin: 0 auto 20px auto;
+      overflow: hidden;
     }
 
     .auto-banner-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      animation: scrollBanner 20s linear infinite;
     }
 
     .banner-slide {
-      flex: 0 0 100%;
-      max-height: 200px;
+      flex: 0 0 auto;
+      width: 100%;
     }
 
     .banner-slide img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      display: block;
     }
 
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-    }
-
-    .logo img {
-      height: 50px;
-    }
-
-    .indonesia-logo {
-      font-weight: bold;
-      font-size: 18px;
-      padding-right: 10px;
-    }
-
-    .search-bar input {
-      padding: 5px;
-      font-size: 16px;
-    }
-
-    .category-section {
-      padding: 20px;
-    }
-
-    .games-row {
-      display: flex;
-      overflow-x: scroll;
-      padding: 10px 0;
-    }
-
-    .game-item {
-      margin-right: 15px;
-      padding: 10px;
-      background-color: #f0f0f0;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-      width: 100px;
-      flex-shrink: 0;
-    }
-
-    .game-item img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      margin-bottom: 5px;
-      border-radius: 5px;
-    }
-
-    .game-item:hover {
-      background-color: #0d1b2a;
-      color: white;
-    }
-
-    #mobile-games {
-      overflow-x: scroll;
-      display: flex;
-      gap: 15px;
-    }
-
-    #mobile-games .game-item {
-      flex: 0 0 25%;
+    @keyframes scrollBanner {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-500%); }
     }
 
     .payment-slider {
-      width: 100%;
+      margin-top: 50px;
       overflow: hidden;
-      background: #f9f9f9;
+      background-color: #ffffff;
       padding: 10px 0;
     }
 
     .payment-track {
       display: flex;
-      animation: scroll-left 20s linear infinite;
+      animation: scrollPayment 25s linear infinite;
     }
 
     .payment-track img {
       height: 40px;
-      margin: 0 20px;
+      margin: 0 15px;
     }
 
-    @keyframes scroll-left {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(-100%);
-      }
+    @keyframes scrollPayment {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
 
     .footer {
+      padding: 20px;
+      background-color: #0d1b2a;
+      color: white;
       text-align: center;
-      padding: 30px 20px;
-      background-color: #eee;
-      font-size: 14px;
-      margin-top: 40px;
     }
 
     .footer img {
       margin-top: 20px;
-      height: 60px;
+      width: 200px;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
-      </div>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cari game...">
-      </div>
-      <div class="indonesia-logo">ID</div>
-    </div>
-  </header>
 
-  <!-- Banner Geser Horizontal -->
+  <!-- BANNER OTOMATIS -->
   <section class="auto-banner">
     <div class="auto-banner-container" id="bannerContainer">
       <div class="auto-banner-track" id="bannerTrack">
-        <!-- Banner slides -->
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../3.png" alt=""></div>
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../5.png" alt=""></div>
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../4.png" alt=""></div>
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../2.png" alt=""></div>
-        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/.../1.png" alt=""></div>
+        <div class="banner-slide"><img src="https://cdn.unipin.com/images/promos/1707995434-MLBB2024.jpg" alt=""></div>
+        <div class="banner-slide"><img src="https://cdn.unipin.com/images/promos/1708597697-PUBG-M.jpg" alt=""></div>
+        <div class="banner-slide"><img src="https://cdn.unipin.com/images/promos/1707995672-valorant.jpg" alt=""></div>
+        <div class="banner-slide"><img src="https://cdn.unipin.com/images/promos/1707995917-Free-Fire.jpg" alt=""></div>
+        <div class="banner-slide"><img src="https://cdn.unipin.com/images/promos/1707996312-Genshin-Impact.jpg" alt=""></div>
       </div>
     </div>
   </section>
 
-  <!-- Game Categories -->
-  <section class="category-section">
-    <h2>Game Rekomendasi</h2>
-    <div id="popular-games" class="games-row scrollable">
-      <div class="game-item"><img src="assets/mlbb.png" alt="Mobile Legends"><div>Mobile Legends</div></div>
-      <div class="game-item"><img src="assets/ff.png" alt="Free Fire"><div>Free Fire</div></div>
-      <div class="game-item"><img src="assets/pubgm.png" alt="PUBG Mobile"><div>PUBG Mobile</div></div>
-      <div class="game-item"><img src="assets/genshin.png" alt="Genshin Impact"><div>Genshin</div></div>
-      <div class="game-item"><img src="assets/valo.png" alt="Valorant"><div>Valorant</div></div>
-    </div>
-
-    <h2>Mobile</h2>
-    <div id="mobile-games" class="games-row scrollable">
-      <div class="game-item"><img src="assets/mlbb.png" alt="Mobile Legends"><div>Mobile Legends</div></div>
-      <div class="game-item"><img src="assets/ff.png" alt="Free Fire"><div>Free Fire</div></div>
-      <div class="game-item"><img src="assets/pubgm.png" alt="PUBG Mobile"><div>PUBG Mobile</div></div>
-      <div class="game-item"><img src="assets/genshin.png" alt="Genshin Impact"><div>Genshin</div></div>
-    </div>
-
-    <h2>PC</h2>
-    <div id="pc-games" class="games-row scrollable"></div>
-
-    <h2>Voucher</h2>
-    <div id="game-vouchers" class="games-row scrollable"></div>
-  </section>
-
-  <!-- Dekorasi Bawah -->
+  <!-- DEKORASI BAWAH / METODE PEMBAYARAN -->
   <div class="payment-slider">
     <div class="payment-track">
       <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="Dana">
@@ -209,6 +106,7 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
   <div class="footer">
     <p>UVOSHOP adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
     <p>Peta Situs | Flash Top-Up | Voucher Game Lainnya | FAQ</p>
@@ -218,18 +116,5 @@
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
   </div>
 
-  <script>
-    const bannerTrack = document.getElementById('bannerTrack');
-    let currentSlide = 0;
-    const totalSlides = bannerTrack.children.length;
-
-    function slideBanner() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    setInterval(slideBanner, 3000);
-  </script>
-  <script src="script.js"></script>
 </body>
-                                                                        </html>
+      </html>
