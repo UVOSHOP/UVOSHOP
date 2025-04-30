@@ -18,9 +18,10 @@
     .auto-banner-container {
       width: 100%;
       overflow: hidden;
-      margin: 0;
+      margin: 0 auto 20px auto;
       padding: 0;
       position: relative;
+      max-height: 200px;
     }
 
     #rotating-banner {
@@ -28,9 +29,6 @@
       height: auto;
       display: block;
       object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
       animation: slideIn 0.6s ease-in-out;
     }
 
@@ -49,6 +47,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 10px 20px;
     }
 
     .logo img {
@@ -86,6 +85,7 @@
 
     .game-item:hover {
       background-color: #0d1b2a;
+      color: white;
     }
   </style>
 </head>
@@ -104,7 +104,7 @@
     </div>
   </header>
 
-  <!-- Banner Otomatis -->
+  <!-- Banner Geser Tengah -->
   <section class="auto-banner">
     <div class="auto-banner-container">
       <img id="rotating-banner" src="" alt="Banner">
@@ -115,7 +115,6 @@
   <section class="category-section">
     <h2>Game Rekomendasi</h2>
     <div id="popular-games" class="games-row scrollable">
-      <!-- Contoh isi -->
       <div class="game-item">Mobile Legends</div>
       <div class="game-item">Free Fire</div>
       <div class="game-item">PUBG Mobile</div>
@@ -151,18 +150,14 @@
     const bannerElement = document.getElementById("rotating-banner");
 
     function showNextBanner() {
-      bannerElement.style.animation = "none"; // reset animation
-      void bannerElement.offsetWidth; // trigger reflow to restart animation
-      bannerElement.style.animation = "slideIn 0.6s ease-in-out"; // apply animation again
-
-      bannerElement.src = bannerImages[currentBanner]; // change the banner image
-      currentBanner = (currentBanner + 1) % bannerImages.length; // loop through banners
+      bannerElement.style.animation = "none";
+      void bannerElement.offsetWidth;
+      bannerElement.style.animation = "slideIn 0.6s ease-in-out";
+      bannerElement.src = bannerImages[currentBanner];
+      currentBanner = (currentBanner + 1) % bannerImages.length;
     }
 
-    // Initial banner display
     showNextBanner();
-
-    // Set interval to change the banner every 3 seconds
     setInterval(showNextBanner, 3000);
   </script>
 
