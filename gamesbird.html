@@ -23,14 +23,19 @@
     canvas {width: 100%; height: 100%;}
     #jumpBtn {display: block; margin: 10px auto 0 auto; width: 90vw; max-width: 640px; padding: 15px; font-size: 20px; background-color: white; color: black; border: none; border-radius: 10px; z-index: 10;}
     #banner {display: block; margin: 10px auto; width: 90vw; max-width: 640px;}
-    #countdown-overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); color: white; display: flex; align-items: center; justify-content: center; font-size: 50px; z-index: 5;}
+    #countdown-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.7); color: white;
+      display: none; /* disembunyikan awalnya */
+      align-items: center; justify-content: center; font-size: 50px; z-index: 5;
+    }
     .instructions {text-align: center; margin: 10px auto; width: 90vw; max-width: 640px; background-color: #0d1b2a; padding: 10px; border-radius: 10px;}
     .instructions h4 {color: #00ffff; margin-bottom: 5px;}
   </style>
 </head>
 <body class="fade-in">
   <div class="top-bar">
-    <button onclick="location.href='index.html'">Kembali</button>
+    <button id="backBtn">Kembali</button>
     <h1>UVOSHOP CHALLENGE</h1>
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="Logo">
   </div>
@@ -43,7 +48,7 @@
   <div class="main">
     <input type="text" id="playerName" placeholder="Masukkan nama kamu" />
     <br />
-    <button onclick="startCountdown()">Main</button>
+    <button id="startBtn">Main</button>
   </div>
 
   <div id="game-container">
@@ -51,7 +56,7 @@
     <div id="countdown-overlay"></div>
   </div>
 
-  <button id="jumpBtn" onclick="jump()">LOMPAT</button>
+  <button id="jumpBtn">LOMPAT</button>
   <img id="banner" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="Banner" />
 
   <div class="instructions">
@@ -64,130 +69,121 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const canvas = document.getElementById("gameCanvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width = 640;
+      // Tombol navigasi balik
+      document.getElementById('backBtn').addEventListener('click', () => {
+        location.href = 'index.html';
+      });
+
+      const startBtn = document.getElementById('startBtn');
+      const jumpBtn  = document.getElementById('jumpBtn');
+      const canvas   = document.getElementById('gameCanvas');
+      const ctx      = canvas.getContext('2d');
+      const overlay  = document.getElementById('countdown-overlay');
+      const nameInput= document.getElementById('playerName');
+
+      canvas.width  = 640;
       canvas.height = 360;
 
-      let score = 0;
-      let name = "";
-      let playing = false;
-      let countdownInterval;
-      let birdY = canvas.height / 2;
-      let birdVelocity = 0;
-      let gravity = 0.3;
-      let jumpPower = -5;
-      let pipes = [];
-      let pipeGap = 150;
-      let pipeWidth = 60;
-      let pipeSpeed = 2;
-      let scoreInterval;
+      let score = 0, name = '', playing = false;
+      let countdownInterval, scoreInterval;
+      let birdY = canvas.height/2, birdVelocity = 0;
+      const gravity = 0.3, jumpPower = -5;
+      let pipes = [], pipeGap = 150, pipeWidth = 60, pipeSpeed = 2;
       const birdImage = new Image();
-      birdImage.src = "https://cdn.unipin.com/images/default_denom/denom.png";
+      birdImage.src = 'https://cdn.unipin.com/images/default_denom/denom.png';
 
-      const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
-      const leaderboardEl = document.getElementById("leaderboard");
+      // Load leaderboard dari localStorage
+      const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard')||'{}');
+      const leaderboardEl   = document.getElementById('leaderboard');
 
       function renderLeaderboard() {
-        leaderboardEl.innerHTML = "";
-        const sorted = Object.entries(leaderboardData).sort((a, b) => b[1] - a[1]);
-        sorted.forEach(([player, skor]) => {
-          const li = document.createElement("li");
-          li.innerText = `${player}: ${skor}`;
-          leaderboardEl.appendChild(li);
-        });
+        leaderboardEl.innerHTML = '';
+        Object.entries(leaderboardData)
+          .sort((a,b)=>b[1]-a[1])
+          .forEach(([p,s])=>{
+            const li = document.createElement('li');
+            li.innerText = `${p}: ${s}`;
+            leaderboardEl.appendChild(li);
+          });
       }
       renderLeaderboard();
 
       function startCountdown() {
-        name = document.getElementById("playerName").value.trim();
-        if (!name) return alert("Isi nama dulu!");
-        let countdown = 5;
-        const overlay = document.getElementById("countdown-overlay");
-        overlay.style.display = "flex";
-        overlay.innerText = countdown;
-
-        countdownInterval = setInterval(() => {
-          countdown--;
-          overlay.innerText = countdown;
-          if (countdown === 0) {
+        name = nameInput.value.trim();
+        if(!name) return alert('Isi nama dulu!');
+        let count = 5;
+        overlay.style.display = 'flex';
+        overlay.innerText = count;
+        countdownInterval = setInterval(()=>{
+          count--;
+          overlay.innerText = count;
+          if(count===0){
             clearInterval(countdownInterval);
-            overlay.style.display = "none";
+            overlay.style.display='none';
             startGame();
           }
-        }, 1000);
-      }
-
-      function jump() {
-        if (!playing) return;
-        birdVelocity = jumpPower;
+        },1000);
       }
 
       function startGame() {
         playing = true;
         score = 0;
-        birdY = canvas.height / 2;
+        birdY = canvas.height/2;
         birdVelocity = 0;
         pipes = [];
         clearInterval(scoreInterval);
-        scoreInterval = setInterval(() => {
-          if (playing) score++;
-        }, 1000);
+        scoreInterval = setInterval(()=>{ if(playing) score++; },1000);
         requestAnimationFrame(gameLoop);
       }
 
+      function jump() {
+        if(!playing) return;
+        birdVelocity = jumpPower;
+      }
+
       function gameLoop() {
-        if (!playing) return;
+        if(!playing) return;
         birdVelocity += gravity;
         birdY += birdVelocity;
-
-        if (birdY > canvas.height - 20) { birdY = canvas.height - 20; gameOver(); }
-        if (birdY < 0) { birdY = 0; }
-
-        if (!pipes.length || pipes[pipes.length - 1].x < canvas.width - 300) {
-          const pipeHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
-          pipes.push({ x: canvas.width, height: pipeHeight });
+        if(birdY > canvas.height-20){ birdY=canvas.height-20; gameOver(); }
+        if(birdY < 0){ birdY=0; }
+        if(!pipes.length || pipes[pipes.length-1].x < canvas.width-300) {
+          pipes.push({ x: canvas.width, height: Math.random()*(canvas.height-pipeGap) });
         }
-
-        pipes.forEach((p, i) => {
+        pipes.forEach((p,i)=>{
           p.x -= pipeSpeed;
-          if (p.x + pipeWidth < 0) pipes.splice(i, 1);
-        });
-
-        pipes.forEach(p => {
-          if (p.x < 70 && p.x + pipeWidth > 50 && (birdY < p.height || birdY > p.height + pipeGap)) {
+          if(p.x+pipeWidth<0) pipes.splice(i,1);
+          if(p.x<70 && p.x+pipeWidth>50 && (birdY<p.height || birdY>p.height+pipeGap)) {
             gameOver();
           }
         });
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "green";
-        pipes.forEach(p => {
-          ctx.fillRect(p.x, 0, pipeWidth, p.height);
-          ctx.fillRect(p.x, p.height + pipeGap, pipeWidth, canvas.height);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle='green';
+        pipes.forEach(p=>{
+          ctx.fillRect(p.x,0,pipeWidth,p.height);
+          ctx.fillRect(p.x,p.height+pipeGap,pipeWidth,canvas.height);
         });
-
-        ctx.drawImage(birdImage, 50, birdY, 40, 40);
-        ctx.fillStyle = "white";
-        ctx.font = "24px Arial";
-        ctx.fillText("Skor: " + score, 10, 30);
+        ctx.drawImage(birdImage,50,birdY,40,40);
+        ctx.fillStyle='white';
+        ctx.font='24px Arial';
+        ctx.fillText('Skor: '+score,10,30);
         requestAnimationFrame(gameLoop);
       }
 
       function gameOver() {
         playing = false;
         clearInterval(scoreInterval);
-        alert("Game Over! Skor kamu: " + score);
-        updateLeaderboard();
-      }
-
-      function updateLeaderboard() {
-        if (!leaderboardData[name] || score > leaderboardData[name]) {
-          leaderboardData[name] = score;
+        alert('Game Over! Skor kamu: '+score);
+        if(!leaderboardData[name] || score>leaderboardData[name]) {
+          leaderboardData[name]=score;
+          localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
         }
-        localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
         renderLeaderboard();
       }
+
+      // Pasang listener
+      startBtn.addEventListener('click', startCountdown);
+      jumpBtn .addEventListener('click', jump);
     });
   </script>
 </body>
