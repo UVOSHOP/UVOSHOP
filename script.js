@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3>${game.name}</h3>
       `;
       card.addEventListener('click', () => {
+        const clicks = JSON.parse(localStorage.getItem('gameClicks') || '{}');
+        clicks[game.id] = (clicks[game.id] || 0) + 1;
+        localStorage.setItem('gameClicks', JSON.stringify(clicks));
         window.location.href = `topup.html?game=${game.id}`;
       });
       return card;
@@ -30,24 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('games.json')
       .then(res => res.json())
       .then(games => {
+        let clicks = JSON.parse(localStorage.getItem('gameClicks') || '{}');
+        games.sort((a, b) => (clicks[b.id] || 0) - (clicks[a.id] || 0));
+
         games.forEach(game => {
           const card = createGameCard(game);
-          // distribusi ke kategori
+
+          // masukkan ke kategori popular
+          categories['popular-games'].appendChild(card);
+
+          // masukkan ke kategori spesifik
           switch (game.category) {
-            case 'popular':
-              categories['popular-games'].appendChild(card);
-              break;
             case 'mobile':
-              categories['mobile-games'].appendChild(card);
+              categories['mobile-games'].appendChild(createGameCard(game));
               break;
             case 'pc':
-              categories['pc-games'].appendChild(card);
+              categories['pc-games'].appendChild(createGameCard(game));
               break;
             case 'voucher':
-              categories['game-vouchers'].appendChild(card);
+              categories['game-vouchers'].appendChild(createGameCard(game));
               break;
-            default:
-              categories['popular-games'].appendChild(card);
           }
         });
       })
@@ -76,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('game-title').innerText = game.name;
 
-        // hide server ID jika tidak perlu
         const noServer = [
           'free-fire', 'free-fire-max', 'pubg-mobile', 'valorant',
           'roblox', 'steam-wallet', 'garena-shells', 'minecraft',
@@ -86,9 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById('server-id-container').style.display = 'none';
         }
 
-        // load harga nominal dari games.json
-        const prices = game.prices || []; // Pastikan menggunakan prices, bukan nominals
-
+        const prices = game.prices || [];
         const container = document.getElementById('nominals-container');
         if (prices.length > 0) {
           prices.forEach((price, i) => {
@@ -99,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             input.type = 'radio';
             input.id = `nominal-${i}`;
             input.name = 'nominal';
-            input.value = price.price; // Menggunakan price dari JSON
+            input.value = price.price;
             input.required = true;
 
             const label = document.createElement('label');
