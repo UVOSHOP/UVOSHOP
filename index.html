@@ -218,16 +218,6 @@
   </div>
 
   <script>
-    const bannerTrack = document.getElementById('bannerTrack');
-    let offset = 0;
-    setInterval(() => {
-      offset -= 100;
-      bannerTrack.style.transform = `translateX(${offset}%)`;
-      if (Math.abs(offset) >= 100 * 4) {
-        offset = 0;
-      }
-    }, 3000);
-
     // Search function
     document.getElementById('search-input').addEventListener('input', function(e) {
       const query = e.target.value.toLowerCase();
