@@ -6,100 +6,24 @@
     "category": "mobile",
     "prices": [
       {
-        "amount": 5,
-        "price": 2000
-      },
-      {
-        "amount": 10,
-        "price": 3000
-      },
-      {
-        "amount": 15,
-        "price": 4000
-      },
-      {
-        "amount": 20,
-        "price": 5000
-      },
-      {
-        "amount": 25,
-        "price": 6000
-      },
-      {
-        "amount": 30,
-        "price": 7000
-      },
-      {
-        "amount": 50,
-        "price": 8000
-      },
-      {
-        "amount": 60,
-        "price": 11000
-      },
-      {
-        "amount": 70,
-        "price": 10000
-      },
-      {
-        "amount": 100,
-        "price": 15000
-      },
-      {
-        "amount": 140,
+        "amount": 86,
         "price": 20000
       },
       {
-        "amount": 150,
-        "price": 22000
+        "amount": 172,
+        "price": 40000
       },
       {
-        "amount": 160,
-        "price": 24000
-      },
-      {
-        "amount": 170,
-        "price": 23000
-      },
-      {
-        "amount": 180,
-        "price": 25000
-      },
-      {
-        "amount": 190,
-        "price": 26000
-      },
-      {
-        "amount": 200,
-        "price": 27000
-      },
-      {
-        "amount": 210,
-        "price": 30000
-      },
-      {
-        "amount": 310,
-        "price": 44000
-      },
-      {
-        "amount": 355,
-        "price": 50000
-      },
-      {
-        "amount": 425,
+        "amount": 257,
         "price": 60000
       },
       {
-        "amount": 500,
-        "price": 75000
+        "amount": 344,
+        "price": 80000
       },
       {
-        "amount": 720,
-        "price": 115000
-      },
-      {
-        "amount": 1440,
-        "price": 150000
+        "amount": 429,
+        "price": 100000
       }
     ]
   },
@@ -110,100 +34,20 @@
     "category": "mobile",
     "prices": [
       {
-        "amount": 5,
-        "price": 2000
-      },
-      {
-        "amount": 10,
-        "price": 3000
-      },
-      {
-        "amount": 15,
-        "price": 4000
-      },
-      {
-        "amount": 20,
-        "price": 5000
-      },
-      {
-        "amount": 25,
-        "price": 6000
-      },
-      {
-        "amount": 30,
-        "price": 7000
-      },
-      {
-        "amount": 50,
-        "price": 8000
-      },
-      {
-        "amount": 60,
-        "price": 11000
-      },
-      {
         "amount": 70,
         "price": 10000
-      },
-      {
-        "amount": 100,
-        "price": 15000
       },
       {
         "amount": 140,
         "price": 20000
       },
       {
-        "amount": 150,
-        "price": 22000
-      },
-      {
-        "amount": 160,
-        "price": 24000
-      },
-      {
-        "amount": 170,
-        "price": 23000
-      },
-      {
-        "amount": 180,
-        "price": 25000
-      },
-      {
-        "amount": 190,
-        "price": 26000
-      },
-      {
-        "amount": 200,
-        "price": 27000
-      },
-      {
-        "amount": 210,
-        "price": 30000
-      },
-      {
-        "amount": 310,
-        "price": 44000
-      },
-      {
         "amount": 355,
         "price": 50000
       },
       {
-        "amount": 425,
-        "price": 60000
-      },
-      {
-        "amount": 500,
-        "price": 75000
-      },
-      {
         "amount": 720,
-        "price": 115000
-      },
-      {
-        "amount": 1440,
-        "price": 150000
+        "price": 100000
       }
     ]
   },
@@ -214,204 +58,44 @@
     "category": "mobile",
     "prices": [
       {
-        "amount": 5,
-        "price": 2000
-      },
-      {
-        "amount": 10,
-        "price": 3000
-      },
-      {
-        "amount": 15,
-        "price": 4000
-      },
-      {
-        "amount": 20,
+        "amount": 31,
         "price": 5000
       },
       {
-        "amount": 25,
-        "price": 6000
-      },
-      {
-        "amount": 30,
-        "price": 7000
-      },
-      {
-        "amount": 50,
-        "price": 8000
-      },
-      {
-        "amount": 60,
-        "price": 11000
-      },
-      {
-        "amount": 70,
+        "amount": 62,
         "price": 10000
       },
       {
-        "amount": 100,
-        "price": 15000
-      },
-      {
-        "amount": 140,
+        "amount": 127,
         "price": 20000
       },
       {
-        "amount": 150,
-        "price": 22000
-      },
-      {
-        "amount": 160,
-        "price": 24000
-      },
-      {
-        "amount": 170,
-        "price": 23000
-      },
-      {
-        "amount": 180,
-        "price": 25000
-      },
-      {
-        "amount": 190,
-        "price": 26000
-      },
-      {
-        "amount": 200,
-        "price": 27000
-      },
-      {
-        "amount": 210,
-        "price": 30000
-      },
-      {
-        "amount": 310,
-        "price": 44000
-      },
-      {
-        "amount": 355,
+        "amount": 317,
         "price": 50000
       },
       {
-        "amount": 425,
-        "price": 60000
-      },
-      {
-        "amount": 500,
-        "price": 75000
-      },
-      {
-        "amount": 720,
-        "price": 115000
-      },
-      {
-        "amount": 1440,
-        "price": 150000
+        "amount": 634,
+        "price": 100000
       }
     ]
   },
   {
-    "id": "pokémon-unite",
-    "name": "Pokémon Unite",
+    "id": "pok\u00e9mon-unite",
+    "name": "Pok\u00e9mon Unite",
     "icon": "https://cdn.unipin.com/images/icon_product_pages/1729148595-icon-0656f52dcf01f2f219db8246a8c97d87%20(1).png",
     "category": "mobile",
     "prices": [
       {
-        "amount": 5,
-        "price": 2000
-      },
-      {
-        "amount": 10,
-        "price": 3000
-      },
-      {
-        "amount": 15,
-        "price": 4000
-      },
-      {
-        "amount": 20,
-        "price": 5000
-      },
-      {
-        "amount": 25,
-        "price": 6000
-      },
-      {
-        "amount": 30,
-        "price": 7000
-      },
-      {
-        "amount": 50,
-        "price": 8000
-      },
-      {
         "amount": 60,
-        "price": 11000
-      },
-      {
-        "amount": 70,
-        "price": 10000
-      },
-      {
-        "amount": 100,
         "price": 15000
       },
       {
-        "amount": 140,
-        "price": 20000
-      },
-      {
-        "amount": 150,
-        "price": 22000
-      },
-      {
-        "amount": 160,
-        "price": 24000
-      },
-      {
-        "amount": 170,
-        "price": 23000
-      },
-      {
-        "amount": 180,
-        "price": 25000
-      },
-      {
-        "amount": 190,
-        "price": 26000
-      },
-      {
-        "amount": 200,
-        "price": 27000
-      },
-      {
-        "amount": 210,
-        "price": 30000
-      },
-      {
-        "amount": 310,
-        "price": 44000
-      },
-      {
-        "amount": 355,
-        "price": 50000
-      },
-      {
-        "amount": 425,
+        "amount": 245,
         "price": 60000
       },
       {
-        "amount": 500,
-        "price": 75000
-      },
-      {
-        "amount": 720,
+        "amount": 490,
         "price": 115000
-      },
-      {
-        "amount": 1440,
-        "price": 150000
       }
     ]
   },
@@ -422,100 +106,16 @@
     "category": "mobile",
     "prices": [
       {
-        "amount": 5,
-        "price": 2000
-      },
-      {
-        "amount": 10,
-        "price": 3000
-      },
-      {
-        "amount": 15,
-        "price": 4000
-      },
-      {
-        "amount": 20,
-        "price": 5000
-      },
-      {
-        "amount": 25,
-        "price": 6000
-      },
-      {
-        "amount": 30,
-        "price": 7000
-      },
-      {
-        "amount": 50,
-        "price": 8000
-      },
-      {
         "amount": 60,
-        "price": 11000
-      },
-      {
-        "amount": 70,
-        "price": 10000
-      },
-      {
-        "amount": 100,
         "price": 15000
       },
       {
-        "amount": 140,
-        "price": 20000
-      },
-      {
-        "amount": 150,
-        "price": 22000
-      },
-      {
-        "amount": 160,
-        "price": 24000
-      },
-      {
-        "amount": 170,
-        "price": 23000
-      },
-      {
-        "amount": 180,
-        "price": 25000
-      },
-      {
-        "amount": 190,
-        "price": 26000
-      },
-      {
-        "amount": 200,
-        "price": 27000
-      },
-      {
-        "amount": 210,
-        "price": 30000
-      },
-      {
-        "amount": 310,
-        "price": 44000
-      },
-      {
-        "amount": 355,
-        "price": 50000
-      },
-      {
-        "amount": 425,
-        "price": 60000
-      },
-      {
-        "amount": 500,
+        "amount": 300,
         "price": 75000
       },
       {
-        "amount": 720,
-        "price": 115000
-      },
-      {
-        "amount": 1440,
-        "price": 150000
+        "amount": 980,
+        "price": 235000
       }
     ]
   },
@@ -526,100 +126,16 @@
     "category": "mobile",
     "prices": [
       {
-        "amount": 5,
-        "price": 2000
-      },
-      {
-        "amount": 10,
-        "price": 3000
-      },
-      {
-        "amount": 15,
-        "price": 4000
-      },
-      {
-        "amount": 20,
-        "price": 5000
-      },
-      {
-        "amount": 25,
-        "price": 6000
-      },
-      {
-        "amount": 30,
-        "price": 7000
-      },
-      {
-        "amount": 50,
-        "price": 8000
-      },
-      {
         "amount": 60,
-        "price": 11000
-      },
-      {
-        "amount": 70,
-        "price": 10000
-      },
-      {
-        "amount": 100,
         "price": 15000
       },
       {
-        "amount": 140,
-        "price": 20000
-      },
-      {
-        "amount": 150,
-        "price": 22000
-      },
-      {
-        "amount": 160,
-        "price": 24000
-      },
-      {
-        "amount": 170,
-        "price": 23000
-      },
-      {
-        "amount": 180,
-        "price": 25000
-      },
-      {
-        "amount": 190,
-        "price": 26000
-      },
-      {
-        "amount": 200,
-        "price": 27000
-      },
-      {
-        "amount": 210,
-        "price": 30000
-      },
-      {
-        "amount": 310,
-        "price": 44000
-      },
-      {
-        "amount": 355,
-        "price": 50000
-      },
-      {
-        "amount": 425,
-        "price": 60000
-      },
-      {
-        "amount": 500,
+        "amount": 300,
         "price": 75000
       },
       {
-        "amount": 720,
-        "price": 115000
-      },
-      {
-        "amount": 1440,
-        "price": 150000
+        "amount": 980,
+        "price": 235000
       }
     ]
   },
