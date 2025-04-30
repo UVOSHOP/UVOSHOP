@@ -188,3 +188,21 @@
   </script>
 </body>
 </html>
+<script>
+//ini js buat ke firebase
+  document.addEventListener('DOMContentLoaded', () => {
+    // Ambil data leaderboard dari localStorage
+    const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
+    const leaderboardEl = document.getElementById('leaderboard');
+    leaderboardEl.innerHTML = '';
+
+    // Urutkan dan tampilkan
+    Object.entries(leaderboardData)
+      .sort((a, b) => b[1] - a[1])
+      .forEach(([player, score]) => {
+        const li = document.createElement('li');
+        li.innerText = `${player}: ${score}`;
+        leaderboardEl.appendChild(li);
+      });
+  });
+</script>
