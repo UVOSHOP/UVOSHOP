@@ -55,19 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
               break;
           }
         });
+
+        // search filter
+        searchInput.addEventListener('input', () => {
+          const term = searchInput.value.toLowerCase();
+          // Loop over each category container and hide cards that don't match the search term
+          Object.values(categories).forEach(container => {
+            Array.from(container.children).forEach(card => {
+              const name = card.querySelector('h3').innerText.toLowerCase();
+              // Menyembunyikan atau menampilkan card berdasarkan pencarian
+              card.style.display = name.includes(term) ? 'block' : 'none';
+            });
+          });
+        });
+
       })
       .catch(err => console.error('Gagal load games.json:', err));
-
-    // search filter
-    searchInput.addEventListener('input', () => {
-      const term = searchInput.value.toLowerCase();
-      Object.values(categories).forEach(container => {
-        Array.from(container.children).forEach(card => {
-          const name = card.querySelector('h3').innerText.toLowerCase();
-          card.style.display = name.includes(term) ? 'block' : 'none';
-        });
-      });
-    });
 
   } else {
     // === TOPUP.HTML: Halaman top-up dengan form ===
