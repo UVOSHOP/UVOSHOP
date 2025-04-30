@@ -93,6 +93,52 @@
       background-color: #0d1b2a;
       color: white;
     }
+
+    .payment-marquee {
+      width: 100%;
+      overflow: hidden;
+      background-color: #fff;
+      padding: 10px 0;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .payment-track {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+
+    .payment-track img {
+      height: 30px;
+      margin: 0 20px;
+      vertical-align: middle;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    .footer-container {
+      background-color: #f8f8f8;
+      padding: 30px 20px 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .footer-logo {
+      margin-top: 20px;
+    }
+
+    .footer-logo img {
+      height: 50px;
+    }
+
+    #mobile-games .game-item {
+      width: calc(100% / 4 - 15px); /* Menampilkan 4 game (3 penuh 1 setengah) */
+    }
   </style>
 </head>
 <body>
@@ -136,42 +182,4 @@
         <div>Free Fire</div>
       </div>
       <div class="game-item">
-        <img src="assets/pubgm.png" alt="PUBG Mobile">
-        <div>PUBG Mobile</div>
-      </div>
-      <div class="game-item">
-        <img src="assets/genshin.png" alt="Genshin Impact">
-        <div>Genshin</div>
-      </div>
-      <div class="game-item">
-        <img src="assets/valo.png" alt="Valorant">
-        <div>Valorant</div>
-      </div>
-    </div>
-
-    <h2>Mobile</h2>
-    <div id="mobile-games" class="games-row scrollable"></div>
-
-    <h2>PC</h2>
-    <div id="pc-games" class="games-row scrollable"></div>
-
-    <h2>Voucher</h2>
-    <div id="game-vouchers" class="games-row scrollable"></div>
-  </section>
-
-  <script>
-    const bannerTrack = document.getElementById('bannerTrack');
-    let currentSlide = 0;
-    const totalSlides = bannerTrack.children.length;
-
-    function slideBanner() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    setInterval(slideBanner, 3000);
-  </script>
-
-  <script src="script.js"></script>
-</body>
-</html>
+        <img src
