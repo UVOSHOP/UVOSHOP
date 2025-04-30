@@ -84,7 +84,19 @@
     const birdImage = new Image();
     birdImage.src = "https://cdn.unipin.com/images/default_denom/denom.png";
 
-    const leaderboardData = {};
+    // Muat leaderboard dari localStorage jika ada
+    const leaderboardData = JSON.parse(localStorage.getItem('uvo_leaderboard') || '{}');
+    const leaderboardEl = document.getElementById("leaderboard");
+    function renderLeaderboard() {
+      leaderboardEl.innerHTML = "";
+      const sorted = Object.entries(leaderboardData).sort((a, b) => b[1] - a[1]);
+      sorted.forEach(([player, skor]) => {
+        const li = document.createElement("li");
+        li.innerText = `${player}: ${skor}`;
+        leaderboardEl.appendChild(li);
+      });
+    }
+    renderLeaderboard();
 
     function startCountdown() {
       name = document.getElementById("playerName").value.trim();
@@ -125,53 +137,39 @@
 
     function gameLoop() {
       if (!playing) return;
-
       birdVelocity += gravity;
       birdY += birdVelocity;
 
-      if (birdY > canvas.height - 20) {
-        birdY = canvas.height - 20;
-        gameOver();
-      }
-      if (birdY < 0) {
-        birdY = 0;
-      }
+      if (birdY > canvas.height - 20) { birdY = canvas.height - 20; gameOver(); }
+      if (birdY < 0) { birdY = 0; }
 
-      if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 300) {
-        let pipeHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
+      if (!pipes.length || pipes[pipes.length - 1].x < canvas.width - 300) {
+        const pipeHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
         pipes.push({ x: canvas.width, height: pipeHeight });
       }
 
-      for (let i = 0; i < pipes.length; i++) {
-        pipes[i].x -= pipeSpeed;
-        if (pipes[i].x + pipeWidth < 0) {
-          pipes.splice(i, 1);
-          i--;
-        }
-      }
+      pipes.forEach((p, i) => {
+        p.x -= pipeSpeed;
+        if (p.x + pipeWidth < 0) pipes.splice(i, 1);
+      });
 
-      for (let i = 0; i < pipes.length; i++) {
-        if (
-          pipes[i].x < 70 && pipes[i].x + pipeWidth > 50 &&
-          (birdY < pipes[i].height || birdY > pipes[i].height + pipeGap)
-        ) {
+      pipes.forEach(p => {
+        if (p.x < 70 && p.x + pipeWidth > 50 && (birdY < p.height || birdY > p.height + pipeGap)) {
           gameOver();
         }
-      }
+      });
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "green";
-      for (let i = 0; i < pipes.length; i++) {
-        ctx.fillRect(pipes[i].x, 0, pipeWidth, pipes[i].height);
-        ctx.fillRect(pipes[i].x, pipes[i].height + pipeGap, pipeWidth, canvas.height);
-      }
+      pipes.forEach(p => {
+        ctx.fillRect(p.x, 0, pipeWidth, p.height);
+        ctx.fillRect(p.x, p.height + pipeGap, pipeWidth, canvas.height);
+      });
 
       ctx.drawImage(birdImage, 50, birdY, 40, 40);
-
       ctx.fillStyle = "white";
       ctx.font = "24px Arial";
       ctx.fillText("Skor: " + score, 10, 30);
-
       requestAnimationFrame(gameLoop);
     }
 
@@ -179,23 +177,11 @@
       playing = false;
       clearInterval(scoreInterval);
       alert("Game Over! Skor kamu: " + score);
-      updateLeaderboard();
-    }
-
-    function updateLeaderboard() {
       if (!leaderboardData[name] || score > leaderboardData[name]) {
         leaderboardData[name] = score;
+        localStorage.setItem('uvo_leaderboard', JSON.stringify(leaderboardData));
       }
-
-      const leaderboard = document.getElementById("leaderboard");
-      leaderboard.innerHTML = "";
-
-      const sorted = Object.entries(leaderboardData).sort((a, b) => b[1] - a[1]);
-      sorted.forEach(([player, skor]) => {
-        const li = document.createElement("li");
-        li.innerText = `${player}: ${skor}`;
-        leaderboard.appendChild(li);
-      });
+      renderLeaderboard();
     }
   </script>
 </body>
