@@ -17,30 +17,25 @@
 
     .auto-banner-container {
       width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
+      white-space: nowrap;
       margin: 0 auto 20px auto;
-      padding: 0;
-      position: relative;
+    }
+
+    .auto-banner-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .banner-slide {
+      flex: 0 0 100%;
       max-height: 200px;
     }
 
-    #rotating-banner {
+    .banner-slide img {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 200px;
       object-fit: cover;
-      animation: slideIn 0.6s ease-in-out;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
     }
 
     .header-container {
@@ -79,8 +74,19 @@
       margin-right: 15px;
       padding: 10px;
       background-color: #f0f0f0 ;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      text-align: center;
+      width: 100px;
+      flex-shrink: 0;
+    }
+
+    .game-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-bottom: 5px;
+      border-radius: 5px;
     }
 
     .game-item:hover {
@@ -104,10 +110,16 @@
     </div>
   </header>
 
-  <!-- Banner Geser Tengah -->
+  <!-- Banner Geser Horizontal -->
   <section class="auto-banner">
-    <div class="auto-banner-container">
-      <img id="rotating-banner" src="" alt="Banner">
+    <div class="auto-banner-container" id="bannerContainer">
+      <div class="auto-banner-track" id="bannerTrack">
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt=""></div>
+      </div>
     </div>
   </section>
 
@@ -115,16 +127,26 @@
   <section class="category-section">
     <h2>Game Rekomendasi</h2>
     <div id="popular-games" class="games-row scrollable">
-      <div class="game-item">Mobile Legends</div>
-      <div class="game-item">Free Fire</div>
-      <div class="game-item">PUBG Mobile</div>
-      <div class="game-item">Genshin Impact</div>
-      <div class="game-item">Valorant</div>
-      <div class="game-item">Steam Wallet</div>
-      <div class="game-item">Google Play Voucher</div>
-      <div class="game-item">Roblox</div>
-      <div class="game-item">Canva Pro</div>
-      <div class="game-item">Spotify Premium</div>
+      <div class="game-item">
+        <img src="assets/mlbb.png" alt="Mobile Legends">
+        <div>Mobile Legends</div>
+      </div>
+      <div class="game-item">
+        <img src="assets/ff.png" alt="Free Fire">
+        <div>Free Fire</div>
+      </div>
+      <div class="game-item">
+        <img src="assets/pubgm.png" alt="PUBG Mobile">
+        <div>PUBG Mobile</div>
+      </div>
+      <div class="game-item">
+        <img src="assets/genshin.png" alt="Genshin Impact">
+        <div>Genshin</div>
+      </div>
+      <div class="game-item">
+        <img src="assets/valo.png" alt="Valorant">
+        <div>Valorant</div>
+      </div>
     </div>
 
     <h2>Mobile</h2>
@@ -138,27 +160,16 @@
   </section>
 
   <script>
-    const bannerImages = [
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBZBH7Aeqf85qpQI_rhWvvUkz324Q5WHWkie_JcD8LqjQ10EkgWQvC8ZNbSSnJOU2mNDMI8gixXi87xuKiiGCwZergxvAhpPs6e4-f_gjDyxkvZNcXU-yRoO2VNkVqay5M4Dj1CAJyEEyFtVIWEvu0V4YvSr0X5GoBy4C1oCJX0QkgZzytx1QD_MsKlhxg/s320/3.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGYtZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png"
-    ];
+    const bannerTrack = document.getElementById('bannerTrack');
+    let currentSlide = 0;
+    const totalSlides = bannerTrack.children.length;
 
-    let currentBanner = 0;
-    const bannerElement = document.getElementById("rotating-banner");
-
-    function showNextBanner() {
-      bannerElement.style.animation = "none";
-      void bannerElement.offsetWidth;
-      bannerElement.style.animation = "slideIn 0.6s ease-in-out";
-      bannerElement.src = bannerImages[currentBanner];
-      currentBanner = (currentBanner + 1) % bannerImages.length;
+    function slideBanner() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    showNextBanner();
-    setInterval(showNextBanner, 3000);
+    setInterval(slideBanner, 3000);
   </script>
 
   <script src="script.js"></script>
