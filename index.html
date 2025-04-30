@@ -219,19 +219,17 @@
   </div>
 
   <script>
-    document.getElementById('search-input').addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase();  // Ambil input dan ubah jadi lowercase
-      const gameItems = document.querySelectorAll('.game-item'); // Pilih semua item game
+    const bannerTrack = document.getElementById('bannerTrack');
+    let currentSlide = 0;
+    const totalSlides = bannerTrack.children.length;
 
-      gameItems.forEach(item => {
-        const gameName = item.querySelector('div').textContent.toLowerCase();  // Ambil nama game dari elemen div dalam item
-        if (gameName.includes(searchTerm)) {
-          item.style.display = 'block';  // Tampilkan item jika nama game mengandung search term
-        } else {
-          item.style.display = 'none';  // Sembunyikan item jika tidak sesuai
-        }
-      });
-    });
+    function slideBanner() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      bannerTrack.style.transform = translateX(-${currentSlide * 100}%);
+    }
+
+    setInterval(slideBanner, 3000);
   </script>
+  <script src="script.js"></script>
 </body>
-</html>
+  </html>
