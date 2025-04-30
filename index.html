@@ -7,26 +7,52 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- HEADER -->
     <header>
-        <h1>Top-up Game</h1>
-        <input type="text" id="search-input" placeholder="Cari game...">
+        <div class="logo">
+            <img src="logo.png" alt="Logo UVOSHOP">
+        </div>
+        <input type="text" id="search-input" placeholder="Cari Game...">
     </header>
 
-    <!-- Daftar Game -->
-    <section id="game-categories">
-        <h2>Popular Games</h2>
-        <div id="popular-games" class="game-category"></div>
+    <!-- DAFTAR GAME (INDEX PAGE) -->
+    <main id="main-content">
+        <div class="game-category" id="popular-games">
+            <h2>Popular Games</h2>
+        </div>
 
-        <h2>Mobile Games</h2>
-        <div id="mobile-games" class="game-category"></div>
+        <div class="game-category" id="mobile-games">
+            <h2>Mobile Games</h2>
+        </div>
 
-        <h2>PC Games</h2>
-        <div id="pc-games" class="game-category"></div>
+        <div class="game-category" id="pc-games">
+            <h2>PC Games</h2>
+        </div>
 
-        <h2>Game Vouchers</h2>
-        <div id="game-vouchers" class="game-category"></div>
-    </section>
+        <div class="game-category" id="game-vouchers">
+            <h2>Game Vouchers</h2>
+        </div>
+    </main>
 
+    <!-- Halaman Top-up (Top-up page) -->
+    <div id="topup-container" style="display: none;">
+        <h2 id="game-title">Top-up untuk Game</h2>
+        <form id="topup-form">
+            <div id="server-id-container">
+                <label for="server-id">Server ID:</label>
+                <input type="text" id="server-id" name="server-id">
+            </div>
+
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id" name="user-id" required>
+
+            <div id="nominals-container"></div>
+
+            <button type="submit" id="topup-button">Top-up</button>
+        </form>
+    </div>
+
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2025 UVOSHOP</p>
     </footer>
