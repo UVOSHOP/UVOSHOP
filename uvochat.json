@@ -1,444 +1,732 @@
 {
   "faq": [
     {
-      "keywords": ["topup", "cara topup", "isi saldo", "isi ulang", "bagaimana topup", "pengisian saldo", "isi game", "beli diamond"],
-      "answer": "Untuk melakukan top-up, pilih game dan nominal yang diinginkan, masukkan ID akun game Anda dengan benar, lalu lakukan pembayaran melalui metode yang tersedia. Setelah pembayaran terkonfirmasi, saldo akan otomatis masuk ke akun game Anda dalam waktu beberapa menit."
+      "keywords": ["topup", "cara topup", "isi saldo", "isi ulang", "bagaimana topup", "pengisian saldo", "isi game", "beli diamond", "top-up", "top up", "gim", "diamond", "beli", "cara beli", "top-up gim", "isi ulang diamond", "bagaimana isi", "nge-topup"],
+      "answer": "Gampang banget! Buat **top-up**, kamu tinggal pilih game dan nominal yang kamu mau, masukkin **ID akun game** kamu yang bener, terus bayar deh pakai metode yang tersedia. Setelah pembayaran sukses, **saldo** atau **diamond** kamu otomatis masuk ke akun game dalam hitungan menit. Cepat, kan?"
     },
     {
-      "keywords": ["refund", "pengembalian dana", "refund dana", "return uang", "ganti uang", "batal transaksi"],
-      "answer": "Proses refund hanya berlaku jika terjadi kesalahan dari sistem kami atau pembayaran gagal tapi saldo tetap terpotong. Silakan hubungi admin kami melalui WhatsApp untuk mengajukan refund dengan menyertakan bukti pembayaran."
+      "keywords": ["refund", "pengembalian dana", "refund dana", "return uang", "ganti uang", "batal transaksi", "duit balik", "balik duit", "ngajuin refund", "uang kembali", "batalin transaksi"],
+      "answer": "**Refund** cuma bisa diproses kalau ada kesalahan dari sistem kami atau pembayaranmu gagal tapi saldo kepotong. Langsung aja kontak **admin** kami via **WhatsApp** buat ngajuin refund, jangan lupa sertakan **bukti pembayaran** ya!"
     },
     {
-      "keywords": ["metode pembayaran", "cara bayar", "pembayaran", "payment", "bayar", "metode topup", "pilihan pembayaran", "transfer bank", "ovo", "dana", "gopay"],
-      "answer": "Kami menyediakan berbagai metode pembayaran yang mudah dan aman seperti transfer bank, OVO, DANA, GoPay, QRIS, dan kartu kredit. Pilih metode yang paling nyaman bagi Anda saat melakukan pembayaran."
+      "keywords": ["metode pembayaran", "cara bayar", "pembayaran", "payment", "bayar", "metode topup", "pilihan pembayaran", "transfer bank", "ovo", "dana", "gopay", "qris", "kartu kredit", "bayar pake apa", "macam pembayaran", "bayar lewat", "transfer", "dompet digital"],
+      "answer": "Kami sediain banyak **metode pembayaran** yang gampang dan aman, mulai dari **transfer bank**, **OVO**, **DANA**, **GoPay**, **QRIS**, sampai **kartu kredit**. Kamu tinggal pilih aja yang paling nyaman buat kamu!"
     },
     {
-      "keywords": ["waktu proses", "lama topup", "berapa lama", "proses cepat", "cepat", "instan", "tidak masuk", "terlambat"],
-      "answer": "Proses top-up di UVOSHOP biasanya instan dan langsung masuk ke akun Anda. Namun, pada kondisi jaringan tertentu atau gangguan sistem, proses bisa memakan waktu hingga 5 menit. Jika lebih lama, silakan hubungi admin kami."
+      "keywords": ["waktu proses", "lama topup", "berapa lama", "proses cepat", "cepat", "instan", "tidak masuk", "terlambat", "nunggu berapa lama", "proses instan", "loading", "lama banget", "kok lama", "udah masuk belum"],
+      "answer": "Normalnya, proses **top-up** di UVOSHOP itu **instan** dan langsung masuk. Tapi kadang, karena masalah jaringan atau sistem, bisa aja makan waktu sampai 5 menit. Kalo lebih dari itu, langsung aja hubungi **admin** kami ya."
     },
     {
-      "keywords": ["akun", "registrasi", "daftar", "login", "buat akun", "akun baru", "tanpa registrasi"],
-      "answer": "UVOSHOP tidak mengharuskan Anda melakukan registrasi atau membuat akun. Cukup masukkan ID akun game dan lakukan pembayaran untuk top-up secara cepat dan mudah."
+      "keywords": ["akun", "registrasi", "daftar", "login", "buat akun", "akun baru", "tanpa registrasi", "gak perlu daftar", "bikin akun", "daftar gimana", "login akun", "pake akun gak"],
+      "answer": "Di UVOSHOP, kamu **gak perlu registrasi** atau bikin akun kok. Cukup masukkin **ID akun game** kamu dan bayar, top-up langsung beres! Simpel banget kan?"
     },
     {
-      "keywords": ["keamanan", "aman", "privasi", "data pribadi", "rahasia", "enkripsi", "lindungi data"],
-      "answer": "Kami sangat menjaga keamanan data Anda dengan menggunakan teknologi enkripsi terbaru. Informasi pribadi Anda tidak akan disebarluaskan dan hanya digunakan untuk proses transaksi yang Anda lakukan."
+      "keywords": ["keamanan", "aman", "privasi", "data pribadi", "rahasia", "enkripsi", "lindungi data", "data aman", "privasi data", "terjamin", "gak bocor", "data gua"],
+      "answer": "Kami serius banget jaga **keamanan data** kamu. Kami pakai teknologi **enkripsi** terbaru, jadi **data pribadi** kamu aman dan gak bakal disebarluaskan. Hanya dipakai buat proses transaksi kamu aja."
     },
     {
-      "keywords": ["kontak", "admin", "cs", "customer service", "hubungi kami", "bantuan", "layanan pelanggan", "support"],
-      "answer": "Untuk bantuan lebih lanjut, Anda dapat menghubungi admin kami melalui WhatsApp di +62 856-4821-1278. Kami siap melayani Anda dengan cepat dan ramah."
+      "keywords": ["kontak", "admin", "cs", "customer service", "hubungi kami", "bantuan", "layanan pelanggan", "support", "nomor admin", "nomor cs", "wa admin", "chat admin", "telepon admin", "bantu gue", "tanya admin"],
+      "answer": "Butuh bantuan? Langsung aja hubungi **admin** kami via **WhatsApp** di **+62 856-4821-1278**. Kami siap banget bantu kamu dengan cepat dan ramah!"
     },
     {
-      "keywords": ["voucher game", "voucher", "kode voucher", "pulsa game", "kupon", "diskon", "promo"],
-      "answer": "UVOSHOP menyediakan voucher game resmi yang bisa langsung digunakan untuk top-up berbagai jenis game. Pastikan voucher yang Anda beli sesuai dengan game dan nominal yang diinginkan."
+      "keywords": ["voucher game", "voucher", "kode voucher", "pulsa game", "kupon", "diskon", "promo", "beli voucher", "jual voucher", "voucher fisik", "voucher digital"],
+      "answer": "UVOSHOP sediain **voucher game resmi** yang bisa langsung kamu pakai buat **top-up** berbagai game. Pastiin **voucher** yang kamu beli sesuai sama game dan nominalnya ya!"
     },
     {
-      "keywords": ["error", "gagal", "tidak berhasil", "masalah", "problem", "bug", "gangguan"],
-      "answer": "Jika Anda mengalami masalah seperti gagal top-up atau error sistem, silakan coba ulang transaksi setelah beberapa menit. Jika masalah berlanjut, segera hubungi admin kami dengan menyertakan detail dan screenshot error."
+      "keywords": ["error", "gagal", "tidak berhasil", "masalah", "problem", "bug", "gangguan", "error topup", "gagal transaksi", "ada apa ini", "kenapa error", "gak bisa", "macet"],
+      "answer": "Kalo kamu ngalamin masalah kayak **gagal top-up** atau **error sistem**, coba deh ulang transaksinya beberapa menit lagi. Kalo masih error, segera hubungi **admin** kami, jangan lupa sertakan detail dan **screenshot error**-nya ya!"
     },
     {
-      "keywords": ["komplain", "keluhan", "masalah", "pengaduan", "tidak puas", "saran"],
-      "answer": "Kami menerima semua masukan dan keluhan Anda dengan serius. Silakan kirimkan pengaduan lengkap ke admin kami via WhatsApp agar kami dapat membantu dan memperbaiki layanan kami."
+      "keywords": ["komplain", "keluhan", "masalah", "pengaduan", "tidak puas", "saran", "mau komplain", "ada keluhan", "gak puas", "masalah transaksi"],
+      "answer": "Semua masukan dan **keluhan** kamu penting buat kami! Kirim aja **pengaduan** lengkap ke **admin** kami via **WhatsApp** biar kami bisa langsung bantu dan tingkatkan layanan."
     },
     {
-      "keywords": ["topup diamond", "diamond ff", "diamond free fire", "diamond mobile legends", "diamond ml", "topup ml", "topup ff"],
-      "answer": "Untuk top-up diamond Free Fire atau Mobile Legends, pilih game dan nominal diamond yang diinginkan, lalu lakukan pembayaran. Diamond akan langsung masuk ke akun game Anda setelah transaksi berhasil."
+      "keywords": ["topup diamond", "diamond ff", "diamond free fire", "diamond mobile legends", "diamond ml", "topup ml", "topup ff", "beli dm ff", "beli dm ml", "isi diamond", "free fire diamond", "mobile legends diamond"],
+      "answer": "Buat **top-up diamond Free Fire** atau **Mobile Legends**, tinggal pilih game dan nominal diamond, terus bayar deh. **Diamond** kamu langsung masuk ke akun game setelah transaksi berhasil!"
     },
     {
-      "keywords": ["harga", "daftar harga", "price list", "price", "biaya", "tarif", "rate"],
-      "answer": "Harga top-up di UVOSHOP sangat kompetitif dan selalu update mengikuti harga resmi game. Anda bisa melihat daftar harga lengkap di halaman daftar game kami atau menghubungi admin untuk info harga terbaru."
+      "keywords": ["harga", "daftar harga", "price list", "price", "biaya", "tarif", "rate", "berapa harganya", "list harga", "harga murah", "diskon harga"],
+      "answer": "**Harga top-up** di UVOSHOP itu kompetitif banget dan selalu update ngikutin harga resmi game. Kamu bisa cek **daftar harga** lengkap di halaman daftar game kami atau tanya **admin** buat info harga terbaru."
     },
     {
-      "keywords": ["aplikasi", "app", "download aplikasi", "install", "mobile", "android", "ios"],
-      "answer": "Saat ini UVOSHOP beroperasi sepenuhnya melalui website tanpa aplikasi khusus. Anda dapat mengakses layanan kami dengan mudah melalui browser di perangkat apapun."
+      "keywords": ["aplikasi", "app", "download aplikasi", "install", "mobile", "android", "ios", "ada aplikasi gak", "download app", "pake aplikasi"],
+      "answer": "Saat ini, UVOSHOP beroperasi sepenuhnya lewat **website** aja, gak ada aplikasi khusus. Kamu bisa akses layanan kami dengan gampang lewat browser di perangkat apa pun."
     },
     {
-      "keywords": ["transaksi", "riwayat", "history", "struk", "bukti pembayaran"],
-      "answer": "Setelah melakukan top-up, Anda akan menerima bukti transaksi otomatis. Namun, kami tidak menyediakan fitur riwayat transaksi untuk pengguna tanpa akun. Pastikan menyimpan bukti pembayaran Anda dengan baik."
+      "keywords": ["transaksi", "riwayat", "history", "struk", "bukti pembayaran", "histori transaksi", "cek riwayat", "struk pembelian"],
+      "answer": "Setelah **top-up**, kamu bakal dapet **bukti transaksi** otomatis. Tapi, kami gak nyediain fitur riwayat transaksi buat pengguna tanpa akun. Jadi, pastiin kamu simpan baik-baik **bukti pembayaran** kamu ya!"
     },
     {
-      "keywords": ["cara cek saldo", "cek saldo game", "cek diamond", "status topup"],
-      "answer": "Saldo dan item game yang Anda beli dapat dicek langsung melalui aplikasi atau website resmi game masing-masing. UVOSHOP hanya menyediakan layanan top-up, bukan pengelolaan akun game."
+      "keywords": ["cara cek saldo", "cek saldo game", "cek diamond", "status topup", "saldo udah masuk belum", "diamond gue mana", "gimana cek saldo"],
+      "answer": "**Saldo** dan item game yang kamu beli bisa dicek langsung di aplikasi atau website resmi game masing-masing. UVOSHOP cuma nyediain layanan **top-up**, bukan ngatur akun game kamu."
     },
     {
-      "keywords": ["kode voucher tidak valid", "voucher error", "voucher tidak bisa digunakan"],
-      "answer": "Jika voucher yang Anda beli tidak valid atau tidak bisa digunakan, segera hubungi admin kami melalui WhatsApp dengan menyertakan kode voucher dan bukti pembelian untuk penanganan lebih lanjut."
+      "keywords": ["kode voucher tidak valid", "voucher error", "voucher tidak bisa digunakan", "voucher gak bisa", "kode error", "voucher kadaluarsa", "voucher mati"],
+      "answer": "Kalo **voucher** yang kamu beli **gak valid** atau **gak bisa dipake**, langsung aja hubungi **admin** kami via **WhatsApp**. Sertakan **kode voucher** dan **bukti pembelian** buat penanganan lebih lanjut."
     },
     {
-      "keywords": ["kecepatan layanan", "speed", "respons cepat", "waktu tunggu"],
-      "answer": "Kami berkomitmen memberikan layanan top-up tercepat dengan proses otomatis. Sebagian besar transaksi selesai dalam hitungan detik hingga menit."
+      "keywords": ["kecepatan layanan", "speed", "respons cepat", "waktu tunggu", "cepat banget", "layanan kilat", "gak pake lama"],
+      "answer": "Kami komitmen buat ngasih layanan **top-up tercepat** dengan proses otomatis. Sebagian besar transaksi selesai dalam hitungan detik sampai menit!"
     },
     {
-      "keywords": ["promo", "diskon", "kode promo", "voucher diskon", "sale", "cashback"],
-      "answer": "Pantau selalu halaman promo kami untuk mendapatkan diskon dan cashback menarik. Promo berlaku dalam periode tertentu dan syarat & ketentuan berlaku."
+      "keywords": ["promo", "diskon", "kode promo", "voucher diskon", "sale", "cashback", "ada promo apa", "kode diskon", "harga promo", "cashback topup"],
+      "answer": "Pantengin terus halaman **promo** kami buat dapet **diskon** dan **cashback** menarik! **Promo** berlaku dalam periode tertentu dan ada syarat & ketentuan yang berlaku ya."
     },
     {
-      "keywords": ["keluar dari website", "logout", "keluar", "close", "exit"],
-      "answer": "Anda tidak perlu login atau membuat akun sehingga tidak ada fitur logout. Cukup tutup browser untuk keluar dari layanan kami."
+      "keywords": ["keluar dari website", "logout", "keluar", "close", "exit", "log out", "tutup website", "cara keluar"],
+      "answer": "Karena kamu **gak perlu login** atau bikin akun, jadi gak ada fitur **logout**. Cukup tutup browser aja buat keluar dari layanan kami."
     },
     {
-      "keywords": ["penggunaan data", "data pribadi", "privacy", "kebijakan privasi"],
-      "answer": "UVOSHOP menjaga kerahasiaan data pribadi Anda sesuai kebijakan privasi yang berlaku. Informasi lebih lengkap dapat dibaca di halaman Privacy Policy kami."
+      "keywords": ["penggunaan data", "data pribadi", "privacy", "kebijakan privasi", "data user", "data pengguna", "privasi aman"],
+      "answer": "UVOSHOP jaga banget **kerahasiaan data pribadi** kamu sesuai **kebijakan privasi** yang berlaku. Info lebih lengkap bisa kamu baca di halaman **Privacy Policy** kami."
     },
     {
-      "keywords": ["kecepatan pembayaran", "payment speed", "transaksi cepat"],
-      "answer": "Pembayaran melalui metode yang kami sediakan diproses dengan cepat dan aman. Jika ada kendala, jangan ragu hubungi admin kami."
+      "keywords": ["kecepatan pembayaran", "payment speed", "transaksi cepat", "bayar cepat", "proses pembayaran"],
+      "answer": "**Pembayaran** lewat metode yang kami sediain diproses dengan cepat dan aman. Kalo ada kendala, jangan ragu kontak **admin** kami ya."
     },
     {
-      "keywords": ["chat", "bantuan chat", "cs chat", "layanan chat"],
-      "answer": "Untuk layanan chat dan bantuan langsung, Anda bisa menggunakan fitur chat di website kami atau menghubungi admin melalui WhatsApp."
+      "keywords": ["chat", "bantuan chat", "cs chat", "layanan chat", "live chat", "chat langsung", "mau chat", "chat cs"],
+      "answer": "Buat **layanan chat** dan bantuan langsung, kamu bisa pakai fitur chat di website kami atau hubungi **admin** via **WhatsApp**."
     },
     {
-      "keywords": ["nomor admin", "nomor cs", "kontak admin", "kontak cs"],
-      "answer": "Nomor WhatsApp admin UVOSHOP adalah +62 856-4821-1278. Kami siap membantu Anda kapan saja."
+      "keywords": ["nomor admin", "nomor cs", "kontak admin", "kontak cs", "nomor whatsapp admin", "wa admin", "telepon cs"],
+      "answer": "**Nomor WhatsApp admin** UVOSHOP adalah **+62 856-4821-1278**. Kami siap bantu kamu kapan aja!"
     },
     {
-      "keywords": ["game baru", "game update", "daftar game baru"],
-      "answer": "Kami selalu memperbarui daftar game yang bisa di-topup. Untuk info game terbaru, cek halaman daftar game di website UVOSHOP."
+      "keywords": ["game baru", "game update", "daftar game baru", "game terbaru", "ada game apa aja", "game baru rilis"],
+      "answer": "Kami selalu update **daftar game** yang bisa di-top-up. Buat info game terbaru, cek aja halaman **daftar game** di website UVOSHOP."
     },
     {
-      "keywords": ["masalah login game", "akun terkunci", "akun di-banned"],
-      "answer": "Masalah terkait akun game seperti login gagal atau banned tidak dapat kami tangani. Silakan hubungi layanan resmi game terkait untuk bantuan."
+      "keywords": ["masalah login game", "akun terkunci", "akun di-banned", "akun kena banned", "gak bisa login game", "akun game error"],
+      "answer": "Masalah kayak **login gagal** atau **akun game kena banned** itu di luar wewenang kami. Langsung aja hubungi layanan resmi game terkait buat bantuan."
     },
     {
-      "keywords": ["cara cek kode pembayaran", "kode transaksi"],
-      "answer": "Kode pembayaran akan otomatis muncul setelah Anda memilih metode pembayaran dan sebelum melakukan konfirmasi. Simpan kode tersebut untuk referensi."
+      "keywords": ["cara cek kode pembayaran", "kode transaksi", "kode bayar", "nomor pembayaran", "gimana cek kode"],
+      "answer": "**Kode pembayaran** bakal otomatis muncul setelah kamu pilih **metode pembayaran** dan sebelum konfirmasi. Simpan kode itu buat referensi ya."
     },
     {
-      "keywords": ["tutorial topup", "cara menggunakan", "panduan topup"],
-      "answer": "Kami menyediakan panduan lengkap dan tutorial cara top-up di halaman tutorial website kami agar Anda mudah memahami prosesnya."
+      "keywords": ["tutorial topup", "cara menggunakan", "panduan topup", "tutorial", "cara pake", "gimana pakenya"],
+      "answer": "Kami nyediain **panduan lengkap** dan **tutorial** cara top-up di halaman tutorial website kami biar kamu gampang ngerti prosesnya."
     },
     {
-      "keywords": ["keluhan pembayaran", "pembayaran tidak berhasil"],
-      "answer": "Jika pembayaran tidak berhasil namun saldo terpotong, segera hubungi admin kami dengan bukti transaksi agar kami bantu proses refund atau pengecekan."
+      "keywords": ["keluhan pembayaran", "pembayaran tidak berhasil", "bayar gak masuk", "duit kepotong tapi gagal", "transaksi pending"],
+      "answer": "Kalo **pembayaran gak berhasil** tapi **saldo kepotong**, segera hubungi **admin** kami dengan **bukti transaksi** biar kami bantu proses **refund** atau pengecekan."
     },
     {
-      "keywords": ["transaksi gagal", "gagal bayar"],
-      "answer": "Transaksi yang gagal biasanya saldo tidak akan terpotong. Jika saldo Anda berkurang tapi transaksi gagal, hubungi admin kami segera."
+      "keywords": ["transaksi gagal", "gagal bayar", "transaksi gak sukses", "bayar gak tembus"],
+      "answer": "**Transaksi yang gagal** biasanya saldo gak bakal kepotong. Kalo saldo kamu berkurang tapi transaksi gagal, segera hubungi **admin** kami."
     },
     {
-      "keywords": ["keamanan pembayaran", "payment security"],
-      "answer": "Pembayaran di UVOSHOP dilengkapi dengan protokol keamanan terbaru untuk menjaga transaksi Anda aman dari penipuan."
+      "keywords": ["keamanan pembayaran", "payment security", "aman bayar", "bayar aman"],
+      "answer": "**Pembayaran** di UVOSHOP udah dilengkapi sama protokol **keamanan terbaru** buat jaga transaksi kamu aman dari penipuan."
     },
     {
-      "keywords": ["kode promo tidak bisa", "promo error"],
-      "answer": "Jika kode promo tidak dapat digunakan, kemungkinan promo sudah expired atau tidak berlaku untuk produk yang dipilih. Cek syarat & ketentuan promo."
+      "keywords": ["kode promo tidak bisa", "promo error", "kode diskon gak bisa", "promo gak berlaku"],
+      "answer": "Kalo **kode promo** gak bisa dipake, kemungkinan promo udah **expired** atau gak berlaku buat produk yang kamu pilih. Coba cek **syarat & ketentuan promo**-nya ya."
     },
     {
-      "keywords": ["cara menghubungi admin", "contact admin", "hubungi cs"],
-      "answer": "Anda bisa menghubungi admin kami melalui WhatsApp di +62 856-4821-1278 untuk mendapatkan bantuan langsung."
+      "keywords": ["cara menghubungi admin", "contact admin", "hubungi cs", "chat admin"],
+      "answer": "Kamu bisa menghubungi **admin** kami via **WhatsApp** di **+62 856-4821-1278** buat dapet bantuan langsung."
     },
     {
-      "keywords": ["bantuan teknis", "support teknis", "masalah teknis"],
-      "answer": "Untuk masalah teknis terkait website atau transaksi, silakan kontak admin kami untuk bantuan cepat dan solusi terbaik."
+      "keywords": ["bantuan teknis", "support teknis", "masalah teknis", "kendala teknis", "error website"],
+      "answer": "Buat masalah **teknis** terkait website atau transaksi, langsung aja kontak **admin** kami buat bantuan cepat dan solusi terbaik."
     },
     {
-      "keywords": ["faq", "pertanyaan umum", "jawaban umum"],
-      "answer": "Anda sedang melihat halaman FAQ. Jika pertanyaan Anda belum terjawab, jangan ragu untuk menghubungi admin kami."
+      "keywords": ["faq", "pertanyaan umum", "jawaban umum", "tanya jawab", "daftar pertanyaan"],
+      "answer": "Kamu lagi di halaman **FAQ** nih! Kalo pertanyaan kamu belum kejawab di sini, jangan ragu buat hubungi **admin** kami ya."
     },
     {
-      "keywords": ["akun game tidak ditemukan", "id tidak valid", "akun salah"],
-      "answer": "Pastikan Anda memasukkan ID akun game yang benar dan sesuai dengan format yang diminta. Jika masih bermasalah, hubungi admin kami."
+      "keywords": ["akun game tidak ditemukan", "id tidak valid", "akun salah", "id game salah", "salah id", "id gak ketemu"],
+      "answer": "Pastiin kamu masukkin **ID akun game** yang bener dan sesuai format ya. Kalo masih bermasalah, hubungi **admin** kami."
     },
     {
-      "keywords": ["cara cek status topup", "status transaksi"],
-      "answer": "Status top-up dapat dilihat langsung di game Anda setelah transaksi selesai. Jika tidak masuk, hubungi admin untuk pengecekan."
+      "keywords": ["cara cek status topup", "status transaksi", "cek status", "topup udah masuk belum"],
+      "answer": "**Status top-up** bisa kamu cek langsung di game kamu setelah transaksi selesai. Kalo gak masuk, hubungi **admin** buat pengecekan."
     },
     {
-      "keywords": ["keluhan lambat", "proses lambat", "topup lama"],
-      "answer": "Kami mohon maaf jika proses top-up terasa lambat. Ini bisa disebabkan oleh gangguan jaringan atau server game. Silakan hubungi admin untuk update status."
+      "keywords": ["keluhan lambat", "proses lambat", "topup lama", "lama banget", "kok lama", "gak masuk-masuk"],
+      "answer": "Maaf banget kalo proses **top-up** terasa lambat. Ini bisa aja karena gangguan jaringan atau server game. Langsung aja hubungi **admin** buat update status ya."
     },
     {
-      "keywords": ["layanan pelanggan", "customer service", "cs online"],
-      "answer": "Admin UVOSHOP selalu siap membantu Anda selama jam operasional melalui WhatsApp dan fitur chat website."
+      "keywords": ["layanan pelanggan", "customer service", "cs online", "support", "bantuan cs"],
+      "answer": "**Admin** UVOSHOP selalu siap bantu kamu selama jam operasional via **WhatsApp** dan fitur chat website."
     },
     {
-      "keywords": ["aplikasi tidak bisa dibuka", "website error"],
-      "answer": "Jika website tidak bisa dibuka, coba refresh halaman atau gunakan browser lain. Jika masih bermasalah, hubungi admin."
+      "keywords": ["aplikasi tidak bisa dibuka", "website error", "website down", "gak bisa buka situs"],
+      "answer": "Kalo website gak bisa dibuka, coba refresh halaman atau pakai browser lain. Kalo masih bermasalah, hubungi **admin**."
     },
     {
-      "keywords": ["metode pembayaran terbaru", "payment update"],
-      "answer": "Kami selalu menambah metode pembayaran terbaru agar memudahkan pelanggan. Info terbaru ada di halaman pembayaran."
+      "keywords": ["metode pembayaran terbaru", "payment update", "metode bayar baru", "update pembayaran"],
+      "answer": "Kami selalu nambah **metode pembayaran terbaru** biar kamu makin gampang. Info terbaru ada di halaman pembayaran ya."
     },
     {
-      "keywords": ["syarat dan ketentuan", "terms and conditions"],
-      "answer": "Syarat dan ketentuan lengkap bisa dibaca di halaman Privacy Policy pada bagian Terms."
+      "keywords": ["syarat dan ketentuan", "terms and conditions", "tnc", "s&k", "aturan main"],
+      "answer": "**Syarat dan ketentuan** lengkap bisa kamu baca di halaman **Privacy Policy** pada bagian Terms."
     },
     {
-      "keywords": ["komplain lama tidak dibalas", "keluhan tidak ditanggapi"],
-      "answer": "Kami mohon maaf jika ada keluhan yang belum terrespon. Silakan ulangi menghubungi admin via WhatsApp untuk penanganan prioritas."
+      "keywords": ["komplain lama tidak dibalas", "keluhan tidak ditanggapi", "gak direspon", "slow respon"],
+      "answer": "Maaf banget kalo ada **keluhan** yang belum direspon. Coba deh ulangi hubungi **admin** via **WhatsApp** buat penanganan prioritas."
     },
     {
-      "keywords": ["chat bot", "bot", "ai", "asisten virtual"],
-      "answer": "UVOSHOP menyediakan fitur chatbot untuk membantu menjawab pertanyaan umum dengan cepat dan akurat."
+      "keywords": ["chat bot", "bot", "ai", "asisten virtual", "robot chat"],
+      "answer": "UVOSHOP nyediain fitur **chatbot** buat bantu jawab pertanyaan umum kamu dengan cepat dan akurat."
     },
     {
-      "keywords": ["update game", "patch terbaru", "game patch"],
-      "answer": "Informasi update game bisa Anda dapatkan dari website resmi game tersebut. Kami hanya menyediakan layanan top-up."
+      "keywords": ["update game", "patch terbaru", "game patch", "game baru"],
+      "answer": "Info **update game** bisa kamu dapet dari website resmi game tersebut. Kami cuma nyediain layanan **top-up** aja."
     },
     {
-      "keywords": ["pembayaran otomatis", "auto payment"],
-      "answer": "Semua pembayaran di UVOSHOP diproses secara otomatis untuk memastikan kecepatan dan akurasi transaksi."
+      "keywords": ["pembayaran otomatis", "auto payment", "bayar otomatis", "sistem otomatis"],
+      "answer": "Semua pembayaran di UVOSHOP diproses secara **otomatis** buat mastiin kecepatan dan akurasi transaksi."
     },
     {
-      "keywords": ["voucher expired", "voucher kadaluarsa"],
-      "answer": "Voucher yang sudah kadaluarsa tidak bisa digunakan. Pastikan membeli voucher dengan masa berlaku aktif."
+      "keywords": ["voucher expired", "voucher kadaluarsa", "voucher habis", "voucher gak bisa dipake"],
+      "answer": "**Voucher yang udah kadaluarsa** gak bisa dipake ya. Pastiin beli voucher yang masa berlakunya masih aktif."
     },
     {
-      "keywords": ["refund lama", "proses refund", "pengembalian lama"],
-      "answer": "Proses refund biasanya memakan waktu 1-3 hari kerja tergantung metode pembayaran. Kami akan menginformasikan statusnya via WhatsApp."
+      "keywords": ["refund lama", "proses refund", "pengembalian lama", "duit balik lama"],
+      "answer": "Proses **refund** biasanya makan waktu 1-3 hari kerja tergantung metode pembayaran. Kami bakal infoin statusnya via **WhatsApp**."
     },
     {
-      "keywords": ["bantuan live chat", "live chat", "chat langsung"],
-      "answer": "Fitur live chat tersedia di website kami untuk bantuan cepat. Jika offline, silakan hubungi WhatsApp admin."
+      "keywords": ["bantuan live chat", "live chat", "chat langsung", "chat cs online"],
+      "answer": "Fitur **live chat** tersedia di website kami buat bantuan cepat. Kalo offline, hubungi **WhatsApp admin** ya."
     },
     {
-      "keywords": ["cara verifikasi", "verifikasi pembayaran"],
-      "answer": "Verifikasi pembayaran dilakukan secara otomatis oleh sistem kami. Jika verifikasi gagal, hubungi admin untuk bantuan manual."
+      "keywords": ["cara verifikasi", "verifikasi pembayaran", "verifikasi akun"],
+      "answer": "**Verifikasi pembayaran** dilakukan secara otomatis sama sistem kami. Kalo verifikasi gagal, hubungi **admin** buat bantuan manual."
     },
     {
-      "keywords": ["keuntungan topup di uvoshop", "kelebihan uvoshop"],
-      "answer": "UVOSHOP menawarkan proses cepat, harga kompetitif, berbagai metode pembayaran, dan layanan pelanggan responsif."
+      "keywords": ["keuntungan topup di uvoshop", "kelebihan uvoshop", "kenapa uvoshop", "untung pake uvoshop"],
+      "answer": "UVOSHOP nawarin proses **cepat**, harga **kompetitif**, berbagai **metode pembayaran**, dan **layanan pelanggan responsif**."
     },
     {
-      "keywords": ["harga promo", "harga diskon", "harga spesial"],
-      "answer": "Harga promo berlaku pada periode tertentu. Cek halaman promo kami untuk info lengkap dan kode diskon."
+      "keywords": ["harga promo", "harga diskon", "harga spesial", "harga murah"],
+      "answer": "**Harga promo** berlaku di periode tertentu. Cek halaman **promo** kami buat info lengkap dan **kode diskon**."
     },
     {
-      "keywords": ["cara beli voucher", "membeli voucher"],
-      "answer": "Pilih voucher game yang diinginkan, lakukan pembayaran, dan voucher akan dikirim ke email atau nomor WhatsApp Anda."
+      "keywords": ["cara beli voucher", "membeli voucher", "beli kode voucher"],
+      "answer": "Pilih **voucher game** yang kamu mau, lakukan pembayaran, dan **voucher** bakal dikirim ke email atau nomor **WhatsApp** kamu."
     },
     {
-      "keywords": ["pembayaran gagal", "tidak bisa bayar"],
-      "answer": "Pastikan saldo atau limit metode pembayaran Anda mencukupi. Jika masih gagal, hubungi admin kami."
+      "keywords": ["pembayaran gagal", "tidak bisa bayar", "gak bisa bayar", "pembayaran mandek"],
+      "answer": "Pastiin **saldo** atau limit **metode pembayaran** kamu cukup ya. Kalo masih gagal, hubungi **admin** kami."
     },
     {
-      "keywords": ["apakah uvoshop resmi", "legal uvoshop", "legalitas"],
-      "answer": "UVOSHOP adalah penyedia jasa top-up yang bekerja sama dengan partner resmi game untuk memastikan transaksi aman dan legal."
+      "keywords": ["apakah uvoshop resmi", "legal uvoshop", "legalitas", "uvoshop aman", "uvoshop legal"],
+      "answer": "UVOSHOP adalah penyedia jasa **top-up resmi** yang udah kerja sama sama partner resmi game buat mastiin transaksi kamu aman dan legal."
     },
     {
-      "keywords": ["cara cek kuota internet", "cek kuota", "kuota internet"],
-      "answer": "Untuk cek kuota internet, gunakan aplikasi atau layanan operator seluler Anda. UVOSHOP tidak menyediakan layanan kuota internet."
+      "keywords": ["cara cek kuota internet", "cek kuota", "kuota internet", "beli kuota"],
+      "answer": "Buat cek **kuota internet**, kamu bisa pakai aplikasi atau layanan operator seluler kamu. UVOSHOP gak nyediain layanan **kuota internet**."
     },
     {
-      "keywords": ["cara menghubungi via email", "kontak email"],
-      "answer": "Untuk kontak via email, kirim pesan ke support@uvoshop.com. Namun, untuk respon lebih cepat, hubungi WhatsApp admin."
+      "keywords": ["cara menghubungi via email", "kontak email", "email admin", "email cs"],
+      "answer": "Buat kontak via **email**, kirim pesan ke **support@uvoshop.com**. Tapi, buat respon lebih cepat, hubungi **WhatsApp admin** aja ya!"
     },
     {
-      "keywords": ["apakah bisa bayar pakai pulsa", "bayar pakai pulsa"],
-      "answer": "Saat ini kami belum menyediakan pembayaran melalui pulsa. Gunakan metode pembayaran yang tersedia di website."
+      "keywords": ["apakah bisa bayar pakai pulsa", "bayar pakai pulsa", "topup pakai pulsa", "pulsa buat bayar"],
+      "answer": "Untuk saat ini, kami **belum nyediain pembayaran via pulsa**. Pakai aja metode pembayaran yang tersedia di website ya."
     },
     {
-      "keywords": ["kesalahan pengisian ID", "salah ID", "ID salah"],
-      "answer": "Pastikan memasukkan ID akun game dengan benar dan sesuai format. Kesalahan ID menyebabkan saldo tidak masuk."
+      "keywords": ["kesalahan pengisian ID", "salah ID", "ID salah", "ID game salah", "salah input id", "idnya keliru"],
+      "answer": "Pastiin masukkin **ID akun game** dengan bener dan sesuai format. **Kesalahan ID** bisa bikin saldo gak masuk."
     },
     {
-      "keywords": ["promo referral", "program referral", "ajak teman"],
-      "answer": "Kami menyediakan program referral yang memberikan bonus untuk Anda dan teman yang diajak. Info lengkap ada di halaman promo."
+      "keywords": ["promo referral", "program referral", "ajak teman", "dapet bonus", "referral kode"],
+      "answer": "Kami nyediain **program referral** yang ngasih bonus buat kamu dan temen yang diajak. Info lengkap ada di halaman **promo** ya."
     },
     {
-      "keywords": ["refund tidak diproses", "refund macet"],
-      "answer": "Jika refund tidak segera diproses, segera hubungi admin kami untuk pengecekan dan tindak lanjut."
+      "keywords": ["refund tidak diproses", "refund macet", "refund belum masuk", "proses refund lama"],
+      "answer": "Kalo **refund gak segera diproses**, segera hubungi **admin** kami buat pengecekan dan tindak lanjut."
     },
     {
-      "keywords": ["akun game diblokir", "akun banned"],
-      "answer": "UVOSHOP tidak bertanggung jawab atas banned akun. Gunakan layanan kami sesuai ketentuan game."
+      "keywords": ["akun game diblokir", "akun banned", "akun kena blokir"],
+      "answer": "UVOSHOP gak bertanggung jawab atas **banned akun**. Gunakan layanan kami sesuai ketentuan game ya."
     },
     {
-      "keywords": ["apakah bisa topup luar negeri", "topup luar negeri"],
-      "answer": "UVOSHOP melayani transaksi untuk akun game yang berada di server Indonesia. Untuk server luar negeri, hubungi layanan resmi game."
+      "keywords": ["apakah bisa topup luar negeri", "topup luar negeri", "topup server luar"],
+      "answer": "UVOSHOP ngelayani transaksi buat akun game yang ada di **server Indonesia**. Buat server luar negeri, hubungi layanan resmi game."
     },
     {
-      "keywords": ["pembayaran cash", "bayar tunai"],
-      "answer": "Pembayaran cash hanya bisa dilakukan di mitra resmi offline kami. Untuk online, gunakan metode pembayaran digital."
+      "keywords": ["pembayaran cash", "bayar tunai", "bayar cash", "tunai"],
+      "answer": "Pembayaran **cash** cuma bisa dilakukan di mitra resmi offline kami. Buat online, pakai aja metode pembayaran digital."
     },
     {
-      "keywords": ["apakah ada garansi", "garansi topup"],
-      "answer": "Kami memberikan garansi uang kembali jika terjadi kesalahan dari sistem kami yang menyebabkan saldo tidak masuk."
+      "keywords": ["apakah ada garansi", "garansi topup", "jaminan topup"],
+      "answer": "Kami ngasih **garansi uang kembali** kalo ada kesalahan dari sistem kami yang nyebabin saldo gak masuk."
     },
     {
-      "keywords": ["cara upgrade layanan", "upgrade akun"],
-      "answer": "UVOSHOP tidak menyediakan layanan upgrade akun game. Kami hanya menyediakan jasa top-up saldo dan voucher."
+      "keywords": ["cara upgrade layanan", "upgrade akun", "upgrade membership"],
+      "answer": "UVOSHOP gak nyediain layanan **upgrade akun game**. Kami cuma nyediain jasa **top-up saldo** dan **voucher**."
     },
     {
-      "keywords": ["pembayaran lewat ATM", "transfer ATM"],
-      "answer": "Anda dapat melakukan transfer pembayaran melalui ATM ke rekening kami sesuai instruksi pada metode pembayaran yang dipilih."
+      "keywords": ["pembayaran lewat ATM", "transfer ATM", "bayar via atm"],
+      "answer": "Kamu bisa melakukan transfer **pembayaran** lewat **ATM** ke rekening kami sesuai instruksi di metode pembayaran yang kamu pilih."
     },
     {
-      "keywords": ["perbedaan metode pembayaran", "pilihan pembayaran"],
-      "answer": "Metode pembayaran berbeda dari segi kecepatan proses dan kemudahan. Pilih metode yang paling sesuai untuk Anda."
+      "keywords": ["perbedaan metode pembayaran", "pilihan pembayaran", "beda cara bayar"],
+      "answer": "**Metode pembayaran** beda dari segi kecepatan proses dan kemudahan. Pilih aja metode yang paling sesuai buat kamu."
     },
     {
-      "keywords": ["tutorial penggunaan website", "cara menggunakan website"],
-      "answer": "Panduan lengkap penggunaan website UVOSHOP dapat Anda temukan di halaman tutorial kami."
+      "keywords": ["tutorial penggunaan website", "cara menggunakan website", "panduan website"],
+      "answer": "**Panduan lengkap penggunaan website** UVOSHOP bisa kamu temuin di halaman **tutorial** kami."
     },
     {
-      "keywords": ["layanan pelanggan offline", "cs offline"],
-      "answer": "Layanan pelanggan offline tersedia pada jam operasional tertentu. Hubungi kami selama jam kerja agar cepat mendapat respon."
+      "keywords": ["layanan pelanggan offline", "cs offline", "admin offline"],
+      "answer": "**Layanan pelanggan offline** tersedia di jam operasional tertentu. Hubungi kami selama jam kerja biar cepet direspon ya."
     },
     {
-      "keywords": ["cara klaim hadiah", "klaim reward"],
-      "answer": "Proses klaim hadiah dilakukan langsung di dalam game sesuai aturan resmi game tersebut."
+      "keywords": ["cara klaim hadiah", "klaim reward", "ambil hadiah"],
+      "answer": "Proses **klaim hadiah** dilakukan langsung di dalam game sesuai aturan resmi game tersebut."
     },
     {
-      "keywords": ["kenapa saldo tidak masuk", "saldo belum masuk"],
-      "answer": "Jika saldo belum masuk setelah top-up, pastikan transaksi sudah sukses. Jika perlu, hubungi admin kami untuk pengecekan."
+      "keywords": ["kenapa saldo tidak masuk", "saldo belum masuk", "diamond belum masuk", "topup belum masuk"],
+      "answer": "Kalo **saldo belum masuk** setelah **top-up**, pastiin transaksi udah sukses. Kalo perlu, hubungi **admin** kami buat pengecekan."
     },
     {
-      "keywords": ["bantuan pembayaran", "cara bayar"],
-      "answer": "Panduan pembayaran lengkap ada di halaman pembayaran website kami. Anda juga bisa bertanya langsung ke admin."
+      "keywords": ["bantuan pembayaran", "cara bayar", "panduan bayar"],
+      "answer": "**Panduan pembayaran** lengkap ada di halaman pembayaran website kami. Kamu juga bisa tanya langsung ke **admin**."
     },
     {
-      "keywords": ["kebijakan pengembalian dana", "refund policy"],
-      "answer": "Refund hanya diberikan pada kasus tertentu sesuai syarat dan ketentuan kami. Detail kebijakan dapat dibaca di halaman refund."
+      "keywords": ["kebijakan pengembalian dana", "refund policy", "aturan refund"],
+      "answer": "**Refund** cuma dikasih di kasus tertentu sesuai **syarat dan ketentuan** kami. Detail kebijakan bisa kamu baca di halaman **refund**."
     },
     {
-      "keywords": ["layanan cepat", "proses cepat"],
-      "answer": "UVOSHOP berkomitmen memberikan layanan tercepat dengan dukungan sistem otomatis 24 jam."
+      "keywords": ["layanan cepat", "proses cepat", "fast service"],
+      "answer": "UVOSHOP komitmen buat ngasih layanan **tercepat** dengan dukungan sistem otomatis 24 jam."
     },
     {
-      "keywords": ["tutorial video", "video panduan"],
-      "answer": "Kami menyediakan video tutorial yang dapat diakses di halaman tutorial website."
+      "keywords": ["tutorial video", "video panduan", "cara topup video"],
+      "answer": "Kami nyediain **video tutorial** yang bisa kamu akses di halaman tutorial website."
     },
     {
-      "keywords": ["layanan CS 24 jam", "CS online 24 jam"],
-      "answer": "Layanan customer service kami aktif 24 jam untuk memastikan Anda mendapat bantuan kapan pun."
+      "keywords": ["layanan CS 24 jam", "CS online 24 jam", "admin 24 jam"],
+      "answer": "**Layanan customer service** kami aktif 24 jam buat mastiin kamu dapet bantuan kapan pun."
     },
     {
-      "keywords": ["perbaikan bug", "update sistem"],
-      "answer": "Kami rutin melakukan update sistem untuk memperbaiki bug dan meningkatkan kualitas layanan."
+      "keywords": ["perbaikan bug", "update sistem", "perbaikan error"],
+      "answer": "Kami rutin ngelakuin **update sistem** buat perbaikin bug dan ningkatin kualitas layanan."
     },
     {
-      "keywords": ["cara daftar reseller", "reseller uvoshop"],
-      "answer": "Untuk menjadi reseller UVOSHOP, hubungi admin untuk mendapatkan info dan syarat pendaftaran."
+      "keywords": ["cara daftar reseller", "reseller uvoshop", "jadi reseller", "gabung reseller"],
+      "answer": "Buat jadi **reseller UVOSHOP**, hubungi **admin** buat dapet info dan syarat pendaftaran."
     },
     {
-      "keywords": ["akun reseller", "login reseller"],
-      "answer": "Akun reseller berbeda dengan akun pelanggan biasa. Hubungi admin untuk akses dan login reseller."
+      "keywords": ["akun reseller", "login reseller", "masuk reseller"],
+      "answer": "**Akun reseller** beda sama akun pelanggan biasa. Hubungi **admin** buat akses dan **login reseller**."
     },
     {
-      "keywords": ["apakah bisa COD", "bayar ditempat"],
-      "answer": "Saat ini kami tidak menyediakan layanan COD (Cash on Delivery). Semua transaksi dilakukan secara online."
+      "keywords": ["apakah bisa COD", "bayar ditempat", "cash on delivery"],
+      "answer": "Saat ini kami **gak nyediain layanan COD (Cash on Delivery)**. Semua transaksi dilakukan secara online."
     },
     {
-      "keywords": ["cara menggunakan voucher", "cara redeem voucher"],
-      "answer": "Voucher yang Anda beli dapat langsung digunakan di game sesuai petunjuk redeem voucher resmi dari game."
+      "keywords": ["cara menggunakan voucher", "cara redeem voucher", "redeem kode voucher"],
+      "answer": "**Voucher** yang kamu beli bisa langsung dipake di game sesuai petunjuk **redeem voucher** resmi dari game."
     },
     {
-      "keywords": ["cara mengganti metode pembayaran", "ubah metode pembayaran"],
-      "answer": "Anda dapat memilih metode pembayaran lain sebelum konfirmasi transaksi. Setelah pembayaran, metode tidak dapat diubah."
+      "keywords": ["cara mengganti metode pembayaran", "ubah metode pembayaran", "ganti cara bayar"],
+      "answer": "Kamu bisa pilih **metode pembayaran** lain sebelum konfirmasi transaksi. Setelah pembayaran, metode gak bisa diubah."
     },
     {
-      "keywords": ["apakah bisa cancel transaksi", "batalkan transaksi"],
-      "answer": "Transaksi yang sudah diproses tidak dapat dibatalkan. Untuk transaksi gagal, hubungi admin agar kami bantu pengecekan."
+      "keywords": ["apakah bisa cancel transaksi", "batalkan transaksi", "cancel order"],
+      "answer": "**Transaksi yang udah diproses gak bisa dibatalin**. Buat transaksi gagal, hubungi **admin** biar kami bantu pengecekan."
     },
     {
-      "keywords": ["garansi kualitas", "jaminan kualitas"],
-      "answer": "UVOSHOP menjamin kualitas layanan dengan sistem otomatis dan dukungan tim profesional."
+      "keywords": ["garansi kualitas", "jaminan kualitas", "kualitas terbaik"],
+      "answer": "UVOSHOP ngejamin **kualitas layanan** dengan sistem otomatis dan dukungan tim profesional."
     },
     {
-      "keywords": ["layanan chat offline", "chat tidak aktif"],
-      "answer": "Jika layanan chat offline, silakan hubungi WhatsApp admin untuk mendapatkan bantuan."
+      "keywords": ["layanan chat offline", "chat tidak aktif", "chat gak ada"],
+      "answer": "Kalo **layanan chat offline**, langsung aja hubungi **WhatsApp admin** buat dapet bantuan."
     },
     {
-      "keywords": ["keluhan tidak terjawab", "bantuan tidak memuaskan"],
-      "answer": "Kami berusaha memberikan layanan terbaik. Jika ada keluhan, silakan ulangi hubungi admin dengan detail masalah."
+      "keywords": ["keluhan tidak terjawab", "bantuan tidak memuaskan", "gak puas bantuan", "komplain gak direspon"],
+      "answer": "Kami berusaha ngasih layanan terbaik. Kalo ada **keluhan**, coba deh ulangi hubungi **admin** dengan detail masalah."
     },
     {
-      "keywords": ["cara menggunakan kode promo", "pakai kode diskon"],
-      "answer": "Masukkan kode promo di halaman checkout sebelum konfirmasi pembayaran untuk mendapatkan diskon."
+      "keywords": ["cara menggunakan kode promo", "pakai kode diskon", "masukin kode promo"],
+      "answer": "Masukkin **kode promo** di halaman checkout sebelum konfirmasi pembayaran buat dapet **diskon**."
     },
     {
-      "keywords": ["bantuan upgrade akun game", "bantu upgrade"],
-      "answer": "UVOSHOP tidak menyediakan layanan upgrade akun game. Kami hanya menyediakan top-up saldo dan voucher."
+      "keywords": ["bantuan upgrade akun game", "bantu upgrade", "upgrade akun"],
+      "answer": "UVOSHOP gak nyediain layanan **upgrade akun game**. Kami cuma nyediain **top-up saldo** dan **voucher**."
     },
     {
-      "keywords": ["apakah data disimpan", "data user", "privasi data"],
-      "answer": "Data pengguna disimpan dengan aman dan digunakan hanya untuk proses transaksi dan layanan."
+      "keywords": ["apakah data disimpan", "data user", "privasi data", "data gue disimpan"],
+      "answer": "**Data pengguna** disimpan dengan aman dan cuma dipake buat proses transaksi dan layanan."
     },
     {
-      "keywords": ["cara melihat invoice", "bukti transaksi"],
-      "answer": "Invoice dan bukti transaksi dikirim otomatis ke email atau WhatsApp Anda setelah pembayaran berhasil."
+      "keywords": ["cara melihat invoice", "bukti transaksi", "cek invoice", "struk pembayaran"],
+      "answer": "**Invoice** dan **bukti transaksi** dikirim otomatis ke email atau **WhatsApp** kamu setelah pembayaran berhasil."
     },
     {
-      "keywords": ["cara komplain", "lapor masalah"],
-      "answer": "Silakan kirim keluhan ke admin via WhatsApp dengan menyertakan bukti transaksi untuk penanganan cepat."
+      "keywords": ["cara komplain", "lapor masalah", "ngadu masalah", "gimana komplain"],
+      "answer": "Kirim aja **keluhan** ke **admin** via **WhatsApp** dengan nyertakan **bukti transaksi** buat penanganan cepat."
     },
     {
-      "keywords": ["layanan pengiriman cepat", "fast delivery"],
-      "answer": "Kami mengutamakan pengiriman top-up cepat dan instan dalam hitungan menit."
+      "keywords": ["layanan pengiriman cepat", "fast delivery", "pengiriman kilat"],
+      "answer": "Kami ngutamain **pengiriman top-up cepat** dan instan dalam hitungan menit."
     },
     {
-      "keywords": ["layanan server down", "server maintenance"],
-      "answer": "Jika server sedang maintenance, kami akan menginformasikan di website dan sosial media resmi UVOSHOP."
+      "keywords": ["layanan server down", "server maintenance", "server error", "situs down"],
+      "answer": "Kalo **server sedang maintenance**, kami bakal nginfoin di website dan sosial media resmi UVOSHOP."
     },
     {
-      "keywords": ["apakah bisa topup pulsa", "topup pulsa"],
-      "answer": "UVOSHOP tidak menyediakan layanan top-up pulsa seluler, hanya voucher dan saldo game."
+      "keywords": ["apakah bisa topup pulsa", "topup pulsa", "isi pulsa"],
+      "answer": "UVOSHOP **gak nyediain layanan top-up pulsa seluler**, cuma **voucher** dan **saldo game**."
     },
     {
-      "keywords": ["apakah bisa topup item game", "topup skin", "topup item"],
-      "answer": "Kami menyediakan top-up saldo dan voucher game. Untuk pembelian item langsung dalam game, silakan gunakan marketplace resmi game."
+      "keywords": ["apakah bisa topup item game", "topup skin", "topup item", "beli skin", "beli item"],
+      "answer": "Kami nyediain **top-up saldo** dan **voucher game**. Buat pembelian item langsung dalam game, silakan pakai marketplace resmi game."
     },
     {
-      "keywords": ["cara cek saldo uvoshop", "cek saldo di uvoshop"],
-      "answer": "Kami tidak menyediakan layanan cek saldo di UVOSHOP. Layanan kami adalah top-up game secara langsung."
+      "keywords": ["cara cek saldo uvoshop", "cek saldo di uvoshop", "cek saldo akun uvoshop"],
+      "answer": "Kami **gak nyediain layanan cek saldo di UVOSHOP**. Layanan kami adalah **top-up game** secara langsung."
     },
     {
-      "keywords": ["apakah ada biaya tambahan", "fee tambahan"],
-      "answer": "Harga yang tertera sudah termasuk semua biaya. Tidak ada biaya tambahan tersembunyi."
+      "keywords": ["apakah ada biaya tambahan", "fee tambahan", "biaya tersembunyi"],
+      "answer": "**Harga** yang tertera udah termasuk semua biaya. **Gak ada biaya tambahan tersembunyi**."
     },
     {
-      "keywords": ["kontak resmi", "kontak perusahaan"],
-      "answer": "Kontak resmi UVOSHOP ada di website kami dan nomor WhatsApp admin +62 856-4821-1278."
+      "keywords": ["kontak resmi", "kontak perusahaan", "alamat kantor"],
+      "answer": "**Kontak resmi** UVOSHOP ada di website kami dan **nomor WhatsApp admin +62 856-4821-1278**."
     },
     {
-      "keywords": ["cara bergabung komunitas", "join komunitas"],
-      "answer": "Ikuti sosial media kami dan bergabung di grup resmi UVOSHOP untuk mendapatkan info promo dan update terbaru."
+      "keywords": ["cara bergabung komunitas", "join komunitas", "gabung grup"],
+      "answer": "Ikuti sosial media kami dan gabung di grup resmi UVOSHOP buat dapet info **promo** dan **update terbaru**."
     },
     {
-      "keywords": ["layanan support bahasa lain", "support bahasa"],
-      "answer": "Saat ini layanan kami menggunakan bahasa Indonesia dan Inggris. Hubungi admin untuk bantuan bahasa lain."
+      "keywords": ["layanan support bahasa lain", "support bahasa", "bahasa lain"],
+      "answer": "Saat ini layanan kami pakai **bahasa Indonesia** dan **Inggris**. Hubungi **admin** buat bantuan bahasa lain."
     },
     {
-      "keywords": ["cara update aplikasi game", "update game"],
-      "answer": "Update game dilakukan melalui aplikasi resmi game di perangkat Anda."
+      "keywords": ["cara update aplikasi game", "update game", "patch game"],
+      "answer": "Update game dilakukan lewat aplikasi resmi game di perangkat kamu."
     },
     {
-      "keywords": ["transaksi otomatis", "auto transaksi"],
-      "answer": "Transaksi di UVOSHOP diproses otomatis menggunakan sistem canggih untuk memastikan kecepatan dan akurasi."
+      "keywords": ["transaksi otomatis", "auto transaksi", "proses instan"],
+      "answer": "Transaksi di UVOSHOP diproses **otomatis** pakai sistem canggih buat mastiin kecepatan dan akurasi."
     },
     {
-      "keywords": ["cara mengganti nomor telepon", "ubah nomor"],
-      "answer": "Jika ingin mengganti nomor kontak, hubungi admin dengan data lengkap untuk update data Anda."
+      "keywords": ["cara mengganti nomor telepon", "ubah nomor", "ganti nomor hp"],
+      "answer": "Kalo mau ganti **nomor kontak**, hubungi **admin** dengan data lengkap buat update data kamu."
     },
     {
-      "keywords": ["apakah bisa topup via Paypal", "bayar pakai paypal"],
-      "answer": "Saat ini kami belum menyediakan metode pembayaran via Paypal."
+      "keywords": ["apakah bisa topup via Paypal", "bayar pakai paypal", "paypal"],
+      "answer": "Saat ini kami **belum nyediain metode pembayaran via Paypal**."
+    },
+    {
+      "keywords": ["garansi uang kembali", "money back guarantee", "jaminan uang kembali"],
+      "answer": "Kami ngasih **garansi uang kembali** kalo ada kesalahan dari pihak kami yang nyebabin saldo gak masuk."
+    },
+    {
+      "keywords": ["cara upgrade akun vip", "akun VIP", "upgrade vip"],
+      "answer": "UVOSHOP **gak nyediain layanan upgrade akun VIP**. Kami cuma ngelayani **top-up saldo** dan **voucher**."
+    },
+    {
+      "keywords": ["bantuan teknis", "help desk", "support teknis"],
+      "answer": "Tim **help desk** kami siap bantu kamu via chat atau **WhatsApp** kapan aja."
+    },
+    {
+      "keywords": ["cara pembayaran kartu kredit", "bayar kartu kredit", "credit card payment"],
+      "answer": "**Pembayaran** menggunakan **kartu kredit** bisa kamu lakuin lewat metode pembayaran yang tersedia di website."
+    },
+    {
+      "keywords": ["layanan pengembalian saldo", "refund saldo", "saldo balik"],
+      "answer": "**Pengembalian saldo** dilakukan kalo ada kesalahan sistem yang bisa dibuktiin dan disetujui sama **admin**."
+    },
+    {
+      "keywords": ["uvoshop", "apa itu uvoshop", "tentang uvoshop"],
+      "answer": "UVOSHOP adalah platform terpercaya untuk **top-up game** dan pembelian **voucher game** dengan proses yang cepat, aman, dan harga kompetitif. Kami hadir untuk memenuhi kebutuhan para gamer dalam mendapatkan **diamond**, **saldo**, atau item game favorit mereka secara instan."
+    },
+    {
+      "keywords": ["game support", "game yang didukung", "list game"],
+      "answer": "Kami mendukung berbagai game populer seperti **Mobile Legends (ML)**, **Free Fire (FF)**, PUBG Mobile, Genshin Impact, dan masih banyak lagi. Kamu bisa cek daftar lengkapnya di halaman utama website kami."
+    },
+    {
+      "keywords": ["jaminan keamanan", "sistem aman"],
+      "answer": "Sistem kami dirancang dengan standar keamanan tertinggi, menggunakan enkripsi data untuk melindungi informasi pribadi dan transaksi kamu. Jadi, kamu bisa bertransaksi dengan tenang di UVOSHOP."
+    },
+    {
+      "keywords": ["harga bersaing", "harga murah", "harga paling murah"],
+      "answer": "Kami selalu berkomitmen memberikan **harga top-up** yang sangat bersaing dan kompetitif di pasaran. Kamu bisa bandingkan sendiri!"
+    },
+    {
+      "keywords": ["layanan 24 jam", "online 24 jam"],
+      "answer": "Sistem top-up kami beroperasi **24 jam** penuh, jadi kamu bisa melakukan transaksi kapan pun dan di mana pun. Layanan pelanggan kami juga siap membantu kamu setiap saat."
+    },
+    {
+      "keywords": ["kompatibilitas perangkat", "bisa diakses di mana", "hp", "laptop", "pc"],
+      "answer": "Website UVOSHOP bisa diakses dengan mudah dari berbagai perangkat, baik itu **smartphone (Android/iOS)**, tablet, laptop, maupun PC. Desainnya responsif, jadi nyaman digunakan di layar mana pun."
+    },
+    {
+      "keywords": ["transaksi gagal tapi saldo kepotong", "uang kepotong tapi topup gagal", "bayar gak masuk"],
+      "answer": "Jika terjadi **transaksi gagal tapi saldo kamu terpotong**, jangan panik! Itu bisa terjadi karena kendala teknis. Segera hubungi **admin** kami via **WhatsApp** dengan melampirkan **bukti pembayaran** dan ID transaksi, kami akan bantu proses pengecekan dan **refund** secepatnya."
+    },
+    {
+      "keywords": ["waktu operasional", "jam kerja", "buka jam berapa"],
+      "answer": "Sistem top-up kami beroperasi **24 jam non-stop**. Untuk layanan **Customer Service**, kami juga berusaha responsif 24 jam, namun ada waktu-waktu tertentu dimana mungkin respon sedikit lebih lambat. Tapi jangan khawatir, semua chat akan kami balas."
+    },
+    {
+      "keywords": ["server game down", "game gak bisa diakses"],
+      "answer": "Jika server game yang kamu ingin top-up sedang down atau mengalami masalah, hal itu di luar kendali kami. Sebaiknya tunggu sampai server game kembali normal sebelum melakukan transaksi. Kami akan menginformasikan jika ada pemeliharaan sistem dari pihak UVOSHOP."
+    },
+    {
+      "keywords": ["masalah pembayaran Qris", "Qris gagal", "bayar pakai Qris"],
+      "answer": "Jika mengalami masalah saat pembayaran dengan **QRIS**, pastikan aplikasi e-wallet atau bank kamu sudah terhubung dengan benar dan saldo mencukupi. Coba scan ulang QRIS-nya atau hubungi **admin** kami jika masalah berlanjut."
+    },
+    {
+      "keywords": ["pembelian tidak valid", "transaksi tidak sah"],
+      "answer": "Transaksi yang kamu lakukan di UVOSHOP adalah sah selama kamu mengikuti prosedur yang ada. Jika ada notifikasi 'pembelian tidak valid', itu mungkin terkait dengan ID game yang salah atau masalah koneksi. Pastikan semua data yang kamu masukkan benar."
+    },
+    {
+      "keywords": ["cara daftar affiliate", "affiliate program"],
+      "answer": "Kami memiliki program **affiliate** menarik yang memungkinkan kamu mendapatkan keuntungan. Untuk informasi lebih lanjut mengenai cara daftar dan persyaratannya, silakan hubungi **admin** kami."
+    },
+    {
+      "keywords": ["hadiah topup", "bonus topup"],
+      "answer": "Terkadang kami mengadakan **promo** dengan **hadiah** atau **bonus** tambahan untuk setiap top-up tertentu. Pantau terus halaman **promo** atau sosial media kami untuk informasi terbaru ya!"
+    },
+    {
+      "keywords": ["topup pake gopay", "bayar gopay"],
+      "answer": "Tentu saja! Kamu bisa melakukan **top-up** dan membayar dengan mudah menggunakan **GoPay**. Pilih metode pembayaran GoPay saat checkout."
+    },
+    {
+      "keywords": ["topup pake ovo", "bayar ovo"],
+      "answer": "Ya, **OVO** adalah salah satu metode pembayaran yang kami sediakan. Pilih OVO saat kamu ingin menyelesaikan transaksi."
+    },
+    {
+      "keywords": ["topup pake dana", "bayar dana"],
+      "answer": "Bisa banget! Pembayaran melalui **DANA** tersedia di UVOSHOP. Cukup pilih DANA sebagai metode pembayaranmu."
+    },
+    {
+      "keywords": ["topup pake linkaja", "bayar linkaja"],
+      "answer": "Saat ini, LinkAja belum menjadi metode pembayaran utama kami. Namun, kamu bisa menggunakan **QRIS** yang biasanya mendukung LinkAja."
+    },
+    {
+      "keywords": ["topup pake shopeepay", "bayar shopeepay"],
+      "answer": "Untuk pembayaran menggunakan **ShopeePay**, kamu bisa memilih metode pembayaran **QRIS** yang terintegrasi dengan ShopeePay."
+    },
+    {
+      "keywords": ["promo ramadhan", "promo lebaran", "promo natal", "promo tahun baru"],
+      "answer": "Kami sering mengadakan **promo** spesial di hari-hari besar atau momen tertentu seperti Ramadhan, Lebaran, Natal, atau Tahun Baru. Pastikan kamu selalu cek halaman **promo** kami atau sosial media UVOSHOP agar tidak ketinggalan!"
+    },
+    {
+      "keywords": ["feedback website", "saran website", "kritik website"],
+      "answer": "Kami sangat menghargai setiap **feedback** dan **saran** dari kamu untuk pengembangan website kami. Jangan ragu sampaikan langsung ke **admin** kami via **WhatsApp** ya!"
+    },
+    {
+      "keywords": ["bug laporan", "lapor bug", "sistem error"],
+      "answer": "Jika kamu menemukan **bug** atau **error** di website kami, mohon segera laporkan ke **admin** dengan deskripsi yang jelas dan kalau bisa sertakan screenshot. Laporan kamu sangat membantu kami untuk meningkatkan kualitas layanan."
+    },
+    {
+      "keywords": ["kebijakan cookie", "cookie policy"],
+      "answer": "Informasi mengenai penggunaan **cookie** di website kami dijelaskan secara detail dalam **Kebijakan Privasi** kami. Kamu bisa membacanya di halaman tersebut."
+    },
+    {
+      "keywords": ["update fitur", "fitur baru"],
+      "answer": "Kami terus berinovasi dan akan selalu ada **fitur baru** yang ditambahkan untuk kenyamanan kamu. Pantau informasi terbaru di website atau sosial media kami ya!"
+    },
+    {
+      "keywords": ["server sibuk", "jaringan sibuk"],
+      "answer": "Jika kamu mendapati notifikasi 'server sibuk' atau 'jaringan sibuk', ini bisa karena trafik tinggi atau ada kendala sementara. Coba ulangi transaksi beberapa saat lagi, atau hubungi **admin** jika terus berlanjut."
+    },
+    {
+      "keywords": ["aturan penggunaan", "ketentuan layanan"],
+      "answer": "**Aturan penggunaan** dan **ketentuan layanan** kami dirancang untuk memastikan pengalaman bertransaksi yang adil dan aman bagi semua pengguna. Kamu bisa membacanya secara lengkap di halaman **Syarat & Ketentuan**."
+    },
+    {
+      "keywords": ["cara verifikasi nomor telepon", "verifikasi otp"],
+      "answer": "Beberapa metode pembayaran mungkin memerlukan **verifikasi nomor telepon** melalui OTP (One Time Password). Pastikan nomor yang kamu masukkan aktif dan sinyalnya bagus agar OTP bisa diterima."
+    },
+    {
+      "keywords": ["pembayaran melalui pulsa telkomsel", "pulsa indosat", "pulsa xl", "pulsa three", "pulsa smartfren"],
+      "answer": "Sekali lagi, **pembayaran menggunakan pulsa** (Telkomsel, Indosat, XL, dll.) saat ini belum tersedia di UVOSHOP. Mohon gunakan metode pembayaran digital atau transfer bank yang sudah kami sediakan."
+    },
+    {
+      "keywords": ["jam operasional admin", "admin aktif jam berapa"],
+      "answer": "**Admin** kami berusaha untuk selalu aktif dan responsif **24 jam** melalui **WhatsApp**. Meskipun ada saatnya respon tidak secepat kilat, kami pastikan semua pesan akan dibalas."
+    },
+    {
+      "keywords": ["lokasi kantor uvoshop", "kantor uvoshop"],
+      "answer": "UVOSHOP beroperasi secara online dan tidak memiliki kantor fisik untuk layanan pelanggan langsung. Semua layanan dan dukungan pelanggan tersedia melalui website dan **WhatsApp**."
+    },
+    {
+      "keywords": ["topup tanpa ribet", "topup gampang"],
+      "answer": "UVOSHOP memang dirancang untuk **top-up tanpa ribet**. Kamu bisa langsung bertransaksi tanpa perlu registrasi dan prosesnya cepat."
+    },
+    {
+      "keywords": ["promo bundling", "paket promo"],
+      "answer": "Kadang kami menawarkan **promo bundling** atau **paket promo** yang lebih hemat. Selalu cek bagian promo di website kami untuk penawaran menarik ini!"
+    },
+    {
+      "keywords": ["apakah ada grup telegram", "grup whatsapp"],
+      "answer": "Ya, kami memiliki grup di beberapa platform seperti WhatsApp atau Telegram untuk berbagi info promo dan update. Kamu bisa tanyakan link-nya ke **admin**."
+    },
+    {
+      "keywords": ["topup game luar", "game internasional"],
+      "answer": "Fokus utama UVOSHOP adalah game dengan server di Indonesia. Untuk game internasional, kami sarankan menggunakan platform top-up resmi game tersebut atau yang khusus melayani server internasional."
+    },
+    {
+      "keywords": ["syarat refund", "ketentuan refund"],
+      "answer": "**Refund** hanya berlaku jika ada kesalahan dari sistem kami atau pembayaran gagal namun saldo terpotong. Syarat & ketentuan lengkap dapat dilihat di halaman **Kebijakan Pengembalian Dana** kami."
+    },
+    {
+      "keywords": ["verifikasi ID", "validasi ID"],
+      "answer": "Sistem kami akan melakukan **verifikasi ID** game yang kamu masukkan. Jika ID tidak valid, transaksi mungkin gagal. Pastikan ID kamu benar dan sesuai format."
+    },
+    {
+      "keywords": ["bukti transfer", "screenshot pembayaran"],
+      "answer": "**Bukti transfer** atau **screenshot pembayaran** sangat penting jika kamu mengalami kendala transaksi. Selalu simpan bukti ini sampai top-up kamu berhasil masuk."
+    },
+    {
+      "keywords": ["program loyalitas", "poin reward"],
+      "answer": "Saat ini kami belum memiliki program **loyalitas** atau **poin reward** khusus. Namun, kami selalu berusaha memberikan promo dan diskon terbaik untuk pelanggan setia."
+    },
+    {
+      "keywords": ["masa berlaku voucher", "kadaluarsa voucher"],
+      "answer": "**Masa berlaku voucher** biasanya tertera saat kamu membeli. Pastikan untuk menggunakannya sebelum masa berlaku habis karena **voucher** yang sudah kadaluarsa tidak dapat di-redeem."
+    },
+    {
+      "keywords": ["topup ilegal", "illegal topup"],
+      "answer": "UVOSHOP hanya menyediakan **top-up legal** dan aman dengan bekerja sama melalui jalur resmi. Kami tidak pernah menyediakan layanan top-up ilegal yang bisa membahayakan akun game kamu."
+    },
+    {
+      "keywords": ["pelaporan penipuan", "penipuan online"],
+      "answer": "Jika kamu menemukan indikasi **penipuan** yang mengatasnamakan UVOSHOP, segera laporkan ke **admin** kami agar bisa kami tindaklanjuti dan mencegah kerugian lebih lanjut."
+    },
+    {
+      "keywords": ["cara cek game id", "dimana menemukan id game"],
+      "answer": "Biasanya, **ID game** bisa kamu temukan di profil akun dalam game tersebut. Lokasinya bisa bervariasi tergantung game-nya, tapi umumnya ada di bagian pengaturan atau profil pengguna."
+    },
+    {
+      "keywords": ["topup murah", "diamond murah", "uc murah", "aura", "topup gacor", "topup cepet"],
+      "answer": "UVOSHOP menawarkan **harga top-up yang kompetitif** dan sering ada **promo diskon**, jadi kamu bisa dapet **diamond** atau **saldo game** dengan harga terbaik. Prosesnya juga **cepat** dan **instan**, bikin top-up kamu jadi makin **gacor**!"
+    },
+    {
+      "keywords": ["layanan bantuan", "help support"],
+      "answer": "Tim **support** kami siap membantu kamu dengan segala pertanyaan dan masalah yang kamu alami. Jangan ragu hubungi kami via **WhatsApp** atau fitur chat di website."
+    },
+    {
+      "keywords": ["topup pubg", "uc pubg", "topup uc", "pubg mobile", "beli uc"],
+      "answer": "Tentu saja! Kamu bisa **top-up UC PUBG Mobile** di UVOSHOP. Pilih nominal **UC** yang kamu inginkan, masukkan **ID PUBG** kamu, dan selesaikan pembayaran. UC akan segera masuk ke akunmu."
+    },
+    {
+      "keywords": ["topup genshin impact", "genesis crystal", "beli crystal", "genshin"],
+      "answer": "Kami juga menyediakan layanan **top-up Genesis Crystal** untuk **Genshin Impact**. Prosesnya cepat dan aman, pastikan kamu memasukkan ID Genshin Impact yang benar."
+    },
+    {
+      "keywords": ["topup valorant", "vp valorant", "beli vp", "valorant"],
+      "answer": "Buat para pemain **Valorant**, kamu bisa **top-up VP (Valorant Points)** di UVOSHOP. Pilih nominal **VP** dan masukkan Riot ID kamu. Tingkatkan koleksi skinmu sekarang!"
+    },
+    {
+      "keywords": ["topup aov", "arena of valor", "voucher aov"],
+      "answer": "Ya, kamu bisa **top-up voucher AOV (Arena of Valor)** di UVOSHOP. Nikmati keuntungan dari berbagai pilihan voucher yang tersedia."
+    },
+    {
+      "keywords": ["topup higgs domino", "chip domino", "beli chip"],
+      "answer": "Kamu bisa dengan mudah **top-up chip Higgs Domino** di UVOSHOP. Pilih nominal chip yang kamu butuhkan dan proses transaksi dengan cepat."
+    },
+    {
+      "keywords": ["topup codm", "cp codm", "call of duty mobile"],
+      "answer": "Para pemain **Call of Duty Mobile (CODM)**, kamu bisa **top-up CP (COD Points)** di UVOSHOP. Dapatkan **CP** kamu sekarang untuk item favoritmu!"
+    },
+    {
+      "keywords": ["topup ragnarok", "ragnarok mobile", "big cat coin"],
+      "answer": "Kami menyediakan layanan **top-up Big Cat Coin** untuk game **Ragnarok Mobile**. Tingkatkan kekuatan karaktermu dengan cepat!"
+    },
+    {
+      "keywords": ["topup wild rift", "wild cores", "beli wild cores"],
+      "answer": "Buat para Summoner **Wild Rift**, kamu bisa **top-up Wild Cores** di UVOSHOP. Dapatkan **Wild Cores** kamu untuk skin dan item lainnya."
+    },
+    {
+      "keywords": ["topup super sus", "stars super sus", "beli stars"],
+      "answer": "Ya, kamu bisa **top-up Stars** untuk game **Super Sus** di UVOSHOP. Dapatkan **Stars**-mu dan nikmati berbagai fitur premium."
+    },
+    {
+      "keywords": ["topup apex legends", "apex coins", "beli apex coins"],
+      "answer": "Pemain **Apex Legends**, kamu bisa **top-up Apex Coins** di UVOSHOP. Proses cepat untuk mendapatkan item-item keren di game."
+    },
+    {
+      "keywords": ["topup efootball", "coin efootball", "efootball", "beli coin"],
+      "answer": "Tingkatkan tim sepak bolamu di **eFootball** dengan **top-up Coin eFootball** di UVOSHOP. Dapatkan pemain impianmu sekarang!"
+    },
+    {
+      "keywords": ["topup mobile legends murah", "diamond ml murah"],
+      "answer": "Kamu bisa mendapatkan **diamond Mobile Legends murah** di UVOSHOP! Kami selalu berkomitmen memberikan harga terbaik dengan proses top-up yang cepat dan aman."
+    },
+    {
+      "keywords": ["topup free fire murah", "diamond ff murah"],
+      "answer": "Cari **diamond Free Fire murah**? UVOSHOP jawabannya! Kami menyediakan harga yang sangat kompetitif dengan proses pengiriman diamond yang instan."
+    },
+    {
+      "keywords": ["topup termurah", "harga paling murah"],
+      "answer": "UVOSHOP dikenal sebagai salah satu tempat **top-up termurah** dengan kualitas layanan yang tidak diragukan lagi. Bandingkan harga kami dan rasakan sendiri keuntungannya!"
+    },
+    {
+      "keywords": ["topup aman", "transaksi aman", "jaminan keamanan"],
+      "answer": "Keamanan adalah prioritas utama kami. Setiap **transaksi top-up di UVOSHOP dijamin aman** dengan sistem enkripsi terbaru dan tanpa risiko banned akun."
+    },
+    {
+      "keywords": ["topup cepat", "pengiriman instan"],
+      "answer": "Proses **top-up di UVOSHOP sangat cepat** dan **instan**. Dalam hitungan detik atau menit, **diamond** atau **saldo game** kamu akan langsung masuk ke akun."
+    },
+    {
+      "keywords": ["topup 24 jam", "layanan non stop"],
+      "answer": "Sistem **top-up** kami beroperasi **24 jam non-stop**, jadi kamu bisa melakukan transaksi kapan pun kamu mau, bahkan di tengah malam sekalipun!"
+    },
+    {
+      "keywords": ["customer service ramah", "cs ramah", "admin baik"],
+      "answer": "Tim **Customer Service** kami selalu siap melayani kamu dengan ramah dan profesional. Kami akan bantu setiap masalah atau pertanyaanmu dengan sepenuh hati."
+    },
+    {
+      "keywords": ["bisa pakai semua bank", "bank transfer"],
+      "answer": "Kami menyediakan pembayaran melalui **transfer bank** dari berbagai bank di Indonesia, memudahkan kamu untuk bertransaksi."
+    },
+    {
+      "keywords": ["promo harian", "diskon harian"],
+      "answer": "Jangan lewatkan **promo harian** dan **diskon** menarik dari UVOSHOP! Selalu cek halaman promo kami setiap hari untuk penawaran spesial."
+    },
+    {
+      "keywords": ["langsung masuk", "topup langsung"],
+      "answer": "Ya, setelah pembayaran terkonfirmasi, **saldo** atau **diamond** yang kamu beli akan **langsung masuk** ke akun game kamu secara otomatis."
+    },
+    {
+      "keywords": ["topup untuk semua game", "game lengkap"],
+      "answer": "UVOSHOP berusaha menyediakan layanan **top-up untuk berbagai jenis game** populer. Kamu bisa cek daftar game lengkap kami di website."
+    },
+    {
+      "keywords": ["tidak perlu daftar", "tanpa login"],
+      "answer": "Kemudahan adalah kunci! Di UVOSHOP, kamu **tidak perlu daftar** atau **login** untuk melakukan top-up. Cukup masukkan ID game dan bayar."
+    },
+    {
+      "keywords": ["bukti transaksi", "nota pembayaran"],
+      "answer": "Setiap transaksi yang berhasil akan disertai **bukti transaksi** atau **nota pembayaran** yang akan dikirimkan ke email atau WhatsApp kamu. Simpan baik-baik ya!"
+    },
+    {
+      "keywords": ["server rame", "jaringan padat", "server penuh"],
+      "answer": "Jika ada kendala karena **server rame** atau **jaringan padat**, kami akan berusaha proses transaksi secepat mungkin. Mohon kesabarannya ya!"
+    },
+    {
+      "keywords": ["topup mobile game", "game mobile"],
+      "answer": "Kami fokus pada **top-up untuk berbagai game mobile** populer yang sedang kamu mainkan."
+    },
+    {
+      "keywords": ["topup pc game", "game pc"],
+      "answer": "Beberapa **game PC** juga kami dukung untuk top-up. Cek daftar game kami untuk info lebih lanjut."
+    },
+    {
+      "keywords": ["cara hubungi cs", "chat cs"],
+      "answer": "Untuk menghubungi **CS**, kamu bisa lewat fitur chat di website atau langsung **WhatsApp admin** kami di **+62 856-4821-1278**."
     },
     {
       "keywords": ["garansi uang kembali", "money back guarantee"],
-      "answer": "Kami memberikan garansi uang kembali jika terjadi kesalahan dari pihak kami yang menyebabkan saldo tidak masuk."
+      "answer": "Kami memberikan **garansi uang kembali** penuh jika ada kesalahan sistem dari pihak kami yang menyebabkan top-up kamu tidak berhasil masuk."
     },
     {
-      "keywords": ["cara upgrade akun vip", "akun VIP"],
-      "answer": "UVOSHOP tidak menyediakan layanan upgrade akun VIP. Kami hanya melayani top-up saldo dan voucher."
-    },
-    {
-      "keywords": ["bantuan teknis", "help desk"],
-      "answer": "Tim help desk kami siap membantu Anda via chat atau WhatsApp kapan saja."
-    },
-    {
-      "keywords": ["cara pembayaran kartu kredit", "bayar kartu kredit"],
-      "answer": "Pembayaran menggunakan kartu kredit dapat dilakukan melalui metode pembayaran yang tersedia di website."
-    },
-    {
-      "keywords": ["layanan pengembalian saldo", "refund saldo"],
-      "answer": "Pengembalian saldo dilakukan jika terdapat kesalahan sistem yang dapat dibuktikan dan disetujui oleh admin."
+      "keywords": ["layanan cepat dan aman", "cepat dan aman"],
+      "answer": "UVOSHOP berkomitmen untuk memberikan **layanan top-up yang cepat dan aman** demi kenyamanan semua pelanggan kami."
     }
-    {
-      "keywords": ["halo", "hai"],
-      "answer": "Haloo:) uvoshop siap membantu,."
-   }
-
-]
+  ]
+}
