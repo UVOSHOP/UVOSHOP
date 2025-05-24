@@ -1,94 +1,164 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UVOChat - Bantuan AI</title>
   <style>
+    /* Reset & dasar */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
       color: white;
       display: flex;
       flex-direction: column;
       height: 100vh;
+      overflow: hidden;
     }
     header {
       background: #1f1f1f;
-      padding: 1rem;
+      padding: 1rem 3rem;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #0ff;
-      font-weight: bold;
-    }
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-    }
-    .bubble {
-      max-width: 75%;
-      margin-bottom: 1rem;
-      padding: 0.8rem 1rem;
-      border-radius: 1rem;
+      font-weight: 700;
       position: relative;
-      animation: fadeIn 0.3s ease;
-    }
-    .user {
-      background: #333;
-      align-self: flex-end;
-      margin-left: auto;
-    }
-    .ai {
-      background: #0ff2;
-      color: black;
-      align-self: flex-start;
-      margin-right: auto;
-    }
-    #input-area {
-      display: flex;
-      padding: 0.5rem;
-      background: #1f1f1f;
-      border-top: 1px solid #444;
-    }
-    input[type="text"] {
-      flex: 1;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      background: #2a2a2a;
-      color: white;
-    }
-    button {
-      padding: 0.8rem 1.2rem;
-      margin-left: 0.5rem;
-      background: #0ff;
-      border: none;
-      border-radius: 0.5rem;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
+      user-select: none;
     }
     #back {
       position: absolute;
       top: 10px;
-      left: 10px;
+      left: 15px;
       background: transparent;
       color: #0ff;
       border: 2px solid #0ff;
-      padding: 5px 10px;
-      border-radius: 10px;
+      padding: 6px 12px;
+      border-radius: 12px;
       cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, color 0.3s;
+      z-index: 10;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    #back:hover {
+      background-color: #0ff;
+      color: #121212;
+    }
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      scroll-behavior: smooth;
+      background: linear-gradient(45deg, #0f0f0f, #1a1a1a);
+    }
+    .bubble {
+      max-width: 75%;
+      padding: 1rem 1.2rem;
+      border-radius: 20px;
+      position: relative;
+      animation: fadeInUp 0.4s ease forwards;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+      line-height: 1.3;
+      font-size: 1rem;
+      word-wrap: break-word;
+      user-select: text;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .user {
+      background: #333;
+      color: #eee;
+      align-self: flex-end;
+      margin-left: auto;
+      border-bottom-right-radius: 2px;
+      box-shadow: 0 0 8px #00fff0aa;
+    }
+    .ai {
+      background: #00fff055;
+      color: #000;
+      align-self: flex-start;
+      margin-right: auto;
+      border-bottom-left-radius: 2px;
+      box-shadow: 0 0 15px #00fff099;
     }
     .typing {
       font-style: italic;
       color: #aaa;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left;
+      padding-left: 0;
+      font-size: 0.95rem;
+    }
+    #input-area {
+      display: flex;
+      padding: 0.7rem 1rem;
+      background: #1f1f1f;
+      border-top: 1px solid #333;
+      gap: 0.6rem;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      background: #2a2a2a;
+      color: white;
+      outline-offset: 2px;
+      outline-color: #00ffffbb;
+      transition: outline-color 0.3s;
+    }
+    input[type="text"]:focus:not(:disabled) {
+      outline-color: #0ff;
+      background: #3a3a3a;
+    }
+    input[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    button {
+      background: #0ff;
+      border: none;
+      border-radius: 10px;
+      padding: 0 1.3rem;
+      color: black;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    button:hover:not(:disabled) {
+      background: #00dddd;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    /* Scrollbar keren */
+    #chat::-webkit-scrollbar {
+      width: 8px;
+    }
+    #chat::-webkit-scrollbar-track {
+      background: #1f1f1f;
+    }
+    #chat::-webkit-scrollbar-thumb {
+      background: #0ff;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -99,8 +169,8 @@
   </header>
   <div id="chat"></div>
   <div id="input-area">
-    <input type="text" id="userInput" placeholder="Tanyakan sesuatu..." disabled>
-    <button onclick="sendMessage()" disabled id="sendBtn">Kirim</button>
+    <input type="text" id="userInput" placeholder="Tanyakan sesuatu..." disabled autocomplete="off" />
+    <button id="sendBtn" disabled>Kirim</button>
   </div>
 
   <script>
@@ -109,31 +179,35 @@
     const sendBtn = document.getElementById('sendBtn');
     let aiTyping = false;
 
-    const data = {
-      "cara topup": "Untuk melakukan top-up, cukup pilih game dan nominal, lalu isi ID dan bayar.",
-      "metode pembayaran": "Kami mendukung DANA, OVO, GOPAY, QRIS, dan transfer bank.",
-      "refund": "Kami hanya melayani refund jika kesalahan ada di sistem kami.",
-      "waktu proses": "Top-up diproses instan, maksimal 1-5 menit setelah pembayaran."
-    };
+    let uvochatData = null;
+    let gamesData = null;
 
-    function sendMessage() {
-      if (aiTyping) return;
-      const text = userInput.value.trim();
-      if (!text) return;
-      appendBubble(text, 'user');
-      userInput.value = '';
+    // Load data async
+    async function loadJsonFiles() {
+      try {
+        const resChat = await fetch('uvochat.json');
+        uvochatData = await resChat.json();
+
+        const resGames = await fetch('games.json');
+        gamesData = await resGames.json();
+
+        enableInput();
+        appendBubble("Halo! Saya UVOChat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
+      } catch (e) {
+        appendBubble("Gagal memuat data bantuan. Silakan coba refresh halaman.", 'ai');
+        console.error("Error load JSON:", e);
+      }
+    }
+
+    function enableInput() {
+      userInput.disabled = false;
+      sendBtn.disabled = false;
+      userInput.focus();
+    }
+
+    function disableInput() {
       userInput.disabled = true;
       sendBtn.disabled = true;
-      showTyping();
-
-      setTimeout(() => {
-        const response = findAnswer(text);
-        removeTyping();
-        appendBubble(response, 'ai');
-        userInput.disabled = false;
-        sendBtn.disabled = false;
-        userInput.focus();
-      }, 1000);
     }
 
     function appendBubble(text, sender) {
@@ -144,38 +218,123 @@
       chat.scrollTop = chat.scrollHeight;
     }
 
-    function showTyping() {
-      aiTyping = true;
-      const typing = document.createElement('div');
-      typing.className = 'bubble ai typing';
-      typing.id = 'typing';
-      typing.textContent = 'UVO sedang mengetik...';
-      chat.appendChild(typing);
+    function appendTyping() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'bubble ai typing';
+      typingDiv.id = 'typing';
+      typingDiv.textContent = 'UVO sedang mengetik...';
+      chat.appendChild(typingDiv);
       chat.scrollTop = chat.scrollHeight;
     }
 
     function removeTyping() {
-      aiTyping = false;
-      const typing = document.getElementById('typing');
-      if (typing) typing.remove();
+      const typingDiv = document.getElementById('typing');
+      if (typingDiv) typingDiv.remove();
     }
 
-    function findAnswer(text) {
+    // Cek apakah user input mengandung nama game + nominal harga
+    function findGamePriceAnswer(text) {
+      if (!gamesData || !Array.isArray(gamesData)) return null;
       text = text.toLowerCase();
-      for (const keyword in data) {
-        if (text.includes(keyword)) {
-          return data[keyword];
+
+      for (const game of gamesData) {
+        const gameName = game.name.toLowerCase();
+        if (text.includes(gameName)) {
+          // Coba cari nominal harga di text
+          const amountsInText = [];
+          // Cek setiap harga nominal di game.prices apakah ada di text
+          for (const priceObj of game.prices) {
+            if (text.includes(priceObj.amount.toString())) {
+              amountsInText.push(priceObj);
+            }
+          }
+          if (amountsInText.length === 0) {
+            // Kalau cuma nanya game tanpa nominal, kasih daftar nominal harga teratas
+            let response = `Daftar nominal top-up untuk *${game.name}*:\n`;
+            response += game.prices.slice(0,5).map(p => `- ${p.amount} diamond seharga Rp${p.price.toLocaleString()}`).join('\n');
+            response += `\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya.`;
+            return response;
+          } else {
+            // Balas detail harga sesuai nominal
+            let response = `Harga top-up *${game.name}*:\n`;
+            for (const p of amountsInText) {
+              response += `- ${p.amount} diamond = Rp${p.price.toLocaleString()}\n`;
+            }
+            return response.trim();
+          }
         }
       }
-      return "Maaf, saya belum bisa menjawab pertanyaan itu. Silakan coba pertanyaan lain.";
+      return null;
     }
 
-    // Aktifkan input saat halaman siap
-    window.onload = () => {
-      userInput.disabled = false;
-      sendBtn.disabled = false;
-      userInput.focus();
-    };
+    // Cari jawaban dengan keyword di pola pikir AI dan FAQ (uvochat.json)
+    function findUvochatAnswer(text) {
+      text = text.toLowerCase();
+      if (!uvochatData) return null;
+
+      // cek pola_pikir dulu
+      if (Array.isArray(uvochatData.pola_pikir)) {
+        for (const entry of uvochatData.pola_pikir) {
+          if (entry.keyword && text.includes(entry.keyword.toLowerCase())) {
+            return entry.text;
+          }
+        }
+      }
+      // cek faq
+      if (Array.isArray(uvochatData.faq)) {
+        for (const faq of uvochatData.faq) {
+          if (faq.keyword && text.includes(faq.keyword.toLowerCase())) {
+            return faq.answer;
+          }
+        }
+      }
+      return null;
+    }
+
+    // Main handler
+    async function handleUserInput() {
+      if (aiTyping) return;
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      appendBubble(text, 'user');
+      userInput.value = '';
+      disableInput();
+
+      appendTyping();
+      aiTyping = true;
+
+      // Delay supaya terasa natural
+      await new Promise(r => setTimeout(r, 800));
+
+      // Cek dulu apakah ada jawaban harga game
+      let response = findGamePriceAnswer(text);
+
+      // Kalau tidak ada, cari di uvochat.json
+      if (!response) {
+        response = findUvochatAnswer(text);
+      }
+
+      // Kalau masih tidak ada jawaban, fallback ke pesan default
+      if (!response) {
+        response = `Maaf, saya belum punya jawaban untuk pertanyaan itu. Silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
+      }
+
+      removeTyping();
+      appendBubble(response, 'ai');
+      enableInput();
+      aiTyping = false;
+    }
+
+    sendBtn.addEventListener('click', handleUserInput);
+    userInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleUserInput();
+      }
+    });
+
+    loadJsonFiles();
   </script>
 </body>
 </html>
