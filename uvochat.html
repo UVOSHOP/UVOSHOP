@@ -449,13 +449,14 @@
         <ul id="sidebar-menu">
             <li onclick="startNewChat()"><span style="margin-right: 10px;">✨</span>Mulai Chat Baru</li>
             <li onclick="history.back()"><span style="margin-right: 10px;">⬅</span> Kembali ke Halaman Sebelumnya</li>
-            </ul>
+        </ul>
     </div>
 
     <div id="main-content">
         <header>
             <button id="open-sidebar-btn" onclick="openNav()">&#9776;</button>
-            <span>UVOchat</span> <a href="https://wa.me/6285648211278" target="_blank" id="whatsapp-button">
+            <span>UVOchat</span>
+            <a href="https://wa.me/6285648211278" target="_blank" id="whatsapp-button">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
                 WA
             </a>
@@ -482,12 +483,12 @@
         // Fungsi untuk mengontrol Sidebar
         function openNav() {
             document.getElementById("sidebar").style.width = "250px";
-            document.body.classList.add('sidebar-open'); // Tambahkan kelas untuk overlay
+            document.body.classList.add('sidebar-open');
         }
 
         function closeNav() {
             document.getElementById("sidebar").style.width = "0";
-            document.body.classList.remove('sidebar-open'); // Hapus kelas overlay
+            document.body.classList.remove('sidebar-open');
         }
 
         // Fungsi untuk memproses teks: bold, spasi, simbol, ukuran font, box
@@ -498,37 +499,29 @@
             processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
             // 2. Ganti spasi ganda menjadi spasi tunggal dan tambahkan paragraf
-            processed = processed.replace(/\n/g, '<br>'); // Ganti newline jadi <br> dulu
-            // Convert multiple <br> into single <br>
+            processed = processed.replace(/\n/g, '<br>');
             processed = processed.replace(/(<br\s*\/?>\s*){2,}/g, '<br><br>');
 
             // 3. Tambahkan simbol (contoh: untuk list)
-            processed = processed.replace(/^- (.*?)<br>/g, '<li><span class="icon">➡️</span>$1</li>'); // Untuk list item
-            processed = processed.replace(/^- (.*)/g, '<li><span class="icon">➡️</span>$1</li>'); // Jika tidak ada <br>
+            processed = processed.replace(/^- (.*?)<br>/g, '<li><span class="icon">➡️</span>$1</li>');
+            processed = processed.replace(/^- (.*)/g, '<li><span class="icon">➡️</span>$1</li>');
 
-            // Tambahkan <ul> di sekitar <li> jika ada
             if (processed.includes('<li>')) {
                 processed = `<ul>${processed}</ul>`;
-                // Remove redundant <br> before or after <ul>
                 processed = processed.replace(/<br><ul>/g, '<ul>').replace(/<\/ul><br>/g, '</ul>');
             }
 
-
             // 4. Atur ukuran font (contoh: jika ada kalimat kunci)
-            // Ini bisa diperluas dengan regex yang lebih kompleks
             processed = processed.replace(/Gampang banget!/g, '<span class="large-font">Gampang banget!</span>');
             processed = processed.replace(/Cepat, kan?/g, '<span class="small-font">Cepat, kan?</span>');
             processed = processed.replace(/Simpel banget kan?/g, '<span class="small-font">Simpel banget kan?</span>');
 
             // 5. Tambahkan kotak (contoh: untuk instruksi khusus)
-            // Anda bisa definisikan pola untuk menambahkan kotak, misalnya dengan [[teks]]
             processed = processed.replace(/\[\[(.*?)\]\]/g, '<span class="box">$1</span>');
 
-            // Wrap di <p> jika belum ada struktur list
             if (!processed.includes('<ul>') && !processed.includes('<br><br>')) {
                 processed = `<p>${processed}</p>`;
             } else {
-                // Untuk teks yang memiliki <br><br> (paragraf terpisah), wrap masing-masing blok di <p>
                 const blocks = processed.split('<br><br>');
                 processed = blocks.map(block => {
                     if (block.trim().length > 0 && !block.startsWith('<ul>') && !block.startsWith('<p>')) {
@@ -537,7 +530,6 @@
                     return block.trim();
                 }).join('');
             }
-            // Remove any leftover <br> tags not part of a deliberate line break within a paragraph
             processed = processed.replace(/<br>(?!(<br>|<ul>|<\/ul>))/g, '<br>');
 
             return processed;
@@ -610,10 +602,11 @@
         }
 
         // Fungsi untuk memproses input user dan menemukan jawaban
+        // Ini adalah bagian "kecerdasan" dasar yang bisa dioptimalkan dengan data JSON.
         function getAiResponse(inputText) {
             const lowerText = inputText.toLowerCase();
 
-            // Prioritas 1: Cari di FAQ (uvochatData.faq)
+            // Coba cari di data FAQ (uvochatData.faq)
             if (uvochatData && Array.isArray(uvochatData.faq)) {
                 for (const entry of uvochatData.faq) {
                     if (Array.isArray(entry.keywords)) {
@@ -625,7 +618,7 @@
                 }
             }
 
-            // Prioritas 2: Cari jawaban harga game (gamesData) - Jika gamesData tersedia
+            // Coba cari di data game (gamesData) untuk harga spesifik atau info umum
             if (gamesData && Array.isArray(gamesData)) {
                 for (const game of gamesData) {
                     const gameKeywords = [game.name.toLowerCase()].concat(
@@ -656,6 +649,7 @@
                             response += `\nApakah ada nominal lain yang ingin Anda ketahui?`;
                             return response.trim();
                         } else {
+                            // Jika game ditemukan tapi nominal spesifik tidak, berikan daftar harga umum
                             let topPrices = game.prices.slice(0, 5).map(p => `- ${p.amount} ${game.unit || 'diamond'} seharga Rp${p.price.toLocaleString('id-ID')}`).join('\n');
                             let response = `Untuk **${game.name}**, kami punya pilihan top-up:\n${topPrices}\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya (misal: "harga 100 diamond ${game.name}").`;
                             return response;
@@ -664,7 +658,7 @@
                 }
             }
 
-            // Fallback jika tidak ada jawaban spesifik
+            // Fallback: Jika tidak ada jawaban spesifik yang ditemukan dari data JSON
             return `Maaf, saya belum punya jawaban untuk pertanyaan itu. Coba tanyakan dengan kata kunci yang berbeda atau silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
         }
 
@@ -706,7 +700,6 @@
             aiTyping = true;
             appendTyping();
 
-            // Simulate AI thinking time
             await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
             removeTyping();
@@ -718,10 +711,10 @@
 
         // Fungsi untuk memulai chat baru (mengosongkan chat)
         function startNewChat() {
-            closeNav(); // Tutup sidebar
-            chat.innerHTML = ''; // Kosongkan tampilan chat
+            closeNav();
+            chat.innerHTML = '';
             appendBubble("Halo! 👋 Saya UVOchat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
-            enableInput(); // Pastikan input aktif
+            enableInput();
         }
 
         sendBtn.addEventListener('click', handleUserInput);
