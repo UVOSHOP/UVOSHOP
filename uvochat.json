@@ -436,13 +436,10 @@
       "keywords": ["layanan pengembalian saldo", "refund saldo"],
       "answer": "Pengembalian saldo dilakukan jika terdapat kesalahan sistem yang dapat dibuktikan dan disetujui oleh admin."
     }
-{
+    {
       "keywords": ["halo", "hai"],
       "answer": "Haloo:) uvoshop siap membantu,."
-    }
-  ]
-}
-[
+   }
   {
     "keywords": ["bantuan teknis", "help desk"],
     "answer": "Tim help desk **UVOSHOP** siap membantu Anda via chat atau WhatsApp kapan saja. Hubungi admin kami di **085648211278**."
