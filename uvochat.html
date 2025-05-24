@@ -2,22 +2,25 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>UVOChat - Bantuan AI</title>
   <style>
     /* Reset & dasar */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%; /* Pastikan html dan body mengisi seluruh tinggi viewport */
+      overflow: hidden; /* Mencegah scrolling berlebih pada body */
     }
     body {
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
       color: white;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
     }
     header {
       background: #1f1f1f;
@@ -28,6 +31,7 @@
       font-weight: 700;
       position: relative;
       user-select: none;
+      flex-shrink: 0; /* Pastikan header tidak menyusut */
     }
     #back {
       position: absolute;
@@ -48,24 +52,25 @@
       color: #121212;
     }
     #chat {
-      flex: 1;
+      flex: 1; /* Memastikan chat area mengisi ruang yang tersisa */
       overflow-y: auto;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.5rem; /* Padding yang lebih sesuai untuk mobile */
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
       scroll-behavior: smooth;
       background: linear-gradient(45deg, #0f0f0f, #1a1a1a);
+      -webkit-overflow-scrolling: touch; /* Memperbaiki scrolling di iOS */
     }
     .bubble {
-      max-width: 75%;
-      padding: 1rem 1.2rem;
+      max-width: 85%; /* Memungkinkan bubble lebih lebar di mobile */
+      padding: 0.8rem 1rem; /* Padding lebih kecil untuk mobile */
       border-radius: 20px;
       position: relative;
       animation: fadeInUp 0.4s ease forwards;
       box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
       line-height: 1.3;
-      font-size: 1rem;
+      font-size: 0.95rem; /* Ukuran font disesuaikan untuk mobile */
       word-wrap: break-word;
       user-select: text;
     }
@@ -102,7 +107,7 @@
       box-shadow: none !important;
       text-align: left;
       padding-left: 0;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
     #input-area {
       display: flex;
@@ -110,6 +115,7 @@
       background: #1f1f1f;
       border-top: 1px solid #333;
       gap: 0.6rem;
+      flex-shrink: 0; /* Pastikan input area tidak menyusut */
     }
     input[type="text"] {
       flex: 1;
@@ -122,6 +128,7 @@
       outline-offset: 2px;
       outline-color: #00ffffbb;
       transition: outline-color 0.3s;
+      min-width: 0; /* Penting untuk flex item agar tidak overflow */
     }
     input[type="text"]:focus:not(:disabled) {
       outline-color: #0ff;
@@ -141,6 +148,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
       user-select: none;
+      flex-shrink: 0; /* Pastikan tombol tidak menyusut */
     }
     button:hover:not(:disabled) {
       background: #00dddd;
@@ -159,6 +167,39 @@
     #chat::-webkit-scrollbar-thumb {
       background: #0ff;
       border-radius: 10px;
+    }
+
+    /* Media Queries untuk desktop/tablet */
+    @media (min-width: 768px) {
+      body {
+        max-width: 600px; /* Batasi lebar chat di desktop agar tidak terlalu lebar */
+        margin: 0 auto; /* Tengah-tengah di desktop */
+        border-left: 1px solid #333;
+        border-right: 1px solid #333;
+      }
+      header {
+        padding: 1rem 1.5rem; /* Padding header disesuaikan */
+      }
+      #chat {
+        padding: 1.5rem;
+      }
+      .bubble {
+        max-width: 75%;
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+      }
+      .typing {
+        font-size: 0.95rem;
+      }
+      #input-area {
+        padding: 0.8rem 1.5rem;
+      }
+      input[type="text"] {
+        padding: 0.9rem 1.2rem;
+      }
+      button {
+        padding: 0 1.5rem;
+      }
     }
   </style>
 </head>
@@ -182,20 +223,24 @@
     let uvochatData = null;
     let gamesData = null;
 
-    // Load data async
+    // Load data async dari file JSON
     async function loadJsonFiles() {
       try {
-        const resChat = await fetch('uvochat.json');
+        const resChat = await fetch('uvochat.json'); // Pastikan file ini ada di root
+        if (!resChat.ok) throw new Error(`HTTP error! status: ${resChat.status}`);
         uvochatData = await resChat.json();
+        console.log('uvochat.json loaded:', uvochatData); // Debugging
 
-        const resGames = await fetch('games.json');
+        const resGames = await fetch('games.json'); // Pastikan file ini ada di root
+        if (!resGames.ok) throw new Error(`HTTP error! status: ${resGames.status}`);
         gamesData = await resGames.json();
+        console.log('games.json loaded:', gamesData); // Debugging
 
         enableInput();
         appendBubble("Halo! Saya UVOChat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
       } catch (e) {
-        appendBubble("Gagal memuat data bantuan. Silakan coba refresh halaman.", 'ai');
-        console.error("Error load JSON:", e);
+        appendBubble("Gagal memuat data bantuan. Silakan coba refresh halaman. (Error: " + e.message + ")", 'ai');
+        console.error("Error loading JSON files:", e);
       }
     }
 
@@ -215,7 +260,7 @@
       div.className = 'bubble ' + sender;
       div.textContent = text;
       chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
+      chat.scrollTop = chat.scrollHeight; // Auto-scroll ke bawah
     }
 
     function appendTyping() {
@@ -232,63 +277,94 @@
       if (typingDiv) typingDiv.remove();
     }
 
-    // Cek apakah user input mengandung nama game + nominal harga
-    function findGamePriceAnswer(text) {
-      if (!gamesData || !Array.isArray(gamesData)) return null;
-      text = text.toLowerCase();
+    // Fungsi untuk memproses input user dan menemukan jawaban
+    function getAiResponse(inputText) {
+      let response = null;
+      const lowerText = inputText.toLowerCase();
 
-      for (const game of gamesData) {
-        const gameName = game.name.toLowerCase();
-        if (text.includes(gameName)) {
-          // Coba cari nominal harga di text
-          const amountsInText = [];
-          // Cek setiap harga nominal di game.prices apakah ada di text
-          for (const priceObj of game.prices) {
-            if (text.includes(priceObj.amount.toString())) {
-              amountsInText.push(priceObj);
+      // Prioritas 1: Cari jawaban harga game
+      if (gamesData && Array.isArray(gamesData)) {
+        for (const game of gamesData) {
+          const gameNames = Array.isArray(game.keywords) ? game.keywords.map(k => k.toLowerCase()) : [game.name.toLowerCase()];
+          const foundGame = gameNames.some(name => lowerText.includes(name));
+
+          if (foundGame) {
+            let foundPrices = [];
+            for (const priceObj of game.prices) {
+              // Cek nominal angka dan kata kunci terkait nominal (misal: "100 diamond", "seratus", "sejutaan")
+              const amountKeywords = [
+                priceObj.amount.toString(),
+                (priceObj.amount / 1000) + 'k', // untuk 1000 jadi 1k
+                numToWords(priceObj.amount) // Konversi angka ke kata (seratus, seribu, sejuta)
+              ].filter(Boolean).map(s => s.toLowerCase());
+
+              if (amountKeywords.some(keyword => lowerText.includes(keyword))) {
+                foundPrices.push(priceObj);
+              }
             }
-          }
-          if (amountsInText.length === 0) {
-            // Kalau cuma nanya game tanpa nominal, kasih daftar nominal harga teratas
-            let response = `Daftar nominal top-up untuk *${game.name}*:\n`;
-            response += game.prices.slice(0,5).map(p => `- ${p.amount} diamond seharga Rp${p.price.toLocaleString()}`).join('\n');
-            response += `\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya.`;
-            return response;
-          } else {
-            // Balas detail harga sesuai nominal
-            let response = `Harga top-up *${game.name}*:\n`;
-            for (const p of amountsInText) {
-              response += `- ${p.amount} diamond = Rp${p.price.toLocaleString()}\n`;
+
+            if (foundPrices.length > 0) {
+              response = `Harga top-up *${game.name}*:\n`;
+              for (const p of foundPrices) {
+                response += `- ${p.amount} ${game.unit || 'diamond'} = Rp${p.price.toLocaleString('id-ID')}\n`;
+              }
+              return response.trim();
+            } else {
+              // Jika game ditemukan tapi nominal tidak spesifik, berikan daftar harga teratas
+              let topPrices = game.prices.slice(0, 5).map(p => `- ${p.amount} ${game.unit || 'diamond'} seharga Rp${p.price.toLocaleString('id-ID')}`).join('\n');
+              response = `Untuk *${game.name}*, kami punya pilihan top-up:\n${topPrices}\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya (misal: "harga 100 diamond ${game.name}").`;
+              return response;
             }
-            return response.trim();
           }
         }
       }
-      return null;
+
+      // Prioritas 2: Cari di FAQ (uvochatData.faq) dan pola_pikir (uvochatData.pola_pikir)
+      if (uvochatData) {
+        // Gabungkan semua keyword dari FAQ dan pola_pikir ke dalam satu array untuk pencarian yang lebih fleksibel
+        const allFaqEntries = [];
+        if (Array.isArray(uvochatData.faq)) {
+          uvochatData.faq.forEach(item => {
+            if (Array.isArray(item.keywords)) {
+              allFaqEntries.push({ keywords: item.keywords.map(k => k.toLowerCase()), answer: item.answer });
+            }
+          });
+        }
+        if (Array.isArray(uvochatData.pola_pikir)) {
+          uvochatData.pola_pikir.forEach(item => {
+            if (item.keyword) {
+              allFaqEntries.push({ keywords: [item.keyword.toLowerCase()], answer: item.text });
+            }
+          });
+        }
+
+        // Cari jawaban dengan mencocokkan setidaknya satu keyword dari pertanyaan pengguna
+        for (const entry of allFaqEntries) {
+          const matched = entry.keywords.some(keyword => lowerText.includes(keyword));
+          if (matched) {
+            return entry.answer;
+          }
+        }
+      }
+
+      // Fallback jika tidak ada jawaban spesifik
+      return `Maaf, saya belum punya jawaban untuk pertanyaan itu. Coba tanyakan dengan kata kunci yang berbeda atau silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
     }
 
-    // Cari jawaban dengan keyword di pola pikir AI dan FAQ (uvochat.json)
-    function findUvochatAnswer(text) {
-      text = text.toLowerCase();
-      if (!uvochatData) return null;
+    // Fungsi konversi angka ke kata (sederhana)
+    function numToWords(num) {
+        const units = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan'];
+        const teens = ['sepuluh', 'sebelas', 'dua belas', 'tiga belas', 'empat belas', 'lima belas', 'enam belas', 'tujuh belas', 'delapan belas', 'sembilan belas'];
+        const tens = ['', '', 'dua puluh', 'tiga puluh', 'empat puluh', 'lima puluh', 'enam puluh', 'tujuh puluh', 'delapan puluh', 'sembilan puluh'];
 
-      // cek pola_pikir dulu
-      if (Array.isArray(uvochatData.pola_pikir)) {
-        for (const entry of uvochatData.pola_pikir) {
-          if (entry.keyword && text.includes(entry.keyword.toLowerCase())) {
-            return entry.text;
-          }
-        }
-      }
-      // cek faq
-      if (Array.isArray(uvochatData.faq)) {
-        for (const faq of uvochatData.faq) {
-          if (faq.keyword && text.includes(faq.keyword.toLowerCase())) {
-            return faq.answer;
-          }
-        }
-      }
-      return null;
+        if (num < 10) return units[num];
+        if (num >= 10 && num < 20) return teens[num - 10];
+        if (num >= 20 && num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? ' ' + units[num % 10] : '');
+        if (num >= 100 && num < 1000) return (num === 100 ? 'seratus' : units[Math.floor(num / 100)] + ' ratus') + (num % 100 !== 0 ? ' ' + numToWords(num % 100) : '');
+        if (num >= 1000 && num < 1000000) return (num === 1000 ? 'seribu' : numToWords(Math.floor(num / 1000)) + ' ribu') + (num % 1000 !== 0 ? ' ' + numToWords(num % 1000) : '');
+        if (num >= 1000000 && num < 1000000000) return (num === 1000000 ? 'satu juta' : numToWords(Math.floor(num / 1000000)) + ' juta') + (num % 1000000 !== 0 ? ' ' + numToWords(num % 1000000) : '');
+
+        return '';
     }
 
     // Main handler
@@ -307,18 +383,7 @@
       // Delay supaya terasa natural
       await new Promise(r => setTimeout(r, 800));
 
-      // Cek dulu apakah ada jawaban harga game
-      let response = findGamePriceAnswer(text);
-
-      // Kalau tidak ada, cari di uvochat.json
-      if (!response) {
-        response = findUvochatAnswer(text);
-      }
-
-      // Kalau masih tidak ada jawaban, fallback ke pesan default
-      if (!response) {
-        response = `Maaf, saya belum punya jawaban untuk pertanyaan itu. Silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
-      }
+      const response = getAiResponse(text);
 
       removeTyping();
       appendBubble(response, 'ai');
@@ -334,7 +399,8 @@
       }
     });
 
-    loadJsonFiles();
+    // Panggil loadJsonFiles saat DOMContentLoaded untuk memastikan elemen ada
+    document.addEventListener('DOMContentLoaded', loadJsonFiles);
   </script>
 </body>
 </html>
