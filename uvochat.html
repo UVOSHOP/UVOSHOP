@@ -479,6 +479,7 @@
 
         let uvochatData = null;
         let gamesData = null;
+        let lastQueryContext = { game: null, amount: null }; // Untuk "mengingat" game terakhir yang ditanyakan
 
         // Fungsi untuk mengontrol Sidebar
         function openNav() {
@@ -495,14 +496,10 @@
         function processText(text) {
             let processed = text;
 
-            // 1. Ganti **teks** menjadi <strong>teks</strong>
             processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-            // 2. Ganti spasi ganda menjadi spasi tunggal dan tambahkan paragraf
             processed = processed.replace(/\n/g, '<br>');
             processed = processed.replace(/(<br\s*\/?>\s*){2,}/g, '<br><br>');
 
-            // 3. Tambahkan simbol (contoh: untuk list)
             processed = processed.replace(/^- (.*?)<br>/g, '<li><span class="icon">➡️</span>$1</li>');
             processed = processed.replace(/^- (.*)/g, '<li><span class="icon">➡️</span>$1</li>');
 
@@ -511,12 +508,10 @@
                 processed = processed.replace(/<br><ul>/g, '<ul>').replace(/<\/ul><br>/g, '</ul>');
             }
 
-            // 4. Atur ukuran font (contoh: jika ada kalimat kunci)
             processed = processed.replace(/Gampang banget!/g, '<span class="large-font">Gampang banget!</span>');
             processed = processed.replace(/Cepat, kan?/g, '<span class="small-font">Cepat, kan?</span>');
-            processed = processed.replace(/Simpel banget kan?/g, '<span class="small-font">Simpel banget kan?</span>');
+            processed = processed.replace(/Simpel banget kan?/g, '<span class="small-font">Simpel banget kan!</span>');
 
-            // 5. Tambahkan kotak (contoh: untuk instruksi khusus)
             processed = processed.replace(/\[\[(.*?)\]\]/g, '<span class="box">$1</span>');
 
             if (!processed.includes('<ul>') && !processed.includes('<br><br>')) {
@@ -601,65 +596,15 @@
             if (typingDiv) typingDiv.remove();
         }
 
-        // Fungsi untuk memproses input user dan menemukan jawaban
-        // Ini adalah bagian "kecerdasan" dasar yang bisa dioptimalkan dengan data JSON.
-        function getAiResponse(inputText) {
-            const lowerText = inputText.toLowerCase();
-
-            // Coba cari di data FAQ (uvochatData.faq)
-            if (uvochatData && Array.isArray(uvochatData.faq)) {
-                for (const entry of uvochatData.faq) {
-                    if (Array.isArray(entry.keywords)) {
-                        const matched = entry.keywords.some(keyword => lowerText.includes(keyword.toLowerCase()));
-                        if (matched) {
-                            return entry.answer;
-                        }
-                    }
-                }
-            }
-
-            // Coba cari di data game (gamesData) untuk harga spesifik atau info umum
-            if (gamesData && Array.isArray(gamesData)) {
-                for (const game of gamesData) {
-                    const gameKeywords = [game.name.toLowerCase()].concat(
-                        Array.isArray(game.keywords) ? game.keywords.map(k => k.toLowerCase()) : []
-                    );
-                    
-                    const foundGame = gameKeywords.some(keyword => lowerText.includes(keyword));
-
-                    if (foundGame) {
-                        let foundPrices = [];
-                        for (const priceObj of game.prices) {
-                            const amountKeywords = [
-                                priceObj.amount.toString(),
-                                (priceObj.amount / 1000) + 'k',
-                                numToWords(priceObj.amount)
-                            ].filter(Boolean).map(s => s.toLowerCase());
-
-                            if (amountKeywords.some(keyword => lowerText.includes(keyword)) || lowerText.includes(`harga ${priceObj.amount}`)) {
-                                foundPrices.push(priceObj);
-                            }
-                        }
-
-                        if (foundPrices.length > 0) {
-                            let response = `Tentu, untuk ${game.name} ${foundPrices[0].amount} ${game.unit || 'diamond'} harganya: \n`;
-                            for (const p of foundPrices) {
-                                response += `[[${p.amount} ${game.unit || 'diamond'} = Rp${p.price.toLocaleString('id-ID')}]]\n`;
-                            }
-                            response += `\nApakah ada nominal lain yang ingin Anda ketahui?`;
-                            return response.trim();
-                        } else {
-                            // Jika game ditemukan tapi nominal spesifik tidak, berikan daftar harga umum
-                            let topPrices = game.prices.slice(0, 5).map(p => `- ${p.amount} ${game.unit || 'diamond'} seharga Rp${p.price.toLocaleString('id-ID')}`).join('\n');
-                            let response = `Untuk **${game.name}**, kami punya pilihan top-up:\n${topPrices}\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya (misal: "harga 100 diamond ${game.name}").`;
-                            return response;
-                        }
-                    }
-                }
-            }
-
-            // Fallback: Jika tidak ada jawaban spesifik yang ditemukan dari data JSON
-            return `Maaf, saya belum punya jawaban untuk pertanyaan itu. Coba tanyakan dengan kata kunci yang berbeda atau silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
+        // Helper function untuk mencari kata kunci secara fleksibel
+        function containsKeywords(text, keywords) {
+            const lowerText = text.toLowerCase();
+            return keywords.some(keyword => {
+                const lowerKeyword = keyword.toLowerCase();
+                // Cari kata kunci lengkap atau sebagian, memungkinkan fleksibilitas
+                return lowerText.includes(lowerKeyword) || 
+                       lowerText.split(/\s+/).includes(lowerKeyword); // Cocokkan kata utuh juga
+            });
         }
 
         // Fungsi konversi angka ke kata (sederhana)
@@ -690,6 +635,99 @@
             return '';
         }
 
+        // Fungsi utama untuk memproses input user dan menemukan jawaban
+        function getAiResponse(inputText) {
+            const lowerText = inputText.toLowerCase();
+
+            // 1. Coba cari harga game dengan KONTEKS dari pertanyaan sebelumnya
+            if (lastQueryContext.game) {
+                let game = lastQueryContext.game;
+                let foundPrices = [];
+                for (const priceObj of game.prices) {
+                    const amountKeywords = [
+                        priceObj.amount.toString(),
+                        (priceObj.amount / 1000) + 'k',
+                        numToWords(priceObj.amount)
+                    ].filter(Boolean).map(s => s.toLowerCase());
+
+                    if (containsKeywords(lowerText, amountKeywords)) {
+                        foundPrices.push(priceObj);
+                    }
+                }
+                if (foundPrices.length > 0) {
+                    let response = `Tentu, untuk ${game.name} ${foundPrices[0].amount} ${game.unit || 'diamond'} harganya: \n`;
+                    for (const p of foundPrices) {
+                        response += `[[${p.amount} ${game.unit || 'diamond'} = Rp${p.price.toLocaleString('id-ID')}]]\n`;
+                    }
+                    response += `\nApakah ada nominal lain yang ingin Anda ketahui?`;
+                    lastQueryContext = { game: game, amount: foundPrices[0].amount }; // Update konteks
+                    return response.trim();
+                }
+            }
+
+            // Reset konteks jika pertanyaan tidak langsung terkait atau mencari game baru
+            lastQueryContext = { game: null, amount: null };
+
+            // 2. Cari di data game (gamesData) - Prioritas Tinggi jika ada nama game
+            if (gamesData && Array.isArray(gamesData)) {
+                let matchedGame = null;
+                for (const game of gamesData) {
+                    const gameKeywords = [game.name.toLowerCase()].concat(
+                        Array.isArray(game.keywords) ? game.keywords.map(k => k.toLowerCase()) : []
+                    );
+                    if (containsKeywords(lowerText, gameKeywords)) {
+                        matchedGame = game;
+                        break;
+                    }
+                }
+
+                if (matchedGame) {
+                    let foundPrices = [];
+                    for (const priceObj of matchedGame.prices) {
+                        const amountKeywords = [
+                            priceObj.amount.toString(),
+                            (priceObj.amount / 1000) + 'k',
+                            numToWords(priceObj.amount)
+                        ].filter(Boolean).map(s => s.toLowerCase());
+
+                        if (containsKeywords(lowerText, amountKeywords)) {
+                            foundPrices.push(priceObj);
+                        }
+                    }
+
+                    if (foundPrices.length > 0) {
+                        let response = `Tentu, untuk ${matchedGame.name} ${foundPrices[0].amount} ${matchedGame.unit || 'diamond'} harganya: \n`;
+                        for (const p of foundPrices) {
+                            response += `[[${p.amount} ${matchedGame.unit || 'diamond'} = Rp${p.price.toLocaleString('id-ID')}]]\n`;
+                        }
+                        response += `\nApakah ada nominal lain yang ingin Anda ketahui?`;
+                        lastQueryContext = { game: matchedGame, amount: foundPrices[0].amount }; // Simpan konteks
+                        return response.trim();
+                    } else {
+                        // Jika game ditemukan tapi nominal spesifik tidak, berikan daftar harga umum
+                        let topPrices = matchedGame.prices.slice(0, 5).map(p => `- ${p.amount} ${matchedGame.unit || 'diamond'} seharga Rp${p.price.toLocaleString('id-ID')}`).join('\n');
+                        let response = `Untuk **${matchedGame.name}**, kami punya pilihan top-up:\n${topPrices}\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya (misal: "harga 100 diamond ${matchedGame.name}").`;
+                        lastQueryContext = { game: matchedGame, amount: null }; // Simpan konteks game saja
+                        return response;
+                    }
+                }
+            }
+            
+            // 3. Cari di data FAQ (uvochatData.faq) - Prioritas Setelah Game
+            if (uvochatData && Array.isArray(uvochatData.faq)) {
+                for (const entry of uvochatData.faq) {
+                    if (Array.isArray(entry.keywords)) {
+                        if (containsKeywords(lowerText, entry.keywords)) {
+                            return entry.answer;
+                        }
+                    }
+                }
+            }
+
+            // 4. Fallback jika tidak ada jawaban spesifik yang ditemukan
+            return `Maaf, saya belum punya jawaban untuk pertanyaan itu. Coba tanyakan dengan kata kunci yang berbeda atau silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
+        }
+
         async function handleUserInput() {
             const text = userInput.value.trim();
             if (text === '' || aiTyping) return;
@@ -713,6 +751,7 @@
         function startNewChat() {
             closeNav();
             chat.innerHTML = '';
+            lastQueryContext = { game: null, amount: null }; // Reset konteks saat mulai chat baru
             appendBubble("Halo! 👋 Saya UVOchat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
             enableInput();
         }
