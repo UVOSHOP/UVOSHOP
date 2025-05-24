@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UVOChat - Bantuan AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: #1f1f1f;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #0ff;
+      font-weight: bold;
+    }
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    .bubble {
+      max-width: 75%;
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    .user {
+      background: #333;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+    .ai {
+      background: #0ff2;
+      color: black;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+    #input-area {
+      display: flex;
+      padding: 0.5rem;
+      background: #1f1f1f;
+      border-top: 1px solid #444;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      background: #2a2a2a;
+      color: white;
+    }
+    button {
+      padding: 0.8rem 1.2rem;
+      margin-left: 0.5rem;
+      background: #0ff;
+      border: none;
+      border-radius: 0.5rem;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #back {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: transparent;
+      color: #0ff;
+      border: 2px solid #0ff;
+      padding: 5px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .typing {
+      font-style: italic;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="back" onclick="history.back()">⬅ Kembali</button>
+    UVOChat - Bantuan AI
+  </header>
+  <div id="chat"></div>
+  <div id="input-area">
+    <input type="text" id="userInput" placeholder="Tanyakan sesuatu..." disabled>
+    <button onclick="sendMessage()" disabled id="sendBtn">Kirim</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    let aiTyping = false;
+
+    const data = {
+      "cara topup": "Untuk melakukan top-up, cukup pilih game dan nominal, lalu isi ID dan bayar.",
+      "metode pembayaran": "Kami mendukung DANA, OVO, GOPAY, QRIS, dan transfer bank.",
+      "refund": "Kami hanya melayani refund jika kesalahan ada di sistem kami.",
+      "waktu proses": "Top-up diproses instan, maksimal 1-5 menit setelah pembayaran."
+    };
+
+    function sendMessage() {
+      if (aiTyping) return;
+      const text = userInput.value.trim();
+      if (!text) return;
+      appendBubble(text, 'user');
+      userInput.value = '';
+      userInput.disabled = true;
+      sendBtn.disabled = true;
+      showTyping();
+
+      setTimeout(() => {
+        const response = findAnswer(text);
+        removeTyping();
+        appendBubble(response, 'ai');
+        userInput.disabled = false;
+        sendBtn.disabled = false;
+        userInput.focus();
+      }, 1000);
+    }
+
+    function appendBubble(text, sender) {
+      const div = document.createElement('div');
+      div.className = 'bubble ' + sender;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function showTyping() {
+      aiTyping = true;
+      const typing = document.createElement('div');
+      typing.className = 'bubble ai typing';
+      typing.id = 'typing';
+      typing.textContent = 'UVO sedang mengetik...';
+      chat.appendChild(typing);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function removeTyping() {
+      aiTyping = false;
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+
+    function findAnswer(text) {
+      text = text.toLowerCase();
+      for (const keyword in data) {
+        if (text.includes(keyword)) {
+          return data[keyword];
+        }
+      }
+      return "Maaf, saya belum bisa menjawab pertanyaan itu. Silakan coba pertanyaan lain.";
+    }
+
+    // Aktifkan input saat halaman siap
+    window.onload = () => {
+      userInput.disabled = false;
+      sendBtn.disabled = false;
+      userInput.focus();
+    };
+  </script>
+</body>
+</html>
