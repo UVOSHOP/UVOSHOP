@@ -1,0 +1,440 @@
+{
+  "faq": [
+    {
+      "keywords": ["topup", "cara topup", "isi saldo", "isi ulang", "bagaimana topup", "pengisian saldo", "isi game", "beli diamond"],
+      "answer": "Untuk melakukan top-up, pilih game dan nominal yang diinginkan, masukkan ID akun game Anda dengan benar, lalu lakukan pembayaran melalui metode yang tersedia. Setelah pembayaran terkonfirmasi, saldo akan otomatis masuk ke akun game Anda dalam waktu beberapa menit."
+    },
+    {
+      "keywords": ["refund", "pengembalian dana", "refund dana", "return uang", "ganti uang", "batal transaksi"],
+      "answer": "Proses refund hanya berlaku jika terjadi kesalahan dari sistem kami atau pembayaran gagal tapi saldo tetap terpotong. Silakan hubungi admin kami melalui WhatsApp untuk mengajukan refund dengan menyertakan bukti pembayaran."
+    },
+    {
+      "keywords": ["metode pembayaran", "cara bayar", "pembayaran", "payment", "bayar", "metode topup", "pilihan pembayaran", "transfer bank", "ovo", "dana", "gopay"],
+      "answer": "Kami menyediakan berbagai metode pembayaran yang mudah dan aman seperti transfer bank, OVO, DANA, GoPay, QRIS, dan kartu kredit. Pilih metode yang paling nyaman bagi Anda saat melakukan pembayaran."
+    },
+    {
+      "keywords": ["waktu proses", "lama topup", "berapa lama", "proses cepat", "cepat", "instan", "tidak masuk", "terlambat"],
+      "answer": "Proses top-up di UVOSHOP biasanya instan dan langsung masuk ke akun Anda. Namun, pada kondisi jaringan tertentu atau gangguan sistem, proses bisa memakan waktu hingga 5 menit. Jika lebih lama, silakan hubungi admin kami."
+    },
+    {
+      "keywords": ["akun", "registrasi", "daftar", "login", "buat akun", "akun baru", "tanpa registrasi"],
+      "answer": "UVOSHOP tidak mengharuskan Anda melakukan registrasi atau membuat akun. Cukup masukkan ID akun game dan lakukan pembayaran untuk top-up secara cepat dan mudah."
+    },
+    {
+      "keywords": ["keamanan", "aman", "privasi", "data pribadi", "rahasia", "enkripsi", "lindungi data"],
+      "answer": "Kami sangat menjaga keamanan data Anda dengan menggunakan teknologi enkripsi terbaru. Informasi pribadi Anda tidak akan disebarluaskan dan hanya digunakan untuk proses transaksi yang Anda lakukan."
+    },
+    {
+      "keywords": ["kontak", "admin", "cs", "customer service", "hubungi kami", "bantuan", "layanan pelanggan", "support"],
+      "answer": "Untuk bantuan lebih lanjut, Anda dapat menghubungi admin kami melalui WhatsApp di +62 856-4821-1278. Kami siap melayani Anda dengan cepat dan ramah."
+    },
+    {
+      "keywords": ["voucher game", "voucher", "kode voucher", "pulsa game", "kupon", "diskon", "promo"],
+      "answer": "UVOSHOP menyediakan voucher game resmi yang bisa langsung digunakan untuk top-up berbagai jenis game. Pastikan voucher yang Anda beli sesuai dengan game dan nominal yang diinginkan."
+    },
+    {
+      "keywords": ["error", "gagal", "tidak berhasil", "masalah", "problem", "bug", "gangguan"],
+      "answer": "Jika Anda mengalami masalah seperti gagal top-up atau error sistem, silakan coba ulang transaksi setelah beberapa menit. Jika masalah berlanjut, segera hubungi admin kami dengan menyertakan detail dan screenshot error."
+    },
+    {
+      "keywords": ["komplain", "keluhan", "masalah", "pengaduan", "tidak puas", "saran"],
+      "answer": "Kami menerima semua masukan dan keluhan Anda dengan serius. Silakan kirimkan pengaduan lengkap ke admin kami via WhatsApp agar kami dapat membantu dan memperbaiki layanan kami."
+    },
+    {
+      "keywords": ["topup diamond", "diamond ff", "diamond free fire", "diamond mobile legends", "diamond ml", "topup ml", "topup ff"],
+      "answer": "Untuk top-up diamond Free Fire atau Mobile Legends, pilih game dan nominal diamond yang diinginkan, lalu lakukan pembayaran. Diamond akan langsung masuk ke akun game Anda setelah transaksi berhasil."
+    },
+    {
+      "keywords": ["harga", "daftar harga", "price list", "price", "biaya", "tarif", "rate"],
+      "answer": "Harga top-up di UVOSHOP sangat kompetitif dan selalu update mengikuti harga resmi game. Anda bisa melihat daftar harga lengkap di halaman daftar game kami atau menghubungi admin untuk info harga terbaru."
+    },
+    {
+      "keywords": ["aplikasi", "app", "download aplikasi", "install", "mobile", "android", "ios"],
+      "answer": "Saat ini UVOSHOP beroperasi sepenuhnya melalui website tanpa aplikasi khusus. Anda dapat mengakses layanan kami dengan mudah melalui browser di perangkat apapun."
+    },
+    {
+      "keywords": ["transaksi", "riwayat", "history", "struk", "bukti pembayaran"],
+      "answer": "Setelah melakukan top-up, Anda akan menerima bukti transaksi otomatis. Namun, kami tidak menyediakan fitur riwayat transaksi untuk pengguna tanpa akun. Pastikan menyimpan bukti pembayaran Anda dengan baik."
+    },
+    {
+      "keywords": ["cara cek saldo", "cek saldo game", "cek diamond", "status topup"],
+      "answer": "Saldo dan item game yang Anda beli dapat dicek langsung melalui aplikasi atau website resmi game masing-masing. UVOSHOP hanya menyediakan layanan top-up, bukan pengelolaan akun game."
+    },
+    {
+      "keywords": ["kode voucher tidak valid", "voucher error", "voucher tidak bisa digunakan"],
+      "answer": "Jika voucher yang Anda beli tidak valid atau tidak bisa digunakan, segera hubungi admin kami melalui WhatsApp dengan menyertakan kode voucher dan bukti pembelian untuk penanganan lebih lanjut."
+    },
+    {
+      "keywords": ["kecepatan layanan", "speed", "respons cepat", "waktu tunggu"],
+      "answer": "Kami berkomitmen memberikan layanan top-up tercepat dengan proses otomatis. Sebagian besar transaksi selesai dalam hitungan detik hingga menit."
+    },
+    {
+      "keywords": ["promo", "diskon", "kode promo", "voucher diskon", "sale", "cashback"],
+      "answer": "Pantau selalu halaman promo kami untuk mendapatkan diskon dan cashback menarik. Promo berlaku dalam periode tertentu dan syarat & ketentuan berlaku."
+    },
+    {
+      "keywords": ["keluar dari website", "logout", "keluar", "close", "exit"],
+      "answer": "Anda tidak perlu login atau membuat akun sehingga tidak ada fitur logout. Cukup tutup browser untuk keluar dari layanan kami."
+    },
+    {
+      "keywords": ["penggunaan data", "data pribadi", "privacy", "kebijakan privasi"],
+      "answer": "UVOSHOP menjaga kerahasiaan data pribadi Anda sesuai kebijakan privasi yang berlaku. Informasi lebih lengkap dapat dibaca di halaman Privacy Policy kami."
+    },
+    {
+      "keywords": ["kecepatan pembayaran", "payment speed", "transaksi cepat"],
+      "answer": "Pembayaran melalui metode yang kami sediakan diproses dengan cepat dan aman. Jika ada kendala, jangan ragu hubungi admin kami."
+    },
+    {
+      "keywords": ["chat", "bantuan chat", "cs chat", "layanan chat"],
+      "answer": "Untuk layanan chat dan bantuan langsung, Anda bisa menggunakan fitur chat di website kami atau menghubungi admin melalui WhatsApp."
+    },
+    {
+      "keywords": ["nomor admin", "nomor cs", "kontak admin", "kontak cs"],
+      "answer": "Nomor WhatsApp admin UVOSHOP adalah +62 856-4821-1278. Kami siap membantu Anda kapan saja."
+    },
+    {
+      "keywords": ["game baru", "game update", "daftar game baru"],
+      "answer": "Kami selalu memperbarui daftar game yang bisa di-topup. Untuk info game terbaru, cek halaman daftar game di website UVOSHOP."
+    },
+    {
+      "keywords": ["masalah login game", "akun terkunci", "akun di-banned"],
+      "answer": "Masalah terkait akun game seperti login gagal atau banned tidak dapat kami tangani. Silakan hubungi layanan resmi game terkait untuk bantuan."
+    },
+    {
+      "keywords": ["cara cek kode pembayaran", "kode transaksi"],
+      "answer": "Kode pembayaran akan otomatis muncul setelah Anda memilih metode pembayaran dan sebelum melakukan konfirmasi. Simpan kode tersebut untuk referensi."
+    },
+    {
+      "keywords": ["tutorial topup", "cara menggunakan", "panduan topup"],
+      "answer": "Kami menyediakan panduan lengkap dan tutorial cara top-up di halaman tutorial website kami agar Anda mudah memahami prosesnya."
+    },
+    {
+      "keywords": ["keluhan pembayaran", "pembayaran tidak berhasil"],
+      "answer": "Jika pembayaran tidak berhasil namun saldo terpotong, segera hubungi admin kami dengan bukti transaksi agar kami bantu proses refund atau pengecekan."
+    },
+    {
+      "keywords": ["transaksi gagal", "gagal bayar"],
+      "answer": "Transaksi yang gagal biasanya saldo tidak akan terpotong. Jika saldo Anda berkurang tapi transaksi gagal, hubungi admin kami segera."
+    },
+    {
+      "keywords": ["keamanan pembayaran", "payment security"],
+      "answer": "Pembayaran di UVOSHOP dilengkapi dengan protokol keamanan terbaru untuk menjaga transaksi Anda aman dari penipuan."
+    },
+    {
+      "keywords": ["kode promo tidak bisa", "promo error"],
+      "answer": "Jika kode promo tidak dapat digunakan, kemungkinan promo sudah expired atau tidak berlaku untuk produk yang dipilih. Cek syarat & ketentuan promo."
+    },
+    {
+      "keywords": ["cara menghubungi admin", "contact admin", "hubungi cs"],
+      "answer": "Anda bisa menghubungi admin kami melalui WhatsApp di +62 856-4821-1278 untuk mendapatkan bantuan langsung."
+    },
+    {
+      "keywords": ["bantuan teknis", "support teknis", "masalah teknis"],
+      "answer": "Untuk masalah teknis terkait website atau transaksi, silakan kontak admin kami untuk bantuan cepat dan solusi terbaik."
+    },
+    {
+      "keywords": ["faq", "pertanyaan umum", "jawaban umum"],
+      "answer": "Anda sedang melihat halaman FAQ. Jika pertanyaan Anda belum terjawab, jangan ragu untuk menghubungi admin kami."
+    },
+    {
+      "keywords": ["akun game tidak ditemukan", "id tidak valid", "akun salah"],
+      "answer": "Pastikan Anda memasukkan ID akun game yang benar dan sesuai dengan format yang diminta. Jika masih bermasalah, hubungi admin kami."
+    },
+    {
+      "keywords": ["cara cek status topup", "status transaksi"],
+      "answer": "Status top-up dapat dilihat langsung di game Anda setelah transaksi selesai. Jika tidak masuk, hubungi admin untuk pengecekan."
+    },
+    {
+      "keywords": ["keluhan lambat", "proses lambat", "topup lama"],
+      "answer": "Kami mohon maaf jika proses top-up terasa lambat. Ini bisa disebabkan oleh gangguan jaringan atau server game. Silakan hubungi admin untuk update status."
+    },
+    {
+      "keywords": ["layanan pelanggan", "customer service", "cs online"],
+      "answer": "Admin UVOSHOP selalu siap membantu Anda selama jam operasional melalui WhatsApp dan fitur chat website."
+    },
+    {
+      "keywords": ["aplikasi tidak bisa dibuka", "website error"],
+      "answer": "Jika website tidak bisa dibuka, coba refresh halaman atau gunakan browser lain. Jika masih bermasalah, hubungi admin."
+    },
+    {
+      "keywords": ["metode pembayaran terbaru", "payment update"],
+      "answer": "Kami selalu menambah metode pembayaran terbaru agar memudahkan pelanggan. Info terbaru ada di halaman pembayaran."
+    },
+    {
+      "keywords": ["syarat dan ketentuan", "terms and conditions"],
+      "answer": "Syarat dan ketentuan lengkap bisa dibaca di halaman Privacy Policy pada bagian Terms."
+    },
+    {
+      "keywords": ["komplain lama tidak dibalas", "keluhan tidak ditanggapi"],
+      "answer": "Kami mohon maaf jika ada keluhan yang belum terrespon. Silakan ulangi menghubungi admin via WhatsApp untuk penanganan prioritas."
+    },
+    {
+      "keywords": ["chat bot", "bot", "ai", "asisten virtual"],
+      "answer": "UVOSHOP menyediakan fitur chatbot untuk membantu menjawab pertanyaan umum dengan cepat dan akurat."
+    },
+    {
+      "keywords": ["update game", "patch terbaru", "game patch"],
+      "answer": "Informasi update game bisa Anda dapatkan dari website resmi game tersebut. Kami hanya menyediakan layanan top-up."
+    },
+    {
+      "keywords": ["pembayaran otomatis", "auto payment"],
+      "answer": "Semua pembayaran di UVOSHOP diproses secara otomatis untuk memastikan kecepatan dan akurasi transaksi."
+    },
+    {
+      "keywords": ["voucher expired", "voucher kadaluarsa"],
+      "answer": "Voucher yang sudah kadaluarsa tidak bisa digunakan. Pastikan membeli voucher dengan masa berlaku aktif."
+    },
+    {
+      "keywords": ["refund lama", "proses refund", "pengembalian lama"],
+      "answer": "Proses refund biasanya memakan waktu 1-3 hari kerja tergantung metode pembayaran. Kami akan menginformasikan statusnya via WhatsApp."
+    },
+    {
+      "keywords": ["bantuan live chat", "live chat", "chat langsung"],
+      "answer": "Fitur live chat tersedia di website kami untuk bantuan cepat. Jika offline, silakan hubungi WhatsApp admin."
+    },
+    {
+      "keywords": ["cara verifikasi", "verifikasi pembayaran"],
+      "answer": "Verifikasi pembayaran dilakukan secara otomatis oleh sistem kami. Jika verifikasi gagal, hubungi admin untuk bantuan manual."
+    },
+    {
+      "keywords": ["keuntungan topup di uvoshop", "kelebihan uvoshop"],
+      "answer": "UVOSHOP menawarkan proses cepat, harga kompetitif, berbagai metode pembayaran, dan layanan pelanggan responsif."
+    },
+    {
+      "keywords": ["harga promo", "harga diskon", "harga spesial"],
+      "answer": "Harga promo berlaku pada periode tertentu. Cek halaman promo kami untuk info lengkap dan kode diskon."
+    },
+    {
+      "keywords": ["cara beli voucher", "membeli voucher"],
+      "answer": "Pilih voucher game yang diinginkan, lakukan pembayaran, dan voucher akan dikirim ke email atau nomor WhatsApp Anda."
+    },
+    {
+      "keywords": ["pembayaran gagal", "tidak bisa bayar"],
+      "answer": "Pastikan saldo atau limit metode pembayaran Anda mencukupi. Jika masih gagal, hubungi admin kami."
+    },
+    {
+      "keywords": ["apakah uvoshop resmi", "legal uvoshop", "legalitas"],
+      "answer": "UVOSHOP adalah penyedia jasa top-up yang bekerja sama dengan partner resmi game untuk memastikan transaksi aman dan legal."
+    },
+    {
+      "keywords": ["cara cek kuota internet", "cek kuota", "kuota internet"],
+      "answer": "Untuk cek kuota internet, gunakan aplikasi atau layanan operator seluler Anda. UVOSHOP tidak menyediakan layanan kuota internet."
+    },
+    {
+      "keywords": ["cara menghubungi via email", "kontak email"],
+      "answer": "Untuk kontak via email, kirim pesan ke support@uvoshop.com. Namun, untuk respon lebih cepat, hubungi WhatsApp admin."
+    },
+    {
+      "keywords": ["apakah bisa bayar pakai pulsa", "bayar pakai pulsa"],
+      "answer": "Saat ini kami belum menyediakan pembayaran melalui pulsa. Gunakan metode pembayaran yang tersedia di website."
+    },
+    {
+      "keywords": ["kesalahan pengisian ID", "salah ID", "ID salah"],
+      "answer": "Pastikan memasukkan ID akun game dengan benar dan sesuai format. Kesalahan ID menyebabkan saldo tidak masuk."
+    },
+    {
+      "keywords": ["promo referral", "program referral", "ajak teman"],
+      "answer": "Kami menyediakan program referral yang memberikan bonus untuk Anda dan teman yang diajak. Info lengkap ada di halaman promo."
+    },
+    {
+      "keywords": ["refund tidak diproses", "refund macet"],
+      "answer": "Jika refund tidak segera diproses, segera hubungi admin kami untuk pengecekan dan tindak lanjut."
+    },
+    {
+      "keywords": ["akun game diblokir", "akun banned"],
+      "answer": "UVOSHOP tidak bertanggung jawab atas banned akun. Gunakan layanan kami sesuai ketentuan game."
+    },
+    {
+      "keywords": ["apakah bisa topup luar negeri", "topup luar negeri"],
+      "answer": "UVOSHOP melayani transaksi untuk akun game yang berada di server Indonesia. Untuk server luar negeri, hubungi layanan resmi game."
+    },
+    {
+      "keywords": ["pembayaran cash", "bayar tunai"],
+      "answer": "Pembayaran cash hanya bisa dilakukan di mitra resmi offline kami. Untuk online, gunakan metode pembayaran digital."
+    },
+    {
+      "keywords": ["apakah ada garansi", "garansi topup"],
+      "answer": "Kami memberikan garansi uang kembali jika terjadi kesalahan dari sistem kami yang menyebabkan saldo tidak masuk."
+    },
+    {
+      "keywords": ["cara upgrade layanan", "upgrade akun"],
+      "answer": "UVOSHOP tidak menyediakan layanan upgrade akun game. Kami hanya menyediakan jasa top-up saldo dan voucher."
+    },
+    {
+      "keywords": ["pembayaran lewat ATM", "transfer ATM"],
+      "answer": "Anda dapat melakukan transfer pembayaran melalui ATM ke rekening kami sesuai instruksi pada metode pembayaran yang dipilih."
+    },
+    {
+      "keywords": ["perbedaan metode pembayaran", "pilihan pembayaran"],
+      "answer": "Metode pembayaran berbeda dari segi kecepatan proses dan kemudahan. Pilih metode yang paling sesuai untuk Anda."
+    },
+    {
+      "keywords": ["tutorial penggunaan website", "cara menggunakan website"],
+      "answer": "Panduan lengkap penggunaan website UVOSHOP dapat Anda temukan di halaman tutorial kami."
+    },
+    {
+      "keywords": ["layanan pelanggan offline", "cs offline"],
+      "answer": "Layanan pelanggan offline tersedia pada jam operasional tertentu. Hubungi kami selama jam kerja agar cepat mendapat respon."
+    },
+    {
+      "keywords": ["cara klaim hadiah", "klaim reward"],
+      "answer": "Proses klaim hadiah dilakukan langsung di dalam game sesuai aturan resmi game tersebut."
+    },
+    {
+      "keywords": ["kenapa saldo tidak masuk", "saldo belum masuk"],
+      "answer": "Jika saldo belum masuk setelah top-up, pastikan transaksi sudah sukses. Jika perlu, hubungi admin kami untuk pengecekan."
+    },
+    {
+      "keywords": ["bantuan pembayaran", "cara bayar"],
+      "answer": "Panduan pembayaran lengkap ada di halaman pembayaran website kami. Anda juga bisa bertanya langsung ke admin."
+    },
+    {
+      "keywords": ["kebijakan pengembalian dana", "refund policy"],
+      "answer": "Refund hanya diberikan pada kasus tertentu sesuai syarat dan ketentuan kami. Detail kebijakan dapat dibaca di halaman refund."
+    },
+    {
+      "keywords": ["layanan cepat", "proses cepat"],
+      "answer": "UVOSHOP berkomitmen memberikan layanan tercepat dengan dukungan sistem otomatis 24 jam."
+    },
+    {
+      "keywords": ["tutorial video", "video panduan"],
+      "answer": "Kami menyediakan video tutorial yang dapat diakses di halaman tutorial website."
+    },
+    {
+      "keywords": ["layanan CS 24 jam", "CS online 24 jam"],
+      "answer": "Layanan customer service kami aktif 24 jam untuk memastikan Anda mendapat bantuan kapan pun."
+    },
+    {
+      "keywords": ["perbaikan bug", "update sistem"],
+      "answer": "Kami rutin melakukan update sistem untuk memperbaiki bug dan meningkatkan kualitas layanan."
+    },
+    {
+      "keywords": ["cara daftar reseller", "reseller uvoshop"],
+      "answer": "Untuk menjadi reseller UVOSHOP, hubungi admin untuk mendapatkan info dan syarat pendaftaran."
+    },
+    {
+      "keywords": ["akun reseller", "login reseller"],
+      "answer": "Akun reseller berbeda dengan akun pelanggan biasa. Hubungi admin untuk akses dan login reseller."
+    },
+    {
+      "keywords": ["apakah bisa COD", "bayar ditempat"],
+      "answer": "Saat ini kami tidak menyediakan layanan COD (Cash on Delivery). Semua transaksi dilakukan secara online."
+    },
+    {
+      "keywords": ["cara menggunakan voucher", "cara redeem voucher"],
+      "answer": "Voucher yang Anda beli dapat langsung digunakan di game sesuai petunjuk redeem voucher resmi dari game."
+    },
+    {
+      "keywords": ["cara mengganti metode pembayaran", "ubah metode pembayaran"],
+      "answer": "Anda dapat memilih metode pembayaran lain sebelum konfirmasi transaksi. Setelah pembayaran, metode tidak dapat diubah."
+    },
+    {
+      "keywords": ["apakah bisa cancel transaksi", "batalkan transaksi"],
+      "answer": "Transaksi yang sudah diproses tidak dapat dibatalkan. Untuk transaksi gagal, hubungi admin agar kami bantu pengecekan."
+    },
+    {
+      "keywords": ["garansi kualitas", "jaminan kualitas"],
+      "answer": "UVOSHOP menjamin kualitas layanan dengan sistem otomatis dan dukungan tim profesional."
+    },
+    {
+      "keywords": ["layanan chat offline", "chat tidak aktif"],
+      "answer": "Jika layanan chat offline, silakan hubungi WhatsApp admin untuk mendapatkan bantuan."
+    },
+    {
+      "keywords": ["keluhan tidak terjawab", "bantuan tidak memuaskan"],
+      "answer": "Kami berusaha memberikan layanan terbaik. Jika ada keluhan, silakan ulangi hubungi admin dengan detail masalah."
+    },
+    {
+      "keywords": ["cara menggunakan kode promo", "pakai kode diskon"],
+      "answer": "Masukkan kode promo di halaman checkout sebelum konfirmasi pembayaran untuk mendapatkan diskon."
+    },
+    {
+      "keywords": ["bantuan upgrade akun game", "bantu upgrade"],
+      "answer": "UVOSHOP tidak menyediakan layanan upgrade akun game. Kami hanya menyediakan top-up saldo dan voucher."
+    },
+    {
+      "keywords": ["apakah data disimpan", "data user", "privasi data"],
+      "answer": "Data pengguna disimpan dengan aman dan digunakan hanya untuk proses transaksi dan layanan."
+    },
+    {
+      "keywords": ["cara melihat invoice", "bukti transaksi"],
+      "answer": "Invoice dan bukti transaksi dikirim otomatis ke email atau WhatsApp Anda setelah pembayaran berhasil."
+    },
+    {
+      "keywords": ["cara komplain", "lapor masalah"],
+      "answer": "Silakan kirim keluhan ke admin via WhatsApp dengan menyertakan bukti transaksi untuk penanganan cepat."
+    },
+    {
+      "keywords": ["layanan pengiriman cepat", "fast delivery"],
+      "answer": "Kami mengutamakan pengiriman top-up cepat dan instan dalam hitungan menit."
+    },
+    {
+      "keywords": ["layanan server down", "server maintenance"],
+      "answer": "Jika server sedang maintenance, kami akan menginformasikan di website dan sosial media resmi UVOSHOP."
+    },
+    {
+      "keywords": ["apakah bisa topup pulsa", "topup pulsa"],
+      "answer": "UVOSHOP tidak menyediakan layanan top-up pulsa seluler, hanya voucher dan saldo game."
+    },
+    {
+      "keywords": ["apakah bisa topup item game", "topup skin", "topup item"],
+      "answer": "Kami menyediakan top-up saldo dan voucher game. Untuk pembelian item langsung dalam game, silakan gunakan marketplace resmi game."
+    },
+    {
+      "keywords": ["cara cek saldo uvoshop", "cek saldo di uvoshop"],
+      "answer": "Kami tidak menyediakan layanan cek saldo di UVOSHOP. Layanan kami adalah top-up game secara langsung."
+    },
+    {
+      "keywords": ["apakah ada biaya tambahan", "fee tambahan"],
+      "answer": "Harga yang tertera sudah termasuk semua biaya. Tidak ada biaya tambahan tersembunyi."
+    },
+    {
+      "keywords": ["kontak resmi", "kontak perusahaan"],
+      "answer": "Kontak resmi UVOSHOP ada di website kami dan nomor WhatsApp admin +62 856-4821-1278."
+    },
+    {
+      "keywords": ["cara bergabung komunitas", "join komunitas"],
+      "answer": "Ikuti sosial media kami dan bergabung di grup resmi UVOSHOP untuk mendapatkan info promo dan update terbaru."
+    },
+    {
+      "keywords": ["layanan support bahasa lain", "support bahasa"],
+      "answer": "Saat ini layanan kami menggunakan bahasa Indonesia dan Inggris. Hubungi admin untuk bantuan bahasa lain."
+    },
+    {
+      "keywords": ["cara update aplikasi game", "update game"],
+      "answer": "Update game dilakukan melalui aplikasi resmi game di perangkat Anda."
+    },
+    {
+      "keywords": ["transaksi otomatis", "auto transaksi"],
+      "answer": "Transaksi di UVOSHOP diproses otomatis menggunakan sistem canggih untuk memastikan kecepatan dan akurasi."
+    },
+    {
+      "keywords": ["cara mengganti nomor telepon", "ubah nomor"],
+      "answer": "Jika ingin mengganti nomor kontak, hubungi admin dengan data lengkap untuk update data Anda."
+    },
+    {
+      "keywords": ["apakah bisa topup via Paypal", "bayar pakai paypal"],
+      "answer": "Saat ini kami belum menyediakan metode pembayaran via Paypal."
+    },
+    {
+      "keywords": ["garansi uang kembali", "money back guarantee"],
+      "answer": "Kami memberikan garansi uang kembali jika terjadi kesalahan dari pihak kami yang menyebabkan saldo tidak masuk."
+    },
+    {
+      "keywords": ["cara upgrade akun vip", "akun VIP"],
+      "answer": "UVOSHOP tidak menyediakan layanan upgrade akun VIP. Kami hanya melayani top-up saldo dan voucher."
+    },
+    {
+      "keywords": ["bantuan teknis", "help desk"],
+      "answer": "Tim help desk kami siap membantu Anda via chat atau WhatsApp kapan saja."
+    },
+    {
+      "keywords": ["cara pembayaran kartu kredit", "bayar kartu kredit"],
+      "answer": "Pembayaran menggunakan kartu kredit dapat dilakukan melalui metode pembayaran yang tersedia di website."
+    },
+    {
+      "keywords": ["layanan pengembalian saldo", "refund saldo"],
+      "answer": "Pengembalian saldo dilakukan jika terdapat kesalahan sistem yang dapat dibuktikan dan disetujui oleh admin."
+    }
+  ]
+}
