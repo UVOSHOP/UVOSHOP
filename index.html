@@ -142,15 +142,15 @@
       height: 60px;
     }
 
-    /* CSS untuk Floating WhatsApp Button */
-    .whatsapp-float {
+    /* CSS untuk Floating Chat Button */
+    .chat-float {
         position: fixed;
         width: 60px;
         height: 60px;
         bottom: 20px;
         right: 20px;
-        background-color: #25d366;
-        color: #FFF;
+        background-color: #FFD700; /* Warna kuning (Gold) */
+        color: #000; /* Warna ikon/teks (hitam) */
         border-radius: 50px;
         text-align: center;
         font-size: 30px;
@@ -159,14 +159,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        text-decoration: none; /* Menghilangkan underline pada link */
+        text-decoration: none;
     }
 
-    .whatsapp-float:hover {
-        background-color: #128c7e; /* Warna sedikit lebih gelap saat hover */
+    .chat-float:hover {
+        background-color: #DAA520; /* Warna sedikit lebih gelap saat hover */
     }
 
-    .whatsapp-float img {
+    .chat-float img {
         width: 35px; /* Sesuaikan ukuran ikon */
         height: 35px;
         vertical-align: middle;
@@ -174,14 +174,14 @@
 
     /* Media queries untuk menyesuaikan ukuran tombol pada layar yang lebih kecil */
     @media (max-width: 768px) {
-        .whatsapp-float {
+        .chat-float {
             width: 50px;
             height: 50px;
             bottom: 15px;
             right: 15px;
             font-size: 25px;
         }
-        .whatsapp-float img {
+        .chat-float img {
             width: 30px;
             height: 30px;
         }
@@ -284,8 +284,8 @@
   </div>
 </div>
 
-  <a href="uvochat.html" class="whatsapp-float">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  <a href="uvochat.html" class="chat-float">
+    <img src="https://www.svgrepo.com/show/511019/chat-circle-dots.svg" alt="Chat Icon">
   </a>
 
   <script>
