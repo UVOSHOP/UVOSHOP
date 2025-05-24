@@ -41,6 +41,9 @@
             flex-shrink: 0;
             box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
             z-index: 10;
+            display: flex; /* Tambahkan ini */
+            justify-content: center; /* Tambahkan ini */
+            align-items: center; /* Tambahkan ini */
         }
         #back {
             position: absolute;
@@ -61,6 +64,33 @@
             background-color: #0ff;
             color: #121212;
             transform: translateY(-50%) scale(1.05);
+        }
+        #whatsapp-button { /* Gaya untuk tombol WhatsApp */
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: #25D366; /* Warna hijau WhatsApp */
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            z-index: 10;
+        }
+        #whatsapp-button:hover {
+            background-color: #1DA851;
+            transform: translateY(-50%) scale(1.05);
+        }
+        #whatsapp-button img {
+            width: 20px; /* Ukuran ikon WA */
+            height: 20px;
         }
         #chat {
             flex: 1;
@@ -262,6 +292,16 @@
             transform: scale(1);
         }
 
+        #disclaimer { /* Gaya untuk teks disclaimer */
+            font-size: 0.75rem;
+            color: #aaa;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            background: #1f1f1f;
+            border-top: 1px solid #333;
+            flex-shrink: 0;
+        }
+
         /* Scrollbar keren */
         #chat::-webkit-scrollbar {
             width: 8px;
@@ -315,11 +355,18 @@
     <header>
         <button id="back" onclick="history.back()">⬅ Kembali</button>
         UVOChat - Bantuan AI
+        <a href="https://wa.me/6285648211278" target="_blank" id="whatsapp-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+            WhatsApp
+        </a>
     </header>
     <div id="chat"></div>
     <div id="input-area">
         <input type="text" id="userInput" placeholder="Tanyakan sesuatu..." disabled autocomplete="off" />
         <button id="sendBtn" disabled>Kirim</button>
+    </div>
+    <div id="disclaimer">
+        UVOchat dapat membuat kesalahan. Periksa info penting.
     </div>
 
     <script>
