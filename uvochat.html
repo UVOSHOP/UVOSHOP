@@ -14,7 +14,7 @@
         }
         html, body {
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; /* Penting untuk mencegah scroll saat sidebar terbuka */
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -32,6 +32,7 @@
         header {
             background: #1f1f1f;
             padding: 0.7rem 1.5rem;
+            text-align: left; /* Atur teks ke kiri */
             font-size: 1.4rem;
             color: #0ff;
             font-weight: 700;
@@ -41,29 +42,7 @@
             box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
             z-index: 10;
             display: flex;
-            align-items: center;
-            justify-content: center; /* Tetap di tengah */
-        }
-        #back {
-            position: absolute;
-            top: 50%;
-            left: 15px; /* Pindah ke kiri */
-            transform: translateY(-50%);
-            background: transparent;
-            color: #0ff;
-            border: 2px solid #0ff;
-            padding: 4px 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s, color 0.3s, transform 0.2s;
-            z-index: 10;
-            display: none; /* Sembunyikan secara default, akan diatur oleh JS jika ada history */
-        }
-        #back:hover {
-            background-color: #0ff;
-            color: #121212;
-            transform: translateY(-50%) scale(1.05);
+            align-items: center; /* Pusatkan vertikal */
         }
         #whatsapp-button {
             position: absolute;
@@ -98,7 +77,7 @@
             height: 100%;
             width: 0;
             position: fixed;
-            z-index: 20;
+            z-index: 20; /* Lebih tinggi dari header dan chat */
             top: 0;
             left: 0;
             background-color: #1f1f1f;
@@ -109,8 +88,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
         #sidebar .closebtn {
             position: absolute;
@@ -126,70 +103,79 @@
         #sidebar .closebtn:hover {
             color: white;
         }
-        #sidebar-content {
+        #sidebar-info {
             text-align: center;
-            padding: 0 20px; /* Tambah padding agar teks tidak terlalu mepet */
+            padding: 0 20px;
+            margin-bottom: 20px;
         }
-        #sidebar-content p {
+        #sidebar-info p {
             font-size: 1.2rem;
             margin-bottom: 5px;
             color: #eee;
         }
-        #sidebar-content .version {
+        #sidebar-info .version {
             font-size: 0.9rem;
             color: #aaa;
         }
-        #sidebar-content .developer {
+        #sidebar-info .developer {
             font-size: 0.8rem;
             color: #777;
         }
-        #sidebar-menu-items {
+        #sidebar-menu {
             list-style: none;
             width: 100%;
-            padding: 20px 0;
+            padding: 0;
             border-top: 1px solid #333;
-            margin-top: 20px;
+            flex-grow: 1; /* Biarkan menu mengisi ruang yang tersisa */
+            overflow-y: auto; /* Jika menu panjang, bisa discroll */
         }
-        #sidebar-menu-items li {
-            padding: 10px 20px;
+        #sidebar-menu li {
+            padding: 15px 20px;
             cursor: pointer;
             transition: background-color 0.3s;
             color: #eee;
             font-size: 1.1rem;
             text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        #sidebar-menu-items li:hover {
+        #sidebar-menu li:hover {
             background-color: #333;
         }
-        #sidebar-menu-items li.active {
+        #sidebar-menu li.highlight {
             background-color: #00ffff55;
             color: black;
             font-weight: 600;
         }
 
-
         #open-sidebar-btn {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
             background: transparent;
             color: #0ff;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* Ukuran ikon hamburger */
             cursor: pointer;
             z-index: 11;
             padding: 5px;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin-right: 15px; /* Memberi jarak ke teks UVOchat */
         }
         #open-sidebar-btn:hover {
             background-color: rgba(0, 255, 255, 0.1);
         }
 
-        /* Tidak ada margin-left untuk konten utama saat sidebar terbuka */
-        #chat, #input-area, #disclaimer {
-            transition: none; /* Hapus transisi margin-left */
+        /* Konten utama */
+        #main-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            height: 100%; /* Penting agar mengisi seluruh tinggi */
+            transition: opacity 0.3s ease-in-out; /* Animasi untuk overlay */
+        }
+        body.sidebar-open #main-content {
+            pointer-events: none;
+            opacity: 0.5;
         }
 
         #chat {
@@ -425,21 +411,6 @@
                 border-radius: 10px;
                 overflow: hidden;
             }
-            #sidebar {
-                position: relative; /* Buat sidebar bagian dari layout, tidak menimpa */
-                width: 250px;
-                padding-top: 20px; /* Atur ulang padding top */
-                flex-shrink: 0; /* Mencegahnya menyusut */
-            }
-            body {
-                flex-direction: row; /* Layout berdampingan */
-            }
-            #main-content {
-                display: flex;
-                flex-direction: column;
-                flex-grow: 1; /* Biarkan konten utama mengisi sisa ruang */
-                height: 100%;
-            }
             header {
                 padding: 0.8rem 1.5rem;
                 font-size: 1.5rem;
@@ -464,56 +435,27 @@
             button {
                 padding: 0 1.5rem;
             }
-            #open-sidebar-btn {
-                display: none; /* Sembunyikan tombol hamburger di desktop */
-            }
-            #back {
-                display: block !important; /* Tampilkan tombol kembali di desktop secara default */
-            }
-            #whatsapp-button {
-                right: 15px; /* Pastikan posisi tombol WhatsApp di desktop */
-            }
-        }
-
-        /* Atur posisi tombol di HP */
-        @media (max-width: 767px) {
-            #back {
-                left: unset; /* Hapus `left` bawaan */
-                right: 80px; /* Geser ke kanan agar ada ruang untuk hamburger */
-            }
-            #open-sidebar-btn {
-                display: block; /* Tampilkan tombol hamburger di HP */
-            }
-            header {
-                padding-left: 60px; /* Beri ruang di header untuk tombol hamburger */
-            }
-            body.sidebar-open #main-content { /* Overlay untuk menutup konten utama saat sidebar terbuka */
-                pointer-events: none;
-                opacity: 0.5;
-            }
         }
     </style>
 </head>
 <body>
     <div id="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div id="sidebar-content">
+        <div id="sidebar-info">
             <p><strong>UVOchat</strong></p>
             <p class="version">Model UVO - 1</p>
             <p class="developer">By ADITdeveloper</p>
         </div>
-        <ul id="sidebar-menu-items">
-            <li id="new-chat-btn">Mulai Chat Baru</li>
-            <li id="history-header">Riwayat Chat</li>
+        <ul id="sidebar-menu">
+            <li onclick="startNewChat()"><span style="margin-right: 10px;">✨</span>Mulai Chat Baru</li>
+            <li onclick="history.back()"><span style="margin-right: 10px;">⬅</span> Kembali ke Halaman Sebelumnya</li>
             </ul>
     </div>
 
     <div id="main-content">
         <header>
             <button id="open-sidebar-btn" onclick="openNav()">&#9776;</button>
-            <button id="back" onclick="history.back()">⬅ Kembali</button>
-            UVOchat
-            <a href="https://wa.me/6285648211278" target="_blank" id="whatsapp-button">
+            <span>UVOchat</span> <a href="https://wa.me/6285648211278" target="_blank" id="whatsapp-button">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
                 WA
             </a>
@@ -532,17 +474,10 @@
         const chat = document.getElementById('chat');
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
-        const backButton = document.getElementById('back');
-        const newChatButton = document.getElementById('new-chat-btn');
-        const historyList = document.getElementById('sidebar-menu-items');
-        const historyHeader = document.getElementById('history-header');
         let aiTyping = false;
 
         let uvochatData = null;
         let gamesData = null;
-
-        let chatHistory = []; // Array untuk menyimpan riwayat chat
-        let currentChatIndex = -1; // Indeks chat yang sedang aktif
 
         // Fungsi untuk mengontrol Sidebar
         function openNav() {
@@ -634,7 +569,7 @@
                 }
                 
                 enableInput();
-                startNewChat(); // Mulai chat baru saat aplikasi dimuat
+                appendBubble("Halo! 👋 Saya UVOchat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
             } catch (e) {
                 appendBubble("Maaf, saya gagal memuat data bantuan. Silakan coba refresh halaman. (Error: " + e.message + ")", 'ai');
                 console.error("Kesalahan saat memuat file JSON:", e);
@@ -658,12 +593,6 @@
             div.innerHTML = processText(text);
             chat.appendChild(div);
             chat.scrollTop = chat.scrollHeight;
-
-            // Simpan ke riwayat chat aktif
-            if (currentChatIndex !== -1) {
-                chatHistory[currentChatIndex].messages.push({ text: text, sender: sender });
-                saveChatHistory();
-            }
         }
 
         function appendTyping() {
@@ -787,106 +716,12 @@
             aiTyping = false;
         }
 
-        // Fungsi untuk menyimpan riwayat chat ke Local Storage
-        function saveChatHistory() {
-            localStorage.setItem('uvochatHistory', JSON.stringify(chatHistory));
-            renderHistoryList();
-            updateBackButtonVisibility();
-        }
-
-        // Fungsi untuk memuat riwayat chat dari Local Storage
-        function loadChatHistory() {
-            const storedHistory = localStorage.getItem('uvochatHistory');
-            if (storedHistory) {
-                chatHistory = JSON.parse(storedHistory);
-            }
-            renderHistoryList();
-            updateBackButtonVisibility();
-        }
-
-        // Fungsi untuk menampilkan riwayat chat di sidebar
-        function renderHistoryList() {
-            // Hapus item riwayat yang ada, kecuali header dan tombol "Mulai Chat Baru"
-            let existingHistoryItems = historyList.querySelectorAll('li:not(#new-chat-btn):not(#history-header)');
-            existingHistoryItems.forEach(item => item.remove());
-
-            if (chatHistory.length === 0) {
-                historyHeader.style.display = 'none'; // Sembunyikan header jika tidak ada riwayat
-                return;
-            } else {
-                historyHeader.style.display = 'block';
-            }
-
-            // Tambahkan item riwayat baru
-            chatHistory.forEach((chatEntry, index) => {
-                const li = document.createElement('li');
-                li.textContent = chatEntry.title || `Chat #${index + 1}`;
-                li.dataset.index = index;
-                if (index === currentChatIndex) {
-                    li.classList.add('active');
-                }
-                li.addEventListener('click', () => loadChat(index));
-                historyList.appendChild(li);
-            });
-        }
-
-        // Fungsi untuk memuat chat dari riwayat
-        function loadChat(index) {
-            closeNav();
-            if (currentChatIndex === index) return; // Jika chat yang sama, jangan lakukan apa-apa
-
-            currentChatIndex = index;
-            chat.innerHTML = ''; // Kosongkan chat saat ini
-
-            chatHistory[index].messages.forEach(msg => {
-                const div = document.createElement('div');
-                div.className = 'bubble ' + msg.sender;
-                div.innerHTML = processText(msg.text);
-                chat.appendChild(div);
-            });
-            chat.scrollTop = chat.scrollHeight;
-            updateHistoryListActiveState();
-            updateBackButtonVisibility();
-        }
-
-        // Fungsi untuk memulai chat baru
+        // Fungsi untuk memulai chat baru (mengosongkan chat)
         function startNewChat() {
-            closeNav();
-            if (chatHistory.length > 0 && chatHistory[currentChatIndex] && chatHistory[currentChatIndex].messages.length > 1) {
-                // Jika chat saat ini tidak kosong, simpan dulu
-                // Judul chat baru akan diambil dari pesan pertama pengguna
-                const firstUserMessage = chatHistory[currentChatIndex].messages.find(msg => msg.sender === 'user');
-                chatHistory[currentChatIndex].title = firstUserMessage ? firstUserMessage.text.substring(0, 20) + '...' : `Chat ${new Date().toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: '2-digit' })} ${new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}`;
-            }
-
-            currentChatIndex = chatHistory.length; // Set indeks ke yang baru
-            chatHistory.push({ title: '', messages: [] }); // Tambahkan chat baru kosong
-            
-            chat.innerHTML = ''; // Bersihkan tampilan chat
+            closeNav(); // Tutup sidebar
+            chat.innerHTML = ''; // Kosongkan tampilan chat
             appendBubble("Halo! 👋 Saya UVOchat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
-            saveChatHistory(); // Simpan riwayat yang diperbarui
-            updateHistoryListActiveState();
-            updateBackButtonVisibility();
-        }
-
-        // Memperbarui status aktif di daftar riwayat
-        function updateHistoryListActiveState() {
-            document.querySelectorAll('#sidebar-menu-items li').forEach(item => {
-                item.classList.remove('active');
-            });
-            const activeItem = document.querySelector(`#sidebar-menu-items li[data-index="${currentChatIndex}"]`);
-            if (activeItem) {
-                activeItem.classList.add('active');
-            }
-        }
-
-        // Mengatur visibilitas tombol "Kembali"
-        function updateBackButtonVisibility() {
-            if (chatHistory.length > 1) {
-                backButton.style.display = 'block';
-            } else {
-                backButton.style.display = 'none';
-            }
+            enableInput(); // Pastikan input aktif
         }
 
         sendBtn.addEventListener('click', handleUserInput);
@@ -896,28 +731,8 @@
                 handleUserInput();
             }
         });
-        newChatButton.addEventListener('click', startNewChat);
 
-        // Event listener untuk tombol kembali yang diperbarui
-        backButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Mencegah default behavior history.back()
-            if (chatHistory.length > 1 && currentChatIndex > 0) {
-                loadChat(currentChatIndex - 1); // Memuat chat sebelumnya
-            } else if (chatHistory.length > 1 && currentChatIndex === 0) {
-                // Jika di chat pertama, kembali ke chat terakhir (siklus)
-                loadChat(chatHistory.length - 1);
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadJsonFiles();
-            loadChatHistory(); // Muat riwayat saat DOM selesai
-            if (chatHistory.length > 0) {
-                loadChat(chatHistory.length - 1); // Muat chat terakhir jika ada
-            } else {
-                startNewChat(); // Jika belum ada riwayat, mulai chat baru
-            }
-        });
+        document.addEventListener('DOMContentLoaded', loadJsonFiles);
     </script>
 </body>
 </html>
