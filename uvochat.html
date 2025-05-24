@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>UVOChat - uvo1 </title>
+    <title>UVOchat</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* Reset & dasar */
@@ -14,7 +14,7 @@
         }
         html, body {
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; /* Penting untuk mencegah scroll saat sidebar terbuka */
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -31,9 +31,9 @@
         }
         header {
             background: #1f1f1f;
-            padding: 1rem 3rem;
+            padding: 0.7rem 1.5rem; /* Perkecil padding atas/bawah */
             text-align: center;
-            font-size: 1.6rem;
+            font-size: 1.4rem; /* Perkecil ukuran font judul */
             color: #0ff;
             font-weight: 700;
             position: relative;
@@ -41,9 +41,9 @@
             flex-shrink: 0;
             box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
             z-index: 10;
-            display: flex; /* Tambahkan ini */
-            justify-content: center; /* Tambahkan ini */
-            align-items: center; /* Tambahkan ini */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #back {
             position: absolute;
@@ -53,10 +53,10 @@
             background: transparent;
             color: #0ff;
             border: 2px solid #0ff;
-            padding: 6px 12px;
-            border-radius: 12px;
+            padding: 4px 10px; /* Perkecil padding tombol kembali */
+            border-radius: 10px; /* Perkecil border-radius */
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem; /* Perkecil ukuran font tombol kembali */
             transition: background-color 0.3s, color 0.3s, transform 0.2s;
             z-index: 10;
         }
@@ -65,18 +65,18 @@
             color: #121212;
             transform: translateY(-50%) scale(1.05);
         }
-        #whatsapp-button { /* Gaya untuk tombol WhatsApp */
+        #whatsapp-button {
             position: absolute;
             top: 50%;
             right: 15px;
             transform: translateY(-50%);
-            background: #25D366; /* Warna hijau WhatsApp */
+            background: #25D366;
             color: white;
             border: none;
-            border-radius: 12px;
-            padding: 6px 12px;
+            border-radius: 10px; /* Perkecil border-radius */
+            padding: 4px 10px; /* Perkecil padding tombol WhatsApp */
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem; /* Perkecil ukuran font tombol WhatsApp */
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -89,9 +89,85 @@
             transform: translateY(-50%) scale(1.05);
         }
         #whatsapp-button img {
-            width: 20px; /* Ukuran ikon WA */
-            height: 20px;
+            width: 18px; /* Perkecil ukuran ikon WA */
+            height: 18px;
         }
+
+        /* Sidebar */
+        #sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 20; /* Lebih tinggi dari header dan chat */
+            top: 0;
+            left: 0;
+            background-color: #1f1f1f;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 10px rgba(0, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Untuk menempatkan teks di tengah vertikal */
+            gap: 15px;
+        }
+        #sidebar .closebtn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #0ff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #sidebar .closebtn:hover {
+            color: white;
+        }
+        #sidebar-content {
+            text-align: center;
+        }
+        #sidebar-content p {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #eee;
+        }
+        #sidebar-content .version {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        #sidebar-content .developer {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        #open-sidebar-btn {
+            position: absolute;
+            top: 50%;
+            left: 15px; /* Sesuaikan posisi agar tidak tumpang tindih dengan tombol back jika keduanya ingin terlihat */
+            transform: translateY(-50%);
+            background: transparent;
+            color: #0ff;
+            border: none;
+            font-size: 1.5rem; /* Ukuran ikon hamburger */
+            cursor: pointer;
+            z-index: 11; /* Lebih tinggi dari header */
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: none; /* Sembunyikan secara default, akan ditunjukkan oleh JS jika diperlukan */
+        }
+        #open-sidebar-btn:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        /* Menggeser konten utama saat sidebar terbuka */
+        .shifted {
+            margin-left: 250px; /* Lebar sidebar */
+        }
+
         #chat {
             flex: 1;
             overflow-y: auto;
@@ -104,6 +180,7 @@
             -webkit-overflow-scrolling: touch;
             position: relative;
             z-index: 1;
+            transition: margin-left 0.5s ease-in-out; /* Animasi geser */
         }
         .bubble {
             max-width: 85%;
@@ -112,13 +189,13 @@
             position: relative;
             animation: fadeInUp 0.4s ease forwards;
             box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
-            line-height: 1.5; /* Increased line height for better readability */
+            line-height: 1.5;
             font-size: 0.95rem;
             word-wrap: break-word;
             user-select: text;
         }
         .bubble p {
-            margin-bottom: 0.5em; /* Spacing for paragraphs */
+            margin-bottom: 0.5em;
         }
         .bubble p:last-child {
             margin-bottom: 0;
@@ -131,8 +208,8 @@
             margin-bottom: 0.3em;
         }
         .bubble strong {
-            font-weight: 700; /* Ensure bold is strong */
-            color: #00ffff; /* Highlight bold text */
+            font-weight: 700;
+            color: #00ffff;
         }
         .bubble .large-font {
             font-size: 1.1em;
@@ -253,7 +330,7 @@
             font-size: 1rem;
             background: #2a2a2a;
             color: white;
-            outline: none; /* Remove default outline */
+            outline: none;
             box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.3);
             transition: background-color 0.3s, box-shadow 0.3s;
             min-width: 0;
@@ -292,7 +369,7 @@
             transform: scale(1);
         }
 
-        #disclaimer { /* Gaya untuk teks disclaimer */
+        #disclaimer {
             font-size: 0.75rem;
             color: #aaa;
             text-align: center;
@@ -323,10 +400,11 @@
                 border-right: 1px solid #333;
                 box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
                 border-radius: 10px;
-                overflow: hidden; /* Ensure content stays within rounded corners */
+                overflow: hidden;
             }
             header {
-                padding: 1rem 1.5rem;
+                padding: 0.8rem 1.5rem; /* Sesuaikan padding untuk desktop juga */
+                font-size: 1.5rem; /* Sesuaikan ukuran font judul untuk desktop juga */
             }
             #chat {
                 padding: 1.5rem;
@@ -348,16 +426,49 @@
             button {
                 padding: 0 1.5rem;
             }
+            #open-sidebar-btn {
+                display: none; /* Sembunyikan tombol hamburger di desktop */
+            }
+            #back {
+                left: 15px; /* Pastikan posisi tombol kembali di desktop */
+            }
+            #whatsapp-button {
+                right: 15px; /* Pastikan posisi tombol WhatsApp di desktop */
+            }
+        }
+
+        /* Atur posisi tombol kembali di HP agar tidak tumpang tindih dengan tombol hamburger */
+        @media (max-width: 767px) {
+            #back {
+                left: unset; /* Hapus `left` bawaan */
+                right: 80px; /* Geser ke kanan agar ada ruang untuk hamburger */
+            }
+            #open-sidebar-btn {
+                display: block; /* Tampilkan tombol hamburger di HP */
+                left: 15px; /* Posisikan di kiri */
+            }
+            header {
+                padding-left: 60px; /* Beri ruang di header untuk tombol hamburger */
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <button id="back" onclick="history.back()">⬅ Kembali</button>
-        UVOChat - Bantuan AI
+    <div id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="sidebar-content">
+            <p><strong>UVOchat</strong></p>
+            <p class="version">Model UVO - 1</p>
+            <p class="developer">By ADITdeveloper</p>
+        </div>
+    </div>
+
+    <header id="main-header">
+        <button id="open-sidebar-btn" onclick="openNav()">&#9776;</button> <button id="back" onclick="history.back()">⬅ Kembali</button>
+        UVOchat
         <a href="https://wa.me/6285648211278" target="_blank" id="whatsapp-button">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-            WhatsApp
+            WA
         </a>
     </header>
     <div id="chat"></div>
@@ -377,6 +488,23 @@
 
         let uvochatData = null;
         let gamesData = null;
+
+        // Fungsi untuk mengontrol Sidebar
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("chat").style.marginLeft = "250px";
+            document.getElementById("input-area").style.marginLeft = "250px";
+            document.getElementById("disclaimer").style.marginLeft = "250px";
+            document.getElementById("main-header").style.marginLeft = "250px"; /* Geser header juga */
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("chat").style.marginLeft = "0";
+            document.getElementById("input-area").style.marginLeft = "0";
+            document.getElementById("disclaimer").style.marginLeft = "0";
+            document.getElementById("main-header").style.marginLeft = "0"; /* Geser header kembali */
+        }
 
         // Fungsi untuk memproses teks: bold, spasi, simbol, ukuran font, box
         function processText(text) {
@@ -458,7 +586,7 @@
                 }
                 
                 enableInput();
-                appendBubble("Halo! 👋 Saya UVOChat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
+                appendBubble("Halo! 👋 Saya UVOchat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
             } catch (e) {
                 appendBubble("Maaf, saya gagal memuat data bantuan. Silakan coba refresh halaman. (Error: " + e.message + ")", 'ai');
                 console.error("Kesalahan saat memuat file JSON:", e);
