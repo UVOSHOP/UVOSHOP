@@ -149,8 +149,8 @@
         height: 60px;
         bottom: 20px;
         right: 20px;
-        background-color: #FFA500; /* Warna oranye */
-        color: #FFF; /* Warna ikon/teks (putih) */
+        background-color: #FFFFFF; /* Warna putih */
+        color: #000; /* Warna ikon/teks (hitam) */
         border-radius: 50px;
         text-align: center;
         font-size: 30px;
@@ -163,13 +163,15 @@
     }
 
     .chat-float:hover {
-        background-color: #CC8400; /* Warna sedikit lebih gelap saat hover */
+        background-color: #E0E0E0; /* Warna sedikit lebih gelap saat hover (abu-abu terang) */
     }
 
     .chat-float img {
         width: 35px; /* Sesuaikan ukuran ikon */
         height: 35px;
-        /* filter: brightness(0) invert(1); */ /* Dihapus karena gambar baru sudah putih/transparan */
+        /* Jika ikon aslinya gelap dan perlu diubah jadi hitam agar kontras dengan putih, gunakan filter ini: */
+        /* filter: brightness(0) invert(0); */ /* Jika aslinya gelap dan ingin hitam */
+        /* filter: brightness(0); */ /* Jika aslinya putih dan ingin hitam */
         vertical-align: middle;
     }
 
