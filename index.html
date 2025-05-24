@@ -149,8 +149,8 @@
         height: 60px;
         bottom: 20px;
         right: 20px;
-        background-color: #FFD700; /* Warna kuning (Gold) */
-        color: #000; /* Warna ikon/teks (hitam) */
+        background-color: #FFA500; /* Warna oranye */
+        color: #FFF; /* Warna ikon/teks (putih) */
         border-radius: 50px;
         text-align: center;
         font-size: 30px;
@@ -163,12 +163,13 @@
     }
 
     .chat-float:hover {
-        background-color: #DAA520; /* Warna sedikit lebih gelap saat hover */
+        background-color: #CC8400; /* Warna sedikit lebih gelap saat hover */
     }
 
     .chat-float img {
         width: 35px; /* Sesuaikan ukuran ikon */
         height: 35px;
+        filter: brightness(0) invert(1); /* Untuk mengubah warna gambar menjadi putih jika aslinya gelap */
         vertical-align: middle;
     }
 
@@ -285,7 +286,7 @@
 </div>
 
   <a href="uvochat.html" class="chat-float">
-    <img src="https://www.svgrepo.com/show/511019/chat-circle-dots.svg" alt="Chat Icon">
+    <img src="https://static.vecteezy.com/system/resources/previews/005/129/883/original/chat-solid-icon-free-vector.jpg" alt="Chat Icon">
   </a>
 
   <script>
