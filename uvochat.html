@@ -221,26 +221,42 @@
     let aiTyping = false;
 
     let uvochatData = null;
-    let gamesData = null;
+    let gamesData = null; // games.json masih null jika tidak disediakan, tidak masalah.
 
     // Load data async dari file JSON
     async function loadJsonFiles() {
       try {
-        const resChat = await fetch('uvochat.json'); // Pastikan file ini ada di root
-        if (!resChat.ok) throw new Error(`HTTP error! status: ${resChat.status}`);
+        // Fetch uvochat.json
+        const resChat = await fetch('uvochat.json'); // Pastikan file ini ada di root yang sama
+        if (!resChat.ok) {
+          // Log error jika fetch tidak berhasil
+          console.error(`Error fetching uvochat.json: HTTP status ${resChat.status}`);
+          throw new Error(`Gagal memuat uvochat.json. Status: ${resChat.status}`);
+        }
         uvochatData = await resChat.json();
-        console.log('uvochat.json loaded:', uvochatData); // Debugging
+        console.log('uvochat.json loaded successfully:', uvochatData); // Debugging: pastikan data termuat
 
-        const resGames = await fetch('games.json'); // Pastikan file ini ada di root
-        if (!resGames.ok) throw new Error(`HTTP error! status: ${resGames.status}`);
-        gamesData = await resGames.json();
-        console.log('games.json loaded:', gamesData); // Debugging
-
+        // Fetch games.json (jika ada dan diperlukan)
+        // Jika kamu tidak punya games.json, kamu bisa hapus bagian ini
+        try {
+            const resGames = await fetch('games.json'); 
+            if (!resGames.ok) {
+                console.warn(`Warning: games.json not found or could not be loaded (Status: ${resGames.status}). Game price lookup will be unavailable.`);
+                gamesData = null; // Set ke null jika tidak ada
+            } else {
+                gamesData = await resGames.json();
+                console.log('games.json loaded successfully:', gamesData);
+            }
+        } catch (error) {
+            console.warn('Warning: games.json not found or could not be loaded:', error);
+            gamesData = null; // Pastikan gamesData null jika terjadi error
+        }
+        
         enableInput();
         appendBubble("Halo! Saya UVOChat, asisten AI Anda. Tanyakan apa saja terkait top-up game dan layanan kami.", 'ai');
       } catch (e) {
         appendBubble("Gagal memuat data bantuan. Silakan coba refresh halaman. (Error: " + e.message + ")", 'ai');
-        console.error("Error loading JSON files:", e);
+        console.error("Kesalahan saat memuat file JSON:", e);
       }
     }
 
@@ -281,21 +297,41 @@
     function getAiResponse(inputText) {
       let response = null;
       const lowerText = inputText.toLowerCase();
+      console.log('User input (lowercase):', lowerText); // Debugging: lihat input yang diproses
 
-      // Prioritas 1: Cari jawaban harga game
+      // Prioritas 1: Cari di FAQ (uvochatData.faq)
+      // Struktur uvochat.json kamu hanya memiliki "faq", jadi kita fokus ke sini.
+      if (uvochatData && Array.isArray(uvochatData.faq)) {
+        for (const entry of uvochatData.faq) {
+          if (Array.isArray(entry.keywords)) { // Pastikan keywords adalah array
+            // Cek apakah ada keyword dari input pengguna yang cocok dengan keyword FAQ
+            const matched = entry.keywords.some(keyword => lowerText.includes(keyword.toLowerCase()));
+            if (matched) {
+              console.log('Uvochat FAQ keyword matched:', entry.keywords); // Debugging: keyword uvochat ditemukan
+              return entry.answer; // Langsung kembalikan jawaban yang cocok
+            }
+          }
+        }
+      }
+
+      // Prioritas 2: Cari jawaban harga game (gamesData) - Jika gamesData tersedia
+      // Ini akan dieksekusi jika tidak ada jawaban dari uvochat.json
       if (gamesData && Array.isArray(gamesData)) {
         for (const game of gamesData) {
-          const gameNames = Array.isArray(game.keywords) ? game.keywords.map(k => k.toLowerCase()) : [game.name.toLowerCase()];
-          const foundGame = gameNames.some(name => lowerText.includes(name));
+          const gameKeywords = [game.name.toLowerCase()].concat(
+            Array.isArray(game.keywords) ? game.keywords.map(k => k.toLowerCase()) : []
+          );
+          
+          const foundGame = gameKeywords.some(keyword => lowerText.includes(keyword));
 
           if (foundGame) {
+            console.log('Game matched:', game.name);
             let foundPrices = [];
             for (const priceObj of game.prices) {
-              // Cek nominal angka dan kata kunci terkait nominal (misal: "100 diamond", "seratus", "sejutaan")
               const amountKeywords = [
                 priceObj.amount.toString(),
-                (priceObj.amount / 1000) + 'k', // untuk 1000 jadi 1k
-                numToWords(priceObj.amount) // Konversi angka ke kata (seratus, seribu, sejuta)
+                (priceObj.amount / 1000) + 'k',
+                numToWords(priceObj.amount)
               ].filter(Boolean).map(s => s.toLowerCase());
 
               if (amountKeywords.some(keyword => lowerText.includes(keyword))) {
@@ -310,7 +346,6 @@
               }
               return response.trim();
             } else {
-              // Jika game ditemukan tapi nominal tidak spesifik, berikan daftar harga teratas
               let topPrices = game.prices.slice(0, 5).map(p => `- ${p.amount} ${game.unit || 'diamond'} seharga Rp${p.price.toLocaleString('id-ID')}`).join('\n');
               response = `Untuk *${game.name}*, kami punya pilihan top-up:\n${topPrices}\n\nUntuk info lebih detail, tanyakan dengan menyebut nominalnya (misal: "harga 100 diamond ${game.name}").`;
               return response;
@@ -319,40 +354,13 @@
         }
       }
 
-      // Prioritas 2: Cari di FAQ (uvochatData.faq) dan pola_pikir (uvochatData.pola_pikir)
-      if (uvochatData) {
-        // Gabungkan semua keyword dari FAQ dan pola_pikir ke dalam satu array untuk pencarian yang lebih fleksibel
-        const allFaqEntries = [];
-        if (Array.isArray(uvochatData.faq)) {
-          uvochatData.faq.forEach(item => {
-            if (Array.isArray(item.keywords)) {
-              allFaqEntries.push({ keywords: item.keywords.map(k => k.toLowerCase()), answer: item.answer });
-            }
-          });
-        }
-        if (Array.isArray(uvochatData.pola_pikir)) {
-          uvochatData.pola_pikir.forEach(item => {
-            if (item.keyword) {
-              allFaqEntries.push({ keywords: [item.keyword.toLowerCase()], answer: item.text });
-            }
-          });
-        }
-
-        // Cari jawaban dengan mencocokkan setidaknya satu keyword dari pertanyaan pengguna
-        for (const entry of allFaqEntries) {
-          const matched = entry.keywords.some(keyword => lowerText.includes(keyword));
-          if (matched) {
-            return entry.answer;
-          }
-        }
-      }
-
-      // Fallback jika tidak ada jawaban spesifik
+      // Fallback jika tidak ada jawaban spesifik dari uvochat.json atau games.json
       return `Maaf, saya belum punya jawaban untuk pertanyaan itu. Coba tanyakan dengan kata kunci yang berbeda atau silakan hubungi admin kami di WhatsApp untuk bantuan lebih lanjut.`;
     }
 
-    // Fungsi konversi angka ke kata (sederhana)
+    // Fungsi konversi angka ke kata (sederhana) - Sama seperti sebelumnya
     function numToWords(num) {
+        if (num === 0) return 'nol';
         const units = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan'];
         const teens = ['sepuluh', 'sebelas', 'dua belas', 'tiga belas', 'empat belas', 'lima belas', 'enam belas', 'tujuh belas', 'delapan belas', 'sembilan belas'];
         const tens = ['', '', 'dua puluh', 'tiga puluh', 'empat puluh', 'lima puluh', 'enam puluh', 'tujuh puluh', 'delapan puluh', 'sembilan puluh'];
@@ -360,35 +368,22 @@
         if (num < 10) return units[num];
         if (num >= 10 && num < 20) return teens[num - 10];
         if (num >= 20 && num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? ' ' + units[num % 10] : '');
-        if (num >= 100 && num < 1000) return (num === 100 ? 'seratus' : units[Math.floor(num / 100)] + ' ratus') + (num % 100 !== 0 ? ' ' + numToWords(num % 100) : '');
-        if (num >= 1000 && num < 1000000) return (num === 1000 ? 'seribu' : numToWords(Math.floor(num / 1000)) + ' ribu') + (num % 1000 !== 0 ? ' ' + numToWords(num % 1000) : '');
-        if (num >= 1000000 && num < 1000000000) return (num === 1000000 ? 'satu juta' : numToWords(Math.floor(num / 1000000)) + ' juta') + (num % 1000000 !== 0 ? ' ' + numToWords(num % 1000000) : '');
-
+        if (num >= 100 && num < 1000) {
+            let res = (num === 100 ? 'seratus' : units[Math.floor(num / 100)] + ' ratus');
+            if (num % 100 !== 0) res += ' ' + numToWords(num % 100);
+            return res;
+        }
+        if (num >= 1000 && num < 1000000) {
+            let res = (num === 1000 ? 'seribu' : numToWords(Math.floor(num / 1000)) + ' ribu');
+            if (num % 1000 !== 0) res += ' ' + numToWords(num % 1000);
+            return res;
+        }
+        if (num >= 1000000 && num < 1000000000) {
+            let res = (num === 1000000 ? 'satu juta' : numToWords(Math.floor(num / 1000000)) + ' juta');
+            if (num % 1000000 !== 0) res += ' ' + numToWords(num % 1000000);
+            return res;
+        }
         return '';
-    }
-
-    // Main handler
-    async function handleUserInput() {
-      if (aiTyping) return;
-      const text = userInput.value.trim();
-      if (!text) return;
-
-      appendBubble(text, 'user');
-      userInput.value = '';
-      disableInput();
-
-      appendTyping();
-      aiTyping = true;
-
-      // Delay supaya terasa natural
-      await new Promise(r => setTimeout(r, 800));
-
-      const response = getAiResponse(text);
-
-      removeTyping();
-      appendBubble(response, 'ai');
-      enableInput();
-      aiTyping = false;
     }
 
     sendBtn.addEventListener('click', handleUserInput);
@@ -399,7 +394,6 @@
       }
     });
 
-    // Panggil loadJsonFiles saat DOMContentLoaded untuk memastikan elemen ada
     document.addEventListener('DOMContentLoaded', loadJsonFiles);
   </script>
 </body>
