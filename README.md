@@ -8,7 +8,7 @@
 # 🛒 UVOSHOP (UNGGULAN)
 <p align="center">
   <a href="https://uvoshop.github.io/UVOSHOP/">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" width="300" alt="UVOSHOP Logo">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiP0gyebU80nVJqSGbecupWQ7Q4uhbeMlPXcynVCfH0XTitxCyX_W8owNCr0HAOeRUq-Dq93dSsoFt5dUQq1tr2JCP8s_I_wKiU2o04hYe-t_JP1uqt-V8jTFpJX-Wlcl0KGuFsiWK7NXPsxnL7KoQb4JHc50NHut2pSKbF0eZBOJTn4G6J7Iqsutq4ox6c/s320/logo%20uvoshop%20gaada%20baground.png" width="300" alt="UVOSHOP Logo">
   </a>
 </p>
 
