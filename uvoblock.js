@@ -72,72 +72,60 @@ const BLOCK_SHAPES = [
 
 // --- Inisialisasi & Responsifitas Game ---
 
-// Menghitung ulang ukuran sel berdasarkan ukuran grid di layar
-// Fungsi ini akan dipanggil saat inisialisasi dan resize
 function calculateCellSizes() {
     const gridRect = gameGridElement.getBoundingClientRect();
     const availableGridWidth = gridRect.width;
     const availableGridHeight = gridRect.height;
 
-    // Hitung CELL_SIZE berdasarkan dimensi aktual dari elemen game-grid
     CELL_SIZE = Math.min(
         availableGridWidth / GRID_COLS,
         availableGridHeight / GRID_ROWS
     );
     
-    // Opsional: Batasi CELL_SIZE agar tidak terlalu kecil atau terlalu besar
-    CELL_SIZE = Math.max(25, Math.min(CELL_SIZE, 55)); // Contoh: min 25px, max 55px per sel
+    CELL_SIZE = Math.max(25, Math.min(CELL_SIZE, 55)); 
 
-    BLOCK_PIECE_SIZE = CELL_SIZE / 2; // Potongan blok 1/2 ukuran sel grid
+    BLOCK_PIECE_SIZE = CELL_SIZE / 2; 
 
-    // Set CSS variable untuk ukuran potongan blok.
     document.documentElement.style.setProperty('--block-piece-size', `${BLOCK_PIECE_SIZE}px`);
 
-    // Perbarui grid template columns untuk game board secara langsung di JS
     gameGridElement.style.gridTemplateColumns = `repeat(${GRID_COLS}, ${CELL_SIZE}px)`;
     gameGridElement.style.gridTemplateRows = `repeat(${GRID_ROWS}, ${CELL_SIZE}px)`;
 
-    // Jika ghost element ada saat resize, hapus dan buat ulang dengan ukuran baru
     if (ghostElement && draggedBlock) {
         ghostElement.remove();
         ghostElement = createGhostElement(draggedBlock);
         document.body.appendChild(ghostElement);
     }
-    // Gambar ulang preview blok untuk memperbarui ukurannya
     drawBlockPreview();
-    updateGridDisplay(); // Pastikan grid juga diperbarui jika ada perubahan ukuran
+    updateGridDisplay();
 }
 
-// Event listener untuk resize window
 window.addEventListener('resize', calculateCellSizes);
 
 
 function initializeGame() {
     score = 0;
     updateScoreDisplay();
-    gameGrid = Array(GRID_ROWS).fill(0).map(() => Array(GRID_COLS).fill(0)); // Inisialisasi grid kosong
+    gameGrid = Array(GRID_ROWS).fill(0).map(() => Array(GRID_COLS).fill(0));
 
-    gameGridElement.innerHTML = ''; // Bersihkan grid lama
+    gameGridElement.innerHTML = '';
     for (let i = 0; i < GRID_ROWS * GRID_COLS; i++) {
         const cell = document.createElement('div');
         cell.classList.add('grid-cell');
         cell.dataset.index = i;
         gameGridElement.appendChild(cell);
     }
-    calculateCellSizes(); // Hitung ukuran sel awal saat inisialisasi
+    calculateCellSizes();
     updateGridDisplay();
+    
     // Inisialisasi 3 blok pertama
     currentBlocks = Array(3).fill(null);
-    for (let i = 0; i < 3; i++) {
-        fillBlockSlot(i); // Isi setiap slot yang kosong
-    }
-    drawBlockPreview();
+    generateNewBlocks(true); // Panggil untuk mengisi slot awal
     
-    gameOverlay.classList.add('hidden'); // Sembunyikan overlay game over
-    // Pastikan hanya ada satu event listener untuk tombol restart
+    gameOverlay.classList.add('hidden');
     restartButton.removeEventListener('click', initializeGame); 
     restartButton.addEventListener('click', initializeGame);
-    changeBackgroundColor(); // Set background color awal
+    changeBackgroundColor(); 
 }
 
 // --- Fungsi Rendering dan UI ---
@@ -148,23 +136,23 @@ function updateGridDisplay() {
         for (let c = 0; c < GRID_COLS; c++) {
             const cellIndex = r * GRID_COLS + c;
             const cellElement = cells[cellIndex];
-            if (!cellElement) continue; // Pastikan elemen ada
+            if (!cellElement) continue;
 
-            cellElement.className = 'grid-cell'; // Reset kelas
+            cellElement.className = 'grid-cell';
             if (gameGrid[r][c] !== 0) {
                 cellElement.classList.add('occupied');
-                cellElement.classList.add(gameGrid[r][c]); // Tambahkan kelas warna
+                cellElement.classList.add(gameGrid[r][c]);
             }
         }
     }
 }
 
 function drawBlockPreview() {
+    // console.log("Drawing block preview. Current blocks:", currentBlocks); // Debug log
     blockPreviewSlots.forEach((slot, index) => {
-        slot.innerHTML = ''; // Kosongkan slot
-        slot.classList.remove('dragging'); // Hapus kelas dragging jika ada
+        slot.innerHTML = '';
+        slot.classList.remove('dragging');
 
-        // Hapus event listener lama sebelum menambah yang baru untuk mencegah duplikasi
         slot.removeEventListener('mousedown', startDrag);
         slot.removeEventListener('touchstart', startDrag);
 
@@ -173,7 +161,6 @@ function drawBlockPreview() {
             blockContainer.classList.add('draggable-block-container');
             const blockWidth = currentBlocks[index].shape[0].length;
             
-            // Gunakan BLOCK_PIECE_SIZE yang dihitung secara dinamis
             blockContainer.style.gridTemplateColumns = `repeat(${blockWidth}, ${BLOCK_PIECE_SIZE}px)`;
             
             currentBlocks[index].shape.forEach(row => {
@@ -188,9 +175,11 @@ function drawBlockPreview() {
             });
             slot.appendChild(blockContainer);
             slot.dataset.blockIndex = index;
-            // Tambahkan event listener baru
             slot.addEventListener('mousedown', startDrag);
-            slot.addEventListener('touchstart', startDrag, { passive: false }); // passive: false penting untuk preventDefault
+            slot.addEventListener('touchstart', startDrag, { passive: false });
+            // console.log(`Block drawn in slot ${index}:`, currentBlocks[index]); // Debug log
+        } else {
+            // console.log(`Slot ${index} is empty.`); // Debug log
         }
     });
 }
@@ -199,7 +188,6 @@ function createGhostElement(block) {
     if (!block) return null;
     const ghost = document.createElement('div');
     ghost.classList.add('draggable-block-container', 'ghost');
-    // Atur ukuran kolom ghost block berdasarkan BLOCK_PIECE_SIZE
     ghost.style.gridTemplateColumns = `repeat(${block.shape[0].length}, ${BLOCK_PIECE_SIZE}px)`;
     
     block.shape.forEach(row => {
@@ -243,7 +231,6 @@ function highlightCells(block, startRow, startCol) {
     });
 
     cellsToHighlight.forEach(pos => {
-        // Pastikan sel berada di dalam batas grid
         if (pos.r >= 0 && pos.r < GRID_ROWS && pos.c >= 0 && pos.c < GRID_COLS) {
             const cellElement = gameGridElement.children[pos.r * GRID_COLS + pos.c];
             if (cellElement) {
@@ -263,7 +250,6 @@ function clearHighlights() {
 
 // --- Logika Game ---
 
-// Fungsi baru untuk mengisi satu slot blok secara independen
 function fillBlockSlot(slotIndex) {
     if (slotIndex < 0 || slotIndex >= currentBlocks.length) return;
 
@@ -271,54 +257,56 @@ function fillBlockSlot(slotIndex) {
     let blockFound = false;
     while (!blockFound && attempts < 200) {
         const randomIndex = Math.floor(Math.random() * BLOCK_SHAPES.length);
-        const newBlock = JSON.parse(JSON.stringify(BLOCK_SHAPES[randomIndex])); // Deep copy
+        const newBlock = JSON.parse(JSON.stringify(BLOCK_SHAPES[randomIndex]));
 
         if (canBlockBePlacedAnywhere(newBlock)) {
             currentBlocks[slotIndex] = newBlock;
             blockFound = true;
+            // console.log(`Block generated for slot ${slotIndex}:`, newBlock); // Debug log
         }
         attempts++;
     }
 
-    // Fallback: Jika tidak ada blok yang bisa ditempatkan dalam 200 percobaan,
-    // berikan blok 1x1 atau blok kecil yang pasti bisa ditempatkan.
     if (!blockFound) {
-        const smallBlock = BLOCK_SHAPES.find(b => b.size === 1 || (b.shape.length <= 2 && b.shape[0].length <= 2));
+        // Fallback to a 1x1 block if no suitable block found
+        const smallBlock = BLOCK_SHAPES.find(b => b.size === 1); // Only 1x1 block as sure fallback
         if (smallBlock) {
             currentBlocks[slotIndex] = JSON.parse(JSON.stringify(smallBlock));
+            // console.log(`Fallback block (1x1) generated for slot ${slotIndex}.`); // Debug log
         } else {
-            // Jika tidak ada blok kecil, fallback ke blok acak apapun
-            currentBlocks[slotIndex] = JSON.parse(JSON.stringify(BLOCK_SHAPES[Math.floor(Math.random() * BLOCK_SHAPES.length)]));
+            // Should not happen if BLOCK_SHAPES is well-defined, but for safety
+            currentBlocks[slotIndex] = JSON.parse(JSON.stringify(BLOCK_SHAPES[0]));
+            // console.warn(`Critical: No fallback block (1x1) found. Using first block shape for slot ${slotIndex}.`);
         }
     }
 }
 
-// Fungsi generateNewBlocks kini hanya mengisi slot yang kosong
 function generateNewBlocks() {
+    // console.log("Attempting to generate new blocks."); // Debug log
     for (let i = 0; i < currentBlocks.length; i++) {
         if (currentBlocks[i] === null) {
             fillBlockSlot(i);
         }
     }
     drawBlockPreview();
-    checkGameOver(); // Selalu periksa game over setelah mengisi blok baru
+    checkGameOver();
 }
 
 function canBlockBePlacedAnywhere(block) {
-    // Iterasi semua kemungkinan posisi awal di grid
+    if (!block) return false; // Perbaikan: Pastikan blok bukan null
+    // console.log("Checking if block can be placed anywhere:", block); // Debug log
     for (let r = 0; r < GRID_ROWS; r++) {
         for (let c = 0; c < GRID_COLS; c++) {
-            // Coba tempatkan blok dengan pusatnya di (r, c)
-            const blockRows = block.shape.length;
-            const blockCols = block.shape[0].length;
-            const startRow = r - Math.floor(blockRows / 2);
-            const startCol = c - Math.floor(blockCols / 2);
-
-            if (canPlaceBlock(block, startRow, startCol)) {
+            // Coba tempatkan blok dengan sudut kiri atasnya di (r, c)
+            // Ini mungkin lebih akurat untuk memeriksa penempatan dibandingkan dengan pusatnya.
+            // Kita akan menyesuaikan logika highlight/placement untuk pusat di drag function.
+            if (canPlaceBlock(block, r, c)) {
+                // console.log(`Block can be placed at (${r}, ${c})`); // Debug log
                 return true;
             }
         }
     }
+    // console.log("Block cannot be placed anywhere."); // Debug log
     return false;
 }
 
@@ -338,6 +326,8 @@ function placeBlock(block, startRow, startCol) {
 }
 
 function canPlaceBlock(block, startRow, startCol) {
+    if (!block || !block.shape) return false; // Perbaikan: Pastikan blok dan shapenya valid
+
     for (let r = 0; r < block.shape.length; r++) {
         for (let c = 0; c < block.shape[r].length; c++) {
             if (block.shape[r][c] === 1) {
@@ -345,9 +335,9 @@ function canPlaceBlock(block, startRow, startCol) {
                 const targetCol = startCol + c;
 
                 if (
-                    targetRow < 0 || targetRow >= GRID_ROWS || // Cek batas baris
-                    targetCol < 0 || targetCol >= GRID_COLS || // Cek batas kolom
-                    gameGrid[targetRow][targetCol] !== 0 // Cek apakah sudah terisi
+                    targetRow < 0 || targetRow >= GRID_ROWS ||
+                    targetCol < 0 || targetCol >= GRID_COLS ||
+                    gameGrid[targetRow][targetCol] !== 0
                 ) {
                     return false;
                 }
@@ -361,7 +351,6 @@ function clearLines() {
     let cellsToClear = [];
     let linesClearedCount = 0;
 
-    // Check full rows
     for (let r = 0; r < GRID_ROWS; r++) {
         let isRowFull = true;
         for (let c = 0; c < GRID_COLS; c++) {
@@ -378,7 +367,6 @@ function clearLines() {
         }
     }
 
-    // Check full columns
     for (let c = 0; c < GRID_COLS; c++) {
         let isColFull = true;
         for (let r = 0; r < GRID_ROWS; r++) {
@@ -390,7 +378,6 @@ function clearLines() {
         if (isColFull) {
             linesClearedCount++;
             for (let r = 0; r < GRID_ROWS; r++) {
-                // Hindari menambahkan duplikat jika sel sudah menjadi bagian dari baris yang dihapus
                 if (!cellsToClear.some(cell => cell.r === r && cell.c === c)) {
                     cellsToClear.push({ r: r, c: c });
                 }
@@ -401,35 +388,30 @@ function clearLines() {
     const uniqueCellsToClear = cellsToClear; 
     
     if (uniqueCellsToClear.length > 0) {
-        // Animasi ledakan
         uniqueCellsToClear.forEach(cell => {
             const cellElement = gameGridElement.children[cell.r * GRID_COLS + cell.c];
-            if (cellElement) { // Pastikan elemen ada
+            if (cellElement) {
                 createExplosionEffect(cellElement);
-                // Tambahkan transisi sementara untuk efek visual sebelum dihapus
                 cellElement.style.transition = 'background-color 0.2s ease-out';
-                cellElement.style.backgroundColor = '#ecf0f1'; // Warna putih sesaat
+                cellElement.style.backgroundColor = '#ecf0f1';
             }
         });
 
         setTimeout(() => {
-            // Hapus blok setelah animasi
             uniqueCellsToClear.forEach(cell => {
                 gameGrid[cell.r][cell.c] = 0;
                 const cellElement = gameGridElement.children[cell.r * GRID_COLS + cell.c];
-                if (cellElement) { // Pastikan elemen ada
-                    cellElement.style.transition = ''; // Hapus transisi inline
-                    cellElement.style.backgroundColor = ''; // Reset warna background
+                if (cellElement) {
+                    cellElement.style.transition = '';
+                    cellElement.style.backgroundColor = '';
                 }
             });
-            updateGridDisplay(); // Perbarui tampilan grid
+            updateGridDisplay();
 
-            // Perhitungan Skor
-            score += uniqueCellsToClear.length * 10; // Skor dasar per sel
-            if (linesClearedCount > 1) { // Bonus untuk clearing multiple lines/columns
-                score += (linesClearedCount * 10) * linesClearedCount; // Bonus kuadratik
+            score += uniqueCellsToClear.length * 10;
+            if (linesClearedCount > 1) {
+                score += (linesClearedCount * 10) * linesClearedCount;
             }
-            // Bonus untuk full clear
             let allCellsEmpty = true;
             for(let r=0; r<GRID_ROWS; r++){
                 for(let c=0; c<GRID_COLS; c++){
@@ -442,23 +424,21 @@ function clearLines() {
             }
 
             if (allCellsEmpty) { 
-                score += 1000; // Contoh bonus
-                // Tampilkan pesan bonus sesaat
+                score += 1000;
                 const originalOverlayMessage = overlayMessage.textContent;
                 overlayMessage.textContent = 'FULL CLEAR BONUS!'; 
-                gameOverlay.classList.remove('hidden'); // Tampilkan overlay sebentar
+                gameOverlay.classList.remove('hidden');
                 setTimeout(() => {
-                    gameOverlay.classList.add('hidden'); // Sembunyikan lagi
-                    overlayMessage.textContent = originalOverlayMessage; // Kembalikan pesan default
+                    gameOverlay.classList.add('hidden');
+                    overlayMessage.textContent = originalOverlayMessage;
                 }, 1500); 
             }
 
             updateScoreDisplay();
-            changeBackgroundColor(); // Ganti background setelah clear
+            changeBackgroundColor();
             generateNewBlocks(); // Selalu coba generate blok baru setelah clear
-        }, 300); // Durasi animasi ledakan
+        }, 300);
     } else {
-        // Jika tidak ada baris/kolom yang clear, periksa apakah perlu generate blok baru
         generateNewBlocks(); // Selalu coba generate blok baru
     }
 }
@@ -469,38 +449,34 @@ function updateScoreDisplay() {
 
 function createExplosionEffect(cellElement) {
     const rect = cellElement.getBoundingClientRect();
-    const numParticles = 5 + Math.floor(Math.random() * 5); // 5-9 partikel
+    const numParticles = 5 + Math.floor(Math.random() * 5);
 
     for (let i = 0; i < numParticles; i++) {
         const particle = document.createElement('div');
         particle.classList.add('explosion-particle');
-        document.body.appendChild(particle); // Append to body to animate freely
+        document.body.appendChild(particle);
 
         const startX = rect.left + rect.width / 2;
         const startY = rect.top + rect.height / 2;
 
         particle.style.left = `${startX}px`;
         particle.style.top = `${startY}px`;
-        particle.style.width = particle.style.height = `${Math.random() * 8 + 4}px`; // Ukuran partikel
+        particle.style.width = particle.style.height = `${Math.random() * 8 + 4}px`;
 
         const angle = Math.random() * 2 * Math.PI;
-        const distance = Math.random() * 50 + 20; // Jarak ledakan
+        const distance = Math.random() * 50 + 20;
         const endX = startX + distance * Math.cos(angle);
         const endY = startY + distance * Math.sin(angle);
 
         particle.style.setProperty('--x', `${endX - startX}px`);
         particle.style.setProperty('--y', `${endY - startY}px`);
 
-        // Hapus partikel setelah animasi selesai
         particle.addEventListener('animationend', () => particle.remove());
     }
 }
 
 function checkGameOver() {
-    // Kondisi Game Over: Semua slot blok terisi DAN tidak ada satupun blok yang tersedia yang bisa ditempatkan
     const allSlotsFilled = currentBlocks.every(block => block !== null);
-    
-    // Periksa apakah ada blok di `currentBlocks` yang bisa ditempatkan
     const hasPlayableBlocks = currentBlocks.some(block => block && canBlockBePlacedAnywhere(block));
 
     if (allSlotsFilled && !hasPlayableBlocks) {
@@ -509,15 +485,13 @@ function checkGameOver() {
         return; 
     }
 
-    // Jika masih ada blok yang bisa ditempatkan, atau masih ada slot kosong (yang akan segera diisi), game belum over
     if (hasPlayableBlocks || !allSlotsFilled) {
-        gameOverlay.classList.add('hidden'); // Pastikan overlay tersembunyi
+        gameOverlay.classList.add('hidden');
     }
 }
 
-
 function showGameOver() {
-    score = 0; // Skor direset saat game berakhir
+    score = 0;
     updateScoreDisplay();
     gameOverlay.classList.remove('hidden');
 }
@@ -539,7 +513,6 @@ function getEventCoords(event) {
 function getGridCellAtCoords(x, y) {
     const gridRect = gameGridElement.getBoundingClientRect();
 
-    // Pastikan koordinat ada di dalam grid
     if (x < gridRect.left || x >= gridRect.right ||
         y < gridRect.top || y >= gridRect.bottom) {
         return null;
@@ -555,7 +528,6 @@ function getGridCellAtCoords(x, y) {
 }
 
 function startDrag(event) {
-    // Hanya bisa drag jika game tidak over dan overlay tersembunyi
     if (!gameOverlay.classList.contains('hidden')) { 
         return;
     }
@@ -565,41 +537,36 @@ function startDrag(event) {
     draggedBlockIndex = parseInt(slot.dataset.blockIndex);
     draggedBlock = currentBlocks[draggedBlockIndex];
 
-    if (!draggedBlock) { // Tidak ada blok di slot ini
+    if (!draggedBlock) {
         isDragging = false;
         return;
     }
 
-    slot.classList.add('dragging'); // Sembunyikan slot asli secara visual
+    slot.classList.add('dragging');
 
-    // Buat ghost element
     ghostElement = createGhostElement(draggedBlock);
     document.body.appendChild(ghostElement);
 
     const coords = getEventCoords(event);
-    // Posisikan ghost awal di tengah kursor/jari
     ghostElement.style.left = `${coords.x - ghostElement.offsetWidth / 2}px`;
     ghostElement.style.top = `${coords.y - ghostElement.offsetHeight / 2}px`;
 
-    // Tambahkan event listener global
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', dragEnd);
-    document.addEventListener('touchmove', drag, { passive: false }); // passive: false untuk preventDefault
+    document.addEventListener('touchmove', drag, { passive: false });
     document.addEventListener('touchend', dragEnd);
-    document.addEventListener('touchcancel', dragEnd); // Untuk kasus sentuhan dibatalkan
+    document.addEventListener('touchcancel', dragEnd);
 }
 
 function drag(event) {
     if (!isDragging || !ghostElement || !draggedBlock) return;
 
-    // Penting: Mencegah scrolling dan zoom pada perangkat sentuh
     if (event.type === 'touchmove') {
         event.preventDefault(); 
     }
 
     const coords = getEventCoords(event);
     
-    // Posisikan ghost mengikuti jari dengan pusatnya
     ghostElement.style.left = `${coords.x - ghostElement.offsetWidth / 2}px`;
     ghostElement.style.top = `${coords.y - ghostElement.offsetHeight / 2}px`;
 
@@ -608,12 +575,18 @@ function drag(event) {
     if (targetCellInfo) {
         const blockRows = draggedBlock.shape.length;
         const blockCols = draggedBlock.shape[0].length;
-        // Hitung startRow dan startCol agar pusat blok berada di sel target
-        const startRow = targetCellInfo.row - Math.floor(blockRows / 2);
-        const startCol = targetCellInfo.col - Math.floor(blockCols / 2);
+        
+        // Menyesuaikan startRow dan startCol agar pusat blok berada di bawah jari
+        // Offset tambahan untuk memusatkan secara visual jika blok tidak simetris
+        let centerOffsetRow = Math.floor(blockRows / 2);
+        let centerOffsetCol = Math.floor(blockCols / 2);
+
+        const startRow = targetCellInfo.row - centerOffsetRow;
+        const startCol = targetCellInfo.col - centerOffsetCol;
+        
         highlightCells(draggedBlock, startRow, startCol);
     } else {
-        clearHighlights(); // Hapus highlight jika di luar grid
+        clearHighlights();
     }
 }
 
@@ -628,7 +601,6 @@ function dragEnd(event) {
         ghostElement = null;
     }
     
-    // Pastikan kelas 'dragging' dihapus dari slot asal
     if (blockPreviewSlots[draggedBlockIndex]) {
         blockPreviewSlots[draggedBlockIndex].classList.remove('dragging');
     }
@@ -639,42 +611,42 @@ function dragEnd(event) {
     if (targetCellInfo && draggedBlock) {
         const blockRows = draggedBlock.shape.length;
         const blockCols = draggedBlock.shape[0].length;
-        const startRow = targetCellInfo.row - Math.floor(blockRows / 2);
-        const startCol = targetCellInfo.col - Math.floor(blockCols / 2);
+        
+        // Menggunakan logika pemusatan yang sama seperti di drag()
+        let centerOffsetRow = Math.floor(blockRows / 2);
+        let centerOffsetCol = Math.floor(blockCols / 2);
+        const startRow = targetCellInfo.row - centerOffsetRow;
+        const startCol = targetCellInfo.col - centerOffsetCol;
 
         if (placeBlock(draggedBlock, startRow, startCol)) {
-            currentBlocks[draggedBlockIndex] = null; // Hapus blok dari slot
+            currentBlocks[draggedBlockIndex] = null;
             updateGridDisplay();
             fillBlockSlot(draggedBlockIndex); // Langsung isi slot yang kosong
-            drawBlockPreview(); // Gambar ulang preview
-            clearLines(); // Periksa dan hapus baris/kolom.
+            drawBlockPreview();
+            clearLines();
         } else {
-            // Jika tidak bisa ditempatkan, kembalikan blok ke slot asalnya
-            if (draggedBlockIndex !== -1) { // Hanya kembalikan jika indeks valid
+            if (draggedBlockIndex !== -1) {
                 currentBlocks[draggedBlockIndex] = draggedBlock;
-                drawBlockPreview(); // Gambar ulang slot agar blok muncul kembali
+                drawBlockPreview();
             }
             console.log("Penempatan blok gagal. Kembalikan blok.");
-            checkGameOver(); // Periksa game over jika ada blok yang tidak bisa ditempatkan
+            checkGameOver();
         }
     } else {
-        // Jika dilepaskan di luar grid, kembalikan blok ke slot asalnya
-        if (draggedBlockIndex !== -1) { // Hanya kembalikan jika indeks valid
+        if (draggedBlockIndex !== -1) {
             currentBlocks[draggedBlockIndex] = draggedBlock;
-            drawBlockPreview(); // Gambar ulang slot agar blok muncul kembali
+            drawBlockPreview();
         }
         console.log("Blok dilepaskan di luar grid. Kembalikan blok.");
-        checkGameOver(); // Periksa game over jika blok tidak ditempatkan
+        checkGameOver();
     }
 
-    // Hapus event listener global
     document.removeEventListener('mousemove', drag);
     document.removeEventListener('mouseup', dragEnd);
     document.removeEventListener('touchmove', drag);
     document.removeEventListener('touchend', dragEnd);
     document.removeEventListener('touchcancel', dragEnd);
     
-    // Reset variabel dragged
     draggedBlock = null;
     draggedBlockIndex = -1;
 }
