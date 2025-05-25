@@ -1,1078 +1,147 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>UVOBLOCK - Puzzle Pecah Blok</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>UvoBlock Game</title>
     <style>
-        /* CSS RESET */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            /* Memastikan elemen tidak bisa di-highlight atau dipilih oleh pengguna */
-            -webkit-tap-highlight-color: transparent; /* Untuk iOS Safari */
-            -webkit-touch-callout: none; /* Untuk iOS Safari */
-            -webkit-user-select: none; /* Untuk iOS Safari */
-            -khtml-user-select: none; /* Untuk Konqueror */
-            -moz-user-select: none; /* Untuk Firefox */
-            -ms-user-select: none; /* Untuk Internet Explorer/Edge */
-            user-select: none; /* Standar */
-        }
-
-        /* Gaya Umum untuk Mencegah Scroll di HP */
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* **PENTING: Mencegah scroll di body** */
-            touch-action: none; /* **PENTING: Mencegah pan/zoom default pada sentuhan** */
-        }
-
         body {
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #2c3e50; /* Initial dark blue-grey */
-            font-family: 'Press Start 2P', cursive; /* Gaya font pixelated */
-            color: #ecf0f1; /* Off-white */
-            overscroll-behavior: none; /* Mencegah pull-to-refresh */
-            transition: background-color 1s ease-in-out; /* Smooth background transition */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            background-color: #222; /* Darker background for the entire page */
+            color: #eee;
         }
 
         #game-container {
+            flex-grow: 1; /* Allow game container to take available space */
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #1a1a1a; /* Dark background */
-            border: 5px solid #3498db; /* Bright blue border */
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.5) inset; /* Neon glow */
-            padding: 25px;
-            border-radius: 12px;
-            position: relative;
-            max-width: 95%; /* Batasi lebar agar responsif di HP */
-            max-height: 98%; /* Batasi tinggi agar responsif di HP */
-            overflow: hidden; /* Pastikan konten tidak keluar dari container */
-            aspect-ratio: 1 / 1.3; /* Rasio aspek untuk game, agar proporsional */
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #333; /* Darker background for the game area */
+            background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+                              linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+                              linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
         }
 
-        @media (orientation: landscape) and (max-height: 500px) {
-            #game-container {
-                flex-direction: row;
-                justify-content: space-around;
-                aspect-ratio: unset; /* Izinkan lebar dan tinggi fleksibel */
-                width: 98%;
-                height: 95%;
-                padding: 10px; /* Reduced padding for landscape */
-            }
-            #header {
-                flex-direction: column;
-                align-items: center;
-                margin-bottom: 0;
-                margin-right: 15px;
-                padding: 0;
-            }
-            #game-title {
-                margin-bottom: 5px; /* Add some space below title in landscape */
-            }
-            #game-area {
-                flex-direction: row;
-                gap: 15px;
-                flex-grow: unset;
-                height: 100%; /* Ensure game area takes full height */
-            }
-            #game-grid {
-                width: min(calc(9 * 30px + 2 * 3px), 50vh); /* Ukuran grid di landscape */
-                height: min(calc(9 * 30px + 2 * 3px), 50vh);
-                margin-right: 10px; /* Space between grid and preview */
-            }
-            #block-preview {
-                flex-direction: column;
-                padding: 5px; /* Reduced padding for landscape */
-                min-height: unset;
-                min-width: 90px; /* Reduced min-width for slots */
-                height: auto;
-                width: auto;
-                flex-wrap: nowrap; /* Prevent wrapping in landscape */
-            }
-            .block-slot {
-                width: 70px; /* Reduced slot size for landscape */
-                height: 70px;
-            }
-        }
-
-
-        #header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding: 0 10px;
-        }
-
-        #game-title {
-            font-size: 2.8em;
-            color: #e74c3c; /* Bright red */
-            text-shadow: 0 0 12px #e74c3c, 0 0 5px #e74c3c; /* Neon red glow */
-            margin: 0;
-            white-space: nowrap; /* Mencegah teks memecah baris */
-            font-size: clamp(1.2em, 5vw, 2.8em); /* Responsif font size */
-            transition: color 0.5s ease-in-out; /* Smooth color transition for RGB effect */
-        }
-
-        #scoreDisplay {
-            font-size: 1.8em;
-            color: #f1c40f; /* Bright yellow */
-            text-shadow: 0 0 8px #f1c40f;
-            margin: 0;
-            white-space: nowrap;
-            font-size: clamp(1em, 4vw, 1.8em); /* Responsif font size */
-        }
-
-        #game-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px; /* Jarak antara grid dan preview blok */
-            flex-grow: 1; /* Agar mengambil ruang vertikal yang tersedia */
-            justify-content: center; /* Pusatkan konten secara vertikal */
-            width: 100%; /* Pastikan game area mengisi lebar */
-        }
-
-        /* Game Grid */
-        #game-grid {
+        #game-board {
             display: grid;
-            grid-template-columns: repeat(9, 1fr); /* 9x9 grid, 1fr untuk responsif */
-            grid-template-rows: repeat(9, 1fr);
-            border: 3px solid #555;
-            background-color: #333;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
-            border-radius: 5px;
-            overflow: hidden; /* Pastikan sel tidak keluar dari batas */
-            width: min(calc(9 * 40px + 2 * 3px), 95vw); /* Default desktop, max 95vw di mobile */
-            height: min(calc(9 * 40px + 2 * 3px), 95vw); /* Sama dengan lebar untuk kotak */
-            aspect-ratio: 1 / 1; /* Pastikan grid selalu kotak */
+            border: 2px solid #555;
+            background-color: #444;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
         }
 
         .grid-cell {
-            border: 1px solid #444; /* Garis antar sel */
-            background-color: #3d3d3d; /* Warna sel kosong */
+            width: 30px; /* Base size, adjusted by JS for responsiveness */
+            height: 30px; /* Base size, adjusted by JS for responsiveness */
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: #555;
+        }
+
+        .grid-cell.filled {
+            background-color: #888; /* Default filled color */
+        }
+
+        #block-selection {
             display: flex;
             justify-content: center;
-            align-items: center;
-            transition: background-color 0.1s ease-out; /* Animasi saat highlight/invalid */
-            font-size: 0; /* Sembunyikan angka '1' di sel grid */
-        }
-
-        .grid-cell.occupied {
-            background-color: #7f8c8d; /* Default filled block color (should be overridden by color classes) */
-            position: relative; /* Untuk animasi ledakan */
-            overflow: hidden; /* Penting untuk animasi partikel */
-        }
-        
-        /* Warna untuk blok yang sudah di grid */
-        .grid-cell.color-red { background-color: #e74c3c; }
-        .grid-cell.color-blue { background-color: #3498db; }
-        .grid-cell.color-yellow { background-color: #f1c40f; }
-        .grid-cell.color-purple { background-color: #9b59b6; }
-        .grid-cell.color-orange { background-color: #e67e22; }
-        .grid-cell.color-green { background-color: #2ecc71; }
-        .grid-cell.color-cyan { background-color: #00bcd4; } /* Warna tambahan */
-        .grid-cell.color-pink { background-color: #e91e63; } /* Warna tambahan */
-
-
-        /* Block Preview Area */
-        #block-preview {
-            display: flex;
-            gap: 25px;
-            padding: 20px;
-            background-color: #222;
-            border-radius: 10px;
-            min-height: 120px; /* Ruang cukup untuk blok besar */
-            align-items: center;
-            justify-content: center;
-            width: 100%; /* Lebar penuh container */
-            flex-wrap: wrap; /* Agar blok bisa pindah baris di layar kecil */
-        }
-
-        .block-slot {
-            width: 100px; /* Ukuran slot */
-            height: 100px;
-            border: 1px dashed #666;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-            cursor: grab;
-            transition: transform 0.1s ease-out;
-            background-color: #2a2a2a;
-            flex-shrink: 0; /* Mencegah slot mengecil terlalu banyak */
-            touch-action: none; /* Mencegah sentuhan pada slot memicu scroll */
-        }
-
-        .block-slot:hover:not(.dragging):not(:empty) {
-            transform: translateY(-5px); /* Efek hover */
-        }
-
-        .block-slot.dragging {
-            cursor: grabbing;
-            transform: scale(1.05); /* Sedikit membesar saat drag */
-        }
-
-        .block-slot:empty {
-            border: none; /* Hilangkan border jika slot kosong */
-            background-color: transparent;
-        }
-
-        /* Draggable Block Container (for both preview and ghost) */
-        .draggable-block-container {
-            display: grid;
-            /* grid-template-columns diatur oleh JS sesuai bentuk blok */
-            grid-auto-rows: var(--block-piece-size); /* Ukuran potongan blok, dari JS */
-            pointer-events: none; /* Penting untuk drag & drop */
-        }
-
-        .block-piece {
-            width: var(--block-piece-size); /* Ukuran setiap "potongan" blok */
-            height: var(--block-piece-size);
-            border: 1px solid rgba(0,0,0,0.2); /* Garis samar antar potongan */
-            background-color: #ccc; /* Default color, akan di-override */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: rgba(255,255,255,0.7); /* Warna teks di dalam blok */
-        }
-
-        /* Warna untuk block-piece (saat di preview/diseret) */
-        .block-piece.color-red { background-color: #ff6b6b; } /* Lebih terang dari di grid */
-        .block-piece.color-blue { background-color: #6aabff; }
-        .block-piece.color-yellow { background-color: #ffe66d; }
-        .block-piece.color-purple { background-color: #be8eff; }
-        .block-piece.color-orange { background-color: #ff9f43; }
-        .block-piece.color-green { background-color: #6eff6e; }
-        .block-piece.color-cyan { background-color: #79e3f0; }
-        .block-piece.color-pink { background-color: #ff85b3; }
-
-
-        /* Ghost Block (saat diseret) */
-        .ghost {
-            opacity: 0.8;
-            position: fixed; /* Penting agar tidak terpengaruh scroll atau parent */
-            z-index: 9999;
-            /* Transform diatur oleh JS agar mengikuti touch/mouse */
-            transition: opacity 0.1s ease-out;
-            pointer-events: none; /* Biarkan event touch/mouse menembus ghost */
-        }
-
-        /* Highlight dan Invalid Cells */
-        .grid-cell.highlight {
-            background-color: rgba(46, 204, 113, 0.6); /* Hijau transparan */
-            border: 2px solid #2ecc71;
-            box-shadow: 0 0 8px rgba(46, 204, 113, 0.8);
-        }
-
-        .grid-cell.invalid {
-            background-color: rgba(231, 76, 60, 0.6); /* Merah transparan */
-            border: 2px solid #e74c3c;
-            box-shadow: 0 0 8px rgba(231, 76, 60, 0.8);
-        }
-
-        /* Animasi pudar untuk pratinjau penghapusan garis */
-        .grid-cell.即将清除 { /* "即将清除" means "about to clear" */
-            transition: background-color 0.2s ease-out, opacity 0.2s ease-out;
-            background-color: rgba(255, 255, 255, 0.3); /* Warna pudar */
-            opacity: 0.7;
-        }
-
-        /* Overlay Game Over */
-        #game-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #ecf0f1;
-            text-align: center;
-            z-index: 100;
-            border-radius: 12px;
-            transition: opacity 0.3s ease-out;
-        }
-
-        #game-overlay.hidden {
-            opacity: 0;
-            pointer-events: none; /* Agar tidak menghalangi interaksi saat tersembunyi */
-        }
-
-        #overlay-message {
-            font-size: 3em;
-            color: #e74c3c;
-            margin-bottom: 30px;
-            text-shadow: 0 0 18px #e74c3c, 0 0 8px #e74c3c;
-            font-size: clamp(2em, 8vw, 3em); /* Responsif font size */
-        }
-
-        #restartButton {
-            padding: 15px 35px;
-            font-size: 1.6em;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
+            align-items: flex-start; /* Align items to the top to prevent cropping */
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3d3d3d;
             border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .block-preview-container {
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid #555;
+            background-color: #4a4a4a;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            font-size: clamp(1.2em, 6vw, 1.6em); /* Responsif font size */
+            border-radius: 5px;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
-        #restartButton:hover {
-            background-color: #27ae60;
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        .block-preview-container:hover {
+            transform: translateY(-3px);
+            border-color: #aaa;
         }
 
-        #restartButton:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        .block-preview-container.selected {
+            border-color: #00bcd4; /* Highlight selected block */
+            box-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
         }
 
-        /* Animasi Ledakan Blok */
-        .explosion-particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: explode 0.5s forwards ease-out;
-            pointer-events: none;
+        .block-preview {
+            display: grid;
+            background-color: #555;
+            border: 1px solid #777;
         }
 
-        @keyframes explode {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--x), var(--y)) scale(0);
-                opacity: 0;
-            }
+        .block-cell {
+            width: 15px; /* Smaller cells for preview */
+            height: 15px;
+            background-color: #00bcd4; /* Example block color */
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsif untuk ukuran cell dan block piece */
-        @media (max-width: 500px) {
-            #game-container {
-                padding: 15px;
-            }
-            #header {
-                margin-bottom: 15px;
-            }
-            #game-area {
-                gap: 15px;
-            }
-            #game-grid {
-                /* Ukuran grid akan disesuaikan oleh JS berdasarkan ukuran container */
-                border-width: 2px;
-            }
+        #score-display {
+            margin-top: 15px;
+            font-size: 1.5em;
+            color: #00bcd4;
+            text-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
             .grid-cell {
-                border-width: 0.5px;
+                width: calc((100vw - 40px) / 10); /* Adjust dynamically for small screens */
+                height: calc((100vw - 40px) / 10); /* Keep aspect ratio */
+                max-width: 25px; /* Cap size on very small screens */
+                max-height: 25px;
             }
-            #block-preview {
-                padding: 10px;
-                min-height: 90px;
-                gap: 15px;
+
+            #block-selection {
+                flex-direction: row; /* Keep row direction for easier horizontal scrolling if needed */
+                overflow-x: auto; /* Allow horizontal scrolling for blocks if they overflow */
+                justify-content: flex-start; /* Align blocks to start if scrolling */
+                padding-bottom: 10px; /* Add padding to prevent cropping on bottom */
             }
-            .block-slot {
-                width: 80px;
-                height: 80px;
-                padding: 3px;
+
+            .block-preview-container {
+                min-width: 80px; /* Ensure a minimum width for touch targets */
+                min-height: 80px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .block-cell {
+                width: 12px;
+                height: 12px;
             }
         }
     </style>
 </head>
 <body>
     <div id="game-container">
-        <div id="header">
-            <h1 id="game-title">UVOBLOCK</h1>
-            <p id="scoreDisplay">Skor: 0</p>
-        </div>
-        <div id="game-area">
-            <div id="game-grid">
-            </div>
-            <div id="block-preview">
-                <div class="block-slot" id="slot1"></div>
-                <div class="block-slot" id="slot2"></div>
-                <div class="block-slot" id="slot3"></div>
-            </div>
-        </div>
-        
-        <div id="game-overlay" class="hidden">
-            <h2 id="overlay-message">GAME OVER!</h2>
-            <button id="restartButton">Mulai Lagi</button>
-        </div>
+        <h1>UvoBlock Game</h1>
+        <div id="game-board"></div>
+        <div id="block-selection"></div>
+        <div id="score-display">Score: 0</div>
     </div>
-
-    <script>
-        // Mendapatkan referensi elemen DOM
-        const gameGridElement = document.getElementById('game-grid');
-        const scoreDisplay = document.getElementById('scoreDisplay');
-        const blockPreviewSlots = [
-            document.getElementById('slot1'),
-            document.getElementById('slot2'),
-            document.getElementById('slot3')
-        ];
-        const gameOverlay = document.getElementById('game-overlay');
-        const overlayMessage = document.getElementById('overlay-message');
-        const restartButton = document.getElementById('restartButton');
-        const bodyElement = document.body;
-        const gameTitleElement = document.getElementById('game-title');
-
-        // Konstanta Game
-        const GRID_ROWS = 9;
-        const GRID_COLS = 9;
-        let CELL_SIZE = 40; 
-        let BLOCK_PIECE_SIZE = 20;
-
-        // Variabel Game State
-        let gameGrid = []; 
-        let score = 0;
-        let currentBlocks = []; 
-        let draggedBlock = null; 
-        let draggedBlockIndex = -1; 
-        let ghostElement = null; 
-        let currentHighlightCells = []; 
-        let isDragging = false; 
-        let dragOffsetX = 0; 
-        let dragOffsetY = 0;
-
-        const BACKGROUND_COLORS = [
-            '#2c3e50', // Dark blue-grey
-            '#34495e', // Darker blue-grey
-            '#282c34', // Almost black
-            '#4a4a4a', // Dark grey
-            '#1abc9c', // Teal (darker for background)
-            '#9b59b6', // Purple (darker for background)
-            '#e67e22'  // Orange (darker for background)
-        ];
-        let currentBgColorIndex = 0;
-
-        // Warna RGB untuk judul
-        const RGB_COLORS = [
-            '#e74c3c', // Red
-            '#3498db', // Blue
-            '#f1c40f', // Yellow
-            '#9b59b6', // Purple
-            '#2ecc71', // Green
-            '#e67e22', // Orange
-            '#00bcd4', // Cyan
-            '#e91e63'  // Pink
-        ];
-        let currentRGBColorIndex = 0;
-        let rgbInterval;
-
-        // --- Definisi Bentuk Blok ---
-        const BLOCK_SHAPES = [
-            // Single Block
-            { shape: [[1]], color: 'color-red', size: 1 },
-            // 2-Block Shapes
-            { shape: [[1, 1]], color: 'color-blue', size: 2 },
-            { shape: [[1], [1]], color: 'color-yellow', size: 2 },
-            // 3-Block Shapes
-            { shape: [[1, 1, 1]], color: 'color-purple', size: 3 },
-            { shape: [[1], [1], [1]], color: 'color-orange', size: 3 },
-            { shape: [[1, 1], [0, 1]], color: 'color-green', size: 3 }, // L-shape
-            { shape: [[1, 1], [1, 0]], color: 'color-cyan', size: 3 },  // L-shape
-            { shape: [[0, 1], [1, 1]], color: 'color-pink', size: 3 },
-            { shape: [[1, 0], [1, 1]], color: 'color-red', size: 3 },
-            { shape: [[1, 1, 0], [0, 1, 0]], color: 'color-blue', size: 3 }, // T-shape top-left corner
-            { shape: [[0, 1, 0], [1, 1, 0]], color: 'color-yellow', size: 3 }, // T-shape top-right corner
-
-            // 4-Block Shapes
-            { shape: [[1, 1, 1, 1]], color: 'color-purple', size: 4 },
-            { shape: [[1], [1], [1], [1]], color: 'color-orange', size: 4 },
-            { shape: [[1, 1], [1, 1]], color: 'color-green', size: 4 }, // 2x2
-            { shape: [[1, 0], [1, 0], [1, 1]], color: 'color-cyan', size: 4 }, // L-shape 3x2 (large)
-            { shape: [[0, 1], [0, 1], [1, 1]], color: 'color-pink', size: 4 }, // L-shape 3x2 (large)
-            { shape: [[0, 1, 0], [1, 1, 1]], color: 'color-red', size: 4 }, // T-shape
-            { shape: [[1, 1, 0], [0, 1, 1]], color: 'color-blue', size: 4 }, // Z-shape
-            { shape: [[0, 1, 1], [1, 1, 0]], color: 'color-yellow', size: 4 }, // S-shape
-            // 5-Block Shapes
-            { shape: [[1, 1, 1, 1, 1]], color: 'color-purple', size: 5 },
-            { shape: [[1], [1], [1], [1], [1]], color: 'color-orange', size: 5 }
-        ];
-
-        // --- Inisialisasi & Responsifitas Game ---
-
-        function calculateCellSizes() {
-            const gridRect = gameGridElement.getBoundingClientRect();
-            CELL_SIZE = gridRect.width / GRID_COLS;
-            BLOCK_PIECE_SIZE = CELL_SIZE / 2;
-
-            document.documentElement.style.setProperty('--block-piece-size', `${BLOCK_PIECE_SIZE}px`);
-
-            drawBlockPreview();
-            if (ghostElement) {
-                ghostElement.remove();
-                ghostElement = createGhostElement(draggedBlock);
-                document.body.appendChild(ghostElement);
-            }
-        }
-
-        window.addEventListener('resize', () => {
-            // Recalculate sizes on resize
-            calculateCellSizes();
-            // Re-render grid to apply potential cell size changes (though less common for grid itself)
-            updateGridDisplay();
-            // Important: Re-check game over state after resize, as placement possibilities might change
-            checkGameOver();
-        });
-
-
-        function initializeGame() {
-            score = 0;
-            scoreDisplay.textContent = `Skor: ${score}`;
-            gameGrid = Array(GRID_ROWS).fill(0).map(() => Array(GRID_COLS).fill(0));
-
-            gameGridElement.innerHTML = ''; 
-            for (let i = 0; i < GRID_ROWS * GRID_COLS; i++) {
-                const cell = document.createElement('div');
-                cell.classList.add('grid-cell');
-                cell.dataset.index = i;
-                gameGridElement.appendChild(cell);
-            }
-            calculateCellSizes(); 
-            updateGridDisplay();
-            generateNewBlocks(true); 
-            gameOverlay.classList.add('hidden');
-            changeBackgroundColor(); // Set initial background color
-            startRGBEffect(); // Start RGB effect for title
-        }
-
-        // --- Fungsi Rendering dan UI ---
-
-        function updateGridDisplay() {
-            const cells = gameGridElement.children;
-            for (let r = 0; r < GRID_ROWS; r++) {
-                for (let c = 0; c < GRID_COLS; c++) {
-                    const cellIndex = r * GRID_COLS + c;
-                    const cellElement = cells[cellIndex];
-                    cellElement.className = 'grid-cell'; // Reset kelas
-                    
-                    if (gameGrid[r][c] !== 0) {
-                        cellElement.classList.add('occupied');
-                        cellElement.classList.add(gameGrid[r][c]); 
-                    }
-                }
-            }
-        }
-
-        function drawBlockPreview() {
-            blockPreviewSlots.forEach((slot, index) => {
-                slot.innerHTML = '';
-                slot.classList.remove('dragging');
-                if (currentBlocks[index]) {
-                    const blockContainer = document.createElement('div');
-                    blockContainer.classList.add('draggable-block-container');
-                    const blockWidth = currentBlocks[index].shape[0].length;
-                    blockContainer.style.gridTemplateColumns = `repeat(${blockWidth}, 1fr)`; 
-                    
-                    currentBlocks[index].shape.forEach(row => {
-                        row.forEach(cell => {
-                            const piece = document.createElement('div');
-                            if (cell === 1) {
-                                piece.classList.add('block-piece');
-                                piece.classList.add(currentBlocks[index].color);
-                            }
-                            blockContainer.appendChild(piece);
-                        });
-                    });
-                    slot.appendChild(blockContainer);
-                    slot.dataset.blockIndex = index;
-                }
-            });
-        }
-
-        function createGhostElement(block) {
-            if (!block) return null;
-            const ghost = document.createElement('div');
-            ghost.classList.add('draggable-block-container', 'ghost');
-            ghost.style.gridTemplateColumns = `repeat(${block.shape[0].length}, ${BLOCK_PIECE_SIZE}px)`;
-            
-            block.shape.forEach(row => {
-                row.forEach(cell => {
-                    const piece = document.createElement('div');
-                    if (cell === 1) {
-                        piece.classList.add('block-piece');
-                        piece.classList.add(block.color);
-                    }
-                    ghost.appendChild(piece);
-                });
-            });
-            return ghost;
-        }
-
-        function highlightCells(block, startRow, startCol) {
-            clearHighlights();
-            currentHighlightCells = [];
-
-            if (!block) return;
-
-            let isValidPlacement = true;
-            const cellsToHighlight = [];
-
-            block.shape.forEach((row, r) => {
-                row.forEach((cell, c) => {
-                    if (cell === 1) {
-                        const targetRow = startRow + r;
-                        const targetCol = startCol + c;
-
-                        if (
-                            targetRow < 0 || targetRow >= GRID_ROWS ||
-                            targetCol < 0 || targetCol >= GRID_COLS ||
-                            gameGrid[targetRow][targetCol] !== 0
-                        ) {
-                            isValidPlacement = false;
-                        }
-                        cellsToHighlight.push({ r: targetRow, c: targetCol });
-                    }
-                });
-            });
-
-            cellsToHighlight.forEach(pos => {
-                const cellElement = gameGridElement.children[pos.r * GRID_COLS + pos.c];
-                if (cellElement) {
-                    cellElement.classList.add(isValidPlacement ? 'highlight' : 'invalid');
-                    currentHighlightCells.push(cellElement);
-                }
-            });
-        }
-
-        function clearHighlights() {
-            currentHighlightCells.forEach(cell => {
-                cell.classList.remove('highlight', 'invalid');
-            });
-            currentHighlightCells = [];
-        }
-
-        // --- Logika Game ---
-
-        function generateNewBlocks(isInitial = false) {
-            const allSlotsEmpty = currentBlocks.every(block => block === null);
-            if (allSlotsEmpty || isInitial) {
-                currentBlocks = Array(3).fill(null); 
-                let blocksGenerated = 0;
-                let attempts = 0;
-
-                while (blocksGenerated < 3 && attempts < 100) {
-                    const randomIndex = Math.floor(Math.random() * BLOCK_SHAPES.length);
-                    const newBlock = JSON.parse(JSON.stringify(BLOCK_SHAPES[randomIndex]));
-
-                    if (canBlockBePlacedAnywhere(newBlock)) {
-                        const emptySlotIndex = currentBlocks.findIndex(b => b === null);
-                        if (emptySlotIndex !== -1) {
-                            currentBlocks[emptySlotIndex] = newBlock;
-                            blocksGenerated++;
-                        }
-                    }
-                    attempts++;
-                }
-
-                for (let i = 0; i < 3; i++) {
-                    if (currentBlocks[i] === null) {
-                        currentBlocks[i] = JSON.parse(JSON.stringify(BLOCK_SHAPES.find(b => b.size === 1)));
-                    }
-                }
-            }
-            drawBlockPreview();
-            checkGameOver(); // Call checkGameOver after blocks are generated
-        }
-
-        function canBlockBePlacedAnywhere(block) {
-            for (let r = 0; r < GRID_ROWS; r++) {
-                for (let c = 0; c < GRID_COLS; c++) {
-                    if (canPlaceBlock(block, r, c)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        function placeBlock(block, startRow, startCol) {
-            if (!canPlaceBlock(block, startRow, startCol)) {
-                return false;
-            }
-
-            block.shape.forEach((row, r) => {
-                row.forEach((cell, c) => {
-                    if (cell === 1) {
-                        gameGrid[startRow + r][startCol + c] = block.color;
-                    }
-                });
-            });
-            return true;
-        }
-
-        function canPlaceBlock(block, startRow, startCol) {
-            let isValid = true;
-            for (let r = 0; r < block.shape.length; r++) {
-                for (let c = 0; c < block.shape[r].length; c++) {
-                    if (block.shape[r][c] === 1) {
-                        const targetRow = startRow + r;
-                        const targetCol = startCol + c;
-
-                        if (
-                            targetRow < 0 || targetRow >= GRID_ROWS ||
-                            targetCol < 0 || targetCol >= GRID_COLS ||
-                            gameGrid[targetRow][targetCol] !== 0
-                        ) {
-                            isValid = false;
-                            break;
-                        }
-                    }
-                }
-                if (!isValid) break;
-            }
-            return isValid;
-        }
-
-        // Fungsi untuk mendapatkan sel-sel yang akan dihapus jika blok ditempatkan
-        function getCellsToClear(tempGrid) {
-            let cellsToClear = [];
-
-            // Check full rows
-            for (let r = 0; r < GRID_ROWS; r++) {
-                let isRowFull = true;
-                for (let c = 0; c < GRID_COLS; c++) {
-                    if (tempGrid[r][c] === 0) {
-                        isRowFull = false;
-                        break;
-                    }
-                }
-                if (isRowFull) {
-                    for (let c = 0; c < GRID_COLS; c++) {
-                        cellsToClear.push({ r: r, c: c });
-                    }
-                }
-            }
-
-            // Check full columns
-            for (let c = 0; c < GRID_COLS; c++) {
-                let isColFull = true;
-                for (let r = 0; r < GRID_ROWS; r++) {
-                    if (tempGrid[r][c] === 0) {
-                        isColFull = false;
-                        break;
-                    }
-                }
-                if (isColFull) {
-                    for (let r = 0; r < GRID_ROWS; r++) {
-                        // Avoid adding duplicates if cell is already part of a cleared row
-                        if (!cellsToClear.some(cell => cell.r === r && cell.c === c)) {
-                            cellsToClear.push({ r: r, c: c });
-                        }
-                    }
-                }
-            }
-            return cellsToClear;
-        }
-
-        function clearLines() {
-            let linesClearedCount = 0;
-            let cellsToClear = getCellsToClear(gameGrid);
-            
-            if (cellsToClear.length > 0) {
-                // Apply 'segera-hapus' class for fade effect
-                cellsToClear.forEach(cell => {
-                    const cellElement = gameGridElement.children[cell.r * GRID_COLS + cell.c];
-                    cellElement.classList.add('即将清除');
-                });
-
-                setTimeout(() => {
-                    cellsToClear.forEach(cell => {
-                        createExplosionEffect(gameGridElement.children[cell.r * GRID_COLS + cell.c]);
-                        gameGrid[cell.r][cell.c] = 0;
-                    });
-                    updateGridDisplay();
-
-                    // Recalculate unique cells for score (if overlapping lines/cols)
-                    // This was already handled in previous version, just ensuring.
-                    let uniqueCellsCleared = cellsToClear.length; // Simplified, assuming getCellsToClear already returns unique
-
-                    score += uniqueCellsCleared * 10; 
-                    
-                    // Count actual lines/columns cleared for bonus
-                    let clearedRows = new Set(cellsToClear.map(c => c.r)).size;
-                    let clearedCols = new Set(cellsToClear.map(c => c.c)).size;
-                    linesClearedCount = clearedRows + clearedCols; // Total lines/columns affected
-
-                    if (linesClearedCount > 1) { 
-                        score += (linesClearedCount * 10) * linesClearedCount; 
-                    }
-                    
-                    const isGridCompletelyEmpty = gameGrid.every(row => row.every(cell => cell === 0));
-                    if (isGridCompletelyEmpty && uniqueCellsCleared > 0) {
-                        score += 500; 
-                        overlayMessage.textContent = 'GRID CLEARED! BONUS!';
-                        gameOverlay.classList.remove('hidden');
-                        setTimeout(() => gameOverlay.classList.add('hidden'), 1500); 
-                    }
-                    scoreDisplay.textContent = `Skor: ${score}`;
-                    
-                    checkIfAllBlocksPlaced();
-                    changeBackgroundColor(); 
-                }, 300); // Wait for fade animation
-            } else {
-                checkIfAllBlocksPlaced();
-            }
-        }
-
-        function checkIfAllBlocksPlaced() {
-            if (currentBlocks.every(b => b === null)) {
-                generateNewBlocks();
-            } else {
-                checkGameOver();
-            }
-        }
-
-        function checkGameOver() {
-            const canAnyBlockBePlaced = currentBlocks.some(block => {
-                if (!block) return false;
-                return canBlockBePlacedAnywhere(block);
-            });
-
-            if (!canAnyBlockBePlaced && currentBlocks.some(b => b !== null)) {
-                endGame('GAME OVER! Tidak ada ruang untuk blok!');
-            }
-        }
-
-        function endGame(message) {
-            overlayMessage.textContent = message;
-            gameOverlay.classList.remove('hidden');
-            score = 0; 
-            scoreDisplay.textContent = `Skor: ${score}`;
-            clearInterval(rgbInterval); // Stop RGB effect on game over
-        }
-
-        function createExplosionEffect(cellElement) {
-            const rect = cellElement.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-
-            for (let i = 0; i < 10; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('explosion-particle');
-                document.body.appendChild(particle);
-
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * (CELL_SIZE * 1.5);
-                const endX = centerX + Math.cos(angle) * distance - (particle.offsetWidth / 2);
-                const endY = centerY + Math.sin(angle) * distance - (particle.offsetHeight / 2);
-
-                particle.style.left = `${centerX - (particle.offsetWidth / 2)}px`;
-                particle.style.top = `${centerY - (particle.offsetHeight / 2)}px`;
-                particle.style.width = `${Math.random() * (CELL_SIZE / 4) + 2}px`;
-                particle.style.height = particle.style.width;
-                particle.style.setProperty('--x', `${endX - (centerX - particle.offsetWidth / 2)}px`);
-                particle.style.setProperty('--y', `${endY - (centerY - particle.offsetHeight / 2)}px`);
-                particle.style.backgroundColor = cellElement.style.backgroundColor;
-
-                particle.addEventListener('animationend', () => {
-                    particle.remove();
-                });
-            }
-        }
-
-        function changeBackgroundColor() {
-            currentBgColorIndex = (currentBgColorIndex + 1) % BACKGROUND_COLORS.length;
-            bodyElement.style.backgroundColor = BACKGROUND_COLORS[currentBgColorIndex];
-        }
-
-        function startRGBEffect() {
-            clearInterval(rgbInterval); // Clear any existing interval
-            rgbInterval = setInterval(() => {
-                currentRGBColorIndex = (currentRGBColorIndex + 1) % RGB_COLORS.length;
-                gameTitleElement.style.color = RGB_COLORS[currentRGBColorIndex];
-                gameTitleElement.style.textShadow = `0 0 12px ${RGB_COLORS[currentRGBColorIndex]}, 0 0 5px ${RGB_COLORS[currentRGBColorIndex]}`;
-            }, 1000); // Change color every 1 second
-        }
-
-
-        // --- Event Listeners untuk Drag & Drop (Touch & Mouse) ---
-
-        function getCoords(event) {
-            if (event.touches && event.touches.length > 0) {
-                return { x: event.touches[0].clientX, y: event.touches[0].clientY };
-            }
-            return { x: event.clientX, y: event.clientY };
-        }
-
-        blockPreviewSlots.forEach(slot => {
-            slot.addEventListener('touchstart', handleStart, { passive: false });
-            slot.addEventListener('mousedown', handleStart);
-        });
-
-        document.addEventListener('touchmove', handleMove, { passive: false });
-        document.addEventListener('mousemove', handleMove);
-
-        document.addEventListener('touchend', handleEnd);
-        document.addEventListener('mouseup', handleEnd);
-        document.addEventListener('touchcancel', handleEnd);
-
-        function handleStart(event) {
-            if (event.button === 2) return; 
-            event.preventDefault(); 
-
-            const slot = event.currentTarget;
-            if (!slot.dataset.blockIndex) return;
-
-            draggedBlockIndex = parseInt(slot.dataset.blockIndex);
-            draggedBlock = currentBlocks[draggedBlockIndex];
-
-            if (!draggedBlock) return;
-
-            isDragging = true;
-            slot.classList.add('dragging');
-
-            ghostElement = createGhostElement(draggedBlock);
-            document.body.appendChild(ghostElement);
-
-            const coords = getCoords(event);
-            const blockRect = slot.getBoundingClientRect();
-
-            // Calculate offset to center the ghost on the touch/mouse point
-            const blockWidthPx = draggedBlock.shape[0].length * BLOCK_PIECE_SIZE;
-            const blockHeightPx = draggedBlock.shape.length * BLOCK_PIECE_SIZE;
-            
-            dragOffsetX = blockWidthPx / 2;
-            dragOffsetY = blockHeightPx / 2;
-
-            updateGhostPosition(coords.x, coords.y);
-        }
-
-        function handleMove(event) {
-            if (!isDragging || !ghostElement) return;
-            event.preventDefault(); 
-
-            const coords = getCoords(event);
-            updateGhostPosition(coords.x, coords.y);
-            
-            const gridRect = gameGridElement.getBoundingClientRect();
-            
-            // Adjust coordinates to be relative to the grid top-left, considering ghost's center
-            const relativeX = coords.x - dragOffsetX - gridRect.left;
-            const relativeY = coords.y - dragOffsetY - gridRect.top;
-
-            const hoveredCol = Math.floor(relativeX / CELL_SIZE);
-            const hoveredRow = Math.floor(relativeY / CELL_SIZE);
-
-            if (hoveredRow >= 0 && hoveredRow < GRID_ROWS && hoveredCol >= 0 && hoveredCol < GRID_COLS) {
-                highlightCells(draggedBlock, hoveredRow, hoveredCol);
-
-                // --- NEW: Animasi pudar garis sebelum dihapus ---
-                // Buat temporary grid untuk simulasi penempatan
-                let tempGrid = JSON.parse(JSON.stringify(gameGrid));
-                if (canPlaceBlock(draggedBlock, hoveredRow, hoveredCol)) {
-                    draggedBlock.shape.forEach((row, r) => {
-                        row.forEach((cell, c) => {
-                            if (cell === 1) {
-                                tempGrid[hoveredRow + r][hoveredCol + c] = draggedBlock.color;
-                            }
-                        });
-                    });
-
-                    const cellsToHighlightForClear = getCellsToClear(tempGrid);
-                    const cells = gameGridElement.children;
-                    for (let r = 0; r < GRID_ROWS; r++) {
-                        for (let c = 0; c < GRID_COLS; c++) {
-                            const cellElement = cells[r * GRID_COLS + c];
-                            // Remove existing clear highlight first
-                            cellElement.classList.remove('即将清除'); 
-                            if (gameGrid[r][c] !== 0 && cellsToHighlightForClear.some(pos => pos.r === r && pos.c === c)) {
-                                cellElement.classList.add('即将清除');
-                            }
-                        }
-                    }
-                } else {
-                    // If placement is invalid, remove any existing clear highlights
-                    const cells = gameGridElement.children;
-                    for (let i = 0; i < cells.length; i++) {
-                        cells[i].classList.remove('即将清除');
-                    }
-                }
-                // --- END NEW ---
-            } else {
-                clearHighlights();
-                // If not hovering over grid, remove any existing clear highlights
-                const cells = gameGridElement.children;
-                for (let i = 0; i < cells.length; i++) {
-                    cells[i].classList.remove('即将清除');
-                }
-            }
-        }
-
-        function updateGhostPosition(clientX, clientY) {
-            ghostElement.style.left = `${clientX - dragOffsetX}px`;
-            ghostElement.style.top = `${clientY - dragOffsetY}px`;
-        }
-
-        function handleEnd(event) {
-            if (!isDragging) return;
-            isDragging = false;
-            
-            const currentSlot = blockPreviewSlots[draggedBlockIndex];
-            if (currentSlot) {
-                currentSlot.classList.remove('dragging');
-            }
-
-            if (ghostElement) {
-                ghostElement.remove();
-                ghostElement = null;
-            }
-            clearHighlights();
-
-            // Clear any 'segera-hapus' classes
-            const cells = gameGridElement.children;
-            for (let i = 0; i < cells.length; i++) {
-                cells[i].classList.remove('即将清除');
-            }
-
-
-            const coords = getCoords(event);
-            const gridRect = gameGridElement.getBoundingClientRect();
-
-            // Adjust coordinates to be relative to the grid top-left, considering ghost's center
-            const relativeX = coords.x - dragOffsetX - gridRect.left;
-            const relativeY = coords.y - dragOffsetY - gridRect.top;
-
-            const dropCol = Math.floor(relativeX / CELL_SIZE);
-            const dropRow = Math.floor(relativeY / CELL_SIZE);
-            
-            if (draggedBlock && dropRow >= 0 && dropRow < GRID_ROWS && dropCol >= 0 && dropCol < GRID_COLS) {
-                if (placeBlock(draggedBlock, dropRow, dropCol)) {
-                    score += draggedBlock.size; 
-                    scoreDisplay.textContent = `Skor: ${score}`;
-                    currentBlocks[draggedBlockIndex] = null; 
-                    updateGridDisplay();
-                    drawBlockPreview(); 
-                    clearLines(); 
-                }
-            }
-            draggedBlock = null;
-            draggedBlockIndex = -1;
-        }
-
-        // --- Event Listener untuk Restart Button ---
-        restartButton.addEventListener('click', initializeGame);
-
-        // --- Inisialisasi Pertama Kali ---
-        initializeGame();
-
-    </script>
+    <script src="uvoblock.js"></script>
 </body>
 </html>
