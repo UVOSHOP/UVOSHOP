@@ -81,7 +81,7 @@ Proyek ini menggunakan **MIT License**.
 
 [![Kunjungi UVO AI](https://img.shields.io/badge/%F0%9F%9A%80%20Coba%20UVO%20AI%20Sekarang-purple?style=for-the-badge)](https://uvoshop.github.io/uvoAI/)
 
-**UVO AI** adalah sistem kecerdasan buatan untuk menghasilkan gambar dari teks (text-to-image). Platform ini memungkinkan pengguna menciptakan visual berkualitas tinggi hanya dengan mendeskripsikan ide mereka.
+**UVO AI** adalah sistem kecerdasan buatan berbasis chat.
 
 ---
 
@@ -93,16 +93,14 @@ Proyek ini menggunakan **MIT License**.
 
 ## 🎨 Fitur Unggulan
 
-- ✍️ Input teks, hasil gambar AI.
-- 🧠 Didukung oleh teknologi text-to-image terkini.
-- 🐱 Maskot karakter: **Oyen**, si kucing oren petualang.
+- ✍️ Input teks.
 - 🔄 Mudah digunakan untuk pemula maupun kreator profesional.
 - ☁️ Berjalan langsung di browser tanpa perlu install.
 
 ---
 
 ## 👨‍💻 Developer
-
+ADITdeveloper
 <p align="center">
   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUE7LesOTqq1Fh8jzi8BFXz314fWtzjUT0tEQGhQQKA9v7zyg3zpFOd3c34O6NmzKJSXFUntQURIralFe3XtGDxJ6GdJFuUH3Xp0M768_4XvG-AV43tUrbsdVMGxz7lqkbj63r30FeYColmR5yg0FpeO6UqZ4EScg7tPIiBuZC5DsQlPmy2a_MspUurqSC/s16000/ADITdeveloper.png" width="160" alt="Developer">
 </p>
@@ -111,8 +109,23 @@ Proyek ini menggunakan **MIT License**.
 
 ## 📄 Lisensi
 
-Proyek ini menggunakan **MIT License**.  
-Silakan digunakan dan dikembangkan dengan menyertakan kredit yang sesuai.
+Proyek ini menggunakan **All Rights Reserved**.  
+
+Copyright © 2025 ADITdeveloper
+
+All rights reserved.
+
+This project and all associated files are the intellectual property of ADITdeveloper.
+
+You are **not allowed** to:
+- Download or copy any part of this project.
+- Modify or redistribute the source code.
+- Use any component of the project for commercial or personal purposes.
+
+Any unauthorized use will be considered a violation of intellectual property rights and may be subject to legal action.
+
+If you wish to use or collaborate on this project, please contact the owner at: adit.gam77@gmail.com
+
 
 ---
 
