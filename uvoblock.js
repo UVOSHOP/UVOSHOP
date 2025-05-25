@@ -121,7 +121,9 @@ function initializeGame() {
     updateGridDisplay();
     generateNewBlocks(true); // Hasilkan blok baru untuk awal game
     gameOverlay.classList.add('hidden'); // Sembunyikan overlay game over
-    restartButton.addEventListener('click', initializeGame); // Event listener untuk tombol restart
+    // Pastikan event listener hanya ditambahkan sekali
+    restartButton.removeEventListener('click', initializeGame); 
+    restartButton.addEventListener('click', initializeGame); 
     changeBackgroundColor(); // Set background color awal
 }
 
@@ -262,19 +264,19 @@ function generateNewBlocks(isInitial = false) {
             const randomIndex = Math.floor(Math.random() * BLOCK_SHAPES.length);
             const newBlock = JSON.parse(JSON.stringify(BLOCK_SHAPES[randomIndex])); // Deep copy
 
-            // Pastikan blok baru bisa ditempatkan di grid
-            if (canBlockBePlacedAnywhere(newBlock)) {
+            // Pastikan blok baru bisa ditempatkan di grid (opsional, bisa dinonaktifkan untuk kesulitan lebih tinggi)
+            // if (canBlockBePlacedAnywhere(newBlock)) {
                 const emptySlotIndex = currentBlocks.findIndex(b => b === null);
                 if (emptySlotIndex !== -1) {
                     currentBlocks[emptySlotIndex] = newBlock;
                     blocksGenerated++;
                     blocksInCurrentSet++; // Tambahkan ke counter blok
                 }
-            }
+            // }
             attempts++;
         }
 
-        // Fallback: Jika ada slot yang kosong setelah mencoba menghasilkan blok yang bisa ditempatkan,
+        // Fallback: Jika ada slot yang kosong setelah mencoba menghasilkan blok,
         // isi dengan blok 1x1 atau blok kecil lainnya yang pasti bisa ditempatkan.
         for (let i = 0; i < 3; i++) {
             if (currentBlocks[i] === null) {
@@ -291,7 +293,7 @@ function generateNewBlocks(isInitial = false) {
         }
     }
     drawBlockPreview();
-    checkGameOver(); // Periksa game over setelah menghasilkan blok baru
+    // checkGameOver() akan dipanggil setelah blok diletakkan atau garis dibersihkan
 }
 
 function canBlockBePlacedAnywhere(block) {
@@ -389,10 +391,14 @@ function clearLines() {
         // Animasi ledakan
         uniqueCellsToClear.forEach(cell => {
             const cellElement = gameGridElement.children[cell.r * GRID_COLS + cell.c];
-            createExplosionEffect(cellElement);
-            // Tambahkan transisi sementara untuk efek visual sebelum dihapus
+            // Pastikan sel yang akan diledakkan memiliki kelas warna yang benar
+            const cellColorClass = gameGrid[cell.r][cell.c];
+            // Sementara ganti warna untuk efek visual, lalu panggil createExplosionEffect
             cellElement.style.transition = 'background-color 0.2s ease-out';
             cellElement.style.backgroundColor = '#ecf0f1'; // Warna putih sesaat
+            
+            // Panggil efek ledakan dengan elemen sel yang benar
+            createExplosionEffect(cellElement, cellColorClass);
         });
 
         setTimeout(() => {
@@ -400,8 +406,13 @@ function clearLines() {
             uniqueCellsToClear.forEach(cell => {
                 gameGrid[cell.r][cell.c] = 0; // Bersihkan sel di grid
                 const cellElement = gameGridElement.children[cell.r * GRID_COLS + cell.c];
-                cellElement.style.transition = ''; // Hapus transisi sementara
-                cellElement.classList.remove('occupied', 'color-red', 'color-blue', 'color-yellow', 'color-purple', 'color-orange', 'color-green', 'color-cyan', 'color-pink'); // Hapus kelas warna
+                
+                // Reset styling dan kelas untuk sel yang bersih
+                cellElement.style.transition = ''; 
+                cellElement.style.backgroundColor = ''; // Hapus inline style background color
+                cellElement.classList.remove('occupied', 'color-red', 'color-blue', 'color-yellow', 'color-purple', 'color-orange', 'color-green', 'color-cyan', 'color-pink'); 
+                // Tambahkan kembali background default untuk sel kosong
+                cellElement.style.backgroundColor = '#3d3d3d';
             });
 
             updateGridDisplay(); // Perbarui tampilan grid
@@ -416,28 +427,17 @@ function clearLines() {
 }
 
 function checkGameOver() {
-    let canPlaceAnyBlock = false;
+    let canPlaceAnyRemainingBlock = false;
     for (let i = 0; i < currentBlocks.length; i++) {
         const block = currentBlocks[i];
-        if (block !== null) {
-            if (canBlockBePlacedAnywhere(block)) {
-                canPlaceAnyBlock = true;
-                break; // Cukup temukan satu blok yang bisa ditempatkan
-            }
+        if (block !== null && canBlockBePlacedAnywhere(block)) {
+            canPlaceAnyRemainingBlock = true;
+            break; // Cukup temukan satu blok yang bisa ditempatkan
         }
     }
 
-    // Jika semua slot blok kosong DAN tidak ada blok yang bisa ditempatkan
-    // ATAU jika masih ada blok di slot tetapi TIDAK ADA SATUPUN yang bisa ditempatkan
-    if (!canPlaceAnyBlock && blocksInCurrentSet > 0) {
-        // Ini adalah skenario di mana masih ada blok di slot, tapi tidak ada yang bisa diletakkan.
-        // Game Over!
-        overlayMessage.textContent = 'GAME OVER!';
-        gameOverlay.classList.remove('hidden');
-    } else if (!canPlaceAnyBlock && blocksInCurrentSet === 0) {
-        // Ini adalah skenario ketika semua blok di set sebelumnya telah terpakai,
-        // dan set blok baru yang dihasilkan juga tidak ada yang bisa diletakkan.
-        // Game Over!
+    // Jika tidak ada blok yang tersisa di slot yang bisa ditempatkan di grid
+    if (!canPlaceAnyRemainingBlock) {
         overlayMessage.textContent = 'GAME OVER!';
         gameOverlay.classList.remove('hidden');
     } else {
@@ -447,9 +447,13 @@ function checkGameOver() {
 }
 
 
-function createExplosionEffect(cellElement) {
+function createExplosionEffect(cellElement, blockColorClass) {
     const rect = cellElement.getBoundingClientRect();
     const numParticles = 10;
+    // Dapatkan warna dasar dari kelas blok
+    const computedStyle = getComputedStyle(cellElement);
+    const baseColor = computedStyle.backgroundColor; // Gunakan warna yang sudah diatur oleh CSS
+
     for (let i = 0; i < numParticles; i++) {
         const particle = document.createElement('div');
         particle.classList.add('explosion-particle');
@@ -458,7 +462,7 @@ function createExplosionEffect(cellElement) {
         const size = Math.random() * 10 + 5; // Ukuran partikel acak
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
-        particle.style.backgroundColor = cellElement.style.backgroundColor || getComputedStyle(cellElement).backgroundColor;
+        particle.style.backgroundColor = baseColor; // Gunakan warna dari sel yang meledak
 
         // Posisi awal partikel di tengah sel
         particle.style.left = `${rect.left + rect.width / 2 - size / 2}px`;
@@ -541,33 +545,24 @@ function drag(e) {
     ghostElement.style.left = `${x - dragOffsetX}px`;
     ghostElement.style.top = `${y - dragOffsetY}px`;
 
-    // Tentukan sel grid yang sedang dihover
     const gridRect = gameGridElement.getBoundingClientRect();
-    const relativeX = x - gridRect.left;
-    const relativeY = y - gridRect.top;
+    
+    // hitung posisi di grid berdasarkan top-left blok, bukan kursor
+    const blockGhostWidth = draggedBlock.shape[0].length * BLOCK_PIECE_SIZE;
+    const blockGhostHeight = draggedBlock.shape.length * BLOCK_PIECE_SIZE;
 
-    let col = Math.floor(relativeX / CELL_SIZE);
-    let row = Math.floor(relativeY / CELL_SIZE);
+    // Koreksi posisi kursor relatif terhadap sudut kiri atas blok
+    const adjustedX = x - (blockGhostWidth / 2);
+    const adjustedY = y - (blockGhostHeight / 2);
 
-    // Pastikan posisi highlight mengikuti asal blok (biasanya sudut kiri atas)
-    // Bukan mengikuti pusat kursor, ini penting untuk penempatan yang akurat
-    const blockShapeWidth = draggedBlock.shape[0].length;
-    const blockShapeHeight = draggedBlock.shape.length;
+    let targetCol = Math.floor((adjustedX - gridRect.left) / CELL_SIZE);
+    let targetRow = Math.floor((adjustedY - gridRect.top) / CELL_SIZE);
 
-    // Adjust row/col based on the top-left corner of the block, not the cursor center
-    // This correction is crucial if dragOffsetX/Y are based on block center
-    const adjustedX = x - ghostElement.getBoundingClientRect().width / 2; // Cursor x relative to the block's top-left corner
-    const adjustedY = y - ghostElement.getBoundingClientRect().height / 2; // Cursor y relative to the block's top-left corner
+    // Clamp targetRow dan targetCol agar tidak keluar dari batas grid
+    targetCol = Math.max(0, Math.min(GRID_COLS - draggedBlock.shape[0].length, targetCol));
+    targetRow = Math.max(0, Math.min(GRID_ROWS - draggedBlock.shape.length, targetRow));
 
-    col = Math.floor((adjustedX - gridRect.left) / CELL_SIZE);
-    row = Math.floor((adjustedY - gridRect.top) / CELL_SIZE);
-
-
-    // Pastikan col/row berada dalam batas grid
-    col = Math.max(0, Math.min(GRID_COLS - blockShapeWidth, col));
-    row = Math.max(0, Math.min(GRID_ROWS - blockShapeHeight, row));
-
-    highlightCells(draggedBlock, row, col);
+    highlightCells(draggedBlock, targetRow, targetCol);
 }
 
 function endDrag(e) {
@@ -591,13 +586,11 @@ function endDrag(e) {
     const { x, y } = getEventCoordinates(e);
     const gridRect = gameGridElement.getBoundingClientRect();
 
+    let placedSuccessfully = false;
+
     if (x >= gridRect.left && x <= gridRect.right &&
         y >= gridRect.top && y <= gridRect.bottom) {
         
-        // Hitung posisi kolom dan baris di grid
-        const relativeX = x - gridRect.left;
-        const relativeY = y - gridRect.top;
-
         // hitung posisi di grid berdasarkan top-left blok, bukan kursor
         const blockGhostWidth = draggedBlock.shape[0].length * BLOCK_PIECE_SIZE;
         const blockGhostHeight = draggedBlock.shape.length * BLOCK_PIECE_SIZE;
@@ -618,6 +611,7 @@ function endDrag(e) {
             // Hapus blok dari slot
             currentBlocks[draggedBlockIndex] = null;
             blocksInCurrentSet--; // Kurangi hitungan blok yang tersisa
+            placedSuccessfully = true;
 
             // Jika semua blok di set saat ini sudah ditempatkan
             if (blocksInCurrentSet === 0) {
@@ -628,20 +622,16 @@ function endDrag(e) {
             }
 
             clearLines(); // Periksa dan bersihkan garis (akan memanggil checkGameOver)
-        } else {
-            // Blok tidak bisa ditempatkan, kembalikan ke slot atau biarkan dihilangkan
-            // Untuk game ini, kita akan membuat pemain kehilangan blok yang gagal ditempatkan.
-            // Jika ingin dikembalikan ke slot, Anda bisa menghapus `currentBlocks[draggedBlockIndex] = null;`
-            // dan memanggil `drawBlockPreview();` saja di sini.
-            // Untuk gameplay yang lebih menantang, kita biarkan bloknya hilang.
-            drawBlockPreview(); // Gambar ulang untuk memastikan slot terlihat kosong jika blok hilang
-            checkGameOver(); // Periksa game over jika ada situasi macet
-        }
-    } else {
-        // Blok dilepaskan di luar area grid, anggap dibatalkan
+        } 
+    } 
+    
+    // Jika blok tidak berhasil ditempatkan di mana pun (baik di luar grid atau tidak valid di grid)
+    if (!placedSuccessfully) {
+        // Blok tidak berhasil ditempatkan, tidak dihapus dari slot
         drawBlockPreview(); // Gambar ulang untuk memastikan slot terlihat seperti semula
         checkGameOver(); // Periksa game over jika ini menyebabkan kondisi macet
     }
+
 
     // Hapus semua event listener drag/drop
     document.removeEventListener('mousemove', drag);
@@ -656,5 +646,3 @@ function endDrag(e) {
 
 // Inisialisasi game saat DOM siap
 document.addEventListener('DOMContentLoaded', initializeGame);
-
-//ADITdeveloper
