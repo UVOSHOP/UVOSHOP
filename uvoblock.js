@@ -80,18 +80,24 @@ function calculateCellSizes() {
     const availableGridHeight = gridRect.height;
 
     // Hitung CELL_SIZE berdasarkan dimensi aktual dari elemen game-grid
+    // CSS Anda akan bertanggung jawab untuk membuat game-grid menjadi kotak
+    // dan mengisi ruang yang tersedia. JS hanya membaca ukuran tersebut.
     CELL_SIZE = Math.min(
         availableGridWidth / GRID_COLS,
         availableGridHeight / GRID_ROWS
     );
     
     // Opsional: Batasi CELL_SIZE agar tidak terlalu kecil atau terlalu besar
+    // Ini adalah 'guard rail' jika CSS Anda tidak sempurna atau di layar yang sangat ekstrem.
     CELL_SIZE = Math.max(25, Math.min(CELL_SIZE, 55)); // Contoh: min 25px, max 55px per sel
 
     BLOCK_PIECE_SIZE = CELL_SIZE / 2; // Potongan blok 1/2 ukuran sel grid
 
-    // Set CSS variable untuk ukuran potongan blok.
+    // Set CSS variable untuk ukuran potongan blok. Ini penting
+    // agar CSS bisa menggunakan nilai ini untuk menggambar block-piece.
     document.documentElement.style.setProperty('--block-piece-size', `${BLOCK_PIECE_SIZE}px`);
+    // Juga set CELL_SIZE sebagai variabel CSS untuk grid-cell jika diperlukan.
+    // document.documentElement.style.setProperty('--cell-size', `${CELL_SIZE}px`);
 
     // Perbarui grid template columns untuk game board secara langsung di JS
     gameGridElement.style.gridTemplateColumns = `repeat(${GRID_COLS}, ${CELL_SIZE}px)`;
@@ -102,6 +108,7 @@ function calculateCellSizes() {
         ghostElement.remove();
         ghostElement = createGhostElement(draggedBlock);
         document.body.appendChild(ghostElement);
+        // Posisi ghost akan diperbarui otomatis oleh event drag/touchmove
     }
     // Gambar ulang preview blok untuk memperbarui ukurannya
     drawBlockPreview();
@@ -126,13 +133,7 @@ function initializeGame() {
     }
     calculateCellSizes(); // Hitung ukuran sel awal saat inisialisasi
     updateGridDisplay();
-    // Inisialisasi 3 blok pertama
-    currentBlocks = Array(3).fill(null);
-    for (let i = 0; i < 3; i++) {
-        fillBlockSlot(i); // Isi setiap slot yang kosong
-    }
-    drawBlockPreview();
-    
+    generateNewBlocks(true); // Hasilkan blok baru untuk awal game
     gameOverlay.classList.add('hidden'); // Sembunyikan overlay game over
     // Pastikan hanya ada satu event listener untuk tombol restart
     restartButton.removeEventListener('click', initializeGame); 
@@ -263,45 +264,44 @@ function clearHighlights() {
 
 // --- Logika Game ---
 
-// Fungsi baru untuk mengisi satu slot blok secara independen
-function fillBlockSlot(slotIndex) {
-    if (slotIndex < 0 || slotIndex >= currentBlocks.length) return;
+function generateNewBlocks(isInitial = false) {
+    const allSlotsEmpty = currentBlocks.every(block => block === null);
+    if (allSlotsEmpty || isInitial) {
+        currentBlocks = Array(3).fill(null); // Reset semua slot
+        let blocksGenerated = 0;
+        let attempts = 0;
 
-    let attempts = 0;
-    let blockFound = false;
-    while (!blockFound && attempts < 200) {
-        const randomIndex = Math.floor(Math.random() * BLOCK_SHAPES.length);
-        const newBlock = JSON.parse(JSON.stringify(BLOCK_SHAPES[randomIndex])); // Deep copy
+        while (blocksGenerated < 3 && attempts < 200) { // Batasi upaya untuk mencegah infinite loop
+            const randomIndex = Math.floor(Math.random() * BLOCK_SHAPES.length);
+            const newBlock = JSON.parse(JSON.stringify(BLOCK_SHAPES[randomIndex])); // Deep copy
 
-        if (canBlockBePlacedAnywhere(newBlock)) {
-            currentBlocks[slotIndex] = newBlock;
-            blockFound = true;
+            // Pastikan blok baru bisa ditempatkan di grid
+            if (canBlockBePlacedAnywhere(newBlock)) {
+                const emptySlotIndex = currentBlocks.findIndex(b => b === null);
+                if (emptySlotIndex !== -1) {
+                    currentBlocks[emptySlotIndex] = newBlock;
+                    blocksGenerated++;
+                }
+            }
+            attempts++;
         }
-        attempts++;
-    }
 
-    // Fallback: Jika tidak ada blok yang bisa ditempatkan dalam 200 percobaan,
-    // berikan blok 1x1 atau blok kecil yang pasti bisa ditempatkan.
-    if (!blockFound) {
-        const smallBlock = BLOCK_SHAPES.find(b => b.size === 1 || (b.shape.length <= 2 && b.shape[0].length <= 2));
-        if (smallBlock) {
-            currentBlocks[slotIndex] = JSON.parse(JSON.stringify(smallBlock));
-        } else {
-            // Jika tidak ada blok kecil, fallback ke blok acak apapun
-            currentBlocks[slotIndex] = JSON.parse(JSON.stringify(BLOCK_SHAPES[Math.floor(Math.random() * BLOCK_SHAPES.length)]));
-        }
-    }
-}
-
-// Fungsi generateNewBlocks kini hanya mengisi slot yang kosong
-function generateNewBlocks() {
-    for (let i = 0; i < currentBlocks.length; i++) {
-        if (currentBlocks[i] === null) {
-            fillBlockSlot(i);
+        // Fallback: Jika ada slot yang kosong setelah mencoba menghasilkan blok yang bisa ditempatkan,
+        // isi dengan blok 1x1 atau blok kecil lainnya yang pasti bisa ditempatkan.
+        for (let i = 0; i < 3; i++) {
+            if (currentBlocks[i] === null) {
+                const smallBlock = BLOCK_SHAPES.find(b => b.size === 1 || (b.shape.length <= 2 && b.shape[0].length <= 2));
+                if (smallBlock) {
+                    currentBlocks[i] = JSON.parse(JSON.stringify(smallBlock));
+                } else {
+                    // Jika tidak ada blok kecil, fallback ke blok acak apapun
+                    currentBlocks[i] = JSON.parse(JSON.stringify(BLOCK_SHAPES[Math.floor(Math.random() * BLOCK_SHAPES.length)]));
+                }
+            }
         }
     }
     drawBlockPreview();
-    checkGameOver(); // Selalu periksa game over setelah mengisi blok baru
+    checkGameOver(); // Periksa game over setelah menghasilkan blok baru
 }
 
 function canBlockBePlacedAnywhere(block) {
@@ -309,6 +309,7 @@ function canBlockBePlacedAnywhere(block) {
     for (let r = 0; r < GRID_ROWS; r++) {
         for (let c = 0; c < GRID_COLS; c++) {
             // Coba tempatkan blok dengan pusatnya di (r, c)
+            // Ini akan mensimulasikan bagaimana pengguna menempatkan blok (pusatnya di bawah jari)
             const blockRows = block.shape.length;
             const blockCols = block.shape[0].length;
             const startRow = r - Math.floor(blockRows / 2);
@@ -352,7 +353,7 @@ function canPlaceBlock(block, startRow, startCol) {
                     return false;
                 }
             }
-        });
+        }
     }
     return true;
 }
@@ -398,6 +399,8 @@ function clearLines() {
         }
     }
 
+    // Gunakan Set atau filter untuk mendapatkan sel unik jika cellsToClear bisa memiliki duplikat
+    // Di implementasi ini, logika sudah mencegah duplikat saat menambahkan kolom.
     const uniqueCellsToClear = cellsToClear; 
     
     if (uniqueCellsToClear.length > 0) {
@@ -455,11 +458,18 @@ function clearLines() {
 
             updateScoreDisplay();
             changeBackgroundColor(); // Ganti background setelah clear
-            generateNewBlocks(); // Selalu coba generate blok baru setelah clear
+            // Periksa apakah semua slot kosong dan generate blok baru jika ya
+            if (currentBlocks.every(block => block === null)) {
+                generateNewBlocks(); 
+            }
+            checkGameOver(); // Periksa game over setelah clear
         }, 300); // Durasi animasi ledakan
     } else {
         // Jika tidak ada baris/kolom yang clear, periksa apakah perlu generate blok baru
-        generateNewBlocks(); // Selalu coba generate blok baru
+        if (currentBlocks.every(block => block === null)) {
+            generateNewBlocks();
+        }
+        checkGameOver(); // Periksa game over meskipun tidak ada baris yang clear
     }
 }
 
@@ -497,19 +507,17 @@ function createExplosionEffect(cellElement) {
 }
 
 function checkGameOver() {
-    // Kondisi Game Over: Semua slot blok terisi DAN tidak ada satupun blok yang tersedia yang bisa ditempatkan
+    // Kondisi Game Over: Semua slot blok terisi DAN tidak ada satupun blok yang bisa ditempatkan
     const allSlotsFilled = currentBlocks.every(block => block !== null);
-    
-    // Periksa apakah ada blok di `currentBlocks` yang bisa ditempatkan
     const hasPlayableBlocks = currentBlocks.some(block => block && canBlockBePlacedAnywhere(block));
 
     if (allSlotsFilled && !hasPlayableBlocks) {
         overlayMessage.textContent = 'GAME OVER!'; 
         showGameOver();
-        return; 
+        return; // Hentikan fungsi karena game sudah over
     }
 
-    // Jika masih ada blok yang bisa ditempatkan, atau masih ada slot kosong (yang akan segera diisi), game belum over
+    // Jika masih ada blok yang bisa ditempatkan, atau masih ada slot kosong, game belum over
     if (hasPlayableBlocks || !allSlotsFilled) {
         gameOverlay.classList.add('hidden'); // Pastikan overlay tersembunyi
     }
@@ -571,6 +579,7 @@ function startDrag(event) {
     }
 
     slot.classList.add('dragging'); // Sembunyikan slot asli secara visual
+    // slot.innerHTML = ''; // Tidak perlu mengosongkan, cukup sembunyikan dengan CSS .dragging
 
     // Buat ghost element
     ghostElement = createGhostElement(draggedBlock);
@@ -645,9 +654,8 @@ function dragEnd(event) {
         if (placeBlock(draggedBlock, startRow, startCol)) {
             currentBlocks[draggedBlockIndex] = null; // Hapus blok dari slot
             updateGridDisplay();
-            fillBlockSlot(draggedBlockIndex); // Langsung isi slot yang kosong
             drawBlockPreview(); // Gambar ulang preview
-            clearLines(); // Periksa dan hapus baris/kolom.
+            clearLines(); // Periksa dan hapus baris/kolom. Ini akan memicu generateNewBlocks/checkGameOver.
         } else {
             // Jika tidak bisa ditempatkan, kembalikan blok ke slot asalnya
             if (draggedBlockIndex !== -1) { // Hanya kembalikan jika indeks valid
