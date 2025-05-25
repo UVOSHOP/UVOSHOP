@@ -42,7 +42,7 @@
 2. Pilih produk (game / e-wallet)
 3. Masukkan ID akun & nominal
 4. Lakukan pembayaran
-5. Saldo akan langsung masuk ke akunmu!
+5. Diamond akan langsung masuk ke akunmu!
 
 ---
 
@@ -61,7 +61,7 @@ Fork repo ini, lalu buat pull request.
 
 ## 📄 Lisensi
 
-Proyek ini menggunakan **MIT License**.
+Proyek ini menggunakan **All Rights Reserved**.
 
 ---
 
