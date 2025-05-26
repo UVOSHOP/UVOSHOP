@@ -108,7 +108,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px; 
+            margin-bottom: 0; /* Remove margin-bottom from header */
             padding: 0 10px;
             color: #FFFFFF;
         }
@@ -138,23 +138,32 @@
             background-position: center;
         }
 
+        #game-title-container { /* New container for title and score */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px; /* Space below title/score block */
+        }
+
         #game-title {
-            font-size: 2.8em;
-            color: #FFFFFF; 
-            text-shadow: none; 
+            font-family: 'Bangers', cursive; /* Applied Bangers font */
+            font-size: clamp(2.5em, 8vw, 4em); /* Bigger font size */
+            color: #FFFFFF; /* White color */
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700; /* Yellow glowing effect */
             margin: 0;
             white-space: nowrap;
-            font-size: clamp(1.1em, 4.5vw, 2.2em); 
-            font-family: 'Bangers', cursive; /* Applied Bangers font */
+            padding: 0 10px; /* Add some padding */
         }
+
         #score-container { 
             display: flex;
-            flex-direction: column; /* Score below title */
+            flex-direction: row; /* Score and crown side by side */
             align-items: center;
             gap: 5px; 
             margin-top: 10px; /* Space between title and score */
         }
-        #crown-score-wrapper {
+        #crown-score-wrapper { /* Renamed from original to be more specific */
             display: flex;
             align-items: center;
             gap: 5px;
@@ -170,12 +179,11 @@
         }
 
         #scoreDisplay {
-            font-size: 1.8em;
+            font-size: clamp(1.2em, 5vw, 2em); /* Slightly larger score font */
             color: #FFFFFF;
             text-shadow: none;
             margin: 0;
             white-space: nowrap;
-            font-size: clamp(0.9em, 3.5vw, 1.6em); 
         }
         #settings-icon { 
             width: clamp(1.2em, 4.5vw, 2em); 
@@ -385,9 +393,10 @@
                 padding: 15px;
                 aspect-ratio: 1 / 1.7; 
             }
-            #header { margin-bottom: 15px; }
-            #game-title { font-size: clamp(1em, 4vw, 1.8em); }
-            #scoreDisplay { font-size: clamp(0.8em, 3vw, 1.4em); }
+            #header { margin-bottom: 0; } /* Adjusted margin for header */
+            #game-title-container { margin-bottom: 15px; } /* Adjusted margin for title container */
+            #game-title { font-size: clamp(2em, 7vw, 3.5em); } /* Adjusted font size for title */
+            #scoreDisplay { font-size: clamp(1em, 4vw, 1.8em); } /* Adjusted font size for score */
             #game-area { gap: 10px; } 
             #game-grid { border-width: 2px; }
             .grid-cell { border-width: 0.5px; }
@@ -396,9 +405,10 @@
         }
          @media (max-width: 380px) { 
             #game-container { padding: 10px; aspect-ratio: 1 / 1.8; }
-            #header { margin-bottom: 10px;}
-            #game-title { font-size: clamp(0.9em, 4vw, 1.5em); }
-            #scoreDisplay { font-size: clamp(0.7em, 3vw, 1.2em); }
+            #header { margin-bottom: 0;} /* Adjusted margin for header */
+            #game-title-container { margin-bottom: 10px; } /* Adjusted margin for title container */
+            #game-title { font-size: clamp(1.8em, 6vw, 3em); } /* Adjusted font size for title */
+            #scoreDisplay { font-size: clamp(0.9em, 3.5vw, 1.5em); } /* Adjusted font size for score */
             #game-area { gap: 8px; }
         }
 
@@ -413,20 +423,21 @@
 </head>
 <body>
 <div id="game-container">
-    <div>
-        <div id="header">
-            <div id="header-left">
-                <button id="back-button" aria-label="Kembali ke halaman sebelumnya">
-                    <span class="icon"></span>
-                </button>
-                <div id="crown-score-wrapper">
-                    <div id="crown-icon"></div> 
-                    <p id="scoreDisplay">0</p>
-                </div>
-            </div>
-            <div id="settings-icon"></div> 
+    <div id="header">
+        <div id="header-left">
+            <button id="back-button" aria-label="Kembali ke halaman sebelumnya">
+                <span class="icon"></span>
+            </button>
         </div>
+        <div id="settings-icon"></div> 
+    </div>
+
+    <div id="game-title-container">
         <h1 id="game-title">UVOBLOCK</h1> 
+        <div id="score-container"> 
+            <div id="crown-icon"></div> 
+            <p id="scoreDisplay">0</p>
+        </div>
     </div>
 
     <div id="game-area">
@@ -508,17 +519,32 @@ const BLOCK_SHAPES = [
 
 function calculateAndApplyDynamicSizes() {
     const gameAreaRect = document.getElementById('game-area').getBoundingClientRect();
-    
-    let availableGridWidth = gameAreaRect.width;
-    let availableGridHeight = gameAreaRect.height - 
-                              (gameTitleElement.offsetHeight + parseFloat(getComputedStyle(gameTitleElement).marginTop) + parseFloat(getComputedStyle(gameTitleElement).marginBottom)) -
-                              (blockPreviewSlots[0].offsetHeight + parseFloat(getComputedStyle(blockPreviewSlots[0]).marginTop) + parseFloat(getComputedStyle(blockPreviewSlots[0]).marginBottom)) -
-                              (parseFloat(getComputedStyle(document.getElementById('game-area')).gap) * 2);
+    const headerRect = document.getElementById('header').getBoundingClientRect();
+    const gameTitleContainerRect = document.getElementById('game-title-container').getBoundingClientRect();
+    const blockPreviewElement = document.getElementById('block-preview');
+    const blockPreviewHeight = blockPreviewElement.offsetHeight + parseFloat(getComputedStyle(blockPreviewElement).marginTop) + parseFloat(getComputedStyle(blockPreviewElement).marginBottom);
 
-    availableGridWidth = Math.max(availableGridWidth, GRID_COLS * 10); 
-    availableGridHeight = Math.max(availableGridHeight, GRID_ROWS * 10); 
 
-    CELL_SIZE = Math.floor(Math.min(availableGridWidth / GRID_COLS, availableGridHeight / GRID_ROWS));
+    let availableGridHeight = gameAreaRect.height - blockPreviewHeight - (parseFloat(getComputedStyle(document.getElementById('game-area')).gap) * 2);
+
+    // If in landscape and max-height is active, header and title might be in a row with grid
+    if (window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches) {
+        // In landscape, grid will be to the right of header/title.
+        // availableGridHeight will be the full game container height minus padding etc.
+        // We need to ensure the grid doesn't exceed the container's height.
+        const gameContainerRect = document.getElementById('game-container').getBoundingClientRect();
+        availableGridHeight = gameContainerRect.height - parseFloat(getComputedStyle(document.getElementById('game-container')).paddingTop) - parseFloat(getComputedStyle(document.getElementById('game-container')).paddingBottom);
+        
+        let headerAndTitleWidth = headerRect.width; // Placeholder, adjust if header/title stack
+        let availableGridWidth = gameContainerRect.width - headerAndTitleWidth - (parseFloat(getComputedStyle(document.getElementById('game-container')).paddingLeft) + parseFloat(getComputedStyle(document.getElementById('game-container')).paddingRight));
+        
+        CELL_SIZE = Math.floor(Math.min(availableGridWidth / GRID_COLS, availableGridHeight / GRID_ROWS));
+
+    } else {
+        // Portrait mode or larger screens, grid is below title/score
+        CELL_SIZE = Math.floor(Math.min(gameAreaRect.width / GRID_COLS, availableGridHeight / GRID_ROWS));
+    }
+
     CELL_SIZE = Math.max(15, Math.min(CELL_SIZE, 55)); 
 
     const gridTotalSize = CELL_SIZE * GRID_ROWS; 
@@ -534,7 +560,6 @@ function calculateAndApplyDynamicSizes() {
     BLOCK_SLOT_SIZE = Math.max(60, (maxBlockUnits * BLOCK_PIECE_SIZE) + (2 * 5)); 
     document.documentElement.style.setProperty('--block-slot-dynamic-size', `${BLOCK_SLOT_SIZE}px`);
     
-    const blockPreviewElement = document.getElementById('block-preview');
     const blockPreviewPadding = parseFloat(getComputedStyle(blockPreviewElement).paddingTop) + parseFloat(getComputedStyle(blockPreviewElement).paddingBottom);
     blockPreviewElement.style.minHeight = `${BLOCK_SLOT_SIZE + blockPreviewPadding}px`;
 
@@ -692,21 +717,17 @@ function generateNewBlocks(isInitial = false) {
         currentCombo = 0; 
     }
     drawBlockPreview();
-    if (!isInitial) checkGameOver();
+    if (!isInitial) checkGameOver(); // Check game over only after generating blocks in subsequent turns
 }
 
 function canBlockBePlacedAnywhere(block) {
     if (!block) return false;
     for (let r = 0; r < GRID_ROWS; r++) { 
         for (let c = 0; c < GRID_COLS; c++) {
+            // Check if the block can be placed starting from this cell (top-left corner)
             if (r <= GRID_ROWS - block.shape.length && c <= GRID_COLS - block.shape[0].length) {
                  if (canPlaceBlock(block, r, c)) return true;
             }
-            const blockRows = block.shape.length;
-            const blockCols = block.shape[0].length;
-            const startRowCentered = r - Math.floor(blockRows / 2);
-            const startColCentered = c - Math.floor(blockCols / 2);
-            if (canPlaceBlock(block, startRowCentered, startColCentered)) return true;
         }
     }
     return false;
@@ -865,9 +886,16 @@ function createExplosionEffect(cellElement) {
 }
 
 function checkGameOver() {
-    const allSlotsFilled = currentBlocks.every(block => block !== null);
-    if (!allSlotsFilled) { gameOverlay.classList.add('hidden'); return; }
+    // If all slots are empty, new blocks will be generated and game over check deferred
+    const allSlotsEmpty = currentBlocks.every(block => block === null);
+    if (allSlotsEmpty) { 
+        gameOverlay.classList.add('hidden'); 
+        return; 
+    }
+
+    // Check if any of the current blocks can be placed anywhere on the grid
     const hasPlayableBlocks = currentBlocks.some(block => block && canBlockBePlacedAnywhere(block));
+
     if (!hasPlayableBlocks) {
         overlayMessage.textContent = 'GAME OVER!';
         finalScoreDisplay.textContent = `Skor Akhir: ${score}`;
@@ -893,10 +921,14 @@ function getRandomColor() {
 
 let titleColorInterval;
 function startTitleColorChange() {
+    // No dynamic color change for the title as per the request, keeping it fixed white with shadow.
+    // If you want to re-enable dynamic color for the title, uncomment the following:
+    /*
     if (titleColorInterval) clearInterval(titleColorInterval);
     titleColorInterval = setInterval(() => {
         gameTitleElement.style.color = getRandomColor();
     }, 1000); 
+    */
 }
 
 
@@ -967,8 +999,10 @@ function drag(event) {
     if (targetCellInfo) {
         const blockRows = draggedBlock.shape.length;
         const blockCols = draggedBlock.shape[0].length;
-        const startRow = targetCellInfo.row - Math.floor(blockRows / 2);
-        const startCol = targetCellInfo.col - Math.floor(blockCols / 2);
+        // Calculate startRow and startCol to center the block's first piece on the cursor
+        // This is a common way to handle block dragging in puzzle games
+        const startRow = targetCellInfo.row - Math.floor(draggedBlock.shape.length / 2);
+        const startCol = targetCellInfo.col - Math.floor(draggedBlock.shape[0].length / 2);
         highlightCells(draggedBlock, startRow, startCol);
     } else {
         clearHighlights();
@@ -1006,7 +1040,7 @@ function dragEnd(event) {
     if (!blockPlacedSuccessfully) {
         currentCombo = 0; // Reset combo if block not placed
         drawBlockPreview(); 
-        checkGameOver();
+        checkGameOver(); // Check game over if block not placed
     }
     removeDragListeners();
     draggedBlock = null;
