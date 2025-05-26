@@ -29,7 +29,6 @@
 
         body {
             display: flex;
-            flex-direction: column; /* Changed to column to accommodate footer */
             justify-content: center;
             align-items: center;
             background-color: #4A90E2; /* Inspired by image blue */
@@ -1142,39 +1141,40 @@
             }
 
             score += reward.value;
+            let bonusText = '';
             if (reward.bonus === "combo_booster") {
                 combo += 3; // Example: Add 3 to combo, actual effect depends on implementation
-                redeemMessage.textContent += ' + Combo Booster!';
+                bonusText += ' + Combo Booster!';
             }
             if (reward.bonus === "multiplier") {
                 multiplier *= reward.value_multiplier;
-                redeemMessage.textContent += ` + ${reward.value_multiplier}x Multiplier!`;
+                bonusText += ` + ${reward.value_multiplier}x Multiplier!`;
             }
             if (reward.bonus === "rare_item") {
                 rareItemAvailable = true; // Placeholder for a rare item effect
-                redeemMessage.textContent += ' + 1 Item Rare!';
+                bonusText += ' + 1 Item Rare!';
             }
             if (reward.bonus === "hint_free") {
                 hintAvailable = true; // Placeholder for a hint
-                redeemMessage.textContent += ' + Hint Gratis!';
+                bonusText += ' + Hint Gratis!';
             }
             if (reward.bonus === "double_combo") {
                 // Implement double combo logic, e.g., if combo is active, double its effect
-                redeemMessage.textContent += ' + Double Combo!';
+                bonusText += ' + Double Combo!';
             }
             if (reward.bonus === "extra_move") {
                 extraMoves += 1; // Grant an extra move
-                redeemMessage.textContent += ' + Extra Move!';
+                bonusText += ' + Extra Move!';
             }
             if (reward.bonus === "block_destroyer") {
                 blockDestroyerAvailable = true; // Grant a block destroyer item
-                redeemMessage.textContent += ' + Block Destroyer Item!';
+                bonusText += ' + Block Destroyer Item!';
             }
 
             updateScoreDisplay();
             saveScore();
             localStorage.setItem(`redeemed_${code}`, 'true'); // Mark code as used
-            redeemMessage.textContent = `Redeem berhasil! Mendapat ${reward.value} skor!`;
+            redeemMessage.textContent = `Redeem berhasil! Mendapat ${reward.value} skor!${bonusText}`;
             redeemMessage.style.color = '#2ecc71'; // Green for success
             redeemInput.value = ''; // Clear input
         } else {
