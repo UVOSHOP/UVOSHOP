@@ -39,6 +39,16 @@
             transition: background-color 1s ease-in-out;
         }
 
+        #app-wrapper { /* New wrapper for game + sidebar */
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* For sidebar positioning */
+            overflow: hidden; /* Hide overflowing content during sidebar animation */
+        }
+
         #game-container {
             display: flex;
             flex-direction: column;
@@ -55,6 +65,12 @@
             overflow: hidden; 
             flex-grow: 1; /* Allow container to grow */
             justify-content: space-between; /* Distribute content vertically */
+            z-index: 1; /* Ensure it's above sidebar when sidebar is hidden */
+            transition: transform 0.3s ease-out; /* For sidebar movement */
+        }
+
+        #game-container.shifted-right {
+            transform: translateX(var(--sidebar-width)); /* Adjust based on sidebar width */
         }
 
         /* Orientasi Landscape untuk HP */
@@ -100,6 +116,9 @@
             .block-slot {
                 width: var(--block-slot-dynamic-size, 80px);
                 height: var(--block-slot-dynamic-size, 80px);
+            }
+            #game-container.shifted-right {
+                transform: translateX(0); /* Don't shift game container in landscape */
             }
         }
 
@@ -218,6 +237,26 @@
             filter: brightness(1.2);
         }
 
+        /* Sidebar Toggle Button */
+        #sidebar-toggle-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px; /* Space between back and toggle */
+        }
+        #sidebar-toggle-button .icon {
+            width: clamp(1.2em, 4.5vw, 2em);
+            height: clamp(1.2em, 4.5vw, 2em);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="%23FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>'); /* Menu icon */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
 
         #game-area {
             display: flex;
@@ -274,6 +313,19 @@
             box-shadow: inset 0 0 8px rgba(0,0,0,0.5), 0 0 10px rgba(52,152,219,0.5); /* Stronger glow/shadow */
             border: 1px solid rgba(255,255,255,0.3);
         }
+        .grid-cell.texture-green-block {
+            background-image: linear-gradient(135deg, #2ECC71 0%, #27AE60 50%, #2ECC71 100%);
+            background-color: #2ECC71;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.5), 0 0 10px rgba(46,204,113,0.5);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .grid-cell.texture-red-block {
+            background-image: linear-gradient(135deg, #E74C3C 0%, #C0392B 50%, #E74C3C 100%);
+            background-color: #E74C3C;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.5), 0 0 10px rgba(231,76,60,0.5);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
 
         #block-preview {
             display: flex;
@@ -293,7 +345,8 @@
         .block-slot {
             width: var(--block-slot-dynamic-size, 80px); 
             height: var(--block-slot-dynamic-size, 80px);
-            border: 2px solid rgba(255,255,255,0.1); /* Subtle border */
+            /* Removed border: 2px solid rgba(255,255,255,0.1); */
+            border: none; /* Removed border */
             border-radius: 8px; /* Slightly more rounded */
             display: flex;
             justify-content: center;
@@ -321,7 +374,8 @@
             box-shadow: none; /* No shadow when dragging */
         }
         .block-slot:empty {
-            border: 2px dashed rgba(255,255,255,0.1); /* Dashed border for empty slot */
+            /* Removed border: 2px dashed rgba(255,255,255,0.1); */
+            border: none; /* Removed border for empty slot */
             background-color: rgba(0,0,0,0.05); /* Lighter background for empty slot */
             box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
         }
@@ -358,6 +412,20 @@
         .block-piece.texture-blue-block { 
             background-image: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); /* Brighter blue gradient */
             background-color: #3498DB; 
+            border-radius: 3px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .block-piece.texture-green-block {
+            background-image: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+            background-color: #2ECC71;
+            border-radius: 3px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .block-piece.texture-red-block {
+            background-image: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            background-color: #E74C3C;
             border-radius: 3px;
             box-shadow: 0 3px 6px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.4);
@@ -459,10 +527,28 @@
         #settings-overlay h2 {
             font-size: clamp(2em, 8vw, 3em);
             font-family: 'Bangers', cursive;
-            color: #f1c40f;
             margin-bottom: 5px;
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            display: flex; /* Make it a flex container to align spans */
+            justify-content: center;
+            white-space: nowrap; /* Prevent wrapping for colorful title */
         }
+        #settings-overlay h2 span {
+            display: inline-block; /* Ensure each letter is a separate block for coloring */
+            text-shadow: 
+                -1px -1px 0px rgba(0,0,0,0.5), /* Subtle dark shadow */
+                1px 1px 0px rgba(255,255,255,0.3); /* Subtle light shadow */
+        }
+        #settings-overlay h2 .color-u { color: #FF0000; /* Red */ }
+        #settings-overlay h2 .color-v { color: #FFA500; /* Orange */ }
+        #settings-overlay h2 .color-o { color: #FFFF00; /* Yellow */ }
+        #settings-overlay h2 .color-b { color: #008000; /* Green */ }
+        #settings-overlay h2 .color-l { color: #0000FF; /* Blue */ }
+        #settings-overlay h2 .color-c { color: #800080; /* Purple */ }
+        #settings-overlay h2 .color-k { color: #A52A2A; /* Brown */ }
+        #settings-overlay h2 .color-s { color: #FFFFFF; /* White */ } /* For the 'S' if it was UVOSHOP */
+
+
         #settings-overlay p {
             font-size: clamp(0.8em, 3.5vw, 1em);
             color: rgba(255,255,255,0.7);
@@ -550,6 +636,68 @@
             background-color: #e6b800;
         }
 
+        /* Sidebar styles */
+        #sidebar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width, 250px); /* Default width, can be dynamic */
+            height: 100%;
+            background-color: #2c3e50; /* Darker background for sidebar */
+            z-index: 90; /* Below game container */
+            transform: translateX(-100%); /* Start hidden */
+            transition: transform 0.3s ease-out;
+            padding: 20px;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 60px; /* Space for top controls */
+            overflow-y: auto;
+        }
+
+        #sidebar.open {
+            transform: translateX(0); /* Slide in */
+        }
+
+        #sidebar h3 {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.5em, 6vw, 2.5em);
+            color: #f1c40f;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+
+        #sidebar button {
+            width: 90%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            font-size: clamp(0.8em, 3.5vw, 1.1em);
+            font-family: 'Press Start 2P', cursive;
+            background-color: #3498DB;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+        #sidebar button:hover {
+            background-color: #2980B9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+        }
+        #sidebar button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        #sidebar p {
+            font-size: clamp(0.7em, 3vw, 0.9em);
+            color: rgba(255,255,255,0.6);
+            margin-top: 10px;
+        }
+
         /* Responsif untuk ukuran cell dan block piece */
         @media (max-width: 600px) { 
             #game-container {
@@ -587,56 +735,80 @@
     </style>
 </head>
 <body>
-<div id="game-container">
-    <div id="header">
-        <div id="header-left">
-            <button id="back-button" aria-label="Kembali ke halaman sebelumnya">
-                <span class="icon"></span>
-            </button>
-        </div>
-        <div id="settings-icon"></div> 
+<div id="app-wrapper">
+    <div id="sidebar">
+        <button class="close-button" id="close-sidebar-button">&times;</button>
+        <h3>MENU</h3>
+        <button>Leaderboards</button>
+        <button>Achievements</button>
+        <button>Feedback</button>
+        <button>About</button>
+        <p>Version 1.2.0</p>
     </div>
 
-    <div id="game-title-container">
-        <h1 id="game-title">UVOBLOCK</h1> 
-        <div id="score-container"> 
-            <div id="crown-icon"></div> 
-            <p id="scoreDisplay">0</p>
+    <div id="game-container">
+        <div id="header">
+            <div id="header-left">
+                <button id="sidebar-toggle-button" aria-label="Buka Menu Samping">
+                    <span class="icon"></span>
+                </button>
+                <button id="back-button" aria-label="Kembali ke halaman sebelumnya">
+                    <span class="icon"></span>
+                </button>
+            </div>
+            <div id="settings-icon"></div> 
         </div>
-    </div>
 
-    <div id="game-area">
-        <div id="game-grid">
+        <div id="game-title-container">
+            <h1 id="game-title">UVOBLOCK</h1> 
+            <div id="score-container"> 
+                <div id="crown-icon"></div> 
+                <p id="scoreDisplay">0</p>
+            </div>
         </div>
-        <div id="block-preview">
-            <div class="block-slot" id="slot1"></div>
-            <div class="block-slot" id="slot2"></div>
-            <div class="block-slot" id="slot3"></div>
-        </div>
-    </div>
-    
-    <div class="game-overlay hidden" id="game-over-overlay">
-        <h2 id="overlay-message">GAME OVER!</h2>
-        <p id="finalScoreDisplay">Skor Akhir: 0</p> 
-        <button id="restartButton">Mulai Lagi</button>
-    </div>
 
-    <div class="game-overlay hidden" id="settings-overlay">
-        <button class="close-button" id="close-settings-button">&times;</button>
-        <h2>UVOBLOCK</h2>
-        <p>by ADITdeveloper</p>
-        <button id="buy-package-button">Beli Paket</button>
-        <button id="reset-score-button">Reset Skor</button>
-        <div id="redeem-section">
-            <input type="text" id="redeem-input" placeholder="Masukkan Kode Redeem" maxlength="5">
-            <button id="redeem-button">Redeem</button>
-            <p id="redeem-message"></p>
+        <div id="game-area">
+            <div id="game-grid">
+            </div>
+            <div id="block-preview">
+                <div class="block-slot" id="slot1"></div>
+                <div class="block-slot" id="slot2"></div>
+                <div class="block-slot" id="slot3"></div>
+            </div>
         </div>
-    </div>
+        
+        <div class="game-overlay hidden" id="game-over-overlay">
+            <h2 id="overlay-message">GAME OVER!</h2>
+            <p id="finalScoreDisplay">Skor Akhir: 0</p> 
+            <button id="restartButton">Mulai Lagi</button>
+        </div>
 
-    <footer>
-        <p>© 2025 ADITdeveloper. All rights reserved.</p>
-    </footer>
+        <div class="game-overlay hidden" id="settings-overlay">
+            <button class="close-button" id="close-settings-button">&times;</button>
+            <h2>
+                <span class="color-u">U</span>
+                <span class="color-v">V</span>
+                <span class="color-o">O</span>
+                <span class="color-b">B</span>
+                <span class="color-l">L</span>
+                <span class="color-o">O</span>
+                <span class="color-c">C</span>
+                <span class="color-k">K</span>
+            </h2>
+            <p>by ADITdeveloper</p>
+            <button id="buy-package-button">Beli Paket</button>
+            <button id="reset-score-button">Reset Skor</button>
+            <div id="redeem-section">
+                <input type="text" id="redeem-input" placeholder="Masukkan Kode Redeem" maxlength="5">
+                <button id="redeem-button">Redeem</button>
+                <p id="redeem-message"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 ADITdeveloper. All rights reserved.</p>
+        </footer>
+    </div>
 </div>
 <script>
 // uvoblock.js
@@ -654,14 +826,19 @@ const restartButton = document.getElementById('restartButton');
 const bodyElement = document.body;
 const gameTitleElement = document.getElementById('game-title'); 
 const backButton = document.getElementById('back-button');
-const settingsIcon = document.getElementById('settings-icon'); // New
-const settingsOverlay = document.getElementById('settings-overlay'); // New
-const closeSettingsButton = document.getElementById('close-settings-button'); // New
-const buyPackageButton = document.getElementById('buy-package-button'); // New
-const resetScoreButton = document.getElementById('reset-score-button'); // New
-const redeemInput = document.getElementById('redeem-input'); // New
-const redeemButton = document.getElementById('redeem-button'); // New
-const redeemMessage = document.getElementById('redeem-message'); // New
+const settingsIcon = document.getElementById('settings-icon'); 
+const settingsOverlay = document.getElementById('settings-overlay'); 
+const closeSettingsButton = document.getElementById('close-settings-button'); 
+const buyPackageButton = document.getElementById('buy-package-button'); 
+const resetScoreButton = document.getElementById('reset-score-button'); 
+const redeemInput = document.getElementById('redeem-input'); 
+const redeemButton = document.getElementById('redeem-button'); 
+const redeemMessage = document.getElementById('redeem-message'); 
+
+const sidebar = document.getElementById('sidebar'); // New
+const sidebarToggleButton = document.getElementById('sidebar-toggle-button'); // New
+const closeSidebarButton = document.getElementById('close-sidebar-button'); // New
+const gameContainer = document.getElementById('game-container'); // New
 
 const GRID_ROWS = 9;
 const GRID_COLS = 9;
@@ -683,26 +860,32 @@ let isDragging = false;
 const BACKGROUND_COLORS = ['#4A90E2', '#3B82C9', '#4285D4', '#559BEF']; 
 let currentBgColorIndex = 0;
 
-// Updated BLOCK_SHAPES with new texture names
+// Updated BLOCK_SHAPES with more varied and new textures
 const BLOCK_SHAPES = [
     { shape: [[1]], textureName: 'texture-gold', size: 1 },
     { shape: [[1, 1]], textureName: 'texture-blue-block', size: 2 },
-    { shape: [[1], [1]], textureName: 'texture-gold', size: 2 },
-    { shape: [[1, 1, 1]], textureName: 'texture-blue-block', size: 3 },
+    { shape: [[1], [1]], textureName: 'texture-green-block', size: 2 },
+    { shape: [[1, 1, 1]], textureName: 'texture-red-block', size: 3 },
     { shape: [[1], [1], [1]], textureName: 'texture-gold', size: 3 },
-    { shape: [[1, 1], [0, 1]], textureName: 'texture-blue-block', size: 3 }, 
-    { shape: [[1, 1], [1, 0]], textureName: 'texture-gold', size: 3 },  
-    { shape: [[0, 1], [1, 1]], textureName: 'texture-blue-block', size: 3 },
-    { shape: [[1, 0], [1, 1]], textureName: 'texture-gold', size: 3 }, 
-    { shape: [[1,1,1],[0,1,0]], textureName: 'texture-blue-block', size: 4 }, 
-    { shape: [[1, 1, 1, 1]], textureName: 'texture-gold', size: 4 }, 
-    { shape: [[1], [1], [1], [1]], textureName: 'texture-blue-block', size: 4 }, 
-    { shape: [[1, 1], [1, 1]], textureName: 'texture-gold', size: 4 }, 
-    { shape: [[0, 1, 0], [1, 1, 1]], textureName: 'texture-blue-block', size: 4 }, 
-    { shape: [[1, 1, 0], [0, 1, 1]], textureName: 'texture-gold', size: 4 }, 
-    { shape: [[0, 1, 1], [1, 1, 0]], textureName: 'texture-blue-block', size: 4 }, 
-    { shape: [[1,1,1,1,1]], textureName: 'texture-gold', size: 5}, 
-    { shape: [[1],[1],[1],[1],[1]], textureName: 'texture-blue-block', size: 5} 
+    { shape: [[1, 1], [0, 1]], textureName: 'texture-blue-block', size: 3 }, // L-shape
+    { shape: [[1, 1], [1, 0]], textureName: 'texture-green-block', size: 3 }, // L-shape rotated
+    { shape: [[0, 1], [1, 1]], textureName: 'texture-red-block', size: 3 }, // Z-shape
+    { shape: [[1, 0], [1, 1]], textureName: 'texture-gold', size: 3 }, // Z-shape rotated
+    { shape: [[1, 1, 1], [0, 1, 0]], textureName: 'texture-blue-block', size: 4 }, // T-shape
+    { shape: [[1, 1, 1, 1]], textureName: 'texture-green-block', size: 4 }, // I-shape (horizontal)
+    { shape: [[1], [1], [1], [1]], textureName: 'texture-red-block', size: 4 }, // I-shape (vertical)
+    { shape: [[1, 1], [1, 1]], textureName: 'texture-gold', size: 4 }, // 2x2 square
+    { shape: [[0, 1, 0], [1, 1, 1]], textureName: 'texture-blue-block', size: 4 }, // T-shape (rotated)
+    { shape: [[1, 1, 0], [0, 1, 1]], textureName: 'texture-green-block', size: 4 }, // S-shape
+    { shape: [[0, 1, 1], [1, 1, 0]], textureName: 'texture-red-block', size: 4 }, // Z-shape
+    { shape: [[1, 1, 1, 0], [1, 0, 0, 0]], textureName: 'texture-gold', size: 4 }, // L-shape (long)
+    { shape: [[1, 0, 0, 0], [1, 1, 1, 0]], textureName: 'texture-blue-block', size: 4 }, // L-shape (long, rotated)
+    { shape: [[1, 1, 1], [1, 0, 0], [1, 0, 0]], textureName: 'texture-green-block', size: 5}, // 3x3 L-shape
+    { shape: [[1, 1, 1, 1, 1]], textureName: 'texture-red-block', size: 5}, // 1x5 horizontal
+    { shape: [[1], [1], [1], [1], [1]], textureName: 'texture-gold', size: 5}, // 5x1 vertical
+    { shape: [[1,1,0],[1,0,0],[1,1,0]], textureName: 'texture-blue-block', size: 5}, // Cross-like
+    { shape: [[0,1,0],[1,1,1],[0,1,0]], textureName: 'texture-green-block', size: 5}, // Plus-shape
+    { shape: [[1,1,1],[1,1,1],[1,1,1]], textureName: 'texture-red-block', size: 9} // 3x3 Full
 ];
 
 // Redeem codes and their effects
@@ -762,8 +945,8 @@ function calculateAndApplyDynamicSizes() {
     BLOCK_PIECE_SIZE = Math.max(8, Math.floor(CELL_SIZE * 0.6)); 
     document.documentElement.style.setProperty('--block-piece-dynamic-size', `${BLOCK_PIECE_SIZE}px`);
 
-    const maxBlockUnits = 5; 
-    BLOCK_SLOT_SIZE = Math.max(60, (maxBlockUnits * BLOCK_PIECE_SIZE) + (2 * 5)); 
+    const maxBlockUnits = 5; // Max dimension of block for slot size calculation
+    BLOCK_SLOT_SIZE = Math.max(60, (maxBlockUnits * BLOCK_PIECE_SIZE) + (2 * 5)); // 2*5 for padding
     document.documentElement.style.setProperty('--block-slot-dynamic-size', `${BLOCK_SLOT_SIZE}px`);
     
     const blockPreviewPadding = parseFloat(getComputedStyle(blockPreviewElement).paddingTop) + parseFloat(getComputedStyle(blockPreviewElement).paddingBottom);
@@ -804,8 +987,6 @@ function initializeGame() {
     restartButton.removeEventListener('click', initializeGame); 
     restartButton.addEventListener('click', initializeGame);
     changeBackgroundColor();
-    // No dynamic color change for the title as per the request, keeping it fixed white with shadow.
-    // startTitleColorChange(); // Removed this as per the fixed color request.
 }
 
 window.addEventListener('resize', calculateAndApplyDynamicSizes); 
@@ -1155,7 +1336,8 @@ function positionGhost(x, y) {
 }
 
 function startDrag(event) {
-    if (!gameOverOverlay.classList.contains('hidden') || !settingsOverlay.classList.contains('hidden')) return; // Prevent drag if any overlay is active
+    // Prevent drag if any overlay or sidebar is active
+    if (!gameOverOverlay.classList.contains('hidden') || !settingsOverlay.classList.contains('hidden') || sidebar.classList.contains('open')) return; 
     const slot = event.currentTarget;
     const blockIdx = parseInt(slot.dataset.blockIndex);
     if (blockIdx === -1 || !currentBlocks[blockIdx]) { isDragging = false; return; }
@@ -1356,6 +1538,25 @@ redeemButton.addEventListener('click', () => {
         redeemMessage.textContent = "Kode redeem tidak ditemukan.";
     }
 });
+
+// Sidebar toggle functionality
+sidebarToggleButton.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    if (window.matchMedia("(orientation: portrait) and (max-width: 600px)").matches) {
+        // Only shift game container in portrait mode on small screens
+        const sidebarWidth = sidebar.offsetWidth;
+        document.documentElement.style.setProperty('--sidebar-width', `${sidebarWidth}px`);
+        gameContainer.classList.toggle('shifted-right');
+    }
+});
+
+closeSidebarButton.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    if (window.matchMedia("(orientation: portrait) and (max-width: 600px)").matches) {
+        gameContainer.classList.remove('shifted-right');
+    }
+});
+
 
 document.addEventListener('DOMContentLoaded', initializeGame);
 
