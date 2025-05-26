@@ -205,9 +205,7 @@
             white-space: nowrap;
             font-size: clamp(0.9em, 3.5vw, 1.6em); 
         }
-        #settings-icon { /* This icon is now redundant if menu opens settings */
-            display: none; /* Hide the old settings icon */
-        }
+        /* Removed settings-icon as it's now controlled by menu-button */
 
 
         #game-area {
@@ -572,7 +570,7 @@
         <div id="settings-overlay">
             <div id="settings-content">
                 <h2 id="settings-title">
-                    <span class="color-u">U</span><span class="color-v">V</span><span class="color-o1">O</span><span class="color-b">B</span><span class="color-l">L</span><span class="color-o2">O</span><span class="color-c">C</span><span class="color-k">K</span> v 1.3
+                    <span class="color-u">U</span><span class="color-v">V</span><span class="color-o1">O</span><span class="color-b">B</span><span class="color-l">O</span><span class="color-c">C</span><span class="color-k">K</span> v 1.3
                 </h2>
                 <p id="settings-subtitle">by ADITdeveloper</p>
                 <a href="https://wa.me/6285648211278" target="_blank" class="settings-button whatsapp-button">Beli Paket</a>
@@ -595,14 +593,13 @@
     const overlayMessage = document.getElementById('overlay-message');
     const finalScoreDisplay = document.getElementById('finalScoreDisplay');
     const restartButton = document.getElementById('restartButton');
-    // const settingsIcon = document.getElementById('settings-icon'); // Removed as it's replaced by menu-button
     const settingsOverlay = document.getElementById('settings-overlay');
     const closeSettingsButton = document.getElementById('closeSettingsButton');
     const redeemInput = document.getElementById('redeemInput');
     const redeemButton = document.getElementById('redeemButton');
     const redeemMessage = document.getElementById('redeem-message');
     const resetScoreButton = document.getElementById('resetScoreButton');
-    const menuButton = document.getElementById('menu-button'); // Get menu button
+    const menuButton = document.getElementById('menu-button'); 
 
     const GRID_SIZE = 9;
     const GRID_CELL_COLOR = '#1F4C86';
@@ -680,12 +677,8 @@
         gameGrid.style.gridTemplateColumns = `repeat(${GRID_SIZE}, 1fr)`;
         grid = Array(GRID_SIZE).fill(0).map(() => Array(GRID_SIZE).fill(0));
 
-        // Dynamically set cell size based on container width
-        // This is handled by setDynamicSizes now, but a fallback is good
-        const containerWidth = gameGrid.offsetWidth;
-        const cellSize = containerWidth / GRID_SIZE;
-        gameGrid.style.gridAutoRows = `${cellSize}px`;
-
+        // Dynamically set cell size handled by setDynamicSizes now
+        // This initial setup just ensures the grid structure exists
         for (let r = 0; r < GRID_SIZE; r++) {
             for (let c = 0; c < GRID_SIZE; c++) {
                 const cell = document.createElement('div');
@@ -706,12 +699,11 @@
                 const cell = cells[index];
                 cell.classList.remove('occupied', 'texture-blue-block', 'texture-gold'); // Remove previous states
 
-                // Assuming grid stores block type or a default if just 1
-                if (grid[r][c] === 1) { // Default blue block
+                if (grid[r][c] === 1) { // Blue block
                     cell.classList.add('occupied', 'texture-blue-block');
                     cell.style.backgroundImage = `url('${blockTextures['blue-block']}')`;
                     cell.style.backgroundColor = OCCUPIED_COLOR_BASE;
-                } else if (grid[r][c] === 2) { // Gold block example
+                } else if (grid[r][c] === 2) { // Gold block
                     cell.classList.add('occupied', 'texture-gold');
                     cell.style.backgroundImage = `url('${blockTextures['gold']}')`;
                     cell.style.backgroundColor = GOLD_COLOR_BASE;
@@ -730,7 +722,8 @@
     }
 
     function fillBlockPreview() {
-        currentBlocks = currentBlocks.filter(block => block !== null); // Clean up used slots
+        // Filter out any null blocks (blocks that have been successfully placed)
+        currentBlocks = currentBlocks.filter(block => block !== null); 
         while (currentBlocks.length < 3) {
             currentBlocks.push(getRandomBlock());
         }
@@ -739,25 +732,25 @@
 
     function drawBlockPreview() {
         blockPreview.innerHTML = '';
-        const blockSlotSize = getComputedStyle(document.documentElement).getPropertyValue('--block-slot-dynamic-size').trim();
-        const blockPieceSize = getComputedStyle(document.documentElement).getPropertyValue('--block-piece-dynamic-size').trim();
+        // Ensure CSS variables are parsed as numbers, or use defaults
+        const blockSlotSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--block-slot-dynamic-size')) || 80;
+        const blockPieceSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--block-piece-dynamic-size')) || 16;
+
 
         currentBlocks.forEach((block, index) => {
             const slot = document.createElement('div');
             slot.classList.add('block-slot');
             slot.dataset.index = index;
-            // Only add event listeners if there's actually a block in the slot
+            
+            // Only add event listeners and draw content if there's actually a block in the slot
             if (block) {
                 slot.addEventListener('mousedown', dragStart);
                 slot.addEventListener('touchstart', dragStart, { passive: false });
 
                 const blockContainer = document.createElement('div');
                 blockContainer.classList.add('draggable-block-container');
-                blockContainer.style.gridTemplateColumns = `repeat(${block.shape[0].length}, 1fr)`;
+                blockContainer.style.gridTemplateColumns = `repeat(${block.shape[0].length}, ${blockPieceSize}px)`; // Use blockPieceSize here
 
-                let minPieceWidth = parseFloat(blockPieceSize) || 20;
-                let minPieceHeight = parseFloat(blockPieceSize) || 20;
-                
                 block.shape.forEach(row => {
                     row.forEach(cell => {
                         const piece = document.createElement('div');
@@ -803,7 +796,6 @@
         for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
                 if (shape[r][c] === 1) {
-                    // Store the type of block in the grid cell
                     grid[startRow + r][startCol + c] = block.type === 'gold' ? 2 : 1; // 1 for blue, 2 for gold
                 }
             }
@@ -862,7 +854,7 @@
                         gameGrid.children[index].classList.add('destroying');
                     }
                 }
-                grid[r].fill(0); // Clear the row
+                // Don't clear immediately, let animation play
             }
         }
 
@@ -884,9 +876,7 @@
                         gameGrid.children[index].classList.add('destroying');
                     }
                 }
-                for (let r = 0; r < GRID_SIZE; r++) {
-                    grid[r][c] = 0; // Clear the column
-                }
+                // Don't clear immediately, let animation play
             }
         }
 
@@ -901,6 +891,20 @@
             }
             // Wait for animation to finish before updating display and filling new blocks
             setTimeout(() => {
+                // Now actually clear the lines after animation
+                for (let r = 0; r < GRID_SIZE; r++) {
+                    if (Array.from(cellsToAnimate).some(coord => coord.startsWith(`${r}-`))) {
+                        grid[r].fill(0);
+                    }
+                }
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    if (Array.from(cellsToAnimate).some(coord => coord.endsWith(`-${c}`))) {
+                        for (let r = 0; r < GRID_SIZE; r++) {
+                            grid[r][c] = 0;
+                        }
+                    }
+                }
+
                 updateGridDisplay();
                 fillBlockPreview(); // Only fill if blocks are depleted
             }, 400); // Match animation duration
@@ -941,8 +945,10 @@
 
     function checkGameOver() {
         let anyBlockCanBePlaced = false;
-        for (const block of currentBlocks) {
-            if (!block) continue; // Skip null blocks
+        // Check only the blocks that are not null
+        const activeBlocks = currentBlocks.filter(block => block !== null);
+
+        for (const block of activeBlocks) {
             for (let r = 0; r < GRID_SIZE; r++) {
                 for (let c = 0; c < GRID_SIZE; c++) {
                     if (canPlaceBlock(block, r, c)) {
@@ -955,14 +961,15 @@
             if (anyBlockCanBePlaced) break;
         }
 
-        if (!anyBlockCanBePlaced && currentBlocks.some(block => block !== null)) {
-            // Game over only if no blocks can be placed AND there are blocks remaining in preview
+        if (!anyBlockCanBePlaced && activeBlocks.length > 0) {
+            // Game over only if no active blocks can be placed
             showGameOver();
-        } else if (currentBlocks.every(block => block === null)) {
+        } else if (activeBlocks.length === 0) {
             // If all blocks are used, generate new ones
             fillBlockPreview();
         }
     }
+
 
     function showGameOver() {
         overlayMessage.textContent = 'GAME OVER!';
@@ -1009,7 +1016,9 @@
         ghost.classList.add('ghost');
         const blockContainer = document.createElement('div');
         blockContainer.classList.add('draggable-block-container');
-        blockContainer.style.gridTemplateColumns = `repeat(${draggedBlock.shape[0].length}, 1fr)`;
+        // Use computed style for blockPieceSize to ensure it matches CSS variable
+        const blockPieceSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--block-piece-dynamic-size')) || 16;
+        blockContainer.style.gridTemplateColumns = `repeat(${draggedBlock.shape[0].length}, ${blockPieceSize}px)`;
         
         draggedBlock.shape.forEach(row => {
             row.forEach(cell => {
@@ -1068,7 +1077,7 @@
             const targetCell = getTargetGridCell(clientX, clientY);
             let blockPlacedSuccessfully = false;
 
-            if (targetCell && draggedBlock) { // Ensure draggedBlock is not null
+            if (targetCell && draggedBlock) { 
                 const targetCellInfo = targetCell.dataset;
                 const blockRows = draggedBlock.shape.length;
                 const blockCols = draggedBlock.shape[0].length;
@@ -1219,37 +1228,37 @@
         const gameContainer = document.getElementById('game-container');
         let cellSize, blockSlotSize, blockPieceSize;
 
-        // Determine if we are in a "landscape-like" small height mode or desktop mode
-        if (window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches || window.innerWidth >= 768) {
-            // Landscape mode or Desktop
-            const containerHeight = gameContainer.offsetHeight;
-            const containerWidth = gameContainer.offsetWidth;
+        const headerHeight = document.getElementById('header').offsetHeight;
+        const previewMinHeight = 100; // A reasonable minimum height for the preview area
+        const padding = 20; // General padding applied to game container
+        const gap = 15; // Gap between grid and preview
 
-            // Prioritize making the grid square and fit, then adjust preview
-            let potentialCellSizeFromHeight = (containerHeight - (20 * 2)) / GRID_SIZE; // 20px padding top/bottom
-            let potentialCellSizeFromWidth = (containerWidth * 0.6 - (20 * 2)) / GRID_SIZE; // 60% width for grid, 20px padding left/right for grid area
+        let availableWidth = gameContainer.offsetWidth - (padding * 2);
+        let availableHeight = gameContainer.offsetHeight - (padding * 2) - headerHeight - gap;
 
-            cellSize = Math.min(potentialCellSizeFromHeight, potentialCellSizeFromWidth);
-            cellSize = Math.max(cellSize, 25); // Minimum size
-
-            // Adjust block preview sizes based on grid cell size
-            blockSlotSize = cellSize * 2.5; // Roughly 2.5 grid cells wide for a block slot
-            blockPieceSize = cellSize / 3; // Pieces are smaller than grid cells, maybe 1/3
-        } else {
-            // Portrait mode (mobile)
-            const containerWidth = gameContainer.offsetWidth;
-            const availableHeight = gameContainer.offsetHeight - document.getElementById('header').offsetHeight - 15; // Total height minus header and block preview gap
-
-            cellSize = Math.min((containerWidth - 40) / GRID_SIZE, (availableHeight - 100) / GRID_SIZE); // 40 for padding, 100 for block preview area roughly
-            cellSize = Math.max(cellSize, 25); // Minimum size
-
-            blockSlotSize = (containerWidth - 40 - 30) / 3; // 40 for container padding, 30 for gap
-            blockSlotSize = Math.max(blockSlotSize, 50); // Minimum slot size
-
-            blockPieceSize = blockSlotSize / 5;
-            blockPieceSize = Math.max(blockPieceSize, 10); // Minimum piece size
-        }
+        // Prioritize making the grid square and fit, then adjust preview
+        let potentialCellSizeFromWidth = availableWidth / GRID_SIZE;
+        // The grid takes up most of the vertical space in portrait, so calculate based on that
+        let potentialCellSizeFromHeight = (availableHeight - previewMinHeight) / GRID_SIZE; 
         
+        // Take the smaller of the two to ensure it fits in both dimensions
+        cellSize = Math.min(potentialCellSizeFromWidth, potentialCellSizeFromHeight);
+        
+        // Ensure a minimum sensible size for cells
+        cellSize = Math.max(cellSize, 25); 
+
+        // Adjust block slot size and piece size based on the calculated cellSize
+        // Block slots should be large enough to contain their pieces comfortably
+        // A block piece is typically a sub-division of a cell, e.g., if a 1x1 block is 1 cell, a piece is a fraction of that.
+        // For draggable blocks, we assume block pieces are smaller than grid cells, so a common ratio is like 1/3 to 1/2 of a cell.
+        blockPieceSize = cellSize / 2.5; // Adjusted for better visibility and proportion
+        blockSlotSize = (blockPieceSize * 3) + (padding * 2); // Roughly 3 pieces per side plus some padding for the slot
+        
+        // Ensure minimum sensible sizes
+        blockSlotSize = Math.max(blockSlotSize, 50); // Minimum slot size
+        blockPieceSize = Math.max(blockPieceSize, 10); // Minimum piece size
+
+
         document.documentElement.style.setProperty('--grid-cell-dynamic-size', `${cellSize}px`);
         document.documentElement.style.setProperty('--block-slot-dynamic-size', `${blockSlotSize}px`);
         document.documentElement.style.setProperty('--block-piece-dynamic-size', `${blockPieceSize}px`);
