@@ -29,10 +29,10 @@
 
         body {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Changed to column to accommodate footer */
             justify-content: center;
             align-items: center;
-            background-color: #4A8EE2; /* Blue from WhatsApp Image 2025-05-26 at 13.41.07_b7b02805.jpg */
+            background-color: #4A90E2; /* Inspired by image blue */
             font-family: 'Press Start 2P', cursive;
             color: #ecf0f1;
             overscroll-behavior: none;
@@ -43,7 +43,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #3B72C9; /* Slightly darker blue for container */
+            background-color: #3B82C9; /* Slightly darker blue for container */
             border: none;
             box-shadow: none;
             padding: 20px;
@@ -53,8 +53,8 @@
             max-height: 98vh; 
             aspect-ratio: 1 / 1.6; /* Default, good for portrait */
             overflow: hidden; 
-            flex-grow: 1; 
-            justify-content: space-between; 
+            flex-grow: 1; /* Allow container to grow */
+            justify-content: space-between; /* Distribute content vertically */
         }
 
         /* Orientasi Landscape untuk HP */
@@ -67,17 +67,12 @@
                 height: 95vh;
                 padding: 15px;
             }
-            #main-header-content { /* New container for header content */
+            #header {
                 flex-direction: column;
                 align-items: center;
                 margin-bottom: 0;
                 margin-right: 15px;
                 padding: 0;
-                width: auto; /* Allow header content to size itself */
-            }
-            #header-top-row {
-                width: 100%; /* Take full width of parent */
-                justify-content: space-between;
             }
             #game-area {
                 flex-direction: row; 
@@ -108,19 +103,12 @@
             }
         }
 
-        #main-header-content { /* Container for title and score */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        #header-top-row {
+        #header {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px; 
             padding: 0 10px;
             color: #FFFFFF;
         }
@@ -151,33 +139,25 @@
         }
 
         #game-title {
-            font-size: clamp(3em, 10vw, 5em); /* Much larger */
-            font-family: 'Bangers', cursive; /* Applied Bangers font */
-            text-shadow: 4px 4px 0px rgba(0,0,0,0.3), 6px 6px 0px rgba(0,0,0,0.2); /* 3D effect */
+            font-size: 2.8em;
+            color: #FFFFFF; 
+            text-shadow: none; 
+            margin: 0;
             white-space: nowrap;
-            margin-top: 10px; /* Space between top row and title */
-            display: flex; /* For individual letter coloring */
+            font-size: clamp(1.1em, 4.5vw, 2.2em); 
+            font-family: 'Bangers', cursive; /* Applied Bangers font */
         }
-
-        #game-title span {
-            display: inline-block;
-            transition: color 0.1s ease-in-out; /* Smooth transition for color changes */
-        }
-
         #score-container { 
             display: flex;
-            flex-direction: column; 
+            flex-direction: column; /* Score below title */
             align-items: center;
             gap: 5px; 
             margin-top: 10px; /* Space between title and score */
-            width: 100%; /* Ensure it spans for centering */
         }
         #crown-score-wrapper {
             display: flex;
             align-items: center;
             gap: 5px;
-            justify-content: center; /* Center the score display */
-            width: 100%;
         }
         #crown-icon { 
             width: clamp(1em, 3.5vw, 1.5em); 
@@ -190,12 +170,12 @@
         }
 
         #scoreDisplay {
-            font-size: clamp(1.8em, 7vw, 2.8em); /* Larger score */
-            color: #FFFFFF; /* White color as in image */
+            font-size: 1.8em;
+            color: #FFFFFF;
             text-shadow: none;
             margin: 0;
             white-space: nowrap;
-            font-weight: bold; /* Make score bold */
+            font-size: clamp(0.9em, 3.5vw, 1.6em); 
         }
         #settings-icon { 
             width: clamp(1.2em, 4.5vw, 2em); 
@@ -247,12 +227,14 @@
         
         /* Block Textures for Grid Cells (Full Size) */
         .grid-cell.texture-gold { 
-            background-color: #FFC107; /* Gold color from image */
+            background-image: url('https://i.imgur.com/your-gold-texture-image.png'); /* Replace with actual gold texture */
+            background-color: #F1C40F; 
             box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
             border: 1px solid rgba(255,255,255,0.2); 
         }
         .grid-cell.texture-blue-block { 
-            background-color: #2196F3; /* Blue color from image */
+            background-image: url('https://i.imgur.com/your-blue-texture-image.png'); /* Replace with actual blue texture */
+            background-color: #3498DB; 
             box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.2);
         }
@@ -323,12 +305,14 @@
 
         /* Block Textures for Preview Pieces (Smaller Size) */
         .block-piece.texture-gold { 
-            background-color: #FFC107; 
+            background-image: url('https://i.imgur.com/your-gold-texture-image-small.png'); 
+            background-color: #F1C40F; 
             border-radius: 3px; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
         }
         .block-piece.texture-blue-block { 
-            background-color: #2196F3; 
+            background-image: url('https://i.imgur.com/your-blue-texture-image-small.png'); 
+            background-color: #3498DB; 
             border-radius: 3px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
@@ -401,9 +385,9 @@
                 padding: 15px;
                 aspect-ratio: 1 / 1.7; 
             }
-            #main-header-content { margin-bottom: 15px; }
-            #game-title { font-size: clamp(2em, 8vw, 4em); } /* Adjusted for smaller screens */
-            #scoreDisplay { font-size: clamp(1.5em, 6vw, 2.5em); } /* Adjusted for smaller screens */
+            #header { margin-bottom: 15px; }
+            #game-title { font-size: clamp(1em, 4vw, 1.8em); }
+            #scoreDisplay { font-size: clamp(0.8em, 3vw, 1.4em); }
             #game-area { gap: 10px; } 
             #game-grid { border-width: 2px; }
             .grid-cell { border-width: 0.5px; }
@@ -412,9 +396,9 @@
         }
          @media (max-width: 380px) { 
             #game-container { padding: 10px; aspect-ratio: 1 / 1.8; }
-            #main-header-content { margin-bottom: 10px;}
-            #game-title { font-size: clamp(1.8em, 7vw, 3.5em); }
-            #scoreDisplay { font-size: clamp(1.3em, 5vw, 2.2em); }
+            #header { margin-bottom: 10px;}
+            #game-title { font-size: clamp(0.9em, 4vw, 1.5em); }
+            #scoreDisplay { font-size: clamp(0.7em, 3vw, 1.2em); }
             #game-area { gap: 8px; }
         }
 
@@ -429,31 +413,20 @@
 </head>
 <body>
 <div id="game-container">
-    <div id="main-header-content">
-        <div id="header-top-row">
+    <div>
+        <div id="header">
             <div id="header-left">
                 <button id="back-button" aria-label="Kembali ke halaman sebelumnya">
                     <span class="icon"></span>
                 </button>
+                <div id="crown-score-wrapper">
+                    <div id="crown-icon"></div> 
+                    <p id="scoreDisplay">0</p>
+                </div>
             </div>
             <div id="settings-icon"></div> 
         </div>
-        <h1 id="game-title">
-            <span style="color: #E67E22;">U</span>
-            <span style="color: #3498DB;">V</span>
-            <span style="color: #E74C3C;">O</span>
-            <span style="color: #F1C40F;">B</span>
-            <span style="color: #9B59B6;">L</span>
-            <span style="color: #E67E22;">O</span>
-            <span style="color: #3498DB;">C</span>
-            <span style="color: #E74C3C;">K</span>
-        </h1> 
-        <div id="score-container"> 
-            <div id="crown-score-wrapper">
-                <div id="crown-icon"></div> 
-                <p id="scoreDisplay">0</p>
-            </div>
-        </div>
+        <h1 id="game-title">UVOBLOCK</h1> 
     </div>
 
     <div id="game-area">
@@ -488,7 +461,7 @@ const overlayMessage = document.getElementById('overlay-message');
 const finalScoreDisplay = document.getElementById('finalScoreDisplay'); 
 const restartButton = document.getElementById('restartButton');
 const bodyElement = document.body;
-const gameTitleElement = document.getElementById('game-title'); 
+const gameTitleElement = document.getElementById('game-title'); // Get the game title element
 const backButton = document.getElementById('back-button');
 
 const GRID_ROWS = 9;
@@ -508,11 +481,10 @@ let ghostElement = null;
 let currentHighlightCells = []; 
 let isDragging = false; 
 
-// Base background colors matching the image
-const BACKGROUND_COLORS = ['#4A8EE2', '#3B72C9']; 
+const BACKGROUND_COLORS = ['#4A90E2', '#3B82C9', '#4285D4', '#559BEF']; 
 let currentBgColorIndex = 0;
 
-// Updated BLOCK_SHAPES with new texture names and colors matching the image
+// Updated BLOCK_SHAPES with new texture names
 const BLOCK_SHAPES = [
     { shape: [[1]], textureName: 'texture-gold', size: 1 },
     { shape: [[1, 1]], textureName: 'texture-blue-block', size: 2 },
@@ -536,13 +508,11 @@ const BLOCK_SHAPES = [
 
 function calculateAndApplyDynamicSizes() {
     const gameAreaRect = document.getElementById('game-area').getBoundingClientRect();
-    const mainHeaderContent = document.getElementById('main-header-content');
-    const blockPreviewElement = document.getElementById('block-preview');
-
+    
     let availableGridWidth = gameAreaRect.width;
     let availableGridHeight = gameAreaRect.height - 
-                              mainHeaderContent.offsetHeight -
-                              blockPreviewElement.offsetHeight -
+                              (gameTitleElement.offsetHeight + parseFloat(getComputedStyle(gameTitleElement).marginTop) + parseFloat(getComputedStyle(gameTitleElement).marginBottom)) -
+                              (blockPreviewSlots[0].offsetHeight + parseFloat(getComputedStyle(blockPreviewSlots[0]).marginTop) + parseFloat(getComputedStyle(blockPreviewSlots[0]).marginBottom)) -
                               (parseFloat(getComputedStyle(document.getElementById('game-area')).gap) * 2);
 
     availableGridWidth = Math.max(availableGridWidth, GRID_COLS * 10); 
@@ -564,6 +534,7 @@ function calculateAndApplyDynamicSizes() {
     BLOCK_SLOT_SIZE = Math.max(60, (maxBlockUnits * BLOCK_PIECE_SIZE) + (2 * 5)); 
     document.documentElement.style.setProperty('--block-slot-dynamic-size', `${BLOCK_SLOT_SIZE}px`);
     
+    const blockPreviewElement = document.getElementById('block-preview');
     const blockPreviewPadding = parseFloat(getComputedStyle(blockPreviewElement).paddingTop) + parseFloat(getComputedStyle(blockPreviewElement).paddingBottom);
     blockPreviewElement.style.minHeight = `${BLOCK_SLOT_SIZE + blockPreviewPadding}px`;
 
@@ -579,7 +550,7 @@ function calculateAndApplyDynamicSizes() {
 
 
 function initializeGame() {
-    score = loadScore(); 
+    score = loadScore(); // Load score at initialization
     currentCombo = 0; 
     scoreMultiplier = 1; 
     updateScoreDisplay();
@@ -601,6 +572,7 @@ function initializeGame() {
     restartButton.removeEventListener('click', initializeGame); 
     restartButton.addEventListener('click', initializeGame);
     changeBackgroundColor();
+    startTitleColorChange(); // Start title color change on game init
 }
 
 window.addEventListener('resize', calculateAndApplyDynamicSizes); 
@@ -753,7 +725,7 @@ function placeBlock(block, startRow, startCol) {
     });
     score += piecesPlaced * 10; 
     updateScoreDisplay();
-    saveScore(); 
+    saveScore(); // Save score after placing block
     return true;
 }
 
@@ -770,7 +742,7 @@ function canPlaceBlock(block, startRow, startCol) {
                     return false;
                 }
             }
-        });
+        }
     }
     return true;
 }
@@ -850,7 +822,7 @@ function clearLines() {
                 }, 1500); 
             }
             updateScoreDisplay();
-            saveScore(); 
+            saveScore(); // Save score after clearing lines
             changeBackgroundColor();
             
             if (currentBlocks.every(block => block === null)) generateNewBlocks();
@@ -912,13 +884,32 @@ function changeBackgroundColor() {
     bodyElement.style.backgroundColor = BACKGROUND_COLORS[currentBgColorIndex];
 }
 
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+let titleColorInterval;
+function startTitleColorChange() {
+    if (titleColorInterval) clearInterval(titleColorInterval);
+    titleColorInterval = setInterval(() => {
+        gameTitleElement.style.color = getRandomColor();
+    }, 1000); 
+}
+
+
 function getEventCoords(event) {
+    // For touchend, use changedTouches
     if (event.type === 'touchend' && event.changedTouches && event.changedTouches.length > 0) {
         return { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
     }
+    // For touchmove and touchstart, use touches
     else if (event.touches && event.touches.length > 0) { 
         return { x: event.touches[0].clientX, y: event.touches[0].clientY };
     }
+    // For mouse events
     return { x: event.clientX, y: event.clientY };
 }
 
@@ -969,7 +960,7 @@ function startDrag(event) {
 
 function drag(event) {
     if (!isDragging || !ghostElement || !draggedBlock) return;
-    if (event.type === 'touchmove') event.preventDefault(); 
+    if (event.type === 'touchmove') event.preventDefault(); // Prevent scrolling on touch drag
     const coords = getEventCoords(event);
     positionGhost(coords.x, coords.y);
     const targetCellInfo = getGridCellAtCoords(coords.x, coords.y);
@@ -995,7 +986,7 @@ function dragEnd(event) {
     }
     if (!wasActuallyDragging || !draggedBlock) { removeDragListeners(); return; }
 
-    const coords = getEventCoords(event); 
+    const coords = getEventCoords(event); // Use getEventCoords for touchend
     const targetCellInfo = getGridCellAtCoords(coords.x, coords.y);
     let blockPlacedSuccessfully = false;
 
@@ -1013,7 +1004,7 @@ function dragEnd(event) {
         }
     }
     if (!blockPlacedSuccessfully) {
-        currentCombo = 0; 
+        currentCombo = 0; // Reset combo if block not placed
         drawBlockPreview(); 
         checkGameOver();
     }
