@@ -29,6 +29,7 @@
 
         body {
             display: flex;
+            flex-direction: column; /* Changed to column to accommodate footer */
             justify-content: center;
             align-items: center;
             background-color: #4A90E2; /* Inspired by image blue */
@@ -236,13 +237,13 @@
         
         /* Block Textures for Grid Cells (Full Size) */
         .grid-cell.texture-gold { 
-            background-image: url('https://i.imgur.com/your-gold-texture-image.png'); /* Replace with actual gold texture */
+            background-image: url('https://i.imgur.com/3Z1T2Mv.png'); /* Gold texture */
             background-color: #F1C40F; 
             box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
             border: 1px solid rgba(255,255,255,0.2); 
         }
         .grid-cell.texture-blue-block { 
-            background-image: url('https://i.imgur.com/your-blue-texture-image.png'); /* Replace with actual blue texture */
+            background-image: url('https://i.imgur.com/Qe1T2Mv.png'); /* Blue block texture */
             background-color: #3498DB; 
             box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.2);
@@ -314,13 +315,13 @@
 
         /* Block Textures for Preview Pieces (Smaller Size) */
         .block-piece.texture-gold { 
-            background-image: url('https://i.imgur.com/your-gold-texture-image-small.png'); 
+            background-image: url('https://i.imgur.com/4Y1T2Mv.png'); /* Small gold texture */
             background-color: #F1C40F; 
             border-radius: 3px; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
         }
         .block-piece.texture-blue-block { 
-            background-image: url('https://i.imgur.com/your-blue-texture-image-small.png'); 
+            background-image: url('https://i.imgur.com/W21T2Mv.png'); /* Small blue block texture */
             background-color: #3498DB; 
             border-radius: 3px; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
@@ -645,12 +646,12 @@
     let draggedBlockIndex = -1;
     let ghostBlockElements = [];
     let blockTextures = {
-        'blue-block': 'https://i.imgur.com/your-blue-texture-image.png', // Replace with actual blue block texture
-        'gold': 'https://i.imgur.com/your-gold-texture-image.png' // Replace with actual gold block texture
+        'blue-block': 'https://i.imgur.com/Qe1T2Mv.png', // Blue block texture
+        'gold': 'https://i.imgur.com/3Z1T2Mv.png' // Gold block texture
     };
     let blockPieceTextures = {
-        'blue-block': 'https://i.imgur.com/your-blue-texture-image-small.png', // Replace with actual small blue block texture
-        'gold': 'https://i.imgur.com/your-gold-texture-image-small.png' // Replace with actual small gold block texture
+        'blue-block': 'https://i.imgur.com/W21T2Mv.png', // Small blue block texture
+        'gold': 'https://i.imgur.com/4Y1T2Mv.png' // Small gold block texture
     };
 
 
@@ -693,16 +694,14 @@
                 const cell = cells[index];
                 cell.classList.remove('occupied', 'texture-blue-block', 'texture-gold'); // Remove previous states
 
-                if (grid[r][c] === 1) {
-                    cell.classList.add('occupied');
-                    // Add texture class based on stored block type if you track it in grid
-                    // For now, assuming default blue-block if occupied, or you need to store type in grid[r][c]
-                    cell.classList.add('texture-blue-block'); // Default texture for occupied cells
-                } else if (grid[r][c] === 2) { // Example for a different block type like gold
+                // Assuming grid stores block type or a default if just 1
+                if (grid[r][c] === 1) { // Default blue block
+                    cell.classList.add('occupied', 'texture-blue-block');
+                } else if (grid[r][c] === 2) { // Gold block example
                     cell.classList.add('occupied', 'texture-gold');
                 }
                 // Clear any inline background-image that might have been set by old logic
-                cell.style.backgroundImage = '';
+                cell.style.backgroundImage = grid[r][c] === 1 ? `url('${blockTextures['blue-block']}')` : (grid[r][c] === 2 ? `url('${blockTextures['gold']}')` : '');
                 cell.style.backgroundColor = grid[r][c] ? '' : GRID_CELL_COLOR;
             }
         }
@@ -797,7 +796,8 @@
         for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
                 if (shape[r][c] === 1) {
-                    grid[startRow + r][startCol + c] = 1; // Mark as occupied
+                    // Store the type of block in the grid cell
+                    grid[startRow + r][startCol + c] = block.type === 'gold' ? 2 : 1; // 1 for blue, 2 for gold
                 }
             }
         }
@@ -960,6 +960,13 @@
         overlayMessage.textContent = 'GAME OVER!';
         finalScoreDisplay.textContent = `Skor Akhir: ${score}`;
         gameOverlay.classList.remove('hidden');
+        score = 0; // Reset score on game over
+        multiplier = 1;
+        extraMoves = 0;
+        hintAvailable = false;
+        blockDestroyerAvailable = false;
+        rareItemAvailable = false;
+        saveScore(); // Save the reset score
     }
 
     function hideOverlay() {
@@ -1048,7 +1055,7 @@
             removeHighlights();
 
             const clientX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchend' ? e.changedTouches[0].clientY : e.clientY;
+            const clientY = e.type === 'touchend' ? e.changedTouches[0].C LIENTY : e.clientY;
 
             const targetCell = getTargetGridCell(clientX, clientY);
             let blockPlacedSuccessfully = false;
@@ -1141,40 +1148,40 @@
             }
 
             score += reward.value;
-            let bonusText = '';
+            let bonusMessage = '';
             if (reward.bonus === "combo_booster") {
                 combo += 3; // Example: Add 3 to combo, actual effect depends on implementation
-                bonusText += ' + Combo Booster!';
+                bonusMessage += ' + Combo Booster!';
             }
             if (reward.bonus === "multiplier") {
                 multiplier *= reward.value_multiplier;
-                bonusText += ` + ${reward.value_multiplier}x Multiplier!`;
+                bonusMessage += ` + ${reward.value_multiplier}x Multiplier!`;
             }
             if (reward.bonus === "rare_item") {
                 rareItemAvailable = true; // Placeholder for a rare item effect
-                bonusText += ' + 1 Item Rare!';
+                bonusMessage += ' + 1 Item Rare!';
             }
             if (reward.bonus === "hint_free") {
                 hintAvailable = true; // Placeholder for a hint
-                bonusText += ' + Hint Gratis!';
+                bonusMessage += ' + Hint Gratis!';
             }
             if (reward.bonus === "double_combo") {
                 // Implement double combo logic, e.g., if combo is active, double its effect
-                bonusText += ' + Double Combo!';
+                bonusMessage += ' + Double Combo!';
             }
             if (reward.bonus === "extra_move") {
                 extraMoves += 1; // Grant an extra move
-                bonusText += ' + Extra Move!';
+                bonusMessage += ' + Extra Move!';
             }
             if (reward.bonus === "block_destroyer") {
                 blockDestroyerAvailable = true; // Grant a block destroyer item
-                bonusText += ' + Block Destroyer Item!';
+                bonusMessage += ' + Block Destroyer Item!';
             }
 
             updateScoreDisplay();
             saveScore();
             localStorage.setItem(`redeemed_${code}`, 'true'); // Mark code as used
-            redeemMessage.textContent = `Redeem berhasil! Mendapat ${reward.value} skor!${bonusText}`;
+            redeemMessage.textContent = `Redeem berhasil! Mendapat ${reward.value} skor!${bonusMessage}`;
             redeemMessage.style.color = '#2ecc71'; // Green for success
             redeemInput.value = ''; // Clear input
         } else {
