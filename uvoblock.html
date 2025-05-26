@@ -31,7 +31,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2c3e50;
+            background-color: #4A90E2; /* Inspired by image blue */
             font-family: 'Press Start 2P', cursive;
             color: #ecf0f1;
             overscroll-behavior: none;
@@ -42,9 +42,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #1a1a1a;
-            border: 5px solid #3498db;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.5) inset;
+            background-color: #3B82C9; /* Slightly darker blue for container */
+            border: none; /* No border for the container */
+            box-shadow: none; /* No shadow for the container */
             padding: 20px;
             border-radius: 12px;
             position: relative;
@@ -110,31 +110,56 @@
             align-items: center;
             margin-bottom: 20px; 
             padding: 0 10px;
+            color: #FFFFFF; /* White color for header elements */
         }
 
         #game-title {
             font-size: 2.8em;
-            color: #e74c3c;
-            text-shadow: 0 0 12px #e74c3c, 0 0 5px #e74c3c;
+            color: #FFFFFF; /* White color for title */
+            text-shadow: none; /* No text shadow */
             margin: 0;
             white-space: nowrap;
-            font-size: clamp(1.1em, 4.5vw, 2.2em); /* Slightly smaller max for title */
+            font-size: clamp(1.1em, 4.5vw, 2.2em); 
+        }
+        #score-container { /* New container for score and crown */
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between crown and score */
+        }
+        #crown-icon { /* Crown icon style */
+            width: clamp(1em, 3.5vw, 1.5em); /* Adjust size as needed */
+            height: clamp(1em, 3.5vw, 1.5em);
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)); /* Subtle glow */
+            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/social/crown_FILL0_wght400_GRAD0_opsz24.png'); /* Placeholder crown icon */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         #scoreDisplay {
             font-size: 1.8em;
-            color: #f1c40f;
-            text-shadow: 0 0 8px #f1c40f;
+            color: #FFFFFF; /* White color for score */
+            text-shadow: none; /* No text shadow */
             margin: 0;
             white-space: nowrap;
             font-size: clamp(0.9em, 3.5vw, 1.6em); 
         }
+        #settings-icon { /* Settings icon style */
+            width: clamp(1.2em, 4.5vw, 2em); /* Adjust size as needed */
+            height: clamp(1.2em, 4.5vw, 2em);
+            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/action/settings_FILL0_wght400_GRAD0_opsz24.png'); /* Placeholder settings icon */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
 
         #game-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px; /* Adjusted gap */
+            gap: 15px; 
             flex-grow: 1; 
             justify-content: center; 
             width: 100%; 
@@ -142,26 +167,23 @@
 
         #game-grid {
             display: grid;
-            /* grid-template-columns/rows set by JS */
-            border: 2px solid #555; /* Thinner border */
-            background-color: #333;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+            border: none; /* No border for the grid container */
+            background-color: #1A3E72; /* Dark blue for grid background */
+            box-shadow: none; /* No shadow */
             border-radius: 5px;
             overflow: hidden;
-            /* width/height set by JS to be square and fit available space */
-            aspect-ratio: 1 / 1; /* Ensure grid is always square */
+            aspect-ratio: 1 / 1; 
         }
 
         .grid-cell {
-            /* width/height set by JS via grid-template */
-            border: 1px solid #444; 
-            background-color: #3d3d3d; 
+            border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle darker border */
+            background-color: #1F4C86; /* Slightly lighter than grid background */
             display: flex;
             justify-content: center;
             align-items: center;
             transition: background-color 0.1s ease-out; 
             font-size: 0; 
-            background-size: cover; /* Key for texture display */
+            background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
             position: relative; 
@@ -171,44 +193,48 @@
             /* Background color will be fallback if texture image fails */
         }
         
-        /* GANTI DENGAN URL TEKSTUR ANDA (misal: 16x16 pixel art detail) */
-        .grid-cell.texture-red { background-image: url('path/to/your/red_texture.png'); background-color: #e74c3c; }
-        .grid-cell.texture-blue { background-image: url('path/to/your/blue_texture.png'); background-color: #3498db; }
-        .grid-cell.texture-yellow { background-image: url('path/to/your/yellow_texture.png'); background-color: #f1c40f; }
-        .grid-cell.texture-purple { background-image: url('path/to/your/purple_texture.png'); background-color: #9b59b6; }
-        .grid-cell.texture-orange { background-image: url('path/to/your/orange_texture.png'); background-color: #e67e22; }
-        .grid-cell.texture-green { background-image: url('path/to/your/green_texture.png'); background-color: #2ecc71; }
-        .grid-cell.texture-cyan { background-image: url('path/to/your/cyan_texture.png'); background-color: #00bcd4; }
-        .grid-cell.texture-pink { background-image: url('path/to/your/pink_texture.png'); background-color: #e91e63; }
+        /* Block Textures for Grid Cells (Full Size) */
+        .grid-cell.texture-gold { 
+            background-image: url('https://i.imgur.com/your-gold-texture-image.png'); /* Replace with actual gold texture */
+            background-color: #F1C40F; /* Fallback */
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3); /* Subtle inner shadow for depth */
+            border: 1px solid rgba(255,255,255,0.2); /* Lighter border for distinction */
+        }
+        .grid-cell.texture-blue-block { 
+            background-image: url('https://i.imgur.com/your-blue-texture-image.png'); /* Replace with actual blue texture */
+            background-color: #3498DB; /* Fallback */
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
 
         #block-preview {
             display: flex;
             gap: 15px; 
             padding: 10px; 
-            background-color: #222;
+            background-color: transparent; /* Transparent background */
             border-radius: 10px;
-            /* min-height dynamic based on slot size from JS */
             align-items: center;
             justify-content: space-around; 
             width: 100%; 
             flex-wrap: nowrap; 
             overflow: visible; 
+            min-height: var(--block-slot-dynamic-size); /* Ensure minimum height */
         }
 
         .block-slot {
             width: var(--block-slot-dynamic-size, 80px); /* Dynamic size from JS */
             height: var(--block-slot-dynamic-size, 80px);
-            border: 1px dashed #666;
+            border: none; /* No border for slots */
             border-radius: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 5px; /* Padding inside slot */
+            padding: 5px; 
             cursor: grab;
             transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-            background-color: #2a2a2a;
-            flex-shrink: 1; /* Allow slots to shrink slightly if needed */
+            background-color: transparent; /* Transparent background */
+            flex-shrink: 1; 
             flex-grow: 0; 
             flex-basis: auto; 
             touch-action: none;
@@ -223,22 +249,21 @@
             opacity: 0.5; 
         }
         .block-slot:empty {
-            border: 1px solid transparent; 
+            border: none; /* No border for empty slots */
             background-color: transparent;
         }
 
         .draggable-block-container {
             display: grid;
-            /* grid-template-columns set by JS */
-            grid-auto-rows: var(--block-piece-dynamic-size); /* Dynamic size from JS */
+            grid-auto-rows: var(--block-piece-dynamic-size); 
             pointer-events: none; 
         }
 
         .block-piece {
-            width: var(--block-piece-dynamic-size); /* Dynamic size */
+            width: var(--block-piece-dynamic-size); 
             height: var(--block-piece-dynamic-size);
-            border: 1px solid rgba(0,0,0,0.2); 
-            background-size: cover; /* Key for texture display */
+            border: none; /* No border for block pieces */
+            background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
@@ -247,15 +272,19 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* GANTI DENGAN URL TEKSTUR ANDA (versi preview jika beda, atau sama) */
-        .block-piece.texture-red { background-image: url('path/to/your/red_texture_preview.png'); background-color: #ff6b6b; }
-        .block-piece.texture-blue { background-image: url('path/to/your/blue_texture_preview.png'); background-color: #6aabff; }
-        .block-piece.texture-yellow { background-image: url('path/to/your/yellow_texture_preview.png'); background-color: #ffe66d; }
-        .block-piece.texture-purple { background-image: url('path/to/your/purple_texture_preview.png'); background-color: #be8eff; }
-        .block-piece.texture-orange { background-image: url('path/to/your/orange_texture_preview.png'); background-color: #ff9f43; }
-        .block-piece.texture-green { background-image: url('path/to/your/green_texture_preview.png'); background-color: #6eff6e; }
-        .block-piece.texture-cyan { background-image: url('path/to/your/cyan_texture_preview.png'); background-color: #79e3f0; }
-        .block-piece.texture-pink { background-image: url('path/to/your/pink_texture_preview.png'); background-color: #ff85b3; }
+        /* Block Textures for Preview Pieces (Smaller Size) */
+        .block-piece.texture-gold { 
+            background-image: url('https://i.imgur.com/your-gold-texture-image-small.png'); /* Smaller gold texture for preview */
+            background-color: #F1C40F; /* Fallback */
+            border-radius: 3px; /* Slightly rounded corners */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow for 3D effect */
+        }
+        .block-piece.texture-blue-block { 
+            background-image: url('https://i.imgur.com/your-blue-texture-image-small.png'); /* Smaller blue texture for preview */
+            background-color: #3498DB; /* Fallback */
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
 
 
         .ghost {
@@ -267,12 +296,12 @@
         }
 
         .grid-cell.highlight {
-            background-color: rgba(46, 204, 113, 0.6) !important; /* Override texture */
+            background-color: rgba(46, 204, 113, 0.4) !important; /* Lighter highlight */
             border: 2px solid #2ecc71;
             box-shadow: 0 0 8px rgba(46, 204, 113, 0.8);
         }
         .grid-cell.invalid {
-            background-color: rgba(231, 76, 60, 0.6) !important; /* Override texture */
+            background-color: rgba(231, 76, 60, 0.4) !important; /* Lighter invalid highlight */
             border: 2px solid #e74c3c;
             box-shadow: 0 0 8px rgba(231, 76, 60, 0.8);
         }
@@ -280,7 +309,7 @@
         .grid-cell.destroying {
             animation: satisfyingDestroy 0.4s forwards ease-out;
         }
-        @keyframes satisfyingDestroy { /* Animasi ledakan "satisfying" */
+        @keyframes satisfyingDestroy { 
             0% { transform: scale(1) rotate(0deg); opacity: 1; }
             50% { transform: scale(1.2) rotate(5deg) translateY(-3px); opacity: 0.7; filter: brightness(1.2); }
             100% { transform: scale(0.1) rotate(-20deg) translateY(5px); opacity: 0; filter: brightness(0.5); }
@@ -352,9 +381,12 @@
 <body>
 <div id="game-container">
     <div id="header">
-        <h1 id="game-title">UVOBLOCK</h1>
-        <p id="scoreDisplay">Skor: 0</p>
+        <div id="crown-icon"></div>
+        <p id="scoreDisplay">14</p>
+        <div id="settings-icon"></div>
     </div>
+    <h1 id="game-title">UVOBLOCK</h1>
+
     <div id="game-area">
         <div id="game-grid">
         </div>
@@ -387,13 +419,14 @@ const bodyElement = document.body;
 
 const GRID_ROWS = 9;
 const GRID_COLS = 9;
-let CELL_SIZE = 0; // Akan dihitung ulang secara dinamis
-let BLOCK_PIECE_SIZE = 0; // Akan dihitung ulang secara dinamis (untuk preview)
-let BLOCK_SLOT_SIZE = 0; // Akan dihitung ulang secara dinamis (untuk slot preview)
+let CELL_SIZE = 0; 
+let BLOCK_PIECE_SIZE = 0; 
+let BLOCK_SLOT_SIZE = 0; 
 
 let gameGrid = [];
 let score = 0;
-let currentComboMultiplier = 1; 
+let currentCombo = 0; // Renamed for clarity in scoring
+let scoreMultiplier = 1; // New multiplier for overall score
 let currentBlocks = []; 
 let draggedBlock = null; 
 let draggedBlockIndex = -1; 
@@ -401,69 +434,62 @@ let ghostElement = null;
 let currentHighlightCells = []; 
 let isDragging = false; 
 
-const BACKGROUND_COLORS = ['#2c3e50', '#34495e', '#233140', '#3b5369'];
+// Updated background colors to fit the image aesthetic
+const BACKGROUND_COLORS = ['#4A90E2', '#3B82C9', '#4285D4', '#559BEF']; 
 let currentBgColorIndex = 0;
 
+// Updated BLOCK_SHAPES with new texture names
 const BLOCK_SHAPES = [
-    { shape: [[1]], textureName: 'texture-red', size: 1 },
-    { shape: [[1, 1]], textureName: 'texture-blue', size: 2 },
-    { shape: [[1], [1]], textureName: 'texture-yellow', size: 2 },
-    { shape: [[1, 1, 1]], textureName: 'texture-purple', size: 3 },
-    { shape: [[1], [1], [1]], textureName: 'texture-orange', size: 3 },
-    { shape: [[1, 1], [0, 1]], textureName: 'texture-green', size: 3 }, 
-    { shape: [[1, 1], [1, 0]], textureName: 'texture-cyan', size: 3 },  
-    { shape: [[0, 1], [1, 1]], textureName: 'texture-pink', size: 3 },
-    { shape: [[1, 0], [1, 1]], textureName: 'texture-red', size: 3 }, 
-    { shape: [[1,1,1],[0,1,0]], textureName: 'texture-purple', size: 4 }, 
-    { shape: [[1, 1, 1, 1]], textureName: 'texture-blue', size: 4 }, 
-    { shape: [[1], [1], [1], [1]], textureName: 'texture-yellow', size: 4 }, 
-    { shape: [[1, 1], [1, 1]], textureName: 'texture-green', size: 4 }, 
-    { shape: [[0, 1, 0], [1, 1, 1]], textureName: 'texture-orange', size: 4 }, 
-    { shape: [[1, 1, 0], [0, 1, 1]], textureName: 'texture-cyan', size: 4 }, 
-    { shape: [[0, 1, 1], [1, 1, 0]], textureName: 'texture-pink', size: 4 }, 
-    { shape: [[1,1,1,1,1]], textureName: 'texture-purple', size: 5}, 
-    { shape: [[1],[1],[1],[1],[1]], textureName: 'texture-red', size: 5} 
+    { shape: [[1]], textureName: 'texture-gold', size: 1 },
+    { shape: [[1, 1]], textureName: 'texture-blue-block', size: 2 },
+    { shape: [[1], [1]], textureName: 'texture-gold', size: 2 },
+    { shape: [[1, 1, 1]], textureName: 'texture-blue-block', size: 3 },
+    { shape: [[1], [1], [1]], textureName: 'texture-gold', size: 3 },
+    { shape: [[1, 1], [0, 1]], textureName: 'texture-blue-block', size: 3 }, 
+    { shape: [[1, 1], [1, 0]], textureName: 'texture-gold', size: 3 },  
+    { shape: [[0, 1], [1, 1]], textureName: 'texture-blue-block', size: 3 },
+    { shape: [[1, 0], [1, 1]], textureName: 'texture-gold', size: 3 }, 
+    { shape: [[1,1,1],[0,1,0]], textureName: 'texture-blue-block', size: 4 }, 
+    { shape: [[1, 1, 1, 1]], textureName: 'texture-gold', size: 4 }, 
+    { shape: [[1], [1], [1], [1]], textureName: 'texture-blue-block', size: 4 }, 
+    { shape: [[1, 1], [1, 1]], textureName: 'texture-gold', size: 4 }, 
+    { shape: [[0, 1, 0], [1, 1, 1]], textureName: 'texture-blue-block', size: 4 }, 
+    { shape: [[1, 1, 0], [0, 1, 1]], textureName: 'texture-gold', size: 4 }, 
+    { shape: [[0, 1, 1], [1, 1, 0]], textureName: 'texture-blue-block', size: 4 }, 
+    { shape: [[1,1,1,1,1]], textureName: 'texture-gold', size: 5}, 
+    { shape: [[1],[1],[1],[1],[1]], textureName: 'texture-blue-block', size: 5} 
 ];
 
-// Fungsi untuk menghitung dan menerapkan ukuran dinamis
 function calculateAndApplyDynamicSizes() {
     const gameAreaRect = document.getElementById('game-area').getBoundingClientRect();
     const gameContainerPadding = parseFloat(getComputedStyle(document.getElementById('game-container')).paddingLeft) * 2;
     
-    // Available width for grid is gameArea width.
-    // Available height is more complex: gameAreaHeight - headerHeight - blockPreviewHeight - gaps
-    // For simplicity, make grid square based on width first, then check height.
     let availableGridWidth = gameAreaRect.width;
     let availableGridHeight = gameAreaRect.height - 
                               document.getElementById('header').offsetHeight -
-                              (BLOCK_SLOT_SIZE + 20 + 10) - // Estimate preview height (slot + padding + gap)
+                              document.getElementById('game-title').offsetHeight - // Account for title height
+                              (BLOCK_SLOT_SIZE + 20 + 10) - 
                               (parseFloat(getComputedStyle(document.getElementById('game-area')).gap) * 2);
 
-
-    availableGridWidth = Math.max(availableGridWidth, GRID_COLS * 10); // Min width to avoid issues
-    availableGridHeight = Math.max(availableGridHeight, GRID_ROWS * 10); // Min height
+    availableGridWidth = Math.max(availableGridWidth, GRID_COLS * 10); 
+    availableGridHeight = Math.max(availableGridHeight, GRID_ROWS * 10); 
 
     CELL_SIZE = Math.floor(Math.min(availableGridWidth / GRID_COLS, availableGridHeight / GRID_ROWS));
-    CELL_SIZE = Math.max(15, Math.min(CELL_SIZE, 55)); // Clamp CELL_SIZE (min 15px, max 55px)
+    CELL_SIZE = Math.max(15, Math.min(CELL_SIZE, 55)); 
 
-    // Adjust grid container size
-    const gridTotalSize = CELL_SIZE * GRID_ROWS; // Assuming square grid
+    const gridTotalSize = CELL_SIZE * GRID_ROWS; 
     gameGridElement.style.width = `${gridTotalSize}px`;
     gameGridElement.style.height = `${gridTotalSize}px`;
     gameGridElement.style.gridTemplateColumns = `repeat(${GRID_COLS}, ${CELL_SIZE}px)`;
     gameGridElement.style.gridTemplateRows = `repeat(${GRID_ROWS}, ${CELL_SIZE}px)`;
 
-    // Preview block pieces should be smaller than grid cells for visual distinction
     BLOCK_PIECE_SIZE = Math.max(8, Math.floor(CELL_SIZE * 0.6)); 
     document.documentElement.style.setProperty('--block-piece-dynamic-size', `${BLOCK_PIECE_SIZE}px`);
 
-    // Block slot size: should be large enough for the biggest block preview
-    // Max block dimension (e.g., 5 units) * piece size + padding
-    const maxBlockUnits = 5; // Longest block shape dimension
-    BLOCK_SLOT_SIZE = Math.max(60, (maxBlockUnits * BLOCK_PIECE_SIZE) + (2 * 5)); // 5px padding in slot
+    const maxBlockUnits = 5; 
+    BLOCK_SLOT_SIZE = Math.max(60, (maxBlockUnits * BLOCK_PIECE_SIZE) + (2 * 5)); 
     document.documentElement.style.setProperty('--block-slot-dynamic-size', `${BLOCK_SLOT_SIZE}px`);
     
-    // Min-height for block-preview container based on new slot size
     const blockPreviewElement = document.getElementById('block-preview');
     const blockPreviewPadding = parseFloat(getComputedStyle(blockPreviewElement).paddingTop) + parseFloat(getComputedStyle(blockPreviewElement).paddingBottom);
     blockPreviewElement.style.minHeight = `${BLOCK_SLOT_SIZE + blockPreviewPadding}px`;
@@ -481,7 +507,8 @@ function calculateAndApplyDynamicSizes() {
 
 function initializeGame() {
     score = 0;
-    currentComboMultiplier = 1;
+    currentCombo = 0; // Reset combo
+    scoreMultiplier = 1; // Reset multiplier
     updateScoreDisplay();
     gameGrid = Array(GRID_ROWS).fill(0).map(() => Array(GRID_COLS).fill(0));
 
@@ -493,7 +520,7 @@ function initializeGame() {
         gameGridElement.appendChild(cell);
     }
     
-    calculateAndApplyDynamicSizes(); // Calculate and apply dynamic sizes
+    calculateAndApplyDynamicSizes(); 
 
     updateGridDisplay();
     generateNewBlocks(true);
@@ -503,7 +530,7 @@ function initializeGame() {
     changeBackgroundColor();
 }
 
-window.addEventListener('resize', calculateAndApplyDynamicSizes); // Recalculate on resize
+window.addEventListener('resize', calculateAndApplyDynamicSizes); 
 
 function updateGridDisplay() {
     const cells = gameGridElement.children;
@@ -590,7 +617,6 @@ function highlightCells(block, startRow, startCol) {
                      gameGrid[targetRow][targetCol] !== 0 ) {
                     isValidPlacement = false;
                 }
-                // Add to highlight list regardless for visual feedback
                 if (targetRow >= 0 && targetRow < GRID_ROWS && targetCol >= 0 && targetCol < GRID_COLS) {
                      const cellElement = gameGridElement.children[targetRow * GRID_COLS + targetCol];
                      if (cellElement) currentHighlightCells.push(cellElement);
@@ -618,6 +644,7 @@ function generateNewBlocks(isInitial = false) {
         currentBlocks = Array(3).fill(null).map(() => 
             JSON.parse(JSON.stringify(BLOCK_SHAPES[Math.floor(Math.random() * BLOCK_SHAPES.length)]))
         );
+        currentCombo = 0; // Reset combo when new blocks are generated
     }
     drawBlockPreview();
     if (!isInitial) checkGameOver();
@@ -625,13 +652,11 @@ function generateNewBlocks(isInitial = false) {
 
 function canBlockBePlacedAnywhere(block) {
     if (!block) return false;
-    for (let r = 0; r < GRID_ROWS; r++) { // Iterate all possible anchor points on grid
+    for (let r = 0; r < GRID_ROWS; r++) { 
         for (let c = 0; c < GRID_COLS; c++) {
-            // Try placing based on top-left of block
             if (r <= GRID_ROWS - block.shape.length && c <= GRID_COLS - block.shape[0].length) {
                  if (canPlaceBlock(block, r, c)) return true;
             }
-            // Try placing based on centering the block (like user does)
             const blockRows = block.shape.length;
             const blockCols = block.shape[0].length;
             const startRowCentered = r - Math.floor(blockRows / 2);
@@ -653,7 +678,8 @@ function placeBlock(block, startRow, startCol) {
             }
         });
     });
-    score += piecesPlaced * 5 * currentComboMultiplier; 
+    // Score for placing block: +10 points per piece placed
+    score += piecesPlaced * 10; 
     updateScoreDisplay();
     return true;
 }
@@ -680,13 +706,11 @@ function clearLines() {
     let rowsToClear = [];
     let colsToClear = [];
     
-    // Check full rows
     for (let r = 0; r < GRID_ROWS; r++) {
         if (gameGrid[r].every(cell => cell !== 0)) {
             rowsToClear.push(r);
         }
     }
-    // Check full columns
     for (let c = 0; c < GRID_COLS; c++) {
         let colFull = true;
         for (let r = 0; r < GRID_ROWS; r++) {
@@ -697,7 +721,7 @@ function clearLines() {
         }
     }
 
-    let cellsToClearCoords = new Set(); // Use Set to store unique "r,c" strings
+    let cellsToClearCoords = new Set(); 
     rowsToClear.forEach(r => {
         for (let c = 0; c < GRID_COLS; c++) cellsToClearCoords.add(`${r},${c}`);
     });
@@ -710,12 +734,29 @@ function clearLines() {
         return { r, c };
     });
     
-    const linesClearedThisTurn = rowsToClear.length + colsToClear.length; // Total lines, not unique cells
-    const portraitAndLandscapeClear = rowsToClear.length > 0 && colsToClear.length > 0;
+    const linesClearedThisTurn = rowsToClear.length + colsToClear.length; 
 
     if (uniqueCellsToClear.length > 0) {
-        currentComboMultiplier++;
+        currentCombo++; // Increment combo for sequential clears
+        let baseClearScore = 0;
+
+        // Scoring based on number of blocks destroyed
+        if (uniqueCellsToClear.length >= 5) {
+            baseClearScore += 200; // Destroying 5+ blocks
+        } else if (uniqueCellsToClear.length === 4) {
+            baseClearScore += 150; // Destroying 4 blocks
+        } else if (uniqueCellsToClear.length === 3) {
+            baseClearScore += 100; // Destroying 3 blocks
+        } else {
+             baseClearScore += uniqueCellsToClear.length * 10; // For fewer than 3 blocks cleared
+        }
         
+        let comboBonus = (currentCombo > 1) ? (currentCombo - 1) * 50 : 0; // Combo bonus
+        
+        // Multiplier is applied to total score at the end. For now, track base score + combo.
+        let turnScore = baseClearScore + comboBonus;
+        score += turnScore * scoreMultiplier; // Apply overall score multiplier
+
         uniqueCellsToClear.forEach(coord => {
             const cellElement = gameGridElement.children[coord.r * GRID_COLS + coord.c];
             if (cellElement) {
@@ -724,21 +765,15 @@ function clearLines() {
             }
         });
 
-        let baseClearScore = uniqueCellsToClear.length * 10; // Score per actual cleared cell
-        let multiLineBonus = (linesClearedThisTurn > 1) ? (linesClearedThisTurn * 10) * linesClearedThisTurn : 0;
-        let portraitLandscapeBonus = portraitAndLandscapeClear ? 500 : 0; // Bonus for clearing both row and col
-
-        score += (baseClearScore + multiLineBonus + portraitLandscapeBonus) * currentComboMultiplier;
-
         setTimeout(() => {
             uniqueCellsToClear.forEach(coord => gameGrid[coord.r][coord.c] = 0);
             updateGridDisplay();
 
             if (gameGrid.every(row => row.every(cell => cell === 0))) { 
-                score += 1000 * currentComboMultiplier;
+                score += 1000 * scoreMultiplier; // Full clear bonus, multiplied
                 const originalMsg = overlayMessage.textContent;
-                overlayMessage.textContent = `FULL CLEAR! +${1000 * currentComboMultiplier}`; 
-                finalScoreDisplay.textContent = `Skor: ${score}`;
+                overlayMessage.textContent = `FULL CLEAR! +${1000 * scoreMultiplier}`; 
+                finalScoreDisplay.textContent = `Skor Akhir: ${score}`;
                 gameOverlay.classList.remove('hidden');
                 setTimeout(() => {
                     gameOverlay.classList.add('hidden');
@@ -752,7 +787,7 @@ function clearLines() {
             else checkGameOver();
         }, 400);
     } else {
-        currentComboMultiplier = 1; 
+        currentCombo = 0; // Reset combo if no lines are cleared
         if (currentBlocks.every(block => block === null)) generateNewBlocks();
         else checkGameOver();
     }
@@ -760,7 +795,7 @@ function clearLines() {
 
 
 function updateScoreDisplay() {
-    scoreDisplay.textContent = `Skor: ${score}`;
+    scoreDisplay.textContent = `${score}`; // Display only score, no "Skor:" prefix
 }
 
 function createExplosionEffect(cellElement) {
@@ -776,7 +811,7 @@ function createExplosionEffect(cellElement) {
         const startY = rect.top + rect.height / 2;
         particle.style.left = `${startX}px`;
         particle.style.top = `${startY}px`;
-        particle.style.width = particle.style.height = `${Math.random() * (CELL_SIZE * 0.2) + (CELL_SIZE*0.1)}px`; // Particles relative to CELL_SIZE
+        particle.style.width = particle.style.height = `${Math.random() * (CELL_SIZE * 0.2) + (CELL_SIZE*0.1)}px`; 
         const angle = Math.random() * 2 * Math.PI;
         const distance = Math.random() * (CELL_SIZE * 1.5) + (CELL_SIZE * 0.5); 
         const endX = distance * Math.cos(angle);
@@ -904,6 +939,7 @@ function dragEnd(event) {
         }
     }
     if (!blockPlacedSuccessfully) {
+        currentCombo = 0; // Reset combo if block not placed
         drawBlockPreview(); 
         checkGameOver();
     }
