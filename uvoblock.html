@@ -57,8 +57,18 @@
             justify-content: space-between; /* Distribute content vertically */
         }
 
-        /* Orientasi Landscape untuk HP */
-        @media (orientation: landscape) and (max-height: 500px) {
+        /* Desktop specific adjustments */
+        @media (min-width: 768px) {
+            #game-container {
+                max-width: 500px; /* Limit max width for desktop */
+                max-height: 800px; /* Limit max height for desktop */
+                width: auto; /* Allow width to be determined by content/aspect-ratio */
+                height: auto; /* Allow height to be determined by content/aspect-ratio */
+            }
+        }
+
+        /* Orientasi Landscape untuk HP dan Desktop kecil */
+        @media (orientation: landscape) and (max-height: 500px), (min-width: 768px) {
             #game-container {
                 flex-direction: row; 
                 justify-content: space-around;
@@ -73,6 +83,14 @@
                 margin-bottom: 0;
                 margin-right: 15px;
                 padding: 0;
+                height: 100%; /* Make header take full height in landscape */
+                justify-content: space-between; /* Distribute content */
+            }
+            #game-title, #score-container {
+                margin-bottom: 20px; /* Add space below title/score in landscape header */
+            }
+            #header-left, #header-right {
+                align-items: flex-start; /* Align icons to top in landscape header */
             }
             #game-area {
                 flex-direction: row; 
@@ -119,7 +137,7 @@
             gap: 10px;
         }
 
-        #back-button {
+        #menu-button {
             background: none;
             border: none;
             cursor: pointer;
@@ -129,10 +147,10 @@
             justify-content: center;
         }
 
-        #back-button .icon {
+        #menu-button .icon {
             width: clamp(1.2em, 4.5vw, 2em);
             height: clamp(1.2em, 4.5vw, 2em);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="%23FFFFFF"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="%23FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -187,14 +205,8 @@
             white-space: nowrap;
             font-size: clamp(0.9em, 3.5vw, 1.6em); 
         }
-        #settings-icon { 
-            width: clamp(1.2em, 4.5vw, 2em); 
-            height: clamp(1.2em, 4.5vw, 2em);
-            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/action/settings_FILL0_wght400_GRAD0_opsz24.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            cursor: pointer;
+        #settings-icon { /* This icon is now redundant if menu opens settings */
+            display: none; /* Hide the old settings icon */
         }
 
 
@@ -531,7 +543,7 @@
     <div id="game-container">
         <div id="header">
             <div id="header-left">
-                <button id="back-button"><span class="icon"></span></button>
+                <button id="menu-button"><span class="icon"></span></button>
             </div>
             <div id="score-container">
                 <h1 id="game-title">
@@ -543,8 +555,7 @@
                 </div>
             </div>
             <div id="header-right">
-                <span id="settings-icon"></span>
-            </div>
+                </div>
         </div>
 
         <div id="game-area">
@@ -584,14 +595,14 @@
     const overlayMessage = document.getElementById('overlay-message');
     const finalScoreDisplay = document.getElementById('finalScoreDisplay');
     const restartButton = document.getElementById('restartButton');
-    const settingsIcon = document.getElementById('settings-icon');
+    // const settingsIcon = document.getElementById('settings-icon'); // Removed as it's replaced by menu-button
     const settingsOverlay = document.getElementById('settings-overlay');
     const closeSettingsButton = document.getElementById('closeSettingsButton');
     const redeemInput = document.getElementById('redeemInput');
     const redeemButton = document.getElementById('redeemButton');
     const redeemMessage = document.getElementById('redeem-message');
     const resetScoreButton = document.getElementById('resetScoreButton');
-    const backButton = document.getElementById('back-button'); // Get back button
+    const menuButton = document.getElementById('menu-button'); // Get menu button
 
     const GRID_SIZE = 9;
     const GRID_CELL_COLOR = '#1F4C86';
@@ -661,7 +672,7 @@
         createGrid();
         fillBlockPreview();
         hideOverlay();
-        settingsOverlay.style.display = 'none'; // Ensure settings overlay is hidden
+        settingsOverlay.classList.remove('visible'); // Ensure settings overlay is hidden
     }
 
     function createGrid() {
@@ -670,6 +681,7 @@
         grid = Array(GRID_SIZE).fill(0).map(() => Array(GRID_SIZE).fill(0));
 
         // Dynamically set cell size based on container width
+        // This is handled by setDynamicSizes now, but a fallback is good
         const containerWidth = gameGrid.offsetWidth;
         const cellSize = containerWidth / GRID_SIZE;
         gameGrid.style.gridAutoRows = `${cellSize}px`;
@@ -697,12 +709,16 @@
                 // Assuming grid stores block type or a default if just 1
                 if (grid[r][c] === 1) { // Default blue block
                     cell.classList.add('occupied', 'texture-blue-block');
+                    cell.style.backgroundImage = `url('${blockTextures['blue-block']}')`;
+                    cell.style.backgroundColor = OCCUPIED_COLOR_BASE;
                 } else if (grid[r][c] === 2) { // Gold block example
                     cell.classList.add('occupied', 'texture-gold');
+                    cell.style.backgroundImage = `url('${blockTextures['gold']}')`;
+                    cell.style.backgroundColor = GOLD_COLOR_BASE;
+                } else {
+                    cell.style.backgroundImage = ''; // Clear background image
+                    cell.style.backgroundColor = GRID_CELL_COLOR; // Reset to empty cell color
                 }
-                // Clear any inline background-image that might have been set by old logic
-                cell.style.backgroundImage = grid[r][c] === 1 ? `url('${blockTextures['blue-block']}')` : (grid[r][c] === 2 ? `url('${blockTextures['gold']}')` : '');
-                cell.style.backgroundColor = grid[r][c] ? '' : GRID_CELL_COLOR;
             }
         }
     }
@@ -730,25 +746,17 @@
             const slot = document.createElement('div');
             slot.classList.add('block-slot');
             slot.dataset.index = index;
-            slot.addEventListener('mousedown', dragStart);
-            slot.addEventListener('touchstart', dragStart, { passive: false });
-
+            // Only add event listeners if there's actually a block in the slot
             if (block) {
+                slot.addEventListener('mousedown', dragStart);
+                slot.addEventListener('touchstart', dragStart, { passive: false });
+
                 const blockContainer = document.createElement('div');
                 blockContainer.classList.add('draggable-block-container');
                 blockContainer.style.gridTemplateColumns = `repeat(${block.shape[0].length}, 1fr)`;
 
-                // Calculate minimum size required for the block pieces
-                let minPieceWidth = 0;
-                let minPieceHeight = 0;
-                if (blockSlotSize && blockPieceSize) {
-                    minPieceWidth = parseFloat(blockPieceSize);
-                    minPieceHeight = parseFloat(blockPieceSize);
-                } else {
-                     // Fallback if CSS variables are not yet computed or are 'auto'
-                    minPieceWidth = 20; // Default piece size
-                    minPieceHeight = 20;
-                }
+                let minPieceWidth = parseFloat(blockPieceSize) || 20;
+                let minPieceHeight = parseFloat(blockPieceSize) || 20;
                 
                 block.shape.forEach(row => {
                     row.forEach(cell => {
@@ -756,7 +764,6 @@
                         if (cell === 1) {
                             piece.classList.add('block-piece');
                             piece.classList.add(`texture-${block.type}`); // Add texture class
-                            // Set inline style for background image if needed, or rely on CSS classes
                             piece.style.backgroundImage = `url('${blockPieceTextures[block.type]}')`;
                             piece.style.backgroundColor = block.type === 'gold' ? GOLD_COLOR_BASE : OCCUPIED_COLOR_BASE; // Set base color
                         }
@@ -895,11 +902,11 @@
             // Wait for animation to finish before updating display and filling new blocks
             setTimeout(() => {
                 updateGridDisplay();
-                fillBlockPreview();
+                fillBlockPreview(); // Only fill if blocks are depleted
             }, 400); // Match animation duration
         } else {
             currentCombo = 0; // Reset combo if no lines cleared
-            fillBlockPreview();
+            fillBlockPreview(); // Only fill if blocks are depleted
         }
     }
 
@@ -935,7 +942,7 @@
     function checkGameOver() {
         let anyBlockCanBePlaced = false;
         for (const block of currentBlocks) {
-            if (!block) continue;
+            if (!block) continue; // Skip null blocks
             for (let r = 0; r < GRID_SIZE; r++) {
                 for (let c = 0; c < GRID_SIZE; c++) {
                     if (canPlaceBlock(block, r, c)) {
@@ -949,6 +956,7 @@
         }
 
         if (!anyBlockCanBePlaced && currentBlocks.some(block => block !== null)) {
+            // Game over only if no blocks can be placed AND there are blocks remaining in preview
             showGameOver();
         } else if (currentBlocks.every(block => block === null)) {
             // If all blocks are used, generate new ones
@@ -992,7 +1000,7 @@
         draggedBlockIndex = parseInt(slot.dataset.index);
         draggedBlock = currentBlocks[draggedBlockIndex];
 
-        if (!draggedBlock) return;
+        if (!draggedBlock) return; // Crucial: prevent dragging of null blocks
 
         slot.classList.add('dragging');
 
@@ -1055,28 +1063,27 @@
             removeHighlights();
 
             const clientX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchend' ? e.changedTouches[0].C LIENTY : e.clientY;
+            const clientY = e.type === 'touchend' ? e.changedTouches[0].clientY : e.clientY;
 
             const targetCell = getTargetGridCell(clientX, clientY);
             let blockPlacedSuccessfully = false;
 
-            if (targetCell) {
+            if (targetCell && draggedBlock) { // Ensure draggedBlock is not null
                 const targetCellInfo = targetCell.dataset;
                 const blockRows = draggedBlock.shape.length;
                 const blockCols = draggedBlock.shape[0].length;
                 const startRow = parseInt(targetCellInfo.row) - Math.floor(blockRows / 2);
                 const startCol = parseInt(targetCellInfo.col) - Math.floor(blockCols / 2);
                 if (placeBlock(draggedBlock, startRow, startCol)) {
-                    currentBlocks[draggedBlockIndex] = null;
+                    currentBlocks[draggedBlockIndex] = null; // Set the used block slot to null
                     blockPlacedSuccessfully = true;
                     updateGridDisplay();
-                    drawBlockPreview(); 
-                    clearLines();
+                    clearLines(); // Clears lines and calls fillBlockPreview after animation
                 }
             }
             if (!blockPlacedSuccessfully) {
                 currentCombo = 0; // Reset combo if block not placed
-                drawBlockPreview(); 
+                drawBlockPreview(); // Redraw to ensure the block is back in place
                 checkGameOver();
             }
             removeDragListeners();
@@ -1119,8 +1126,8 @@
         return savedScore ? parseInt(savedScore) : 0;
     }
 
-    // Settings overlay functionality
-    settingsIcon.addEventListener('click', () => {
+    // Settings overlay functionality (now opened by menu button)
+    menuButton.addEventListener('click', () => {
         settingsOverlay.classList.add('visible');
     });
 
@@ -1203,14 +1210,8 @@
             updateScoreDisplay(); // Update display
             redeemMessage.textContent = 'Skor berhasil direset!';
             redeemMessage.style.color = '#2ecc71';
-            // Optionally clear all redeemed codes for a fresh start, or keep them
-            // Object.keys(REDEEM_CODES).forEach(code => localStorage.removeItem(`redeemed_${code}`));
+            // Object.keys(REDEEM_CODES).forEach(code => localStorage.removeItem(`redeemed_${code}`)); // Uncomment if you want to allow re-redeeming after score reset
         }
-    });
-
-    // Back button functionality
-    backButton.addEventListener('click', () => {
-        window.history.back();
     });
 
     // Dynamic sizing for grid cells and block previews
@@ -1218,26 +1219,37 @@
         const gameContainer = document.getElementById('game-container');
         let cellSize, blockSlotSize, blockPieceSize;
 
-        if (window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches) {
-            // Landscape mode, adapt to height primarily
+        // Determine if we are in a "landscape-like" small height mode or desktop mode
+        if (window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches || window.innerWidth >= 768) {
+            // Landscape mode or Desktop
             const containerHeight = gameContainer.offsetHeight;
-            cellSize = (containerHeight - 30 - 15) / GRID_SIZE; // Total height minus header and block preview gap
-            blockSlotSize = (containerHeight - 30 - 15) / 3; // Approx 3 slots fitting vertically
-            blockPieceSize = blockSlotSize / 5; // A piece is typically 1/3 or 1/5 of a block slot
+            const containerWidth = gameContainer.offsetWidth;
+
+            // Prioritize making the grid square and fit, then adjust preview
+            let potentialCellSizeFromHeight = (containerHeight - (20 * 2)) / GRID_SIZE; // 20px padding top/bottom
+            let potentialCellSizeFromWidth = (containerWidth * 0.6 - (20 * 2)) / GRID_SIZE; // 60% width for grid, 20px padding left/right for grid area
+
+            cellSize = Math.min(potentialCellSizeFromHeight, potentialCellSizeFromWidth);
+            cellSize = Math.max(cellSize, 25); // Minimum size
+
+            // Adjust block preview sizes based on grid cell size
+            blockSlotSize = cellSize * 2.5; // Roughly 2.5 grid cells wide for a block slot
+            blockPieceSize = cellSize / 3; // Pieces are smaller than grid cells, maybe 1/3
         } else {
-            // Portrait mode, adapt to width primarily
+            // Portrait mode (mobile)
             const containerWidth = gameContainer.offsetWidth;
             const availableHeight = gameContainer.offsetHeight - document.getElementById('header').offsetHeight - 15; // Total height minus header and block preview gap
+
             cellSize = Math.min((containerWidth - 40) / GRID_SIZE, (availableHeight - 100) / GRID_SIZE); // 40 for padding, 100 for block preview area roughly
+            cellSize = Math.max(cellSize, 25); // Minimum size
+
             blockSlotSize = (containerWidth - 40 - 30) / 3; // 40 for container padding, 30 for gap
+            blockSlotSize = Math.max(blockSlotSize, 50); // Minimum slot size
+
             blockPieceSize = blockSlotSize / 5;
+            blockPieceSize = Math.max(blockPieceSize, 10); // Minimum piece size
         }
         
-        // Ensure minimum sensible sizes
-        cellSize = Math.max(cellSize, 25);
-        blockSlotSize = Math.max(blockSlotSize, 50);
-        blockPieceSize = Math.max(blockPieceSize, 10);
-
         document.documentElement.style.setProperty('--grid-cell-dynamic-size', `${cellSize}px`);
         document.documentElement.style.setProperty('--block-slot-dynamic-size', `${blockSlotSize}px`);
         document.documentElement.style.setProperty('--block-piece-dynamic-size', `${blockPieceSize}px`);
