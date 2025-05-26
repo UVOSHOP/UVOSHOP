@@ -36,47 +36,7 @@
             color: #ecf0f1;
             overscroll-behavior: none;
             transition: background-color 1s ease-in-out;
-            position: relative; /* For particle effects */
         }
-
-        /* Particle Container */
-        #particle-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: floatAndFade 10s infinite ease-in-out;
-            opacity: 0;
-            z-index: -1;
-        }
-
-        @keyframes floatAndFade {
-            0% {
-                transform: translateY(0) translateX(0) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(50px) scale(1.2);
-                opacity: 0;
-            }
-        }
-
 
         #game-container {
             display: flex;
@@ -94,7 +54,6 @@
             overflow: hidden; 
             flex-grow: 1; /* Allow container to grow */
             justify-content: space-between; /* Distribute content vertically */
-            z-index: 1; /* Ensure game content is above particles */
         }
 
         /* Orientasi Landscape untuk HP */
@@ -188,14 +147,14 @@
             font-family: 'Bangers', cursive; /* Applied Bangers font */
         }
         /* Specific color classes for UVOBLOCK title */
-        .color-u { color: #FF0000; } /* Merah */
+        .color-u { color: #FF0000; } /* Red */
         .color-v { color: #FFA500; } /* Orange */
-        .color-o1 { color: #FFFF00; } /* Kuning */
-        .color-b { color: #00FF00; } /* Hijau */
-        .color-l { color: #0000FF; } /* Biru */
-        .color-o2 { color: #800080; } /* Ungu */
-        .color-c { color: #A52A2A; } /* Coklat */
-        .color-k { color: #FFFFFF; } /* Putih */
+        .color-o1 { color: #FFFF00; } /* Yellow */
+        .color-b { color: #00FF00; } /* Green */
+        .color-l { color: #0000FF; } /* Blue */
+        .color-o2 { color: #800080; } /* Purple */
+        .color-c { color: #A52A2A; } /* Brown */
+        .color-k { color: #FFFFFF; } /* White */
 
         #score-container { 
             display: flex;
@@ -276,13 +235,18 @@
         }
         
         /* Block Textures for Grid Cells (Full Size) */
-        .grid-cell.texture-red-block { background-color: #E74C3C; }
-        .grid-cell.texture-green-block { background-color: #2ECC71; }
-        .grid-cell.texture-blue-block { background-color: #3498DB; }
-        .grid-cell.texture-yellow-block { background-color: #F1C40F; }
-        .grid-cell.texture-purple-block { background-color: #9B59B6; }
-        .grid-cell.texture-orange-block { background-color: #E67E22; }
-
+        .grid-cell.texture-gold { 
+            background-image: url('https://i.imgur.com/your-gold-texture-image.png'); /* Replace with actual gold texture */
+            background-color: #F1C40F; 
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
+            border: 1px solid rgba(255,255,255,0.2); 
+        }
+        .grid-cell.texture-blue-block { 
+            background-image: url('https://i.imgur.com/your-blue-texture-image.png'); /* Replace with actual blue texture */
+            background-color: #3498DB; 
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
         #block-preview {
             display: flex;
@@ -349,13 +313,18 @@
         }
 
         /* Block Textures for Preview Pieces (Smaller Size) */
-        .block-piece.texture-red-block { background-color: #E74C3C; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .block-piece.texture-green-block { background-color: #2ECC71; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .block-piece.texture-blue-block { background-color: #3498DB; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .block-piece.texture-yellow-block { background-color: #F1C40F; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .block-piece.texture-purple-block { background-color: #9B59B6; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .block-piece.texture-orange-block { background-color: #E67E22; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-
+        .block-piece.texture-gold { 
+            background-image: url('https://i.imgur.com/your-gold-texture-image-small.png'); 
+            background-color: #F1C40F; 
+            border-radius: 3px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+        }
+        .block-piece.texture-blue-block { 
+            background-image: url('https://i.imgur.com/your-blue-texture-image-small.png'); 
+            background-color: #3498DB; 
+            border-radius: 3px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+        }
 
         .ghost {
             opacity: 0.8;
@@ -385,28 +354,6 @@
             0% { transform: scale(1) rotate(0deg); opacity: 1; }
             50% { transform: scale(1.2) rotate(5deg) translateY(-3px); opacity: 0.7; filter: brightness(1.2); }
             100% { transform: scale(0.1) rotate(-20deg) translateY(5px); opacity: 0; filter: brightness(0.5); }
-        }
-
-        /* Floating Score Text */
-        .floating-text {
-            position: absolute;
-            font-size: clamp(0.8em, 3.5vw, 1.5em);
-            font-weight: bold;
-            color: #F1C40F; /* Gold color */
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
-            animation: floatUpFadeOut 1s forwards ease-out;
-            pointer-events: none;
-            z-index: 20;
-        }
-        .floating-text.combo-text {
-            color: #2ECC71; /* Green for combo */
-            font-size: clamp(1em, 4.5vw, 1.8em);
-            text-shadow: 0 0 8px rgba(46, 204, 113, 0.8);
-        }
-
-        @keyframes floatUpFadeOut {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-50px); opacity: 0; }
         }
 
         #game-overlay {
@@ -577,50 +524,14 @@
             margin-top: 5px;
             color: #f1c40f;
         }
-
-        /* Power-up indicators */
-        #powerup-indicators {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            justify-content: center;
-            align-items: center;
-            font-size: clamp(0.7em, 2.5vw, 1em);
-            flex-wrap: wrap;
-        }
-
-        .powerup-indicator {
-            background-color: rgba(0,0,0,0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .powerup-indicator.active {
-            opacity: 1;
-            border: 1px solid #f1c40f;
-            box-shadow: 0 0 8px rgba(241, 196, 15, 0.5);
-        }
-
-        .powerup-indicator span {
-            color: #f1c40f;
-        }
-        .powerup-indicator.hint span { color: #3498DB; }
-        .powerup-indicator.destroyer span { color: #E74C3C; }
-        .powerup-indicator.extra-move span { color: #9B59B6; }
-
     </style>
 </head>
 <body>
-    <div id="particle-container"></div>
     <div id="game-container">
         <div id="header">
             <div id="header-left">
-                </div>
+                <button id="back-button"><span class="icon"></span></button>
+            </div>
             <div id="score-container">
                 <h1 id="game-title">
                     <span class="color-u">U</span><span class="color-v">V</span><span class="color-o1">O</span><span class="color-b">B</span><span class="color-l">L</span><span class="color-o2">O</span><span class="color-c">C</span><span class="color-k">K</span>
@@ -628,12 +539,6 @@
                 <div id="crown-score-wrapper">
                     <span id="crown-icon"></span>
                     <div id="scoreDisplay">0</div>
-                </div>
-                <div id="powerup-indicators">
-                    <div id="hint-indicator" class="powerup-indicator">Hint: <span id="hint-status">Tidak</span></div>
-                    <div id="destroyer-indicator" class="powerup-indicator">Destroyer: <span id="destroyer-status">Tidak</span></div>
-                    <div id="extra-move-indicator" class="powerup-indicator">Moves: <span id="extra-move-count">0</span></div>
-                    <div id="multiplier-indicator" class="powerup-indicator">x<span id="multiplier-value">1</span></div>
                 </div>
             </div>
             <div id="header-right">
@@ -659,7 +564,7 @@
                 </h2>
                 <p id="settings-subtitle">by ADITdeveloper</p>
                 <a href="https://wa.me/6285648211278" target="_blank" class="settings-button whatsapp-button">Beli Paket</a>
-                <button id="restartScoreButton" class="settings-button">Restart Skor</button>
+                <button id="resetScoreButton" class="settings-button">Reset Skor</button>
                 <div class="redeem-section">
                     <input type="text" id="redeemInput" placeholder="Masukkan kode redeem" maxlength="6">
                     <button id="redeemButton" class="settings-button">Redeem Kode</button>
@@ -669,11 +574,6 @@
             </div>
         </div>
     </div>
-
-<audio id="placeBlockSound" src="https://www.soundjay.com/buttons/button-1.mp3" preload="auto"></audio>
-<audio id="clearLineSound" src="https://www.soundjay.com/misc/success-sound-effect.mp3" preload="auto"></audio>
-<audio id="gameOverSound" src="https://www.soundjay.com/misc/fail-buzzer-01.mp3" preload="auto"></audio>
-<audio id="redeemSound" src="https://www.soundjay.com/buttons/button-2.mp3" preload="auto"></audio>
 
 <script>
     const gameGrid = document.getElementById('game-grid');
@@ -689,24 +589,13 @@
     const redeemInput = document.getElementById('redeemInput');
     const redeemButton = document.getElementById('redeemButton');
     const redeemMessage = document.getElementById('redeem-message');
-    const restartScoreButton = document.getElementById('restartScoreButton'); // Corrected to Restart Skor
+    const resetScoreButton = document.getElementById('resetScoreButton');
     const backButton = document.getElementById('back-button'); // Get back button
-    const hintIndicator = document.getElementById('hint-indicator');
-    const hintStatus = document.getElementById('hint-status');
-    const destroyerIndicator = document.getElementById('destroyer-indicator');
-    const destroyerStatus = document.getElementById('destroyer-status');
-    const extraMoveIndicator = document.getElementById('extra-move-indicator');
-    const extraMoveCount = document.getElementById('extra-move-count');
-    const multiplierIndicator = document.getElementById('multiplier-indicator');
-    const multiplierValue = document.getElementById('multiplier-value');
-
-    const placeBlockSound = document.getElementById('placeBlockSound');
-    const clearLineSound = document.getElementById('clearLineSound');
-    const gameOverSound = document.getElementById('gameOverSound');
-    const redeemSound = document.getElementById('redeemSound');
 
     const GRID_SIZE = 9;
     const GRID_CELL_COLOR = '#1F4C86';
+    const OCCUPIED_COLOR_BASE = '#3498DB'; // Base color for blue blocks
+    const GOLD_COLOR_BASE = '#F1C40F'; // Base color for gold blocks
 
     let grid = [];
     let score = 0;
@@ -718,9 +607,9 @@
     let blockDestroyerAvailable = false; // For block destroyer item
     let rareItemAvailable = false; // For rare item effect (placeholder)
 
-    // Block shapes with various types (colors)
+    // Block shapes (now includes 'type' for texture)
     const BLOCK_SHAPES = [
-        // Type 'blue-block' (default)
+        // Type 'blue-block'
         { id: '1x1-blue', shape: [[1]], type: 'blue-block' },
         { id: '1x2-blue', shape: [[1],[1]], type: 'blue-block' },
         { id: '2x1-blue', shape: [[1,1]], type: 'blue-block' },
@@ -731,27 +620,10 @@
         { id: 'L-small-rotated-blue', shape: [[1,1],[1,0]], type: 'blue-block' },
         { id: 'T-small-blue', shape: [[1,1,1],[0,1,0]], type: 'blue-block' },
         { id: 'cross-blue', shape: [[0,1,0],[1,1,1],[0,1,0]], type: 'blue-block' },
-        // Type 'red-block'
-        { id: '1x1-red', shape: [[1]], type: 'red-block' },
-        { id: 'line4-red', shape: [[1],[1],[1],[1]], type: 'red-block' },
-        { id: 'square3x3-red', shape: [[1,1,1],[1,1,1],[1,1,1]], type: 'red-block' },
-        { id: 'plus-red', shape: [[0,1,0],[1,1,1],[0,1,0]], type: 'red-block' },
-        // Type 'green-block'
-        { id: 'Z-green', shape: [[1,1,0],[0,1,1]], type: 'green-block' },
-        { id: 'T-big-green', shape: [[1,1,1],[0,1,0],[0,1,0]], type: 'green-block' },
-        { id: 'diag-green', shape: [[1,0,0],[0,1,0],[0,0,1]], type: 'green-block' },
-        // Type 'yellow-block'
-        { id: 'line4-yellow', shape: [[1,1,1,1]], type: 'yellow-block' },
-        { id: 'corner-yellow', shape: [[1,0],[1,0],[1,1]], type: 'yellow-block' },
-        { id: 'C-yellow', shape: [[1,1,1],[1,0,0],[1,1,1]], type: 'yellow-block' },
-        // Type 'purple-block'
-        { id: '1x1-purple', shape: [[1]], type: 'purple-block' },
-        { id: 'diamond-purple', shape: [[0,1,0],[1,1,1],[0,1,0]], type: 'purple-block' },
-        { id: 'line5-purple', shape: [[1],[1],[1],[1],[1]], type: 'purple-block' },
-        // Type 'orange-block'
-        { id: 'L-big-orange', shape: [[1,0,0],[1,0,0],[1,1,1]], type: 'orange-block' },
-        { id: 'S-orange', shape: [[0,1,1],[1,1,0]], type: 'orange-block' },
-        { id: 'dot-3-orange', shape: [[1,0,1]], type: 'orange-block' },
+        // Type 'gold' (example) - these might be rarer or have special properties
+        { id: '1x1-gold', shape: [[1]], type: 'gold' },
+        { id: '2x2-gold', shape: [[1,1],[1,1]], type: 'gold' },
+        { id: 'Z-gold', shape: [[1,1,0],[0,1,1]], type: 'gold' },
     ];
 
     // Redeem Codes
@@ -772,16 +644,15 @@
     let draggedBlock = null;
     let draggedBlockIndex = -1;
     let ghostBlockElements = [];
-    
-    // Mapping for block types to their base colors (textures handled by CSS classes)
-    const BLOCK_TYPE_COLORS = {
-        'blue-block': '#3498DB',
-        'red-block': '#E74C3C',
-        'green-block': '#2ECC71',
-        'yellow-block': '#F1C40F',
-        'purple-block': '#9B59B6',
-        'orange-block': '#E67E22'
+    let blockTextures = {
+        'blue-block': 'https://i.imgur.com/your-blue-texture-image.png', // Replace with actual blue block texture
+        'gold': 'https://i.imgur.com/your-gold-texture-image.png' // Replace with actual gold block texture
     };
+    let blockPieceTextures = {
+        'blue-block': 'https://i.imgur.com/your-blue-texture-image-small.png', // Replace with actual small blue block texture
+        'gold': 'https://i.imgur.com/your-gold-texture-image-small.png' // Replace with actual small gold block texture
+    };
+
 
     function initializeGame() {
         score = loadScore();
@@ -790,14 +661,6 @@
         fillBlockPreview();
         hideOverlay();
         settingsOverlay.style.display = 'none'; // Ensure settings overlay is hidden
-        updatePowerupIndicators();
-        combo = 0; // Reset combo on new game
-        currentCombo = 0; // Reset combo on new game
-        multiplier = 1; // Reset multiplier
-        extraMoves = 0; // Reset extra moves
-        hintAvailable = false; // Reset hint
-        blockDestroyerAvailable = false; // Reset destroyer
-        rareItemAvailable = false; // Reset rare item
     }
 
     function createGrid() {
@@ -828,19 +691,19 @@
             for (let c = 0; c < GRID_SIZE; c++) {
                 const index = r * GRID_SIZE + c;
                 const cell = cells[index];
-                // Remove all texture classes before adding the correct one
-                Object.values(BLOCK_TYPE_COLORS).forEach((_, type) => {
-                    cell.classList.remove(`texture-${type}`);
-                });
-                cell.classList.remove('occupied'); 
+                cell.classList.remove('occupied', 'texture-blue-block', 'texture-gold'); // Remove previous states
 
-                if (grid[r][c] !== 0) { // If occupied, grid[r][c] stores the block type
+                if (grid[r][c] === 1) {
                     cell.classList.add('occupied');
-                    cell.classList.add(`texture-${grid[r][c]}`); // Add texture class based on type stored in grid
-                    cell.style.backgroundColor = BLOCK_TYPE_COLORS[grid[r][c]]; // Set base color
-                } else {
-                    cell.style.backgroundColor = GRID_CELL_COLOR; // Default empty cell color
+                    // Add texture class based on stored block type if you track it in grid
+                    // For now, assuming default blue-block if occupied, or you need to store type in grid[r][c]
+                    cell.classList.add('texture-blue-block'); // Default texture for occupied cells
+                } else if (grid[r][c] === 2) { // Example for a different block type like gold
+                    cell.classList.add('occupied', 'texture-gold');
                 }
+                // Clear any inline background-image that might have been set by old logic
+                cell.style.backgroundImage = '';
+                cell.style.backgroundColor = grid[r][c] ? '' : GRID_CELL_COLOR;
             }
         }
     }
@@ -876,13 +739,27 @@
                 blockContainer.classList.add('draggable-block-container');
                 blockContainer.style.gridTemplateColumns = `repeat(${block.shape[0].length}, 1fr)`;
 
+                // Calculate minimum size required for the block pieces
+                let minPieceWidth = 0;
+                let minPieceHeight = 0;
+                if (blockSlotSize && blockPieceSize) {
+                    minPieceWidth = parseFloat(blockPieceSize);
+                    minPieceHeight = parseFloat(blockPieceSize);
+                } else {
+                     // Fallback if CSS variables are not yet computed or are 'auto'
+                    minPieceWidth = 20; // Default piece size
+                    minPieceHeight = 20;
+                }
+                
                 block.shape.forEach(row => {
                     row.forEach(cell => {
                         const piece = document.createElement('div');
                         if (cell === 1) {
                             piece.classList.add('block-piece');
                             piece.classList.add(`texture-${block.type}`); // Add texture class
-                            piece.style.backgroundColor = BLOCK_TYPE_COLORS[block.type]; // Set base color
+                            // Set inline style for background image if needed, or rely on CSS classes
+                            piece.style.backgroundImage = `url('${blockPieceTextures[block.type]}')`;
+                            piece.style.backgroundColor = block.type === 'gold' ? GOLD_COLOR_BASE : OCCUPIED_COLOR_BASE; // Set base color
                         }
                         blockContainer.appendChild(piece);
                     });
@@ -920,12 +797,11 @@
         for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
                 if (shape[r][c] === 1) {
-                    grid[startRow + r][startCol + c] = block.type; // Store block type in grid
+                    grid[startRow + r][startCol + c] = 1; // Mark as occupied
                 }
             }
         }
         addScore(block.shape.flat().filter(cell => cell === 1).length * multiplier); // Add score for placed pieces
-        playSound(placeBlockSound);
         return true;
     }
 
@@ -973,9 +849,8 @@
             if (grid[r].every(cell => cell !== 0)) {
                 linesCleared++;
                 for (let c = 0; c < GRID_SIZE; c++) {
-                    const cellId = `${r}-${c}`;
-                    if (!cellsToAnimate.has(cellId)) {
-                        cellsToAnimate.add(cellId);
+                    if (!cellsToAnimate.has(`${r}-${c}`)) {
+                        cellsToAnimate.add(`${r}-${c}`);
                         const index = r * GRID_SIZE + c;
                         gameGrid.children[index].classList.add('destroying');
                     }
@@ -996,9 +871,8 @@
             if (columnFull) {
                 linesCleared++;
                 for (let r = 0; r < GRID_SIZE; r++) {
-                     const cellId = `${r}-${c}`;
-                     if (!cellsToAnimate.has(cellId)) {
-                        cellsToAnimate.add(cellId);
+                     if (!cellsToAnimate.has(`${r}-${c}`)) {
+                        cellsToAnimate.add(`${r}-${c}`);
                         const index = r * GRID_SIZE + c;
                         gameGrid.children[index].classList.add('destroying');
                     }
@@ -1018,7 +892,6 @@
                 addScore(currentCombo * 50 * multiplier); // Combo bonus
                 displayFloatingText(`Combo x${currentCombo}!`, 'combo-text');
             }
-            playSound(clearLineSound);
             // Wait for animation to finish before updating display and filling new blocks
             setTimeout(() => {
                 updateGridDisplay();
@@ -1060,10 +933,6 @@
     }
 
     function checkGameOver() {
-        if (extraMoves > 0) {
-            return; // If extra moves available, game is not over yet
-        }
-
         let anyBlockCanBePlaced = false;
         for (const block of currentBlocks) {
             if (!block) continue;
@@ -1091,9 +960,6 @@
         overlayMessage.textContent = 'GAME OVER!';
         finalScoreDisplay.textContent = `Skor Akhir: ${score}`;
         gameOverlay.classList.remove('hidden');
-        playSound(gameOverSound);
-        score = 0; // Reset score on game over
-        saveScore(); // Save the reset score
     }
 
     function hideOverlay() {
@@ -1101,6 +967,13 @@
     }
 
     restartButton.addEventListener('click', () => {
+        score = 0;
+        multiplier = 1;
+        extraMoves = 0;
+        hintAvailable = false;
+        blockDestroyerAvailable = false;
+        rareItemAvailable = false;
+        saveScore();
         initializeGame();
     });
 
@@ -1129,7 +1002,8 @@
                 if (cell === 1) {
                     piece.classList.add('block-piece');
                     piece.classList.add(`texture-${draggedBlock.type}`);
-                    piece.style.backgroundColor = BLOCK_TYPE_COLORS[draggedBlock.type];
+                    piece.style.backgroundImage = `url('${blockPieceTextures[draggedBlock.type]}')`;
+                    piece.style.backgroundColor = draggedBlock.type === 'gold' ? GOLD_COLOR_BASE : OCCUPIED_COLOR_BASE;
                 }
                 blockContainer.appendChild(piece);
             });
@@ -1252,7 +1126,7 @@
     // Redeem code functionality
     redeemButton.addEventListener('click', () => {
         const code = redeemInput.value.trim();
-        if (code.length !== 6 || !/^\d+$/.test(code)) { // Ensure it's 6 digits
+        if (code.length !== 6) {
             redeemMessage.textContent = 'Kode redeem harus 6 angka!';
             redeemMessage.style.color = '#e74c3c'; // Red for error
             return;
@@ -1298,21 +1172,19 @@
             }
 
             updateScoreDisplay();
-            updatePowerupIndicators();
             saveScore();
             localStorage.setItem(`redeemed_${code}`, 'true'); // Mark code as used
             redeemMessage.textContent = `Redeem berhasil! Mendapat ${reward.value} skor!${bonusText}`;
             redeemMessage.style.color = '#2ecc71'; // Green for success
             redeemInput.value = ''; // Clear input
-            playSound(redeemSound);
         } else {
             redeemMessage.textContent = 'Kode redeem tidak valid.';
             redeemMessage.style.color = '#e74c3c'; // Red for error
         }
     });
 
-    // Restart Score button functionality (renamed from Reset Score)
-    restartScoreButton.addEventListener('click', () => {
+    // Reset Score button functionality
+    resetScoreButton.addEventListener('click', () => {
         if (confirm('Apakah Anda yakin ingin mereset skor Anda? Ini tidak dapat dibatalkan.')) {
             score = 0;
             multiplier = 1;
@@ -1322,44 +1194,35 @@
             rareItemAvailable = false;
             saveScore(); // Save the reset score
             updateScoreDisplay(); // Update display
-            updatePowerupIndicators(); // Update powerup indicators
             redeemMessage.textContent = 'Skor berhasil direset!';
             redeemMessage.style.color = '#2ecc71';
-            // Optionally clear all redeemed codes for a fresh start.
-            // For this game, it's generally better to keep redeemed codes used to prevent abuse.
-            // Object.keys(REDEEM_CODES).forEach(code => localStorage.removeItem(`redeemed_${code}`)); 
+            // Optionally clear all redeemed codes for a fresh start, or keep them
+            // Object.keys(REDEEM_CODES).forEach(code => localStorage.removeItem(`redeemed_${code}`));
         }
     });
 
-    // Back button functionality (currently hidden in HTML, but logic preserved)
-    // backButton.addEventListener('click', () => {
-    //     window.history.back();
-    // });
+    // Back button functionality
+    backButton.addEventListener('click', () => {
+        window.history.back();
+    });
 
     // Dynamic sizing for grid cells and block previews
     function setDynamicSizes() {
         const gameContainer = document.getElementById('game-container');
         let cellSize, blockSlotSize, blockPieceSize;
 
-        // Check if game-container is visible
-        if (gameContainer.offsetWidth === 0 || gameContainer.offsetHeight === 0) {
-            // If container is not yet rendered or hidden, use a fallback
-            cellSize = 30; // Default cell size
-            blockSlotSize = 80;
-            blockPieceSize = 16;
-        } else if (window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches) {
+        if (window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches) {
             // Landscape mode, adapt to height primarily
             const containerHeight = gameContainer.offsetHeight;
-            cellSize = (containerHeight - 70) / GRID_SIZE; // Adjusted for header and some margin
-            blockSlotSize = (containerHeight - 70) / 3.5; // Approx 3 slots fitting vertically
-            blockPieceSize = blockSlotSize / 5; 
+            cellSize = (containerHeight - 30 - 15) / GRID_SIZE; // Total height minus header and block preview gap
+            blockSlotSize = (containerHeight - 30 - 15) / 3; // Approx 3 slots fitting vertically
+            blockPieceSize = blockSlotSize / 5; // A piece is typically 1/3 or 1/5 of a block slot
         } else {
             // Portrait mode, adapt to width primarily
             const containerWidth = gameContainer.offsetWidth;
-            const headerHeight = document.getElementById('header').offsetHeight;
-            const availableHeight = gameContainer.offsetHeight - headerHeight - 15; // Total height minus header and block preview gap
-            cellSize = Math.min((containerWidth - 40) / GRID_SIZE, (availableHeight - (gameContainer.offsetHeight * 0.25)) / GRID_SIZE); // Adjusted for a percentage of container height for preview
-            blockSlotSize = (containerWidth - 40 - 30) / 3; 
+            const availableHeight = gameContainer.offsetHeight - document.getElementById('header').offsetHeight - 15; // Total height minus header and block preview gap
+            cellSize = Math.min((containerWidth - 40) / GRID_SIZE, (availableHeight - 100) / GRID_SIZE); // 40 for padding, 100 for block preview area roughly
+            blockSlotSize = (containerWidth - 40 - 30) / 3; // 40 for container padding, 30 for gap
             blockPieceSize = blockSlotSize / 5;
         }
         
@@ -1379,48 +1242,9 @@
         updateGridDisplay(); // Update grid cell background colors after resize
     }
 
-    function updatePowerupIndicators() {
-        hintStatus.textContent = hintAvailable ? 'Ya' : 'Tidak';
-        hintIndicator.classList.toggle('active', hintAvailable);
-
-        destroyerStatus.textContent = blockDestroyerAvailable ? 'Ya' : 'Tidak';
-        destroyerIndicator.classList.toggle('active', blockDestroyerAvailable);
-
-        extraMoveCount.textContent = extraMoves;
-        extraMoveIndicator.classList.toggle('active', extraMoves > 0);
-
-        multiplierValue.textContent = multiplier;
-        multiplierIndicator.classList.toggle('active', multiplier > 1);
-    }
-
-    function playSound(audioElement) {
-        if (audioElement) {
-            audioElement.currentTime = 0; // Rewind to start
-            audioElement.play().catch(e => console.error("Error playing sound:", e));
-        }
-    }
-
-    // Particle background animation
-    function createParticles() {
-        const particleContainer = document.getElementById('particle-container');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            const size = Math.random() * 10 + 5; // Size between 5px and 15px
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 10}s`; // Randomize start times
-            particle.style.animationDuration = `${10 + Math.random() * 5}s`; // Vary duration
-            particleContainer.appendChild(particle);
-        }
-    }
-
-
     // Initial call and on resize
     window.addEventListener('resize', setDynamicSizes);
     document.addEventListener('DOMContentLoaded', () => {
-        createParticles(); // Initialize particles
         initializeGame();
         setDynamicSizes(); // Set sizes on initial load
     });
