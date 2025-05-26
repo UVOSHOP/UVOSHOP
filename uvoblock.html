@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
 <title>UVOBLOCK - Puzzle Pecah Blok</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&amp;family=Press+Start+2P&amp;display=swap" rel="stylesheet"/>
 <style>
         /* CSS RESET */
         * {
@@ -29,6 +29,7 @@
 
         body {
             display: flex;
+            flex-direction: column; /* Changed to column to accommodate footer */
             justify-content: center;
             align-items: center;
             background-color: #4A90E2; /* Inspired by image blue */
@@ -43,8 +44,8 @@
             flex-direction: column;
             align-items: center;
             background-color: #3B82C9; /* Slightly darker blue for container */
-            border: none; /* No border for the container */
-            box-shadow: none; /* No shadow for the container */
+            border: none;
+            box-shadow: none;
             padding: 20px;
             border-radius: 12px;
             position: relative;
@@ -52,6 +53,8 @@
             max-height: 98vh; 
             aspect-ratio: 1 / 1.6; /* Default, good for portrait */
             overflow: hidden; 
+            flex-grow: 1; /* Allow container to grow */
+            justify-content: space-between; /* Distribute content vertically */
         }
 
         /* Orientasi Landscape untuk HP */
@@ -59,7 +62,7 @@
             #game-container {
                 flex-direction: row; 
                 justify-content: space-around;
-                aspect-ratio: 1.8 / 1; /* Wider for landscape */
+                aspect-ratio: 1.8 / 1;
                 width: 98vw;
                 height: 95vh;
                 padding: 15px;
@@ -72,36 +75,33 @@
                 padding: 0;
             }
             #game-area {
-                flex-direction: row; /* Grid and preview side-by-side */
+                flex-direction: row; 
                 gap: 15px;
-                flex-grow: 1; /* Allow game area to take space */
-                max-width: 60%; /* Example, adjust as needed */
+                flex-grow: 1; 
+                max-width: 60%; 
             }
             #game-grid {
-                /* Grid size will be controlled by JS based on available space */
-                flex-shrink: 0; /* Don't let grid shrink if block-preview wants space */
+                flex-shrink: 0; 
             }
             #block-preview {
-                flex-direction: column; /* Stack slots vertically */
+                flex-direction: column; 
                 padding: 10px;
                 min-height: unset;
-                min-width: 100px; /* Min width for preview area in landscape */
+                min-width: 100px; 
                 height: auto; 
                 width: auto;
-                flex-grow: 1; /* Allow block preview to take remaining space */
-                justify-content: space-around; /* Distribute slots */
+                flex-grow: 1; 
+                justify-content: space-around; 
                 overflow-y: auto; 
                 align-items: center; 
                 flex-wrap: nowrap;
-                 gap: 10px; /* Space between vertical slots */
+                 gap: 10px; 
             }
             .block-slot {
-                 /* Slot size will be dynamic based on CSS var or JS */
                 width: var(--block-slot-dynamic-size, 80px);
                 height: var(--block-slot-dynamic-size, 80px);
             }
         }
-
 
         #header {
             width: 100%;
@@ -110,27 +110,60 @@
             align-items: center;
             margin-bottom: 20px; 
             padding: 0 10px;
-            color: #FFFFFF; /* White color for header elements */
+            color: #FFFFFF;
+        }
+
+        #header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #back-button .icon {
+            width: clamp(1.2em, 4.5vw, 2em);
+            height: clamp(1.2em, 4.5vw, 2em);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="%23FFFFFF"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         #game-title {
             font-size: 2.8em;
-            color: #FFFFFF; /* White color for title */
-            text-shadow: none; /* No text shadow */
+            color: #FFFFFF; 
+            text-shadow: none; 
             margin: 0;
             white-space: nowrap;
             font-size: clamp(1.1em, 4.5vw, 2.2em); 
+            font-family: 'Bangers', cursive; /* Applied Bangers font */
         }
-        #score-container { /* New container for score and crown */
+        #score-container { 
+            display: flex;
+            flex-direction: column; /* Score below title */
+            align-items: center;
+            gap: 5px; 
+            margin-top: 10px; /* Space between title and score */
+        }
+        #crown-score-wrapper {
             display: flex;
             align-items: center;
-            gap: 5px; /* Space between crown and score */
+            gap: 5px;
         }
-        #crown-icon { /* Crown icon style */
-            width: clamp(1em, 3.5vw, 1.5em); /* Adjust size as needed */
+        #crown-icon { 
+            width: clamp(1em, 3.5vw, 1.5em); 
             height: clamp(1em, 3.5vw, 1.5em);
-            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)); /* Subtle glow */
-            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/social/crown_FILL0_wght400_GRAD0_opsz24.png'); /* Placeholder crown icon */
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/social/crown_FILL0_wght400_GRAD0_opsz24.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -138,16 +171,16 @@
 
         #scoreDisplay {
             font-size: 1.8em;
-            color: #FFFFFF; /* White color for score */
-            text-shadow: none; /* No text shadow */
+            color: #FFFFFF;
+            text-shadow: none;
             margin: 0;
             white-space: nowrap;
             font-size: clamp(0.9em, 3.5vw, 1.6em); 
         }
-        #settings-icon { /* Settings icon style */
-            width: clamp(1.2em, 4.5vw, 2em); /* Adjust size as needed */
+        #settings-icon { 
+            width: clamp(1.2em, 4.5vw, 2em); 
             height: clamp(1.2em, 4.5vw, 2em);
-            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/action/settings_FILL0_wght400_GRAD0_opsz24.png'); /* Placeholder settings icon */
+            background-image: url('https://raw.githubusercontent.com/google/material-design-icons/master/png/action/settings_FILL0_wght400_GRAD0_opsz24.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -167,17 +200,17 @@
 
         #game-grid {
             display: grid;
-            border: none; /* No border for the grid container */
-            background-color: #1A3E72; /* Dark blue for grid background */
-            box-shadow: none; /* No shadow */
+            border: none; 
+            background-color: #1A3E72; 
+            box-shadow: none; 
             border-radius: 5px;
             overflow: hidden;
             aspect-ratio: 1 / 1; 
         }
 
         .grid-cell {
-            border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle darker border */
-            background-color: #1F4C86; /* Slightly lighter than grid background */
+            border: 1px solid rgba(0, 0, 0, 0.1); 
+            background-color: #1F4C86; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -190,42 +223,40 @@
         }
 
         .grid-cell.occupied {
-            /* Background color will be fallback if texture image fails */
         }
         
         /* Block Textures for Grid Cells (Full Size) */
         .grid-cell.texture-gold { 
             background-image: url('https://i.imgur.com/your-gold-texture-image.png'); /* Replace with actual gold texture */
-            background-color: #F1C40F; /* Fallback */
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.3); /* Subtle inner shadow for depth */
-            border: 1px solid rgba(255,255,255,0.2); /* Lighter border for distinction */
+            background-color: #F1C40F; 
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
+            border: 1px solid rgba(255,255,255,0.2); 
         }
         .grid-cell.texture-blue-block { 
             background-image: url('https://i.imgur.com/your-blue-texture-image.png'); /* Replace with actual blue texture */
-            background-color: #3498DB; /* Fallback */
+            background-color: #3498DB; 
             box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.2);
         }
-
 
         #block-preview {
             display: flex;
             gap: 15px; 
             padding: 10px; 
-            background-color: transparent; /* Transparent background */
+            background-color: transparent; 
             border-radius: 10px;
             align-items: center;
             justify-content: space-around; 
             width: 100%; 
             flex-wrap: nowrap; 
             overflow: visible; 
-            min-height: var(--block-slot-dynamic-size); /* Ensure minimum height */
+            min-height: var(--block-slot-dynamic-size); 
         }
 
         .block-slot {
-            width: var(--block-slot-dynamic-size, 80px); /* Dynamic size from JS */
+            width: var(--block-slot-dynamic-size, 80px); 
             height: var(--block-slot-dynamic-size, 80px);
-            border: none; /* No border for slots */
+            border: none; 
             border-radius: 5px;
             display: flex;
             justify-content: center;
@@ -233,7 +264,7 @@
             padding: 5px; 
             cursor: grab;
             transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-            background-color: transparent; /* Transparent background */
+            background-color: transparent; 
             flex-shrink: 1; 
             flex-grow: 0; 
             flex-basis: auto; 
@@ -249,7 +280,7 @@
             opacity: 0.5; 
         }
         .block-slot:empty {
-            border: none; /* No border for empty slots */
+            border: none; 
             background-color: transparent;
         }
 
@@ -262,7 +293,7 @@
         .block-piece {
             width: var(--block-piece-dynamic-size); 
             height: var(--block-piece-dynamic-size);
-            border: none; /* No border for block pieces */
+            border: none; 
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
@@ -274,18 +305,17 @@
 
         /* Block Textures for Preview Pieces (Smaller Size) */
         .block-piece.texture-gold { 
-            background-image: url('https://i.imgur.com/your-gold-texture-image-small.png'); /* Smaller gold texture for preview */
-            background-color: #F1C40F; /* Fallback */
-            border-radius: 3px; /* Slightly rounded corners */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow for 3D effect */
+            background-image: url('https://i.imgur.com/your-gold-texture-image-small.png'); 
+            background-color: #F1C40F; 
+            border-radius: 3px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
         }
         .block-piece.texture-blue-block { 
-            background-image: url('https://i.imgur.com/your-blue-texture-image-small.png'); /* Smaller blue texture for preview */
-            background-color: #3498DB; /* Fallback */
+            background-image: url('https://i.imgur.com/your-blue-texture-image-small.png'); 
+            background-color: #3498DB; 
             border-radius: 3px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-
 
         .ghost {
             opacity: 0.8;
@@ -296,12 +326,12 @@
         }
 
         .grid-cell.highlight {
-            background-color: rgba(46, 204, 113, 0.4) !important; /* Lighter highlight */
+            background-color: rgba(46, 204, 113, 0.4) !important; 
             border: 2px solid #2ecc71;
             box-shadow: 0 0 8px rgba(46, 204, 113, 0.8);
         }
         .grid-cell.invalid {
-            background-color: rgba(231, 76, 60, 0.4) !important; /* Lighter invalid highlight */
+            background-color: rgba(231, 76, 60, 0.4) !important; 
             border: 2px solid #e74c3c;
             box-shadow: 0 0 8px rgba(231, 76, 60, 0.8);
         }
@@ -314,7 +344,6 @@
             50% { transform: scale(1.2) rotate(5deg) translateY(-3px); opacity: 0.7; filter: brightness(1.2); }
             100% { transform: scale(0.1) rotate(-20deg) translateY(5px); opacity: 0; filter: brightness(0.5); }
         }
-
 
         #game-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -350,42 +379,55 @@
             100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
         }
         
-        /* Responsif untuk ukuran cell dan block piece (kembali ke pendekatan dinamis) */
+        /* Responsif untuk ukuran cell dan block piece */
         @media (max-width: 600px) { 
             #game-container {
                 padding: 15px;
-                aspect-ratio: 1 / 1.7; /* Taller for portrait mobile */
+                aspect-ratio: 1 / 1.7; 
             }
             #header { margin-bottom: 15px; }
             #game-title { font-size: clamp(1em, 4vw, 1.8em); }
             #scoreDisplay { font-size: clamp(0.8em, 3vw, 1.4em); }
-            #game-area { gap: 10px; } /* Reduced gap for smaller screens */
+            #game-area { gap: 10px; } 
             #game-grid { border-width: 2px; }
             .grid-cell { border-width: 0.5px; }
             
             #block-preview { padding: 8px; gap: 10px; }
-            /* --block-slot-dynamic-size will be set by JS */
         }
          @media (max-width: 380px) { 
             #game-container { padding: 10px; aspect-ratio: 1 / 1.8; }
-            #game-grid { /* Max width for very small screens if needed */ }
             #header { margin-bottom: 10px;}
             #game-title { font-size: clamp(0.9em, 4vw, 1.5em); }
             #scoreDisplay { font-size: clamp(0.7em, 3vw, 1.2em); }
             #game-area { gap: 8px; }
-            /* block-slot size will adapt via JS */
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
         }
 
     </style>
 </head>
 <body>
 <div id="game-container">
-    <div id="header">
-        <div id="crown-icon"></div>
-        <p id="scoreDisplay">14</p>
-        <div id="settings-icon"></div>
+    <div>
+        <div id="header">
+            <div id="header-left">
+                <button id="back-button" aria-label="Kembali ke halaman sebelumnya">
+                    <span class="icon"></span>
+                </button>
+                <div id="crown-score-wrapper">
+                    <div id="crown-icon"></div> 
+                    <p id="scoreDisplay">0</p>
+                </div>
+            </div>
+            <div id="settings-icon"></div> 
+        </div>
+        <h1 id="game-title">UVOBLOCK</h1> 
     </div>
-    <h1 id="game-title">UVOBLOCK</h1>
 
     <div id="game-area">
         <div id="game-grid">
@@ -401,6 +443,9 @@
         <p id="finalScoreDisplay">Skor Akhir: 0</p> 
         <button id="restartButton">Mulai Lagi</button>
     </div>
+    <footer>
+        <p>© 2025 ADITdeveloper. All rights reserved.</p>
+    </footer>
 </div>
 <script>
 // uvoblock.js
@@ -416,6 +461,8 @@ const overlayMessage = document.getElementById('overlay-message');
 const finalScoreDisplay = document.getElementById('finalScoreDisplay'); 
 const restartButton = document.getElementById('restartButton');
 const bodyElement = document.body;
+const gameTitleElement = document.getElementById('game-title'); // Get the game title element
+const backButton = document.getElementById('back-button');
 
 const GRID_ROWS = 9;
 const GRID_COLS = 9;
@@ -425,8 +472,8 @@ let BLOCK_SLOT_SIZE = 0;
 
 let gameGrid = [];
 let score = 0;
-let currentCombo = 0; // Renamed for clarity in scoring
-let scoreMultiplier = 1; // New multiplier for overall score
+let currentCombo = 0; 
+let scoreMultiplier = 1; 
 let currentBlocks = []; 
 let draggedBlock = null; 
 let draggedBlockIndex = -1; 
@@ -434,7 +481,6 @@ let ghostElement = null;
 let currentHighlightCells = []; 
 let isDragging = false; 
 
-// Updated background colors to fit the image aesthetic
 const BACKGROUND_COLORS = ['#4A90E2', '#3B82C9', '#4285D4', '#559BEF']; 
 let currentBgColorIndex = 0;
 
@@ -462,13 +508,11 @@ const BLOCK_SHAPES = [
 
 function calculateAndApplyDynamicSizes() {
     const gameAreaRect = document.getElementById('game-area').getBoundingClientRect();
-    const gameContainerPadding = parseFloat(getComputedStyle(document.getElementById('game-container')).paddingLeft) * 2;
     
     let availableGridWidth = gameAreaRect.width;
     let availableGridHeight = gameAreaRect.height - 
-                              document.getElementById('header').offsetHeight -
-                              document.getElementById('game-title').offsetHeight - // Account for title height
-                              (BLOCK_SLOT_SIZE + 20 + 10) - 
+                              (gameTitleElement.offsetHeight + parseFloat(getComputedStyle(gameTitleElement).marginTop) + parseFloat(getComputedStyle(gameTitleElement).marginBottom)) -
+                              (blockPreviewSlots[0].offsetHeight + parseFloat(getComputedStyle(blockPreviewSlots[0]).marginTop) + parseFloat(getComputedStyle(blockPreviewSlots[0]).marginBottom)) -
                               (parseFloat(getComputedStyle(document.getElementById('game-area')).gap) * 2);
 
     availableGridWidth = Math.max(availableGridWidth, GRID_COLS * 10); 
@@ -506,9 +550,9 @@ function calculateAndApplyDynamicSizes() {
 
 
 function initializeGame() {
-    score = 0;
-    currentCombo = 0; // Reset combo
-    scoreMultiplier = 1; // Reset multiplier
+    score = loadScore(); // Load score at initialization
+    currentCombo = 0; 
+    scoreMultiplier = 1; 
     updateScoreDisplay();
     gameGrid = Array(GRID_ROWS).fill(0).map(() => Array(GRID_COLS).fill(0));
 
@@ -528,6 +572,7 @@ function initializeGame() {
     restartButton.removeEventListener('click', initializeGame); 
     restartButton.addEventListener('click', initializeGame);
     changeBackgroundColor();
+    startTitleColorChange(); // Start title color change on game init
 }
 
 window.addEventListener('resize', calculateAndApplyDynamicSizes); 
@@ -542,7 +587,7 @@ function updateGridDisplay() {
             cellElement.className = 'grid-cell'; 
             if (gameGrid[r][c] !== 0) {
                 cellElement.classList.add('occupied');
-                cellElement.classList.add(gameGrid[r][c]); // textureName class
+                cellElement.classList.add(gameGrid[r][c]); 
             }
         }
     }
@@ -644,7 +689,7 @@ function generateNewBlocks(isInitial = false) {
         currentBlocks = Array(3).fill(null).map(() => 
             JSON.parse(JSON.stringify(BLOCK_SHAPES[Math.floor(Math.random() * BLOCK_SHAPES.length)]))
         );
-        currentCombo = 0; // Reset combo when new blocks are generated
+        currentCombo = 0; 
     }
     drawBlockPreview();
     if (!isInitial) checkGameOver();
@@ -678,9 +723,9 @@ function placeBlock(block, startRow, startCol) {
             }
         });
     });
-    // Score for placing block: +10 points per piece placed
     score += piecesPlaced * 10; 
     updateScoreDisplay();
+    saveScore(); // Save score after placing block
     return true;
 }
 
@@ -734,28 +779,24 @@ function clearLines() {
         return { r, c };
     });
     
-    const linesClearedThisTurn = rowsToClear.length + colsToClear.length; 
-
     if (uniqueCellsToClear.length > 0) {
-        currentCombo++; // Increment combo for sequential clears
+        currentCombo++; 
         let baseClearScore = 0;
 
-        // Scoring based on number of blocks destroyed
         if (uniqueCellsToClear.length >= 5) {
-            baseClearScore += 200; // Destroying 5+ blocks
+            baseClearScore += 200; 
         } else if (uniqueCellsToClear.length === 4) {
-            baseClearScore += 150; // Destroying 4 blocks
+            baseClearScore += 150; 
         } else if (uniqueCellsToClear.length === 3) {
-            baseClearScore += 100; // Destroying 3 blocks
+            baseClearScore += 100; 
         } else {
-             baseClearScore += uniqueCellsToClear.length * 10; // For fewer than 3 blocks cleared
+             baseClearScore += uniqueCellsToClear.length * 10; 
         }
         
-        let comboBonus = (currentCombo > 1) ? (currentCombo - 1) * 50 : 0; // Combo bonus
+        let comboBonus = (currentCombo > 1) ? (currentCombo - 1) * 50 : 0; 
         
-        // Multiplier is applied to total score at the end. For now, track base score + combo.
         let turnScore = baseClearScore + comboBonus;
-        score += turnScore * scoreMultiplier; // Apply overall score multiplier
+        score += turnScore * scoreMultiplier; 
 
         uniqueCellsToClear.forEach(coord => {
             const cellElement = gameGridElement.children[coord.r * GRID_COLS + coord.c];
@@ -770,7 +811,7 @@ function clearLines() {
             updateGridDisplay();
 
             if (gameGrid.every(row => row.every(cell => cell === 0))) { 
-                score += 1000 * scoreMultiplier; // Full clear bonus, multiplied
+                score += 1000 * scoreMultiplier; 
                 const originalMsg = overlayMessage.textContent;
                 overlayMessage.textContent = `FULL CLEAR! +${1000 * scoreMultiplier}`; 
                 finalScoreDisplay.textContent = `Skor Akhir: ${score}`;
@@ -781,13 +822,14 @@ function clearLines() {
                 }, 1500); 
             }
             updateScoreDisplay();
+            saveScore(); // Save score after clearing lines
             changeBackgroundColor();
             
             if (currentBlocks.every(block => block === null)) generateNewBlocks();
             else checkGameOver();
         }, 400);
     } else {
-        currentCombo = 0; // Reset combo if no lines are cleared
+        currentCombo = 0; 
         if (currentBlocks.every(block => block === null)) generateNewBlocks();
         else checkGameOver();
     }
@@ -795,7 +837,7 @@ function clearLines() {
 
 
 function updateScoreDisplay() {
-    scoreDisplay.textContent = `${score}`; // Display only score, no "Skor:" prefix
+    scoreDisplay.textContent = `${score}`; 
 }
 
 function createExplosionEffect(cellElement) {
@@ -842,10 +884,33 @@ function changeBackgroundColor() {
     bodyElement.style.backgroundColor = BACKGROUND_COLORS[currentBgColorIndex];
 }
 
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+let titleColorInterval;
+function startTitleColorChange() {
+    if (titleColorInterval) clearInterval(titleColorInterval);
+    titleColorInterval = setInterval(() => {
+        gameTitleElement.style.color = getRandomColor();
+    }, 1000); 
+}
+
+
 function getEventCoords(event) {
-    return (event.touches && event.touches.length > 0) ? 
-           { x: event.touches[0].clientX, y: event.touches[0].clientY } : 
-           { x: event.clientX, y: event.clientY };
+    // For touchend, use changedTouches
+    if (event.type === 'touchend' && event.changedTouches && event.changedTouches.length > 0) {
+        return { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
+    }
+    // For touchmove and touchstart, use touches
+    else if (event.touches && event.touches.length > 0) { 
+        return { x: event.touches[0].clientX, y: event.touches[0].clientY };
+    }
+    // For mouse events
+    return { x: event.clientX, y: event.clientY };
 }
 
 function getGridCellAtCoords(x, y) {
@@ -895,7 +960,7 @@ function startDrag(event) {
 
 function drag(event) {
     if (!isDragging || !ghostElement || !draggedBlock) return;
-    if (event.type === 'touchmove') event.preventDefault();
+    if (event.type === 'touchmove') event.preventDefault(); // Prevent scrolling on touch drag
     const coords = getEventCoords(event);
     positionGhost(coords.x, coords.y);
     const targetCellInfo = getGridCellAtCoords(coords.x, coords.y);
@@ -921,7 +986,7 @@ function dragEnd(event) {
     }
     if (!wasActuallyDragging || !draggedBlock) { removeDragListeners(); return; }
 
-    const coords = getEventCoords(event);
+    const coords = getEventCoords(event); // Use getEventCoords for touchend
     const targetCellInfo = getGridCellAtCoords(coords.x, coords.y);
     let blockPlacedSuccessfully = false;
 
@@ -955,6 +1020,21 @@ function removeDragListeners() {
     document.removeEventListener('touchend', dragEnd);
     document.removeEventListener('touchcancel', dragEnd);
 }
+
+// Local Storage functions
+function saveScore() {
+    localStorage.setItem('uvoblockScore', score);
+}
+
+function loadScore() {
+    const savedScore = localStorage.getItem('uvoblockScore');
+    return savedScore ? parseInt(savedScore) : 0;
+}
+
+// Back button functionality
+backButton.addEventListener('click', () => {
+    window.history.back();
+});
 
 document.addEventListener('DOMContentLoaded', initializeGame);
 
