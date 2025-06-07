@@ -3,373 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Top-Up Game Premium | UVO Shop</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Top-Up Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="loadPrices.js"></script>
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
-    
     body {
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #0D1B2A;
       color: white;
       overflow-x: hidden;
-      min-height: 100vh;
-      position: relative;
     }
-    
-    /* Header & Navigation */
     .navbar {
       display: flex;
       align-items: center;
-      padding: 12px 20px;
+      padding: 10px;
       background-color: #202938;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
-    
     .navbar img {
-      height: 45px;
-      margin-right: 15px;
-      border-radius: 8px;
+      height: 40px;
+      margin-right: 10px;
     }
-    
     .navbar span {
-      font-size: 20px;
-      font-weight: 700;
-      color: white;
+      font-size: 18px;
+      font-weight: bold;
     }
-    
-    /* Main Container */
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 20px;
+      padding: 20px;
     }
-    
-    .page-title {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .page-title h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #FFD166;
-    }
-    
-    .page-title p {
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      color: #a0aec0;
-    }
-    
-    /* Input Groups */
-    .input-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    
     .input-group {
-      background: #1B263B;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 15px;
+      text-align: left;
     }
-    
     .input-group label {
       display: block;
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
     }
-    
-    .input-group label i {
-      color: #FFD166;
-    }
-    
     input {
       width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #415A77;
-      font-size: 15px;
-      background: rgba(0, 0, 0, 0.2);
-      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
     }
-    
-    input:focus {
-      outline: none;
-      border-color: #FF9E44;
-    }
-    
-    /* Diamond and Payment Selection */
-    .selection-title {
-      font-size: 1.3rem;
-      margin: 25px 0 15px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #415A77;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .selection-title i {
-      color: #FFD166;
-    }
-    
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
     }
-    
     .diamond-item, .payment-item {
-      background: #1B263B;
-      color: white;
-      padding: 12px 8px;
+      background: white;
+      color: black;
+      padding: 10px;
       border-radius: 10px;
       text-align: center;
       cursor: pointer;
       position: relative;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-    
-    .diamond-item:hover, .payment-item:hover {
-      background: #253245;
-    }
-    
     .diamond-item.selected, .payment-item.selected {
-      border: 2px solid #FF9E44;
-      box-shadow: 0 0 15px rgba(255, 158, 68, 0.4);
+      outline: 3px solid orange;
     }
-    
     .diamond-item img, .payment-item img {
       width: 40px;
       height: 40px;
-      object-fit: contain;
-      margin-bottom: 8px;
+      display: block;
+      margin: 0 auto 5px;
     }
-    
-    .diamond-item .diamond-name {
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-    
-    .diamond-item .diamond-price {
-      color: #FFD166;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    
-    /* Instructions Section */
     #instructions {
-      background: #1B263B;
-      padding: 20px;
-      margin: 30px 0;
+      background-color: #002A5B;
+      padding: 15px;
+      margin: 20px 0;
       border-radius: 10px;
       text-align: left;
-      font-size: 15px;
-      border-left: 4px solid #FF9E44;
+      font-size: 14px;
     }
-    
-    #instructions strong {
-      font-size: 17px;
-      display: block;
-      margin-bottom: 12px;
-      color: #FFD166;
-    }
-    
-    #instructions ol {
-      padding-left: 20px;
-    }
-    
-    #instructions li {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-    
-    /* Buy Button */
-    .button-container {
-      margin: 30px 0;
-      text-align: center;
-    }
-    
     #buy-button {
-      background: linear-gradient(to right, #FF9E44, #FF6B00);
+      background-color: orange;
       color: white;
-      padding: 16px 30px;
+      padding: 15px;
       border: none;
       width: 100%;
-      max-width: 400px;
       border-radius: 10px;
       font-size: 18px;
-      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin: 0 auto;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      gap: 10px;
     }
-    
-    #buy-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(255, 107, 0, 0.4);
-    }
-    
-    /* Marquee */
-    .marquee-container {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 40px 0;
-      overflow: hidden;
-    }
-    
-    .marquee-title {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 12px;
-      color: #FFD166;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    
     .marquee {
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      position: relative;
-      padding: 8px 0;
+      animation: marquee 20s linear infinite;
+      margin-top: 20px;
     }
-    
-    .marquee-content {
-      display: inline-block;
-      animation: marquee 25s linear infinite;
-    }
-    
     .marquee img {
-      height: 35px;
-      margin: 0 15px;
+      height: 30px;
+      margin: 0 10px;
       vertical-align: middle;
     }
-    
     @keyframes marquee {
       0%   { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
-    
-    /* Footer */
     footer {
-      padding: 30px 20px 20px;
-      background: #202938;
+      padding: 20px;
+      background-color: #202938;
       font-size: 14px;
       color: white;
     }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-    }
-    
-    .footer-section h3 {
-      font-size: 17px;
-      margin-bottom: 15px;
-      color: #FFD166;
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-    
-    .footer-links a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: #FFD166;
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 25px;
-      margin-top: 25px;
-      border-top: 1px solid #415A77;
-    }
-    
-    /* Responsive */
-    @media screen and (max-width: 768px) {
-      .navbar span {
-        font-size: 18px;
-      }
-      
-      .page-title h1 {
-        font-size: 1.8rem;
-      }
-      
-      .input-section {
-        grid-template-columns: 1fr;
-      }
-      
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      #buy-button {
-        font-size: 17px;
-        padding: 14px;
-      }
-    }
-    
+
+    /* RESPONSIVE MOBILE */
     @media screen and (max-width: 480px) {
-      .navbar img {
-        height: 38px;
+      .navbar span {
+        font-size: 16px;
       }
-      
-      .page-title h1 {
-        font-size: 1.5rem;
+      .input-group label {
+        font-size: 13px;
       }
-      
-      .diamond-item, .payment-item {
-        padding: 10px 6px;
+      input {
+        font-size: 13px;
+        padding: 10px;
       }
-      
+      #buy-button {
+        font-size: 16px;
+        padding: 12px;
+      }
       .diamond-item img, .payment-item img {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
       }
-      
-      .diamond-item .diamond-name {
-        font-size: 13px;
-      }
-      
-      .diamond-item .diamond-price {
-        font-size: 13px;
+      .marquee {
+        margin-top: 30px;
       }
     }
   </style>
@@ -377,223 +148,55 @@
 <body>
   <div class="navbar">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg">
-    <span id="game-name">UVO Shop - Top Up Game</span>
+    <span id="game-name">Nama Game</span>
   </div>
 
   <div class="container">
-    <div class="page-title">
-      <h1>TOP UP DIAMOND & VOUCHER GAME</h1>
-      <p>Isi ID game Anda, pilih jumlah diamond dan metode pembayaran, lalu selesaikan transaksi</p>
-    </div>
-    
-    <div class="input-section">
-      <div class="input-group">
-        <label><i class="fas fa-id-card"></i> 1. ID Pemain</label>
-        <input type="text" id="player-id" placeholder="Contoh: 123456789" />
-      </div>
-
-      <div class="input-group">
-        <label><i class="fas fa-server"></i> 2. Server (Opsional)</label>
-        <input type="text" id="server-id" placeholder="Contoh: 1234 (Optional)" />
-      </div>
+    <div class="input-group">
+      <label>1. ID Pemain</label>
+      <input type="text" id="player-id" placeholder="Contoh: 123456789" />
     </div>
 
-    <div>
-      <div class="selection-title">
-        <i class="fas fa-gem"></i> 3. Pilih Diamond
-      </div>
-      <div class="grid" id="diamond-list">
-        <div class="diamond-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/2583/2583789.png" alt="Diamond">
-          <div class="diamond-name">86 Diamonds</div>
-          <div class="diamond-price">Rp 20.000</div>
-        </div>
-        <div class="diamond-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/2583/2583789.png" alt="Diamond">
-          <div class="diamond-name">172 Diamonds</div>
-          <div class="diamond-price">Rp 40.000</div>
-        </div>
-        <div class="diamond-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/2583/2583789.png" alt="Diamond">
-          <div class="diamond-name">257 Diamonds</div>
-          <div class="diamond-price">Rp 60.000</div>
-        </div>
-        <div class="diamond-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/2583/2583789.png" alt="Diamond">
-          <div class="diamond-name">344 Diamonds</div>
-          <div class="diamond-price">Rp 80.000</div>
-        </div>
-        <div class="diamond-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/2583/2583789.png" alt="Diamond">
-          <div class="diamond-name">429 Diamonds</div>
-          <div class="diamond-price">Rp 100.000</div>
-        </div>
-        <div class="diamond-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/2583/2583789.png" alt="Diamond">
-          <div class="diamond-name">514 Diamonds</div>
-          <div class="diamond-price">Rp 120.000</div>
-        </div>
-      </div>
+    <div class="input-group">
+      <label>2. Server (Opsional)</label>
+      <input type="text" id="server-id" placeholder="Contoh: 1234 (Optional)" />
     </div>
 
-    <div>
-      <div class="selection-title">
-        <i class="fas fa-wallet"></i> 4. Pilih Pembayaran
-      </div>
-      <div class="grid" id="payment-methods">
-        <div class="payment-item">
-          <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="DANA">
-          <div class="payment-name">DANA</div>
-        </div>
-        <div class="payment-item">
-          <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Indomaret">
-          <div class="payment-name">Indomaret</div>
-        </div>
-        <div class="payment-item">
-          <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="OVO">
-          <div class="payment-name">OVO</div>
-        </div>
-        <div class="payment-item">
-          <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="Bank Transfer">
-          <div class="payment-name">Bank Transfer</div>
-        </div>
-        <div class="payment-item">
-          <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" alt="Gopay">
-          <div class="payment-name">Gopay</div>
-        </div>
-        <div class="payment-item">
-          <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="ShopeePay">
-          <div class="payment-name">ShopeePay</div>
-        </div>
-      </div>
+    <div class="input-group">
+      <label>3. Pilih Diamond</label>
+      <div class="grid" id="diamond-list"></div>
+    </div>
+
+    <div class="input-group">
+      <label>4. Pilih Pembayaran</label>
+      <div class="grid" id="payment-methods"></div>
     </div>
 
     <div id="instructions">
-      <strong><i class="fas fa-info-circle"></i> Cara membeli diamond:</strong>
-      <ol>
-        <li>Isi ID game kamu dengan benar</li>
-        <li>Jika game membutuhkan zona/server, tambahkan zona/server</li>
-        <li>Pilih jumlah diamond yang ingin dibeli</li>
-        <li>Pilih metode pembayaran yang tersedia</li>
-        <li>Klik tombol "Beli Sekarang" untuk melanjutkan</li>
-        <li>Lalu masuk ke WhatsApp Admin untuk menyelesaikan pembelian</li>
-      </ol>
+      <strong>Cara membeli diamond:</strong><br>
+      1. Isi ID game kamu<br>
+      2. Jika game membutuhkan zona, tambahkan zona<br>
+      3. Pilih diamond<br>
+      4. Pilih pembayaran<br>
+      5. Klik Beli Sekarang<br>
+      6. Lalu masuk ke WhatsApp Admin untuk melanjutkan pembelian
     </div>
 
-    <div class="button-container">
-      <button id="buy-button">
-        <i class="fas fa-shopping-cart"></i> Beli Sekarang
-      </button>
-    </div>
+    <button id="buy-button">Beli Sekarang</button>
 
-    <div class="marquee-container">
-      <div class="marquee-title">
-        <i class="fas fa-credit-card"></i> Metode Pembayaran yang Didukung
-      </div>
-      <div class="marquee">
-        <div class="marquee-content">
-          <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg">
-          <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png">
-          <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg">
-          <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
-          <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png">
-          <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
-        </div>
-      </div>
+    <div class="marquee">
+      <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg">
+      <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png">
+      <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png">
     </div>
   </div>
 
   <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>UVO Shop</h3>
-        <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Peta Situs</h3>
-        <ul class="footer-links">
-          <li><a href="#">Flash Top-Up</a></li>
-          <li><a href="#">Voucher</a></li>
-          <li><a href="#">Game Lainnya</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Dukungan Pelanggan</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Layanan</h3>
-        <ul class="footer-links">
-          <li><a href="#">Penukaran Poin</a></li>
-          <li><a href="#">Berita</a></li>
-          <li><a href="#">Promo dan Event</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p><strong>Tentang UVO Shop</strong></p>
-      <p>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.</p>
-      <p>Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi</p>
-    </div>
+    <p>UVO Shop merupakan penyedia layanan pembayaran digital (PSP) terpercaya yang berfokus pada top-up game online dan produk digital lainnya, yang melayani pengguna dari seluruh dunia.</p>
+    <p><strong>Peta Situs</strong><br>Flash Top-Up<br>Voucher<br>Game Lainnya<br><br>FAQ<br>Dukungan Pelanggan<br>Penukaran Poin<br>Berita<br>Promo dan Event</p>
+    <p><strong>Tentang UVO Shop</strong><br><br>© 2025 UVO Shop. Semua Hak Cipta Dilindungi.<br>Syarat & Ketentuan Website | Syarat Pengguna | Kebijakan Privasi</p>
   </footer>
-
-  <script>
-    // Fungsi yang sama seperti sebelumnya
-    document.addEventListener('DOMContentLoaded', function() {
-      // Select functionality for diamond items
-      const diamondItems = document.querySelectorAll('.diamond-item');
-      diamondItems.forEach(item => {
-        item.addEventListener('click', function() {
-          diamondItems.forEach(i => i.classList.remove('selected'));
-          this.classList.add('selected');
-        });
-      });
-      
-      // Select functionality for payment items
-      const paymentItems = document.querySelectorAll('.payment-item');
-      paymentItems.forEach(item => {
-        item.addEventListener('click', function() {
-          paymentItems.forEach(i => i.classList.remove('selected'));
-          this.classList.add('selected');
-        });
-      });
-      
-      // Buy button functionality
-      const buyButton = document.getElementById('buy-button');
-      buyButton.addEventListener('click', function() {
-        const playerId = document.getElementById('player-id').value;
-        const diamondSelected = document.querySelector('.diamond-item.selected');
-        const paymentSelected = document.querySelector('.payment-item.selected');
-        
-        if (!playerId) {
-          alert('Silakan masukkan ID Pemain terlebih dahulu!');
-          return;
-        }
-        
-        if (!diamondSelected) {
-          alert('Silakan pilih jumlah diamond terlebih dahulu!');
-          return;
-        }
-        
-        if (!paymentSelected) {
-          alert('Silakan pilih metode pembayaran terlebih dahulu!');
-          return;
-        }
-        
-        // Simulate loading
-        const originalText = buyButton.innerHTML;
-        buyButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
-        buyButton.disabled = true;
-        
-        // Simulate API call
-        setTimeout(() => {
-          alert('Pesanan berhasil dibuat! Silakan lanjutkan pembayaran melalui WhatsApp Admin.');
-          buyButton.innerHTML = originalText;
-          buyButton.disabled = false;
-        }, 1500);
-      });
-    });
-  </script>
 </body>
 </html>
