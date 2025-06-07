@@ -1,121 +1,275 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UVOSHOP - Privacy Policy & Terms</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UVOSHOP - Kebijakan & Layanan Terlengkap</title>
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="UVOSHOP: Solusi top-up game, voucher digital, dan langganan aplikasi dengan keamanan terjamin dan promo menarik setiap hari." />
+  <meta property="og:title" content="UVOSHOP - Solusi Top-Up Game & Voucher Digital" />
+  <meta property="og:description" content="Layanan instan untuk Google Play, UniPin, Steam Wallet, Netflix, Spotify, dan ratusan layanan digital lainnya." />
+  <meta property="og:image" content="/assets/uvoshop-cover.png" />
+  <meta property="og:type" content="website" />
+  <link rel="manifest" href="/manifest.json">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
-      color: #ffffff;
-      line-height: 1.8;
-      padding: 30px 20px 60px;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2.5rem;
-      color: #00ffe0;
-    }
-    h2 {
-      color: #00ffe0;
-      margin-top: 40px;
-      border-bottom: 2px solid #00ffe0;
-      padding-bottom: 10px;
-      font-size: 1.7rem;
-    }
-    p, li {
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
-    ul {
-      margin-left: 20px;
-      padding-left: 20px;
-    }
-    a {
-      color: #00ffe0;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      margin-top: 60px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid #333;
-      padding-top: 30px;
-    }
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.3rem;
-      }
-    }
+    /* Reset & Global */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Segoe UI', sans-serif; background:#121212; color:#EEE; transition: background .3s, color .3s; }
+    a { color:#1DE9B6; text-decoration:none; }
+    a:hover { color:#ffffff; }
+
+    /* Header */
+    header { position:sticky; top:0; background:#1B1B1B; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; z-index:1000; }
+    .logo { font-size:2rem; color:#1DE9B6; font-weight:bold; }
+    nav ul { list-style:none; display:flex; gap:25px; }
+    nav li { position:relative; }
+    nav li ul { display:none; position:absolute; top:100%; left:0; background:#1B1B1B; padding:10px; border-radius:5px; box-shadow:0 4px 8px rgba(0,0,0,0.5); }
+    nav li:hover ul { display:block; }
+    nav a { display:flex; align-items:center; gap:8px; padding:8px; }
+    nav a:hover { background:#222; border-radius:4px; }
+
+    /* Container */
+    .container { max-width:1100px; margin:120px auto 60px; padding:0 20px; }
+    h1,h2,h3 { color:#1DE9B6; margin-bottom:20px; }
+    h1 { font-size:3.2rem; display:flex; align-items:center; gap:10px; }
+    section { margin-bottom:80px; }
+
+    /* Layanan */
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+    .card { background:#1E1E1E; border-radius:10px; padding:25px; box-shadow:0 6px 15px rgba(0,0,0,0.7); transition:transform .3s; }
+    .card:hover { transform:translateY(-10px); }
+    .card h3 { font-size:1.5rem; margin-bottom:15px; }
+    .card p { line-height:1.7; }
+
+    /* Accordion S&K */
+    .accordion { border:1px solid #333; border-radius:8px; overflow:hidden; }
+    .accordion-item + .accordion-item { border-top:1px solid #333; }
+    .accordion-header { background:#1B1B1B; padding:20px; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; gap:10px; }
+    .accordion-header::after { content:'\f078'; font-family:'Font Awesome 6 Free'; font-weight:900; margin-left:auto; transition:transform .3s; }
+    .accordion-header.active::after { transform:rotate(180deg); }
+    .accordion-content { max-height:0; overflow:hidden; background:#121212; transition:max-height .4s ease; }
+    .accordion-content div { padding:20px; line-height:1.7; }
+
+    /* Newsletter */
+    .newsletter { background:#1B1B1B; padding:40px; border-radius:10px; text-align:center; }
+    .newsletter p { margin-bottom:20px; font-size:1.1rem; }
+    .newsletter form { display:flex; justify-content:center; flex-wrap:wrap; gap:15px; }
+    .newsletter input { padding:12px; width:300px; border:none; border-radius:5px; }
+    .newsletter button { padding:12px 25px; border:none; border-radius:5px; background:#1DE9B6; color:#121212; cursor:pointer; transition:background .3s; }
+    .newsletter button:hover { background:#17c9a5; }
+
+    /* Cookie Banner */
+    .cookie-banner { position:fixed; bottom:0; width:100%; background:#212121; color:#EEE; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; }
+    .cookie-banner button { background:#1DE9B6; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; }
+
+    /* Scroll to Top */
+    .scroll-top { position:fixed; bottom:30px; right:30px; background:#1DE9B6; border:none; padding:15px; border-radius:50%; cursor:pointer; display:none; z-index:1000; }
+
+    /* Footer */
+    footer { text-align:center; padding:40px 20px; border-top:1px solid #333; color:#777; display:flex; flex-direction:column; align-items:center; gap:10px; }
+
+    /* Responsive */
+    @media(max-width:768px){ nav ul { flex-direction:column; gap:15px; } .container { margin:100px auto 40px; } }
   </style>
 </head>
 <body>
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <span>Kami menggunakan cookies untuk meningkatkan pengalaman Anda di UVOSHOP.</span>
+    <button id="agreeCookies">Setuju</button>
+  </div>
+
+  <header>
+    <div class="logo"><i class="fa-solid fa-shopping-cart"></i> UVOSHOP</div>
+    <nav>
+      <ul>
+        <li><a href="#overview"><i class="fa-solid fa-house"></i> Beranda</a></li>
+        <li>
+          <a href="#services"><i class="fa-solid fa-box"></i> Layanan</a>
+          <ul>
+            <li><a href="#topup">Top-up Game</a></li>
+            <li><a href="#voucher">Voucher Aplikasi</a></li>
+            <li><a href="#bundle">Paket Bundle</a></li>
+          </ul>
+        </li>
+        <li><a href="#terms"><i class="fa-solid fa-file-signature"></i> Syarat & Ketentuan</a></li>
+        <li><a href="#privacy"><i class="fa-solid fa-user-shield"></i> Kebijakan Privasi</a></li>
+        <li><a href="#newsletter"><i class="fa-solid fa-envelope-open-text"></i> Newsletter</a></li>
+      </ul>
+    </nav>
+    <button class="scroll-top" id="btnScrollTop"><i class="fa-solid fa-chevron-up"></i></button>
+  </header>
+
   <div class="container">
-    <h1>Kebijakan Privasi & Ketentuan Penggunaan</h1>
+    <section id="overview">
+      <h1><i class="fa-solid fa-star"></i> Selamat Datang di UVOSHOP</h1>
+      <p>UVOSHOP adalah platform top-up dan voucher digital yang menyediakan solusi instan, mudah, dan aman untuk kebutuhan hiburan Anda. Sejak didirikan pada 2023, kami telah melayani ribuan pelanggan dengan layanan cepat, harga bersaing, dan dukungan 24/7.</p>
+    </section>
 
-    <h2 id="terms">Syarat & Ketentuan</h2>
-    <p>Selamat datang di UVOSHOP! Dengan mengakses dan menggunakan layanan kami, Anda dianggap telah menyetujui seluruh syarat dan ketentuan berikut:</p>
-    <ul>
-      <li>Pengguna bertanggung jawab penuh atas keakuratan data saat melakukan transaksi (ID game, nomor e-wallet, dsb).</li>
-      <li>Semua transaksi bersifat final dan tidak dapat dikembalikan kecuali terjadi kesalahan teknis dari pihak kami.</li>
-      <li>UVOSHOP tidak bertanggung jawab atas kesalahan input data dari pengguna.</li>
-      <li>Pengguna dilarang menggunakan layanan kami untuk aktivitas ilegal, penipuan, atau pelanggaran hukum lainnya.</li>
-      <li>Kami berhak menghentikan layanan atau menolak transaksi tanpa pemberitahuan sebelumnya jika ditemukan aktivitas mencurigakan.</li>
-      <li>Kami dapat mengubah syarat dan ketentuan ini sewaktu-waktu tanpa pemberitahuan terlebih dahulu. Harap tinjau halaman ini secara berkala.</li>
-    </ul>
+    <section id="services">
+      <h2><i class="fa-solid fa-cogs"></i> Layanan Kami</h2>
+      <div class="features">
+        <div class="card">
+          <h3><i class="fa-solid fa-gamepad"></i> Top-up Game</h3>
+          <p>Menawarkan top-up untuk berbagai game populer seperti Mobile Legends, Free Fire, PUBG Mobile, Point Blank, dan masih banyak lagi. Proses otomatis dengan konfirmasi instan dalam 60 detik, tanpa menunggu lama.</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-ticket"></i> Voucher Aplikasi</h3>
+          <p>Dapatkan voucher resmi untuk layanan streaming dan aplikasi premium seperti Netflix, Disney+, Spotify, Canva Pro, Microsoft 365, dan lain-lain. Voucher langsung aktif setelah pembelian.
+</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-box-open"></i> Paket Bundle</h3>
+          <p>Pilih paket hemat dengan kombinasi layanan top-up dan voucher aplikasi. Paket mingguan dan bulanan dengan diskon hingga 20% khusus untuk pelanggan setia UVOSHOP.
+</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-wallet"></i> Metode Pembayaran Lengkap</h3>
+          <p>Terima pembayaran melalui OVO, GoPay, Dana, ShopeePay, LinkAja, transfer bank (BCA, Mandiri, BNI), dan kartu kredit Visa/Mastercard. Transaksi aman dan terenkripsi.
+</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-headset"></i> Dukungan 24/7</h3>
+          <p>Tim support kami siap membantu Anda kapan saja melalui live chat Telegram, WhatsApp, dan email. Pertanyaan dan masalah diselesaikan dalam waktu kurang dari 1 jam.
+</p>
+        </div>
+      </div>
+    </section>
 
-    <h2 id="privacy">Kebijakan Privasi</h2>
-    <p>Privasi Anda sangat penting bagi kami. UVOSHOP berkomitmen untuk melindungi informasi pribadi Anda dan hanya menggunakannya untuk keperluan layanan top-up.</p>
-    <ul>
-      <li>Kami mengumpulkan informasi minimum seperti ID pengguna, nomor akun game/e-wallet, dan detail transaksi.</li>
-      <li>Informasi yang Anda berikan tidak akan dibagikan, dijual, atau disewakan kepada pihak ketiga.</li>
-      <li>Semua data ditransmisikan menggunakan protokol keamanan terenkripsi (HTTPS) untuk menjamin kerahasiaan informasi Anda.</li>
-      <li>Setelah transaksi selesai, data tidak akan disimpan lebih lama dari yang diperlukan, kecuali untuk keperluan audit atau hukum.</li>
-      <li>Pengguna dapat mengajukan permintaan penghapusan data pribadi melalui kontak resmi UVOSHOP.</li>
-      <li>Kami tidak mengumpulkan data sensitif seperti KTP, lokasi GPS, atau akses akun sosial media Anda.</li>
-    </ul>
+    <section id="terms">
+      <h2><i class="fa-solid fa-file-signature"></i> Syarat & Ketentuan</h2>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-circle-check"></i> Keakuratan Data</div>
+          <div class="accordion-content"><div>Pengguna wajib memasukkan ID game, username, dan data e-wallet dengan benar. Kesalahan input menjadi tanggung jawab pengguna.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-credit-card"></i> Konfirmasi Pembayaran</div>
+          <div class="accordion-content"><div>Semua pembayaran harus terverifikasi melalui sistem kami sebelum transaksi diproses. Pengguna wajib mengecek status pembayaran dalam dashboard.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-rotate-left"></i> Pembatalan & Refund</div>
+          <div class="accordion-content"><div>Transaksi bersifat final. Refund hanya berlaku jika terdapat kesalahan sistem UVOSHOP dan diproses maksimal 24 jam kerja.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-calendar-days"></i> Waktu Layanan</div>
+          <div class="accordion-content"><div>Layanan UVOSHOP tersedia 24 jam sehari, 7 hari seminggu. Waktu tunggu konfirmasi dapat berbeda tergantung metode pembayaran dan jaringan.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-info-circle"></i> Harga & Biaya Tambahan</div>
+          <div class="accordion-content"><div>Harga produk dapat berubah sewaktu-waktu tanpa pemberitahuan. Biaya administrasi mungkin berlaku untuk metode pembayaran tertentu.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-ban"></i> Larangan Penggunaan</div>
+          <div class="accordion-content"><div>Pengguna dilarang menggunakan layanan untuk penipuan, distribusi materi ilegal, aktivitas meretas, atau pelanggaran hak cipta.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-shield-halved"></i> Keamanan Akun</div>
+          <div class="accordion-content"><div>Pengguna bertanggung jawab menjaga kerahasiaan akun dan password. UVOSHOP tidak bertanggung jawab atas akses tidak sah akibat kelalaian pengguna.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-gavel"></i> Hukum yang Berlaku</div>
+          <div class="accordion-content"><div>Syarat & ketentuan ini diatur oleh hukum Republik Indonesia. Setiap sengketa diselesaikan melalui jalur hukum di Mojokerto.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-file-contract"></i> Perubahan S&K</div>
+          <div class="accordion-content"><div>UVOSHOP berhak mengubah syarat dan ketentuan kapan saja. Perubahan diumumkan di halaman ini, berlaku efektif sejak tanggal publikasi.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-phone"></i> Kontak & Bantuan</div>
+          <div class="accordion-content"><div>Untuk pertanyaan atau masalah, hubungi Customer Service melalui WhatsApp, Telegram, atau email. Link tersedia di footer.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-bullhorn"></i> Promo & Diskon</div>
+          <div class="accordion-content"><div>Semua promo dan diskon memiliki syarat dan ketentuan khusus. UVOSHOP berhak membatalkan promo jika ditemui penyalahgunaan.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-shield-alt"></i> Pelanggaran Privasi</div>
+          <div class="accordion-content"><div>Setiap upaya pelanggaran privasi pengguna oleh pihak manapun akan ditindak sesuai hukum yang berlaku dan syarat pemulihan data.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-exclamation-triangle"></i> Force Majeure</div>
+          <div class="accordion-content"><div>UVOSHOP tidak bertanggung jawab atas keterlambatan atau kegagalan layanan akibat bencana alam, gangguan teknis di luar kendali, atau keadaan darurat lainnya.</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><i class="fa-solid fa-link"></i> Tautan & Affiliate</div>
+          <div class="accordion-content"><div>Halaman ini mungkin memuat tautan afiliasi. UVOSHOP dapat menerima komisi tanpa biaya tambahan dari pengguna.</div></div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Cookies & Pelacakan</h2>
-    <p>UVOSHOP menggunakan cookies untuk meningkatkan pengalaman pengguna. Cookies digunakan untuk:</p>
-    <ul>
-      <li>Mengidentifikasi sesi pengguna dan mempercepat proses transaksi.</li>
-      <li>Menganalisis penggunaan halaman dan perilaku pengguna untuk meningkatkan layanan.</li>
-      <li>Cookies tidak menyimpan informasi pribadi seperti nama atau password.</li>
-    </ul>
+    <section id="privacy">
+      <h2><i class="fa-solid fa-user-shield"></i> Kebijakan Privasi</h2>
+      <p>Kami berkomitmen melindungi data pribadi Anda. Berikut poin utama kebijakan privasi kami:</p>
+      <ul>
+        <li><i class="fa-solid fa-database"></i> <strong>Pengumpulan Data:</strong> Hanya mengumpulkan informasi minimal seperti ID game, username, dan detail transaksi.</li>
+        <li><i class="fa-solid fa-lock"></i> <strong>Keamanan Data:</strong> Seluruh data dienkripsi menggunakan protokol HTTPS dan TLS 1.2.</li>
+        <li><i class="fa-solid fa-share-nodes"></i> <strong>Penggunaan Data:</strong> Data hanya digunakan untuk proses transaksi dan audit internal.</li>
+        <li><i class="fa-solid fa-ban"></i> <strong>Non-Sharing:</strong> Kami tidak membagikan, menjual, atau menyewakan data pengguna kepada pihak ketiga tanpa izin.</li>
+        <li><i class="fa-solid fa-triangle-exclamation"></i> <strong>Penyimpanan Data:</strong> Data disimpan hanya selama diperlukan, maksimal 1 tahun, kecuali diwajibkan hukum.</li>
+        <li><i class="fa-solid fa-trash"></i> <strong>Penghapusan Data:</strong> Pengguna dapat meminta penghapusan data melalui tiket support, diproses dalam 3 hari kerja.</li>
+      </ul>
+    </section>
 
-    <h2>Perubahan pada Kebijakan</h2>
-    <p>UVOSHOP dapat memperbarui kebijakan privasi dan syarat layanan ini kapan saja. Setiap perubahan akan segera berlaku setelah halaman ini diperbarui. Kami menyarankan Anda untuk meninjau halaman ini secara berkala.</p>
+    <section id="newsletter">
+      <h2><i class="fa-solid fa-envelope-open-text"></i> Berlangganan Newsletter</h2>
+      <p>Jangan lewatkan promo eksklusif, kode voucher, dan update game terbaru. Daftar newsletter kami!</p>
+      <form>
+        <input type="email" placeholder="Masukkan email Anda" required>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+      </form>
+    </section>
 
-    <h2>Kontak Kami</h2>
-    <p>Jika Anda memiliki pertanyaan, keluhan, atau ingin menghapus data Anda, silakan hubungi kami melalui:</p>
-    <ul>
-      <li>WhatsApp: <a href="https://wa.me/6285648211278">+62 856-4821-1278</a></li>
-      <li>Email: ovoshopemail1@gmail.com</li>
-    </ul>
-
-    <p><a href="index.html">← Kembali ke Beranda</a></p>
+    <button class="scroll-top" id="btnScrollTop"><i class="fa-solid fa-chevron-up"></i></button>
   </div>
 
   <footer>
-    &copy; 2025 UVOSHOP. Seluruh hak cipta dilindungi. Dibuat dengan dedikasi oleh tim UVOSHOP.
+    <div><i class="fa-solid fa-phone"></i> WhatsApp: <a href="https://wa.me/6285648211278">+62 856-4821-1278</a></div>
+    <div><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:ovoshopemail1@gmail.com">ovoshopemail1@gmail.com</a></div>
+    <div>&copy; 2025 UVOSHOP. Semua hak cipta dilindungi.</div>
   </footer>
+
+  <script>
+    // Cookie Consent
+    const cookieBanner = document.getElementById('cookieBanner');
+    document.getElementById('agreeCookies').onclick = () => {
+      localStorage.setItem('cookiesAccepted', true);
+      cookieBanner.style.display = 'none';
+    };
+    if(localStorage.getItem('cookiesAccepted')) cookieBanner.style.display='none';
+
+    // Scroll to Top
+    const btn = document.getElementById('btnScrollTop');
+    window.addEventListener('scroll', () => { btn.style.display = window.pageYOffset > 300 ? 'block' : 'none'; });
+    btn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+    // Accordion
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        header.classList.toggle('active');
+        const content = header.nextElementSibling;
+        content.style.maxHeight = header.classList.contains('active') ? content.scrollHeight + 'px' : '0';
+      });
+    });
+
+    // Dark Mode Toggle
+    const darkToggle = document.getElementById('darkmode');
+    if(darkToggle){
+      darkToggle.addEventListener('change', () => {
+        document.body.classList.toggle('light-mode');
+        if(document.body.classList.contains('light-mode')){
+          document.body.style.background='#FFF'; document.body.style.color='#121212';
+        } else {
+          document.body.style.background='#121212'; document.body.style.color='#EEE';
+        }
+      });
+    }
+
+    // PWA Service Worker
+    if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+  </script>
 </body>
 </html>
