@@ -4,656 +4,190 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UVOSHOP - Top Up Game</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root {
-      --primary: #0d1b2a;
-      --secondary: #1b263b;
-      --accent: #415a77;
-      --light: #e0e1dd;
-      --white: #ffffff;
-      --hover: #2d4a6e;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    
     body {
       animation: fadeIn 1s ease-in-out;
-      background-color: #f8f9fa;
-      color: #333;
     }
-    
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    
-    /* Header Styles */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: var(--shadow);
+
+    .auto-banner-container {
+      width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      margin: 0 auto 20px auto;
     }
-    
+
+    .auto-banner-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .banner-slide {
+      flex: 0 0 100%;
+      max-height: 200px;
+    }
+
+    .banner-slide img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
     .header-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 10px 20px;
     }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
+
     .logo img {
-      height: 45px;
-      border-radius: 8px;
+      height: 50px;
     }
-    
-    .logo-text {
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-    }
-    
-    .search-container {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 30px;
-      padding: 5px 15px;
-      width: 40%;
-      transition: all 0.3s ease;
-    }
-    
-    .search-container:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-    
-    .search-container i {
-      color: var(--light);
-      margin-right: 10px;
-    }
-    
-    .search-container input {
-      background: transparent;
-      border: none;
-      color: var(--white);
-      padding: 8px 0;
-      width: 100%;
-      font-size: 16px;
-      outline: none;
-    }
-    
-    .search-container input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-    
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    
+
     .indonesia-logo {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: 600;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      font-weight: bold;
+      font-size: 18px;
+      padding-right: 10px;
     }
-    
-    .indonesia-logo:hover {
-      background: rgba(255, 255, 255, 0.2);
+
+    .search-bar input {
+      padding: 5px;
+      font-size: 16px;
     }
-    
-    .indonesia-logo i {
-      color: #f00;
-    }
-    
-    /* Banner Styles */
-    .auto-banner {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .auto-banner-container {
-      width: 100%;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      position: relative;
-    }
-    
-    .auto-banner-track {
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
-    
-    .banner-slide {
-      flex: 0 0 100%;
-      max-height: 300px;
-      position: relative;
-    }
-    
-    .banner-slide img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      display: block;
-    }
-    
-    .banner-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(13, 27, 42, 0.9), transparent);
-      padding: 20px;
-      color: white;
-    }
-    
-    .banner-overlay h3 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-    
-    .banner-overlay p {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-    
-    .banner-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 15px;
-    }
-    
-    .banner-btn {
-      background: rgba(255, 255, 255, 0.7);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .banner-btn:hover {
-      background: var(--white);
-    }
-    
-    .banner-indicators {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-    }
-    
-    .indicator {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .indicator.active {
-      background: var(--white);
-      transform: scale(1.2);
-    }
-    
-    /* Category Styles */
+
     .category-section {
       padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
     }
-    
-    .section-title {
-      font-size: 1.8rem;
-      margin: 25px 0 15px;
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 3px;
-    }
-    
+
     .games-row {
       display: flex;
-      overflow-x: auto;
-      padding: 15px 5px;
-      gap: 20px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent) transparent;
+      overflow-x: scroll;
+      padding: 10px 0;
     }
-    
-    .games-row::-webkit-scrollbar {
-      height: 8px;
-    }
-    
-    .games-row::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    
-    .games-row::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 4px;
-    }
-    
+
     .game-item {
-      position: relative;
-      padding: 15px;
-      background: var(--white);
-      border-radius: 12px;
+      margin-right: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
       cursor: pointer;
       text-align: center;
-      width: 150px;
+      width: 100px;
       flex-shrink: 0;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      animation: fadeInUp 0.6s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
-      overflow: hidden;
     }
-    
-    .game-item:nth-child(1) { animation-delay: 0.1s; }
-    .game-item:nth-child(2) { animation-delay: 0.2s; }
-    .game-item:nth-child(3) { animation-delay: 0.3s; }
-    .game-item:nth-child(4) { animation-delay: 0.4s; }
-    .game-item:nth-child(5) { animation-delay: 0.5s; }
-    .game-item:nth-child(6) { animation-delay: 0.6s; }
-    
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .game-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-    
-    .game-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    
-    .game-item:hover::before {
-      transform: scaleX(1);
-    }
-    
+
     .game-item img {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       object-fit: cover;
-      margin-bottom: 12px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
+      margin-bottom: 5px;
+      border-radius: 5px;
     }
-    
-    .game-item:hover img {
-      transform: scale(1.05);
+
+    .game-item:hover {
+      background-color: #0d1b2a;
+      color: white;
     }
-    
-    .game-item div {
-      font-weight: 600;
-      color: var(--primary);
-      transition: color 0.3s ease;
+
+    #mobile-games {
+      overflow-x: scroll;
+      display: flex;
+      gap: 15px;
     }
-    
-    .game-item:hover div {
-      color: var(--accent);
+
+    #mobile-games .game-item {
+      flex: 0 0 25%;
     }
-    
-    /* Payment Styles */
-    .payment-section {
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      padding: 30px 20px;
-      margin-top: 40px;
-      border-radius: 15px 15px 0 0;
-      max-width: 1200px;
-      margin: 40px auto 0;
-    }
-    
-    .payment-section h3 {
-      color: var(--white);
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 1.5rem;
-    }
-    
+
     .payment-slider {
       width: 100%;
       overflow: hidden;
-      position: relative;
+      background: #0f141a;
       padding: 10px 0;
     }
-    
+
     .payment-track {
       display: flex;
-      animation: scroll-left 30s linear infinite;
+      animation: scroll-left 20s linear infinite;
     }
-    
-    .payment-track:hover {
-      animation-play-state: paused;
-    }
-    
+
     .payment-track img {
-      height: 45px;
-      margin: 0 25px;
-      filter: grayscale(100%);
-      opacity: 0.7;
-      transition: all 0.3s ease;
+      height: 40px;
+      margin: 0 20px;
     }
-    
-    .payment-track img:hover {
-      filter: grayscale(0);
-      opacity: 1;
-      transform: scale(1.1);
-    }
-    
+
     @keyframes scroll-left {
       from {
-        transform: translateX(0);
+        transform: translateX(100%);
       }
       to {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
       }
     }
-    
-    /* Footer Styles */
+
     .footer {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      padding: 50px 20px 30px;
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #0d1b2a;
+      font-size: 14px;
       margin-top: 40px;
     }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    
-    .footer-column h4 {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .footer-column h4::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--accent);
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    
-    .footer-links a {
-      color: var(--light);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .footer-links a:hover {
-      color: var(--white);
-      transform: translateX(5px);
-    }
-    
-    .footer-links a i {
-      font-size: 0.9rem;
-    }
-    
-    .footer-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .footer-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .footer-logo img {
-      height: 70px;
-      border-radius: 10px;
-    }
-    
-    .social-icons {
-      display: flex;
-      gap: 15px;
-    }
-    
-    .social-icons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      color: var(--white);
-      transition: all 0.3s ease;
-    }
-    
-    .social-icons a:hover {
-      background: var(--accent);
-      transform: translateY(-3px);
-    }
-    
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 30px auto 0;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--light);
-    }
-    
-    /* Floating Chat Button */
-    .chat-float {
-      position: fixed;
-      width: 60px;
+
+    .footer img {
+      margin-top: 20px;
       height: 60px;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, var(--accent), var(--secondary));
-      color: var(--white);
-      border-radius: 50%;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 0 4px 15px rgba(13, 27, 42, 0.3);
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
     }
-    
-    .chat-float:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 6px 20px rgba(13, 27, 42, 0.4);
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(65, 90, 119, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(65, 90, 119, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(65, 90, 119, 0); }
-    }
-    
-    .chat-float img {
-      width: 35px;
-      height: 35px;
-      vertical-align: middle;
-      filter: brightness(0) invert(1);
-    }
-    
-    /* Notification Badge */
-    .notification-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: #e74c3c;
-      color: white;
-      font-size: 12px;
-      font-weight: bold;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: bounce 1.5s infinite;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 900px) {
-      .header-container {
-        flex-wrap: wrap;
-      }
-      
-      .search-container {
-        order: 3;
-        width: 100%;
-        margin-top: 15px;
-      }
-      
-      .banner-overlay h3 {
-        font-size: 1.4rem;
-      }
-      
-      .game-item {
-        width: 130px;
-      }
-    }
-    
-    @media (max-width: 600px) {
-      .logo-text {
-        font-size: 1.3rem;
-      }
-      
-      .banner-slide img {
-        height: 200px;
-      }
-      
-      .banner-overlay {
-        padding: 10px;
-      }
-      
-      .banner-overlay h3 {
-        font-size: 1.2rem;
-      }
-      
-      .banner-overlay p {
-        font-size: 0.9rem;
-        display: none;
-      }
-      
-      .game-item {
-        width: 120px;
-        padding: 12px;
-      }
-      
-      .game-item img {
-        width: 65px;
-        height: 65px;
-      }
-      
-      .chat-float {
-        width: 50px;
-        height: 50px;
+
+    /* CSS untuk Floating Chat Button */
+    .chat-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
         bottom: 20px;
         right: 20px;
-      }
-      
-      .chat-float img {
-        width: 25px;
-        height: 25px;
-      }
+        background-color: #FFFFFF; /* Warna putih */
+        color: #000; /* Warna ikon/teks (hitam) */
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .chat-float:hover {
+        background-color: #E0E0E0; /* Warna sedikit lebih gelap saat hover (abu-abu terang) */
+    }
+
+    .chat-float img {
+        width: 35px; /* Sesuaikan ukuran ikon */
+        height: 35px;
+        /* Jika ikon aslinya gelap dan perlu diubah jadi hitam agar kontras dengan putih, gunakan filter ini: */
+        /* filter: brightness(0) invert(0); */ /* Jika aslinya gelap dan ingin hitam */
+        /* filter: brightness(0); */ /* Jika aslinya putih dan ingin hitam */
+        vertical-align: middle;
+    }
+
+    /* Media queries untuk menyesuaikan ukuran tombol pada layar yang lebih kecil */
+    @media (max-width: 768px) {
+        .chat-float {
+            width: 50px;
+            height: 50px;
+            bottom: 15px;
+            right: 15px;
+            font-size: 25px;
+        }
+        .chat-float img {
+            width: 30px;
+            height: 30px;
+        }
     }
   </style>
 </head>
@@ -662,20 +196,11 @@
     <div class="header-container">
       <div class="logo">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
-        <div class="logo-text">UVOSHOP</div>
       </div>
-      
-      <div class="search-container">
-        <i class="fas fa-search"></i>
+      <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cari game...">
       </div>
-      
-      <div class="header-right">
-        <div class="indonesia-logo">
-          <i class="fas fa-flag"></i>
-          <span>ID</span>
-        </div>
-      </div>
+      <div class="indonesia-logo">ID</div>
     </div>
   </header>
 
@@ -686,330 +211,98 @@
           <a href="gamesbird.html">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgwPIV7RQAz09yBhgOOPEyb6_c6RWBmVMhRBdZRUAqR2n43tBlDURvtMAd4blRA7JjT3HmLYNn5cW6KWgEA1MpxXCHx6nsz_fjlJGCZQldER84-pbzjJ3f_249SQ__D0ap1gTVIja-157zkYrtJmBuWL_uJKp_KIrktAXSTLIvokN0SfQpv1iiweH49xd6-" alt="Banner Game">
           </a>
-          <div class="banner-overlay">
-            <h3>Special Promo Minggu Ini!</h3>
-            <p>Dapatkan bonus diamond hingga 30% untuk pembelian pertama</p>
-          </div>
         </div>
-        <div class="banner-slide">
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheJNU2PWi0AuP0Mc97qBGRQ6zOS13Tnw-I03mhppwwDDH8xdwfglVJ_cteDvhfRoekL2RODVQphmnh6Iu8Xz6gIZ4w0X6iESCKfvb19OnRSF9Bv_oZ_jV35aotNEvFHhebkXRJGPRpdz-MqC321wrnph9q7VwmH2wbggz4wX8Nhjw24kO5EqWKsZp0eW0i/s1600/Picsart_25-05-26_18-02-02-504.png" alt="">
-          <div class="banner-overlay">
-            <h3>Top Up Game Favoritmu</h3>
-            <p>Proses cepat dan aman hanya di UVOSHOP</p>
-          </div>
-        </div>
-        <div class="banner-slide">
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt="">
-          <div class="banner-overlay">
-            <h3>Voucher Spesial</h3>
-            <p>Dapatkan voucher diskon untuk pembelian paket game</p>
-          </div>
-        </div>
-        <div class="banner-slide">
-          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGY2ZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt="">
-          <div class="banner-overlay">
-            <h3>Metode Pembayaran Lengkap</h3>
-            <p>Dana, OVO, Gopay, Bank Transfer, dan masih banyak lagi</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="banner-nav">
-        <button class="banner-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-        <button class="banner-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      
-      <div class="banner-indicators" id="bannerIndicators">
-        <!-- Indicators will be added by JavaScript -->
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheJNU2PWi0AuP0Mc97qBGRQ6zOS13Tnw-I03mhppwwDDH8xdwfglVJ_cteDvhfRoekL2RODVQphmnh6Iu8Xz6gIZ4w0X6iESCKfvb19OnRSF9Bv_oZ_jV35aotNEvFHhebkXRJGPRpdz-MqC321wrnph9q7VwmH2wbggz4wX8Nhjw24kO5EqWKsZp0eW0i/s1600/Picsart_25-05-26_18-02-02-504.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYP1EjdxlKtTIWdJSrzHlnVDs_ZJK8yuMffc4ckUqIaB-cvjhAX-tqo3eLzzxpSJnCl71VYDhVmG59Xk5eZG24zIuJ-hQ4iihV33Z0NOq1o183twDuCOftZymWowx2HHY7AmR2hD0LilOHHNuCzP5-x4PhIPMfyWic23opUJfjTIe9kIEu2HV9p3tGUxD5/s320/5.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPV5zHzK0E40bLmIWKcCm4p6ctP3agfACbNlPMWTo3uBmLe9EkujmuswMKwBE9mNVdm1sUBCFaQDqOIQZcLtaYu7z4KioiKq7kCp12M-rMVEGY2ZD6XYK4ris8aHq7xYdu_kalWcIMCr-l3YnCOxuty1vrJhQ4uMSlMphzd-4PUlXC_bneqFTk6A_CPAL/s320/4.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8rdE7OE5X0cb8_W6JLqCHD7azewhXxoG5l4wySwvdIsBjsNxQ6USmbDntq0v90r-MU_Uq9H09LNFar9La_vb0R3e4oCN-3I9FXXclto9njD_o1UIzWJtzVDluVhNco_tLtbMVNrSWrNJzQu7_pO5hvt4HohdDEMtYiwWPaSCbPWUP0SZnOyEOEnd33zS/s320/2.png" alt=""></div>
+        <div class="banner-slide"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiokOFvPh7dCv3lU_8Et9O9VG4kBEeSymaC-wJIHtHQ1EqIxMeHram2m3fo_s3_trNO-4FxljCr1jyKr__0Jf0E3fy0hif2noU8JSo11kd9P2BMJllNEnfyjN65NVhea2M5hqchxMMpAZPi5KBtsDIcw8GxAdvqboUaOaAQxpnj4FewNmqURQtGcu7tHAZc/s320/1.png" alt=""></div>
       </div>
     </div>
   </section>
 
   <section class="category-section">
-    <h2 class="section-title">Game Rekomendasi</h2>
-    <div id="popular-games" class="games-row">
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Mobile_Legends_Bang_Bang_cover.jpg" alt="Mobile Legends">
-        <div>Mobile Legends</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/5d/Free_Fire_cover.jpg" alt="Free Fire">
-        <div>Free Fire</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/44/PUBG_Mobile_Logo.jpg" alt="PUBG Mobile">
-        <div>PUBG Mobile</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Genshin_Impact_logo.svg" alt="Genshin Impact">
-        <div>Genshin Impact</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg" alt="Valorant">
-        <div>Valorant</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/League_of_Legends_logo.png" alt="League of Legends">
-        <div>League of Legends</div>
-      </div>
+    <h2>Game Rekomendasi</h2>
+    <div id="popular-games" class="games-row scrollable">
+      <div class="game-item"><img src="assets/mlbb.png" alt="Mobile Legends"><div>Mobile Legends</div></div>
+      <div class="game-item"><img src="assets/ff.png" alt="Free Fire"><div>Free Fire</div></div>
+      <div class="game-item"><img src="assets/pubgm.png" alt="PUBG Mobile"><div>PUBG Mobile</div></div>
+      <div class="game-item"><img src="assets/genshin.png" alt="Genshin Impact"><div>Genshin</div></div>
+      <div class="game-item"><img src="assets/valo.png" alt="Valorant"><div>Valorant</div></div>
     </div>
 
-    <h2 class="section-title">Mobile</h2>
-    <div id="mobile-games" class="games-row">
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Mobile_Legends_Bang_Bang_cover.jpg" alt="Mobile Legends">
-        <div>Mobile Legends</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/5d/Free_Fire_cover.jpg" alt="Free Fire">
-        <div>Free Fire</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/44/PUBG_Mobile_Logo.jpg" alt="PUBG Mobile">
-        <div>PUBG Mobile</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Genshin_Impact_logo.svg" alt="Genshin Impact">
-        <div>Genshin Impact</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Call_of_Duty_Mobile_Logo.png" alt="Call of Duty">
-        <div>Call of Duty</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/9/96/Arena_of_Valor.jpg" alt="Arena of Valor">
-        <div>Arena of Valor</div>
-      </div>
+    <h2>Mobile</h2>
+    <div id="mobile-games" class="games-row scrollable">
+      <div class="game-item"><img src="assets/mlbb.png" alt="Mobile Legends"><div>Mobile Legends</div></div>
+      <div class="game-item"><img src="assets/ff.png" alt="Free Fire"><div>Free Fire</div></div>
+      <div class="game-item"><img src="assets/pubgm.png" alt="PUBG Mobile"><div>PUBG Mobile</div></div>
+      <div class="game-item"><img src="assets/genshin.png" alt="Genshin Impact"><div>Genshin</div></div>
     </div>
 
-    <h2 class="section-title">PC</h2>
-    <div id="pc-games" class="games-row">
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg" alt="Valorant">
-        <div>Valorant</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/League_of_Legends_logo.png" alt="League of Legends">
-        <div>League of Legends</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/0/08/Dota_2_%28logo%29.png" alt="Dota 2">
-        <div>Dota 2</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/en/6/6a/Steam_%28service%29_Logo.png" alt="Steam Wallet">
-        <div>Steam Wallet</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Riot_Games_logo.png" alt="Riot Points">
-        <div>Riot Points</div>
-      </div>
-    </div>
+    <h2>PC</h2>
+    <div id="pc-games" class="games-row scrollable"></div>
 
-    <h2 class="section-title">Voucher</h2>
-    <div id="voucher-games" class="games-row">
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Google_Play_Store_%282022%29.svg" alt="Google Play">
-        <div>Google Play</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Apple_App_Store_%28iOS%29.svg" alt="App Store">
-        <div>App Store</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Steam_Logo.png" alt="Steam Wallet">
-        <div>Steam Wallet</div>
-      </div>
-      <div class="game-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Riot_Games_logo.png" alt="Riot Points">
-        <div>Riot Points</div>
-      </div>
-    </div>
+    <h2>Voucher</h2>
+    <div id="game-vouchers" class="games-row scrollable"></div>
   </section>
 
-  <section class="payment-section">
-    <h3>Metode Pembayaran</h3>
-    <div class="payment-slider">
-      <div class="payment-track">
-        <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="Dana">
-        <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="ShopeePay">
-        <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" alt="OVO">
-        <img src="https://cdn.unipin.com/images/payment_channels/1702024410-Tri%20New%20Logo_150x56_black.png" alt="Tri">
-        <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="XL Axis">
-        <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Indomaret">
-        <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="Gopay">
-        <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="LinkAja">
-        <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="Bank Transfer">
-        <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Alfamart">
-      </div>
+  <div class="payment-slider">
+    <div class="payment-track">
+      <img src="https://cdn.unipin.com/images/payment_channels/1727863156-1703559943-Dana.jpg" alt="Dana">
+      <img src="https://cdn.unipin.com/images/payment_channels/1689845634-218043ea-642c-4230-9e93-34eae4eb014d.jpeg" alt="ShopeePay">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686821644-ovo.png" alt="OVO">
+      <img src="https://cdn.unipin.com/images/payment_channels/1702024410-Tri%20New%20Logo_150x56_black.png" alt="Tri">
+      <img src="https://cdn.unipin.com/images/payment_channels/1686891126-xl_axis.png" alt="XL Axis">
+      <img src="https://cdn.unipin.com/images/payment_channels/indomaret.png" alt="Indomaret">
     </div>
-  </section>
+  </div>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-column">
-        <h4>Tentang Kami</h4>
-        <p style="color: #e0e1dd; line-height: 1.6;">
-          UVOSHOP adalah tempat terbaik untuk melakukan top-up game di Indonesia. 
-          Kami memberikan cara termudah dan tercepat untuk mendapatkan item game 
-          tanpa harus registrasi, langsung terpasang ke akun kamu!
-        </p>
-      </div>
-      
-      <div class="footer-column">
-        <h4>Link Cepat</h4>
-        <ul class="footer-links">
-          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Peta Situs</a></li>
-          <li><a href="#"><i class="fas fa-bolt"></i> Flash Top-Up</a></li>
-          <li><a href="#"><i class="fas fa-ticket-alt"></i> Voucher Game</a></li>
-          <li><a href="uvochat.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-column">
-        <h4>Kontak Kami</h4>
-        <div class="footer-contact">
-          <div class="contact-item">
-            <i class="fas fa-phone-alt"></i>
-            <span>+62 856-4821-1278</span>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <span>support@uvoshop.com</span>
-          </div>
-          <div class="contact-item">
-            <i class="fab fa-whatsapp"></i>
-            <span>+62 856-4821-1278</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-column footer-logo">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP">
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>© 2025 UVOSHOP. Semua Hak Cipta</p>
-      <p>
-        <a href="privacy.html#terms" style="color: #e0e1dd;">Website Terms and Conditions</a> | 
-        <a href="privacy.html#privacy" style="color: #e0e1dd;">Privacy Policy</a>
-      </p>
-    </div>
-  </footer>
+<div class="footer" style="color: white; background-color: #111; padding: 20px; text-align: center;">
+  <div class="footer-description">
+    <p><strong>UVOSHOP</strong> adalah tempat terbaik untuk melakukan top-up game di Indonesia. Kami memberikan cara termudah dan tercepat untuk mendapatkan item game tanpa harus registrasi, langsung terpasang ke akun kamu!</p>
+    <p>
+      <a href="#" style="color: white;">Peta Situs</a> |
+      <a href="#" style="color: white;">Flash Top-Up</a> |
+      <a href="#" style="color: white;">Voucher Game Lainnya</a> |
+      <a href="uvochat.html" style="color: white;">FAQ</a>
+    </p>
+  </div>
+
+  <hr style="border-color: white;">
+
+  <div class="footer-info">
+    <p>
+      Untuk saran, keluhan, atau pengaduan, silakan menghubungi kami di: 
+      <a href="https://wa.me/6285648211278" style="color: white;">+62 856-4821-1278</a>
+    </p>
+    <p>© 2025 UVOSHOP. Semua Hak Cipta</p>
+    <p>
+      <a href="privacy.html#terms" style="color: white;">Website Terms and Conditions</a> | 
+      <a href="privacy.html#privacy" style="color: white;">Privacy Policy</a>
+    </p>
+  </div>
+
+  <div class="footer-logo" style="margin-top: 10px;">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHWaznqhfZR-HN6HrI265L3pUCG34dU-MfyqZRXKePXrAFWuqX7b9l-bohrI4320oF0FBWw1nS-DCNSr97_k0ZGVa_Pp5m3ABMaTIVsO3XhXwq_8ITFOAPnvCyLxtCnjYrkk73vTWh7VGRG4XOWommgHULggrW8T9ckbaLpTtVlr58LM1653wkfBZTfpiU/s320/WhatsApp%20Image%202025-04-28%20at%2009.28.50_d2f7bd41.jpg" alt="UVOSHOP" style="max-width: 200px;">
+  </div>
+</div>
 
   <a href="uvochat.html" class="chat-float">
-    <div class="notification-badge">3</div>
     <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgDLkEsviSG2BSHorhbYzNlf6fOoNgjk9ClbA0J0o8etexnHSqax_n6NcfKZqby4fzU7ItiDflZ1IyOzj2cXjiS560wZlKb6ToJsg3kjHuGdqbHv_jgUapbqvZDFiR15-2WiqxhbEc-_5VliXG74n_Jz54CvMnzcDGdeI6h0jfPtH3w5Yh2Lf3wzmExKIMn" alt="Chat Icon">
   </a>
 
   <script>
-    // Banner slider functionality
     const bannerTrack = document.getElementById('bannerTrack');
-    const bannerIndicators = document.getElementById('bannerIndicators');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const slides = document.querySelectorAll('.banner-slide');
     let currentSlide = 0;
-    const totalSlides = slides.length;
-    
-    // Create indicators
-    slides.forEach((_, index) => {
-      const indicator = document.createElement('div');
-      indicator.classList.add('indicator');
-      if (index === 0) indicator.classList.add('active');
-      indicator.addEventListener('click', () => {
-        goToSlide(index);
-      });
-      bannerIndicators.appendChild(indicator);
-    });
-    
-    function goToSlide(slideIndex) {
-      currentSlide = slideIndex;
-      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-      
-      // Update indicators
-      document.querySelectorAll('.indicator').forEach((indicator, index) => {
-        if (index === currentSlide) {
-          indicator.classList.add('active');
-        } else {
-          indicator.classList.remove('active');
-        }
-      });
-    }
-    
-    function nextSlide() {
+    const totalSlides = bannerTrack.children.length;
+
+    function slideBanner() {
       currentSlide = (currentSlide + 1) % totalSlides;
-      goToSlide(currentSlide);
+      bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
-    
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      goToSlide(currentSlide);
-    }
-    
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-    
-    // Auto slide every 5 seconds
-    let slideInterval = setInterval(nextSlide, 5000);
-    
-    // Pause auto slide when hovering over banner
-    bannerTrack.addEventListener('mouseenter', () => {
-      clearInterval(slideInterval);
-    });
-    
-    bannerTrack.addEventListener('mouseleave', () => {
-      slideInterval = setInterval(nextSlide, 5000);
-    });
-    
-    // Search functionality
-    const searchInput = document.getElementById('search-input');
-    const gameItems = document.querySelectorAll('.game-item');
-    
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value.toLowerCase();
-      
-      gameItems.forEach(item => {
-        const gameName = item.querySelector('div').textContent.toLowerCase();
-        if (gameName.includes(searchTerm)) {
-          item.style.display = 'block';
-          item.style.animation = 'fadeInUp 0.5s ease forwards';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-    
-    // Game item hover effect
-    gameItems.forEach(item => {
-      item.addEventListener('click', () => {
-        // Animation effect on click
-        item.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          item.style.transform = '';
-        }, 300);
-        
-        // In a real app, this would navigate to the game page
-        console.log(`Navigating to ${item.querySelector('div').textContent} page`);
-      });
-    });
-    
-    // Add smooth scrolling to all links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
+
+    setInterval(slideBanner, 3000);
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
