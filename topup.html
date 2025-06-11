@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UVOSHOP - Top Up</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="topup.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Top Up</h1>
+    <nav><a href="index.html">Home</a><a href="akun/akun.html">Akun</a></nav>
+  </header>
+  <main>
+    <div class="topup-form">
+      <select id="gameSelect"></select>
+      <input type="text" id="userId" placeholder="User ID">
+      <div id="priceGrid" class="game-list"></div>
+      <button id="buyBtn">Beli Sekarang</button>
+    </div>
+  </main>
+</body>
+</html>

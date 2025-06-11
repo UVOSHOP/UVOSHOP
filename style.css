@@ -1,0 +1,15 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #121212; color: #e0e0e0; }
+.header { display: flex; justify-content: space-between; padding: 1rem; background: linear-gradient(90deg,#1f1f1f,#2a2a2a); animation: slideBg 5s infinite alternate; }
+@keyframes slideBg { from {background-position:0%} to {background-position:100%} }
+.header nav a { color: #e0e0e0; margin-left: 1rem; text-decoration: none; transition: color .3s; }
+.header nav a:hover { color: #00bfa5; }
+.game-list { display: flex; overflow-x: auto; gap: 1rem; padding: 1rem; }
+.game-card { min-width: 150px; background: #1e1e1e; border-radius: 8px; padding: .5rem; text-align: center; transition: transform .3s; }
+.game-card:hover { transform: scale(1.05); }
+.game-card img { width: 100%; border-radius: 4px; }
+.topup-form { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; }
+.topup-form select, .topup-form input { padding: .5rem; border: none; border-radius: 4px; }
+#priceGrid .game-card { min-width: 100px; }
+#buyBtn { padding: .75rem; background: #00bfa5; border: none; border-radius: 4px; cursor: pointer; transition: background .3s; }
+#buyBtn:hover { background: #008e76; }
