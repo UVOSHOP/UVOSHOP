@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - UVO</title>
+  <title>Login - UVOSHOP</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     body {
@@ -13,6 +13,7 @@
       text-align: center;
       padding-top: 100px;
     }
+
     .container {
       background: #161b22;
       padding: 30px;
@@ -20,16 +21,25 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       display: inline-block;
     }
-    button {
-      background-color: #1f6feb;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      margin-top: 20px;
+
+    .g_id_signin {
+      margin-bottom: 15px;
     }
+
+    .guest-btn {
+      display: inline-block;
+      background-color: white;
+      color: #3c4043;
+      border: 1px solid #dadce0;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 4px;
+      padding: 10px 24px;
+      width: 280px;
+      box-shadow: rgba(60,64,67,0.3) 0 1px 2px 0, rgba(60,64,67,0.15) 0 1px 3px 1px;
+      cursor: pointer;
+    }
+
     #status {
       margin-top: 20px;
       color: #8ddfff;
@@ -49,10 +59,10 @@
          data-auto_prompt="true">
     </div>
 
-    <div class="g_id_signin" data-type="standard"></div>
+    <div class="g_id_signin" data-type="standard" data-size="large"></div>
 
     <!-- Guest Login -->
-    <button onclick="loginGuest()">Masuk sebagai Tamu</button>
+    <button class="guest-btn" onclick="loginGuest()">Masuk sebagai Tamu</button>
 
     <div id="status">Pilih metode login</div>
   </div>
@@ -60,24 +70,24 @@
   <script>
     function handleCredentialResponse(response) {
       const id_token = response.credential;
-      const status = document.getElementById("status");
-      status.textContent = "Login Google berhasil, menyalin token...";
+      document.getElementById("status").textContent = "Login Google berhasil, menyalin token...";
 
       navigator.clipboard.writeText(id_token).then(() => {
-        status.textContent = "Token Google disalin! Silakan kembali ke game.";
         setTimeout(() => {
           window.location.href = "uvo://login_success";
-        }, 1500);
+          window.close(); // Jika browser mendukung
+        }, 1000);
       });
     }
 
     function loginGuest() {
-      const status = document.getElementById("status");
+      document.getElementById("status").textContent = "Login tamu berhasil, menyalin token...";
+
       navigator.clipboard.writeText("guest").then(() => {
-        status.textContent = "Login tamu berhasil! Silakan kembali ke game.";
         setTimeout(() => {
           window.location.href = "uvo://guest_login";
-        }, 1500);
+          window.close();
+        }, 1000);
       });
     }
   </script>
