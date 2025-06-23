@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Google - UVO</title>
+  <title>Login - UVO</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     body {
@@ -20,8 +20,15 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       display: inline-block;
     }
-    h1 {
-      margin-bottom: 20px;
+    button {
+      background-color: #1f6feb;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 20px;
     }
     #status {
       margin-top: 20px;
@@ -32,9 +39,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Masuk dengan Google</h1>
+    <h1>Masuk ke UVOSHOP</h1>
 
-    <!-- Google Login Callback -->
+    <!-- Google Login -->
     <div id="g_id_onload"
          data-client_id="710372260238-5hqj04ce4amk8bn61vq96f9o3qcu5khe.apps.googleusercontent.com"
          data-context="signin"
@@ -43,43 +50,34 @@
     </div>
 
     <div class="g_id_signin" data-type="standard"></div>
-    <div id="status">Menunggu login Google...</div>
+
+    <!-- Guest Login -->
+    <button onclick="loginGuest()">Masuk sebagai Tamu</button>
+
+    <div id="status">Pilih metode login</div>
   </div>
-
-  <!-- Firebase Config (optional, untuk fitur lanjut) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAQBHWPwm1YjdXNWu79Ohucl2F--2_hOSs",
-      authDomain: "uvoworld1.firebaseapp.com",
-      databaseURL: "https://uvoworld1-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "uvoworld1",
-      storageBucket: "uvoworld1.firebasestorage.app",
-      messagingSenderId: "710372260238",
-      appId: "1:710372260238:web:ee586a5c94d09f8917ccdf",
-      measurementId: "G-Y98DMV8C63"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
 
   <script>
     function handleCredentialResponse(response) {
       const id_token = response.credential;
       const status = document.getElementById("status");
-      status.textContent = "Login berhasil, menyalin token...";
+      status.textContent = "Login Google berhasil, menyalin token...";
 
       navigator.clipboard.writeText(id_token).then(() => {
-        status.textContent = "Token berhasil disalin! Silakan kembali ke game.";
-        // redirect otomatis ke custom URI kalau mau:
+        status.textContent = "Token Google disalin! Silakan kembali ke game.";
         setTimeout(() => {
-          window.location.href = "uvo://login_success"; // opsional
+          window.location.href = "uvo://login_success";
         }, 1500);
-      }).catch(() => {
-        status.textContent = "Gagal menyalin token ke clipboard.";
+      });
+    }
+
+    function loginGuest() {
+      const status = document.getElementById("status");
+      navigator.clipboard.writeText("guest").then(() => {
+        status.textContent = "Login tamu berhasil! Silakan kembali ke game.";
+        setTimeout(() => {
+          window.location.href = "uvo://guest_login";
+        }, 1500);
       });
     }
   </script>
