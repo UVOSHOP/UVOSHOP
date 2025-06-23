@@ -5,84 +5,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - UVOSHOP</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      background: #0d1117;
-      color: white;
-      font-family: sans-serif;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #ffffff;
+      color: #202124;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header img, footer img {
+      max-width: 100px;
+    }
+    main {
       text-align: center;
-      padding-top: 100px;
+      width: 100%;
+      max-width: 360px;
     }
-
-    .container {
-      background: #161b22;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-      display: inline-block;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
     }
-
-    .g_id_signin {
-      margin-bottom: 15px;
-    }
-
-    .guest-btn {
-      display: inline-block;
+    .btn-guest {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: white;
-      color: #3c4043;
       border: 1px solid #dadce0;
-      font-size: 16px;
-      font-weight: 500;
       border-radius: 4px;
-      padding: 10px 24px;
-      width: 280px;
-      box-shadow: rgba(60,64,67,0.3) 0 1px 2px 0, rgba(60,64,67,0.15) 0 1px 3px 1px;
-      cursor: pointer;
-    }
-
-    #status {
-      margin-top: 20px;
-      color: #8ddfff;
       font-size: 14px;
+      font-weight: 500;
+      height: 40px;
+      padding: 0 16px;
+      margin-top: 12px;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: rgba(60,64,67,0.3) 0px 1px 2px, rgba(60,64,67,0.15) 0px 1px 3px 1px;
+    }
+    .btn-guest img {
+      height: 20px;
+      margin-right: 8px;
+    }
+    #status {
+      font-size: 13px;
+      color: #5f6368;
+      margin-top: 16px;
+    }
+    footer {
+      font-size: 12px;
+      text-align: center;
+      color: #5f6368;
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <!-- Logo Game -->
+  <header>
+    <img src="" alt="Logo Game">
+  </header>
+
+  <main>
     <h1>Masuk ke UVOSHOP</h1>
 
-    <!-- Google Login -->
+    <!-- Google Sign-In -->
     <div id="g_id_onload"
          data-client_id="710372260238-5hqj04ce4amk8bn61vq96f9o3qcu5khe.apps.googleusercontent.com"
-         data-context="signin"
          data-callback="handleCredentialResponse"
          data-auto_prompt="true">
     </div>
 
     <div class="g_id_signin" data-type="standard" data-size="large"></div>
 
-    <!-- Guest Login -->
-    <button class="guest-btn" onclick="loginGuest()">Masuk sebagai Tamu</button>
+    <!-- Guest Sign-In -->
+    <button class="btn-guest" onclick="loginGuest()">
+      <img src="https://img.icons8.com/ios-filled/50/user.png" alt="Guest Icon"/>
+      Masuk sebagai Tamu
+    </button>
 
     <div id="status">Pilih metode login</div>
-  </div>
+  </main>
+
+  <!-- Logo Developer -->
+  <footer>
+    <img src="" alt="Logo Developer"><br>
+    © AditDeveloper 2025
+  </footer>
 
   <script>
     function handleCredentialResponse(response) {
       const id_token = response.credential;
       document.getElementById("status").textContent = "Login Google berhasil, menyalin token...";
-
       navigator.clipboard.writeText(id_token).then(() => {
         setTimeout(() => {
           window.location.href = "uvo://login_success";
-          window.close(); // Jika browser mendukung
+          window.close();
         }, 1000);
       });
     }
 
     function loginGuest() {
-      document.getElementById("status").textContent = "Login tamu berhasil, menyalin token...";
-
+      document.getElementById("status").textContent = "Login tamu berhasil, menyalin...";
       navigator.clipboard.writeText("guest").then(() => {
         setTimeout(() => {
           window.location.href = "uvo://guest_login";
